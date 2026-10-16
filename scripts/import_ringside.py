@@ -526,7 +526,7 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
                 continue
             yr = int(cur["won_date"][:4])
             near = [r["wrestler_id"] for r in rs if abs(int(r["won_date"][:4]) - yr) <= 6]
-            add("lineage", f"At {event_label(ev)}, {display[champ]} won the {TRIVIA_TITLE_LABELS[g]}. Who did they take it from?",
+            add("lineage", f"Who did {display[champ]} beat for the {TRIVIA_TITLE_LABELS[g]} at {event_label(ev)}?",
                 display[before], famous(near, 3, {display[champ], display[before]}, gender.get(before)),
                 f"{tid}:{cur['won_date']}")
 
