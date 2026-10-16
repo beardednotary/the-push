@@ -333,12 +333,26 @@ def main():
             title_group[tid] = "tag"
         elif re.search(r"Women|Divas|Knockouts", n):
             title_group[tid] = "womens"
-    reigns = list(rows("title_reigns"))
-    for r in reigns:
+    # Singles titles "won" in multi-winner matches are worth a look: some are real
+    # (David Arquette, LayCool), some are data errors (Cody Rhodes, Backlash 2009).
+    # The grid keeps them all; trivia only asks about sole-winner title changes.
+    wins_on = collections.defaultdict(list)
+    for m in matches.values():
+        if m["title"]:
+            for p in m["parts"]:
+                if p[1] == "win":
+                    wins_on[(m["date"], p[0])].append(m)
+    reigns, rejected = [], []
+    for r in rows("title_reigns"):
         r["wrestler_id"] = cid(r["wrestler_id"])
         g = title_group.get(r["title_id"])
+        won = wins_on.get((r["won_date"], r["wrestler_id"]), [])
+        if g and g != "tag" and won and all(has_partner(m, r["wrestler_id"]) for m in won):
+            rejected.append(f"{display[r['wrestler_id']]} {titles[r['title_id']]['name']} {r['won_date']}")
+        reigns.append(r)
         if g:
             tags[r["wrestler_id"]].add(g)
+    report.append(f"- REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): {rejected}")
 
     # ---- curation overrides -----------------------------------------------
     key_to_root = collections.defaultdict(set)
@@ -408,15 +422,27 @@ def is_rumble_ppv(ev):
     return ev["promo"] == "WWE" and "Royal Rumble" in ev["name"] and "Greatest" not in ev["name"]
 
 
+def has_partner(m, wid):
+    """True when wid didn't win alone (team numbers are often blank, so count winners)."""
+    return sum(1 for p in m["parts"] if p[1] == "win") > 1
+
+
 def match_gender(m, gender):
     c = collections.Counter(gender.get(p[0], "") for p in m["parts"])
     return "f" if c["f"] > c["m"] else "m"
 
 
 def event_label(ev):
+    """Short, plain event name: 'WWE TLC: Tables, Ladders and Chairs '09' -> 'TLC 2009'."""
     name = re.sub(r"\s+", " ", ev["name"])
-    name = re.sub(r"\s*-?\s*(Day \d )?Taping.*$", "", name)
-    return name if re.search(r"\b(19|20)\d\d\b|'\d\d", name) else f"{name} ({ev['date'][:4]})"
+    name = re.sub(r"^(WWF|WWE) ", "", name)
+    name = re.sub(r"\s*-\s*(Night|Day|Part).*$|\s*(Day \d )?Taping.*$", "", name)
+    name = re.sub(r"\s*\(.*?\)", "", name)
+    name = name.split(":")[0].split(" - ")[0].strip()
+    name = re.sub(r"'(\d\d)", lambda m: ("19" if int(m.group(1)) > 50 else "20") + m.group(1), name)
+    if "WrestleMania" not in name and not re.search(r"(19|20)\d\d", name):
+        name = f"{name} {ev['date'][:4]}"
+    return name
 
 
 TRIVIA_TITLE_LABELS = {"wweChamp": "WWE Championship", "wcwChamp": "WCW World Heavyweight Championship",
@@ -469,7 +495,7 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
                 continue
             w, g, year = winners[0], match_gender(m, gender), ev["date"][:4]
             label = ("women's " if g == "f" else "men's ") if int(year) >= 2018 else ""
-            add("rumble", f"Who won the {year} {label}Royal Rumble match?", display[w],
+            add("rumble", f"Who won the {year} {label}Royal Rumble?", display[w],
                 famous([p[0] for p in m["parts"]], 3, {display[w]}, g), f"{year}{g}")
 
     # WrestleMania: final-match winner, host city
@@ -489,12 +515,12 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
         if len(main["parts"]) == 2 and {p[1] for p in main["parts"]} == {"win", "loss"}:
             win = next(p[0] for p in main["parts"] if p[1] == "win")
             lose = next(p[0] for p in main["parts"] if p[1] == "loss")
-            add("wmMain", f"Who won the main event of {night}?",
+            add("wmMain", f"Who won the main event of {night.replace(' - ', ' ')}?",
                 display[win], [display[lose]] + famous(year_ids[ev["date"][:4]], 2, {display[win], display[lose]},
                                                        gender.get(win)), night)
     cities = sorted({c for _, c in wm_cities.values()})
     for base, (date, city) in wm_cities.items():
-        add("wmCity", f"Which city hosted {base} ({date[:4]})?", city,
+        add("wmCity", f"Which city hosted {base}?", city,
             rng.sample([c for c in cities if c != city], 3), base)
 
     # Title changes, confirmed by the title match itself
@@ -516,7 +542,8 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
                 continue
             m = next((m for m in title_matches.get(cur["won_date"], [])
                       if (champ, "win") in {(p[0], p[1]) for p in m["parts"]}
-                      and (before, "loss") in {(p[0], p[1]) for p in m["parts"]}), None)
+                      and (before, "loss") in {(p[0], p[1]) for p in m["parts"]}
+                      and not has_partner(m, champ)), None)
             if not m:
                 skipped["lineage-unconfirmed"] += 1
                 continue
@@ -558,7 +585,7 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
             continue
         seen_names.add(base.lower())
         others = [p for p in ("WWE", "WCW", "ECW", "TNA", "AEW") if p != ev["promo"]]
-        add("promotion", f"Which promotion ran the pay-per-view {base}?", ev["promo"], rng.sample(others, 3), base)
+        add("promotion", f"Which promotion ran {base}?", ev["promo"], rng.sample(others, 3), base)
 
     report.append(f"- trivia questions generated: {len(qs)}; skipped: {dict(skipped)}")
     return qs

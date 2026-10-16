@@ -3,18 +3,19 @@
 Read this after every import; spot-check the lists against what you know.
 
 - ids merged because one is listed as the other's alias: 0
-- identities: 12814 dataset ids -> 11816 people
+- identities: 12814 dataset ids -> 11815 people
 - events kept 30839, dropped as off-brand after 2025-06-01: {'WWE': 151, 'NXT': 75, 'AEW': 4244}
 - duplicate event listings collapsed: 10713
 - matches after de-dup: 129887
-- gender: Counter({'m': 3053, 'f': 347}) among regulars
-- pool size 2116; duplicate display names: []
-- trivia questions generated: 849; skipped: {'rumble': 43, 'wmMain': 7, 'lineage-unconfirmed': 98, 'lineage-tv': 185, 'lineage': 10, 'classic-obscure': 210, 'classic': 7}
+- gender: Counter({'m': 3053, 'f': 346}) among regulars
+- REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): ['Johnny Grunge ECW World Heavyweight Title 1994-03-26', 'Sabu ECW World Heavyweight Title 1995-02-04', 'Jr. WCW Cruiserweight Championship 1996-07-08', 'Jr. WCW Cruiserweight Championship 1998-01-15', 'Kane WWF World Heavyweight Title 1998-09-27', 'Kane WWF European Title 1999-02-15', 'Jr. WCW Cruiserweight Championship 1999-03-15', 'Jr. WCW Cruiserweight Championship 1999-04-26', 'Evan Karagias WCW Hardcore Title 2000-02-28', 'David Arquette WCW World Heavyweight Title 2000-04-25', 'Crowbar WCW Cruiserweight Championship 2000-05-15', 'Kane WWF World Heavyweight Title 2000-06-25', 'Chyna WWF Intercontinental Title 2000-08-27', 'Kevin Nash WCW Cruiserweight Championship 2000-10-02', 'Mr. McMahon ECW World Heavyweight Title 2007-04-29', 'Cody Rhodes WWE Championship 2009-04-26', "Layla WWE Women's Championship (original) 2010-05-11", 'Chris Jericho WWE United States Championship 2017-01-09', 'Dash Wilder WWE 24/7 Title 2019-08-12', 'Cesaro WWE Intercontinental Championship 2020-03-08']
+- pool size 2115; duplicate display names: []
+- trivia questions generated: 844; skipped: {'rumble': 43, 'wmMain': 7, 'lineage-unconfirmed': 106, 'lineage-tv': 182, 'lineage': 10, 'classic-obscure': 210, 'classic': 7}
 
 ## Criteria counts (pool)
 
-- wwe: 1388
-- nxt: 505
+- wwe: 1387
+- nxt: 504
 - wcw: 326
 - ecw: 192
 - tna: 244
@@ -34,7 +35,7 @@ Read this after every import; spot-check the lists against what you know.
 - nxtChamp: 24
 - twentyFourSeven: 57
 - tag: 215
-- womens: 83
+- womens: 82
 - rumble: 35
 - wmMain: 42
 - aewPpvMain: 34
@@ -45,7 +46,7 @@ Read this after every import; spot-check the lists against what you know.
 - d1980s: 232
 - d1990s: 720
 - d2000s: 590
-- d2010s: 681
+- d2010s: 680
 - d2020s: 708
 
 ## Royal Rumble winners
@@ -220,6 +221,7 @@ Read this after every import; spot-check the lists against what you know.
 - Goldust (m): cage, d1990s, d2000s, d2010s, hardcore, ic, ladder, tag, wwe
 - Kurt Angle (m): cage, d1990s, d2000s, d2010s, european, hardcore, hiac, ic, ladder, marathon, tna, us, wcwChamp, whc, wmMain, wwe, wweChamp
 - Heath Slater (m): d2010s, d2020s, nxt, tag, twentyFourSeven, wwe
+- Charlotte Flair (f): cage, d2010s, d2020s, hiac, ladder, nxt, rumble, womens, wwe
 - Kevin Owens (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, nxtChamp, universal, us, wmMain, wwe
 - Titus O'Neil (m): d2010s, d2020s, nxt, twentyFourSeven, wwe
 - CM Punk (m): aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, ecwChamp, hiac, ic, ladder, marathon, tag, whc, wmMain, wwe, wweChamp
@@ -230,72 +232,70 @@ Read this after every import; spot-check the lists against what you know.
 - Bray Wyatt (m): cage, d2010s, d2020s, hiac, ladder, nxt, tag, universal, whc, wwe
 - Becky Lynch (f): cage, d2010s, d2020s, hiac, ladder, nxt, rumble, tag, wmMain, womens, wwe
 - Naomi (f): d2010s, d2020s, ladder, nxt, tag, womens, wwe
-- Big E (m): cage, d2010s, d2020s, ic, ladder, tag, wwe, wweChamp
 
 ## Trivia counts
 
 - rumble: 45
 - wmMain: 33
 - wmCity: 39
-- lineage: 258
+- lineage: 253
 - classic: 383
 - promotion: 91
 
 ## Trivia sample
 
-- [classic] Who did Samoa Joe defeat at TNA Final Resolution '06? -> **Christopher Daniels** (of ['Christopher Daniels', 'Sting', 'John Cena', 'Randy Orton'])
-- [classic] Who did Brock Lesnar defeat at WWE WrestleMania 39 - Night 2 (2023)? -> **Omos** (of ['Omos', 'John Cena', 'Roman Reigns', 'The Miz'])
-- [classic] Who did MJF defeat at AEW Revolution (2020)? -> **Cody Rhodes** (of ['Randy Orton', 'Cody Rhodes', 'Sheamus', 'Chris Jericho'])
-- [classic] Who did Charlotte defeat at WWE Hell In A Cell 2015? -> **Nikki Bella** (of ['Paige', 'Naomi', 'Nikki Bella', 'Gail Kim'])
-- [classic] Who did A.J. Styles defeat at TNA Bound for Glory '13? -> **Bully Ray** (of ['Samoa Joe', 'Mr. Anderson', 'Rob Van Dam', 'Bully Ray'])
-- [classic] Who did Kevin Owens defeat at WWE Payback '16? -> **Sami Zayn** (of ['Jon Moxley', 'Randy Orton', 'The Miz', 'Sami Zayn'])
-- [classic] Who did Gunther defeat at WWE King And Queen Of The Ring 2024? -> **Randy Orton** (of ['Randy Orton', 'Bryan Danielson', 'Jey Uso', 'Kevin Owens'])
-- [classic] Who did Liv Morgan defeat at WWE Summerslam 2024? -> **Rhea Ripley** (of ['Jordynne Grace', 'Nia Jax', 'Rhea Ripley', 'IYO SKY'])
-- [classic] Who did Alex Shelley defeat at TNA Genesis '09? -> **Chris Sabin** (of ['Chris Sabin', 'Sting', 'Scott Steiner', 'Booker T.'])
-- [classic] Who did Kurt Angle defeat at TNA Hard Justice '07? -> **Samoa Joe** (of ['Samoa Joe', 'Sting', 'Abyss', 'Chris Sabin'])
-- [classic] Who did Bobby Roode defeat at TNA No Surrender '11? -> **Gunner** (of ['Jeff Hardy', 'Samoa Joe', 'Matt Hardy', 'Gunner'])
-- [classic] Who did Mr. Anderson defeat at TNA Genesis '11? -> **Jeff Hardy** (of ['Jeff Hardy', 'Scott Steiner', 'Matt Hardy', 'James Storm'])
-- [classic] Who did Austin Aries defeat at TNA No Surrender '11? -> **Brian Kendrick** (of ['Sting', 'Brian Kendrick', 'Kurt Angle', 'Jeff Jarrett'])
-- [classic] Who did Kevin Owens defeat at WWE Fastlane '16? -> **Dolph Ziggler** (of ['The Miz', 'Randy Orton', 'Roman Reigns', 'Dolph Ziggler'])
-- [classic] Who did Samoa Joe defeat at TNA Turning Point '06? -> **Kurt Angle** (of ['Sting', 'A.J. Styles', 'Kevin Nash', 'Kurt Angle'])
-- [classic] Who did Elix Skipper defeat at TNA Final Resolution '05? -> **Sonjay Dutt** (of ['Sonjay Dutt', 'Chris Benoit', 'Jeff Hardy', 'A.J. Styles'])
-- [classic] Who did Gunther defeat at WWE Summerslam 2024? -> **Damian Priest** (of ['Damian Priest', 'A.J. Styles', 'Seth Rollins', 'Jimmy Uso'])
-- [classic] Who did Seth Rollins defeat at WWE Hell In a Cell 2021? -> **Cesaro** (of ['Cesaro', 'Kevin Owens', 'Big Show', 'John Cena'])
-- [classic] Who did Kurt Angle defeat at TNA Final Resolution (Dec '08)? -> **Rhino** (of ['Booker T.', 'Rhino', 'Eric Young', 'A.J. Styles'])
-- [classic] Who did Chris Benoit defeat at WWE ECW One Night Stand '05? -> **Eddie Guerrero** (of ['Eddie Guerrero', 'Rey Mysterio', 'A.J. Styles', 'Jeff Jarrett'])
-- [classic] Who did Bobby Lashley defeat at WWE Payback 2020? -> **Apollo Crews** (of ['Roman Reigns', 'Seth Rollins', 'Apollo Crews', 'The Miz'])
-- [classic] Who did Charlotte defeat at WWE Night of Champions '15? -> **Nikki Bella** (of ['Naomi', 'Nikki Bella', 'Paige', 'Gail Kim'])
-- [classic] Who did Chris Jericho defeat at WWE Roadblock '16? -> **Jack Swagger** (of ['Jack Swagger', 'The Miz', 'Seth Rollins', 'Roman Reigns'])
-- [classic] Who did Rhea Ripley defeat at WWE WrestleMania 39 - Night 1 (2023)? -> **Charlotte Flair** (of ['Becky Lynch', 'Alexa Bliss', 'Charlotte Flair', 'Raquel Rodriguez'])
-- [classic] Who did Seth Rollins defeat at WWE Payback 2023? -> **Shinsuke Nakamura** (of ['A.J. Styles', 'Chris Jericho', 'Shinsuke Nakamura', 'Bryan Danielson'])
-- [classic] Who did Jinder Mahal defeat at WWE SummerSlam '17? -> **Shinsuke Nakamura** (of ['Shinsuke Nakamura', 'Randy Orton', 'Dolph Ziggler', 'Chris Jericho'])
-- [classic] Who did Robert Roode defeat at TNA Sacrifice '07? -> **Jeff Jarrett** (of ['Samoa Joe', 'Abyss', 'Scott Steiner', 'Jeff Jarrett'])
-- [lineage] Who did Roman Reigns beat for the United States Championship at WWE Clash of Champions '16 (Raw)? -> **Rusev** (of ['A.J. Styles', 'Chris Jericho', 'John Cena', 'Rusev'])
-- [lineage] Who did Randy Savage beat for the WWE Championship at WWF WrestleMania VIII (1992)? -> **Ric Flair** (of ['Yokozuna', 'Kane', 'Hulk Hogan', 'Ric Flair'])
-- [lineage] Who did Kofi Kingston beat for the World Heavyweight Championship at WWE WrestleMania 35 (2019)? -> **Bryan Danielson** (of ['A.J. Styles', 'Randy Orton', 'Bray Wyatt', 'Bryan Danielson'])
-- [lineage] Who did Dolph Ziggler beat for the Intercontinental Championship at WWE SummerSlam '14? -> **The Miz** (of ['Jon Moxley', 'The Miz', 'Big Show', 'Kofi Kingston'])
-- [lineage] Who did John Cena beat for the WWE Championship at WWE Unforgiven '06? -> **Edge** (of ['Randy Orton', 'Edge', 'Cody Rhodes', 'CM Punk'])
-- [lineage] Who did Jeff Jarrett beat for the Intercontinental Championship at WWF Royal Rumble '95? -> **Razor Ramon** (of ['Razor Ramon', 'Chris Jericho', 'Christian', 'Shawn Michaels'])
-- [lineage] Who did Seth Rollins beat for the Intercontinental Championship at WWE WrestleMania 34 (2018)? -> **The Miz** (of ['The Miz', 'Kofi Kingston', 'Jeff Hardy', 'Big Show'])
-- [lineage] Who did Dolph Ziggler beat for the Intercontinental Championship at WWE No Mercy '16? -> **The Miz** (of ['The Miz', 'Big Show', 'Roman Reigns', 'Cody Rhodes'])
-- [lineage] Who did Chris Jericho beat for the Intercontinental Championship at WWF Armageddon '99? -> **Chyna** (of ['Shawn Michaels', 'Chyna', 'Triple H', 'Kurt Angle'])
-- [lineage] Who did Edge beat for the World Heavyweight Championship at WWE No Way Out '09? -> **John Cena** (of ['John Cena', 'Chris Jericho', 'Jeff Hardy', 'Randy Orton'])
-- [lineage] Who did Eddie Guerrero beat for the Intercontinental Championship at WWF Backlash '02? -> **Rob Van Dam** (of ['Kane', 'Edge', 'Chris Benoit', 'Rob Van Dam'])
-- [lineage] Who did The Ultimate Warrior beat for the Intercontinental Championship at WWF SummerSlam '89? -> **Rick Rude** (of ['Rick Rude', 'Jeff Jarrett', 'Roddy Piper', 'Ricky Steamboat'])
-- [lineage] Who did John Cena beat for the United States Championship at WWE No Mercy '04? -> **Booker T.** (of ['Booker T.', 'The Miz', 'Randy Orton', 'Chris Benoit'])
-- [lineage] Who did Kevin Nash beat for the WCW World Heavyweight Championship at WCW StarrCade '98? -> **Goldberg** (of ['Chris Benoit', 'Booker T.', 'Ric Flair', 'Goldberg'])
-- [lineage] Who did Chris Jericho beat for the WCW World Heavyweight Championship at WWF Vengeance '01? -> **The Rock** (of ['Booker T.', 'The Rock', 'Sting', 'Scott Steiner'])
-- [promotion] Which promotion ran the pay-per-view SuperBrawl V? -> **WCW** (of ['TNA', 'WCW', 'WWE', 'AEW'])
-- [promotion] Which promotion ran the pay-per-view SuperBrawl II? -> **WCW** (of ['TNA', 'WWE', 'WCW', 'AEW'])
-- [promotion] Which promotion ran the pay-per-view Boston Brawl: Internet Event? -> **WCW** (of ['TNA', 'AEW', 'WCW', 'ECW'])
-- [rumble] Who won the 2022 men's Royal Rumble match? -> **Brock Lesnar** (of ['A.J. Styles', 'Drew McIntyre', 'Brock Lesnar', 'Randy Orton'])
-- [wmCity] Which city hosted WrestleMania XIX (2003)? -> **Seattle** (of ['Boston', 'Seattle', 'Arlington', 'Atlantic City'])
-- [wmCity] Which city hosted WrestleMania XI (1995)? -> **Hartford** (of ['Hartford', 'Las Vegas', 'Atlanta', 'New Orleans'])
-- [wmCity] Which city hosted WrestleMania XV (1999)? -> **Philadelphia** (of ['Philadelphia', 'Miami', 'Tampa', 'Glendale'])
-- [wmCity] Which city hosted WrestleMania XXVIII (2012)? -> **Miami** (of ['Miami', 'Las Vegas', 'Boston', 'Seattle'])
-- [wmCity] Which city hosted WrestleMania 22 (2006)? -> **Chicago** (of ['New York', 'Orlando', 'Seattle', 'Chicago'])
+- [classic] Who did Triple H defeat at Roadblock 2016? -> **Jon Moxley** (of ['Jon Moxley', 'Chris Jericho', 'Randy Orton', 'The Miz'])
+- [classic] Who did John Cena defeat at Greatest Royal Rumble 2018? -> **Triple H** (of ['Seth Rollins', 'The Undertaker', 'Roman Reigns', 'Triple H'])
+- [classic] Who did Seth Rollins defeat at Hell In a Cell 2021? -> **Cesaro** (of ['Kofi Kingston', 'Cesaro', 'Jon Moxley', 'Edge'])
+- [classic] Who did Jon Moxley defeat at AEW Revolution 2022? -> **Bryan Danielson** (of ['Seth Rollins', 'Roman Reigns', 'Cody Rhodes', 'Bryan Danielson'])
+- [classic] Who did Charlotte Flair defeat at Payback 2016? -> **Natalya** (of ['Natalya', 'Sasha Banks', 'Carmella', 'Bayley'])
+- [classic] Who did Jon Moxley defeat at Survivor Series 2015? -> **Kevin Owens** (of ['Dolph Ziggler', 'Kevin Owens', 'The Undertaker', 'John Cena'])
+- [classic] Who did A.J. Styles defeat at Money in the Bank 18 2018? -> **Shinsuke Nakamura** (of ['John Cena', 'Shinsuke Nakamura', 'Seth Rollins', 'The Undertaker'])
+- [classic] Who did Christian Cage defeat at TNA Destination X 2007? -> **Samoa Joe** (of ['Scott Steiner', 'Kurt Angle', 'Samoa Joe', 'Jeff Jarrett'])
+- [classic] Who did Diamond Dallas Page defeat at TNA Turning Point 2004? -> **Raven** (of ['A.J. Styles', 'Chris Sabin', 'Petey Williams', 'Raven'])
+- [classic] Who did Kurt Angle defeat at TNA Sacrifice 2012? -> **A.J. Styles** (of ['James Storm', 'A.J. Styles', 'Rob Van Dam', 'Samoa Joe'])
+- [classic] Who did Kurt Angle defeat at TNA Final Resolution 2008? -> **Rhino** (of ['James Storm', 'Rhino', 'A.J. Styles', 'Samoa Joe'])
+- [classic] Who did Dolph Ziggler defeat at Night of Champions 2015? -> **Rusev** (of ['Randy Orton', 'John Cena', 'Rusev', 'Kevin Owens'])
+- [classic] Who did Christopher Daniels defeat at TNA Genesis 2013? -> **James Storm** (of ['Mr. Anderson', 'Rob Van Dam', 'James Storm', 'Magnus'])
+- [classic] Who did Charlotte Flair defeat at Night of Champions 2015? -> **Nikki Bella** (of ['Naomi', 'Paige', 'Nikki Bella', 'Gail Kim'])
+- [classic] Who did The Miz defeat at Survivor Series 2016? -> **Sami Zayn** (of ['Randy Orton', 'Roman Reigns', 'Kevin Owens', 'Sami Zayn'])
+- [classic] Who did Seth Rollins defeat at Backlash 2018? -> **The Miz** (of ['Dolph Ziggler', 'Roman Reigns', 'Jeff Hardy', 'The Miz'])
+- [classic] Who did Rob Van Dam defeat at ECW One Night Stand 2006? -> **John Cena** (of ['A.J. Styles', 'Eric Young', 'Jeff Jarrett', 'John Cena'])
+- [classic] Who did Samoa Joe defeat at TNA Bound for Glory 2007? -> **Christian Cage** (of ['Christian Cage', 'Eric Young', 'Jeff Jarrett', 'Scott Steiner'])
+- [classic] Who did Seth Rollins defeat at Money In The Bank 2023? -> **Finn Bálor** (of ['Finn Bálor', 'Kevin Owens', 'Chris Jericho', 'The Miz'])
+- [classic] Who did Kazarian defeat at TNA Destination X 2011? -> **Samoa Joe** (of ['Samoa Joe', 'Sting', 'Jeff Hardy', 'Kurt Angle'])
+- [classic] Who did Christian Cage defeat at TNA Victory Road 2007? -> **Chris Harris** (of ['Chris Harris', 'Eric Young', 'A.J. Styles', 'Samoa Joe'])
+- [classic] Who did Shinsuke Nakamura defeat at SummerSlam 2018? -> **Jeff Hardy** (of ['Dolph Ziggler', 'The Undertaker', 'Jeff Hardy', 'A.J. Styles'])
+- [classic] Who did Roman Reigns defeat at WrestleMania 32? -> **Triple H** (of ['Kevin Owens', 'Randy Orton', 'The Miz', 'Triple H'])
+- [classic] Who did Sasha Banks defeat at SummerSlam 2017? -> **Alexa Bliss** (of ['Alexa Bliss', 'Natalya', 'Nia Jax', 'Asuka'])
+- [classic] Who did John Cena defeat at Money In The Bank 2015? -> **Kevin Owens** (of ['Randy Orton', 'Seth Rollins', 'Kevin Owens', 'Jon Moxley'])
+- [classic] Who did Seth Rollins defeat at Fastlane 2021? -> **Shinsuke Nakamura** (of ['Kofi Kingston', 'Shinsuke Nakamura', 'John Cena', 'Big Show'])
+- [classic] Who did Big E defeat at SummerSlam 2021? -> **Baron Corbin** (of ['Baron Corbin', 'Randy Orton', 'Jon Moxley', 'Sheamus'])
+- [classic] Who did Jay Lethal defeat at TNA Destination X 2008? -> **Petey Williams** (of ['Kevin Nash', 'Scott Steiner', 'Petey Williams', 'Booker T.'])
+- [lineage] Who did Baron Corbin beat for the United States Championship at Hell in a Cell 2017? -> **A.J. Styles** (of ['Sheamus', 'Chris Jericho', 'John Cena', 'A.J. Styles'])
+- [lineage] Who did Yokozuna beat for the WWE Championship at WrestleMania IX? -> **Bret Hart** (of ['Randy Savage', 'Kane', 'Stone Cold Steve Austin', 'Bret Hart'])
+- [lineage] Who did Kevin Owens beat for the Intercontinental Championship at Night of Champions 2015? -> **Ryback** (of ['Dolph Ziggler', 'Ryback', 'Kofi Kingston', 'The Miz'])
+- [lineage] Who did Jeff Hardy beat for the WWE Championship at Armageddon 2008? -> **Edge** (of ['John Cena', 'Edge', 'Cody Rhodes', 'Kurt Angle'])
+- [lineage] Who did Jeff Jarrett beat for the Intercontinental Championship at Royal Rumble 1995? -> **Razor Ramon** (of ['Razor Ramon', 'Chris Jericho', 'Christian', 'Shawn Michaels'])
+- [lineage] Who did Finn Bálor beat for the Intercontinental Championship at WrestleMania 35? -> **Bobby Lashley** (of ['Bobby Lashley', 'John Cena', 'Kevin Owens', 'The Miz'])
+- [lineage] Who did Jon Moxley beat for the Intercontinental Championship at TLC 2018? -> **Seth Rollins** (of ['Seth Rollins', 'Kofi Kingston', 'Big Show', 'Jeff Hardy'])
+- [lineage] Who did Chris Jericho beat for the Intercontinental Championship at Armageddon 1999? -> **Chyna** (of ['Shawn Michaels', 'Chyna', 'Triple H', 'Kurt Angle'])
+- [lineage] Who did CM Punk beat for the World Heavyweight Championship at SummerSlam 2009? -> **Jeff Hardy** (of ['The Undertaker', 'Jeff Hardy', 'Kane', 'Dolph Ziggler'])
+- [lineage] Who did Hulk Hogan beat for the WWE Championship at MSG Show 1984? -> **The Iron Sheik** (of ['Bob Backlund', 'The Iron Sheik', 'Randy Savage', 'Andre the Giant'])
+- [lineage] Who did The Ultimate Warrior beat for the Intercontinental Championship at SummerSlam 1989? -> **Rick Rude** (of ['Rick Rude', 'Jeff Jarrett', 'Roddy Piper', 'Ricky Steamboat'])
+- [lineage] Who did Shelton Benjamin beat for the United States Championship at The Great American Bash 2008? -> **Matt Hardy** (of ['Matt Hardy', 'Randy Orton', 'John Cena', 'R-Truth'])
+- [lineage] Who did Booker T. beat for the WCW World Heavyweight Championship at WCW Bash At The Beach 2000? -> **Jeff Jarrett** (of ['Ric Flair', 'Sting', 'Hulk Hogan', 'Jeff Jarrett'])
+- [lineage] Who did Bobby Lashley beat for the ECW World Heavyweight Championship at One Night Stand 2007? -> **Mr. McMahon** (of ['Jack Swagger', 'Mr. McMahon', 'Matt Hardy', 'Chavo Guerrero'])
+- [promotion] Which promotion ran WrestleWar? -> **WCW** (of ['WCW', 'ECW', 'TNA', 'WWE'])
+- [promotion] Which promotion ran SuperBrawl V? -> **WCW** (of ['WWE', 'WCW', 'TNA', 'AEW'])
+- [rumble] Who won the 2022 men's Royal Rumble? -> **Brock Lesnar** (of ['A.J. Styles', 'Drew McIntyre', 'Brock Lesnar', 'Randy Orton'])
+- [wmCity] Which city hosted WrestleMania XIX? -> **Seattle** (of ['Boston', 'Seattle', 'Arlington', 'Atlantic City'])
+- [wmCity] Which city hosted WrestleMania XI? -> **Hartford** (of ['Hartford', 'Las Vegas', 'Atlanta', 'New Orleans'])
+- [wmCity] Which city hosted WrestleMania XV? -> **Philadelphia** (of ['Philadelphia', 'Miami', 'Tampa', 'Glendale'])
+- [wmCity] Which city hosted WrestleMania XXVIII? -> **Miami** (of ['Miami', 'Las Vegas', 'Boston', 'Seattle'])
+- [wmCity] Which city hosted WrestleMania 22? -> **Chicago** (of ['New York', 'Orlando', 'Seattle', 'Chicago'])
 - [wmMain] Who won the main event of WrestleMania VI? -> **The Ultimate Warrior** (of ['Ted DiBiase', 'Randy Savage', 'Hulk Hogan', 'The Ultimate Warrior'])
-- [wmMain] Who won the main event of WrestleMania 38 - Night 1? -> **Stone Cold Steve Austin** (of ['Kofi Kingston', 'The Miz', 'Kevin Owens', 'Stone Cold Steve Austin'])
+- [wmMain] Who won the main event of WrestleMania 38 Night 1? -> **Stone Cold Steve Austin** (of ['Kofi Kingston', 'The Miz', 'Kevin Owens', 'Stone Cold Steve Austin'])
 - [wmMain] Who won the main event of WrestleMania X8? -> **Triple H** (of ['Triple H', 'John Cena', 'The Undertaker', 'Chris Jericho'])
 - [wmMain] Who won the main event of WrestleMania 33? -> **Roman Reigns** (of ['The Undertaker', 'The Miz', 'Roman Reigns', 'Kane'])
 - [wmMain] Who won the main event of WrestleMania XIX? -> **Brock Lesnar** (of ['Chris Jericho', 'Brock Lesnar', 'Jeff Hardy', 'Kurt Angle'])
@@ -303,3 +303,4 @@ Read this after every import; spot-check the lists against what you know.
 - [wmMain] Who won the main event of WrestleMania VII? -> **Hulk Hogan** (of ['Ric Flair', 'Diamond Dallas Page', 'Sergeant Slaughter', 'Hulk Hogan'])
 - [wmMain] Who won the main event of WrestleMania IV? -> **Randy Savage** (of ['Shawn Michaels', 'Ted DiBiase', 'Jake Roberts', 'Randy Savage'])
 - [wmMain] Who won the main event of WrestleMania XXIV? -> **The Undertaker** (of ['A.J. Styles', 'The Undertaker', 'Kane', 'Edge'])
+- [wmMain] Who won the main event of WrestleMania 21? -> **Batista** (of ['A.J. Styles', 'Randy Orton', 'Batista', 'Triple H'])
