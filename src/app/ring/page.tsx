@@ -1,0 +1,14 @@
+import type { Metadata } from "next";
+import { puzzleNumber, todayKey } from "@/lib/day";
+import { gridFor } from "@/lib/ring";
+import RingGame from "./RingGame";
+
+export const dynamic = "force-dynamic";
+export const metadata: Metadata = { title: "Immaculate Ring · The Push" };
+
+export default function RingPage() {
+  const day = todayKey();
+  const grid = gridFor(day);
+  const side = ({ id, label, detail }: { id: string; label: string; detail: string }) => ({ id, label, detail });
+  return <RingGame key={day} day={day} number={puzzleNumber(day)} rows={grid.rows.map(side)} cols={grid.cols.map(side)} />;
+}

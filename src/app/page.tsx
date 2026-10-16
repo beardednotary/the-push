@@ -1,95 +1,50 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import Link from "next/link";
+import { Bug, Plate } from "@/components/Chrome";
+import { prettyDay, puzzleNumber, todayKey } from "@/lib/day";
+
+export const dynamic = "force-dynamic";
 
 export default function Home() {
+  const day = todayKey();
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol>
-          <li>
-            Get started by editing <code>src/app/page.tsx</code>.
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
-
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.secondary}
-          >
-            Read our docs
-          </a>
+    <>
+      <Bug>
+        <Plate tone="dark">No. {puzzleNumber(day)}</Plate>
+      </Bug>
+      <main className="wrap">
+        <div className="headline">
+          <Plate tone="gold">Tonight&apos;s card · {prettyDay(day)}</Plate>
+          <h1 className="chrome" style={{ marginTop: 14 }}>
+            Two matches.
+            <br />
+            One night.
+          </h1>
         </div>
+
+        <section className="segment">
+          <div className="meta">
+            <Plate tone="dark">Opening contest</Plate>
+            <Plate tone="clock">2:00</Plate>
+          </div>
+          <h2 className="chrome">Daily Five</h2>
+          <p>Five wrestling questions, fifteen seconds each. Right answers score. Fast right answers score more.</p>
+          <Link className="cta" href="/five">
+            <span>Ring the bell</span>
+          </Link>
+        </section>
+
+        <section className="segment">
+          <div className="meta">
+            <Plate tone="dark">Main event</Plate>
+            <Plate tone="clock">5:00</Plate>
+          </div>
+          <h2 className="chrome">Immaculate Ring</h2>
+          <p>Nine squares, nine guesses. Name a wrestler who fits the row and the column. Rare picks rank higher.</p>
+          <Link className="cta" href="/ring">
+            <span>Ring the bell</span>
+          </Link>
+        </section>
       </main>
-      <footer className={styles.footer}>
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+    </>
   );
 }

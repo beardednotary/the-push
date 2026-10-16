@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Push
 
-## Getting Started
+Daily wrestling games, one card a day (midnight Eastern):
 
-First, run the development server:
+- **Daily Five**: five multiple-choice questions, 15 seconds each. 100 points for a right answer plus up to 100 for speed.
+- **Immaculate Ring**: a 3x3 grid. Name a wrestler who fits each row and column; nine guesses; rarer picks rank higher.
+
+Next.js 15 (App Router) · Upstash Redis for leaderboards · data from the [Ringside Wrestling Archive](https://www.kaggle.com/datasets/theodorerubin/ringside-wrestling-archive) (Kaggle, CC0).
+
+## Run it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Without Upstash credentials the leaderboards live in memory, which is fine for local dev only. For real use, copy `.env.example` to `.env.local` and fill in the Upstash values.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Data pipeline
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+pip install kagglehub
+python scripts/fetch_ringside.py      # downloads ~360 MB into data/raw/ (git-ignored)
+python scripts/import_ringside.py     # writes data/generated/{ring,trivia}.json + REPORT.md
+npx tsx scripts/check-puzzles.ts      # simulates a year of daily puzzles
+```
 
-## Learn More
+**Read `data/generated/REPORT.md` after every import.** It lists Rumble winners, WrestleMania main events, gender fixes and a trivia sample, so bad data is easy to spot.
 
-To learn more about Next.js, take a look at the following resources:
+What the import does with the archive:
+- Drops the 4,000+ indie shows the 2025-06+ scrape filed under AEW/WWE/NXT; collapses events that are listed twice.
+- Merges people split across ids ("Bret Hart (c)", "A.J. Styles" / "AJ Styles").
+- Fixes gender (the source marks most women male) from women's titles and singles opponents.
+- Derives grid criteria: promotions, title groups, Rumble wins, WrestleMania and AEW PPV main events, Hell in a Cell, cage, ladder, 30-minute matches and decades.
+- Generates trivia: Rumble winners, WrestleMania main events and cities, title changes (each one confirmed by its title match), classic PPV matches, and "which promotion ran this PPV".
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Curation (the Google Sheet)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`data/curation/*.csv` are the hand-edited layer on top of the import. Each is meant to be a tab in a Google Sheet, exported to CSV:
 
-## Deploy on Vercel
+| file | purpose |
+|---|---|
+| `merges.csv` | one person under several names/ids (Daniel Bryan → Bryan Danielson), plus display names |
+| `tags.csv` | facts the dataset lacks or gets wrong: `wrestler,tag,action(add/remove),note` |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+The archive has no AEW, NJPW or ROH title histories, so `tags.csv` supplies AEW World Champions.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Known gaps
+
+- No NJPW or ROH events. No Hall of Fame, nWo membership or Money in the Bank winners (MITB can't be derived reliably from the cards); these need `tags.csv` rows before they can be grid criteria.
+- AEW cards are thin between late 2024 and early 2026 in the source.
+- Daily Five times are measured in the browser. The server re-scores every submission from the raw answers, but a determined cheater could fake times.
+- **Licensing:** the archive is CC0, but its own notes say the bulk was scraped from Cagematch.net "for non-commercial use". Facts (who won what) aren't copyrightable; match ratings are only used to *choose* classic matches and are never shown. Get a proper read on this before turning ads on.

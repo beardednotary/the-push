@@ -1,0 +1,305 @@
+# Import report
+
+Read this after every import; spot-check the lists against what you know.
+
+- ids merged because one is listed as the other's alias: 0
+- identities: 12814 dataset ids -> 11816 people
+- events kept 30839, dropped as off-brand after 2025-06-01: {'WWE': 151, 'NXT': 75, 'AEW': 4244}
+- duplicate event listings collapsed: 10713
+- matches after de-dup: 129887
+- gender: Counter({'m': 3053, 'f': 347}) among regulars
+- pool size 2116; duplicate display names: []
+- trivia questions generated: 849; skipped: {'rumble': 43, 'wmMain': 7, 'lineage-unconfirmed': 98, 'lineage-tv': 185, 'lineage': 10, 'classic-obscure': 210, 'classic': 7}
+
+## Criteria counts (pool)
+
+- wwe: 1388
+- nxt: 505
+- wcw: 326
+- ecw: 192
+- tna: 244
+- aew: 311
+- wweChamp: 51
+- whc: 30
+- universal: 9
+- wcwChamp: 20
+- ecwChamp: 28
+- aewChamp: 9
+- ic: 96
+- us: 77
+- tv: 35
+- cruiser: 58
+- hardcore: 50
+- european: 21
+- nxtChamp: 24
+- twentyFourSeven: 57
+- tag: 215
+- womens: 83
+- rumble: 35
+- wmMain: 42
+- aewPpvMain: 34
+- hiac: 51
+- cage: 429
+- ladder: 229
+- marathon: 66
+- d1980s: 232
+- d1990s: 720
+- d2000s: 590
+- d2010s: 681
+- d2020s: 708
+
+## Royal Rumble winners
+
+- 1988-01-24 Jim Duggan (m)
+- 1989-01-15 Big John Studd (m)
+- 1990-01-21 Hulk Hogan (m)
+- 1991-01-19 Hulk Hogan (m)
+- 1992-01-19 Ric Flair (m)
+- 1993-01-24 Yokozuna (m)
+- 1994-01-22 Bret Hart (m)
+- 1994-01-22 Lex Luger (m)
+- 1995-01-22 Shawn Michaels (m)
+- 1996-01-21 Shawn Michaels (m)
+- 1997-01-19 Stone Cold Steve Austin (m)
+- 1998-01-18 Stone Cold Steve Austin (m)
+- 1999-01-24 Mr. McMahon (m)
+- 2000-01-23 The Rock (m)
+- 2001-01-21 Stone Cold Steve Austin (m)
+- 2002-01-20 Triple H (m)
+- 2003-01-19 Brock Lesnar (m)
+- 2004-01-25 Chris Benoit (m)
+- 2005-01-30 Batista (m)
+- 2006-01-29 Rey Mysterio (m)
+- 2007-01-28 The Undertaker (m)
+- 2008-01-27 John Cena (m)
+- 2009-01-25 Randy Orton (m)
+- 2010-01-31 Edge (m)
+- 2011-01-30 Alberto Del Rio (m)
+- 2012-01-29 Sheamus (m)
+- 2013-01-27 John Cena (m)
+- 2014-01-26 Batista (m)
+- 2015-01-25 Roman Reigns (m)
+- 2016-01-24 Triple H (m)
+- 2017-01-29 Randy Orton (m)
+- 2018-01-28 Asuka (f)
+- 2018-01-28 Asuka (m)
+- 2018-01-28 Shinsuke Nakamura (m)
+- 2019-01-27 Becky Lynch (f)
+- 2019-01-27 Becky Lynch (m)
+- 2019-01-27 Seth Rollins (m)
+- 2020-01-26 Charlotte Flair (f)
+- 2020-01-26 Charlotte Flair (m)
+- 2020-01-26 Drew McIntyre (m)
+- 2021-01-31 Bianca Belair (f)
+- 2021-01-31 Bianca Belair (m)
+- 2021-01-31 Edge (m)
+- 2022-01-29 Brock Lesnar (m)
+- 2022-01-29 Ronda Rousey (f)
+- 2022-01-29 Ronda Rousey (m)
+- 2023-01-28 Cody Rhodes (m)
+- 2023-01-28 Rhea Ripley (f)
+- 2023-01-28 Rhea Ripley (m)
+- 2024-01-27 Bayley (f)
+- 2024-01-27 Bayley (m)
+- 2024-01-27 Cody Rhodes (m)
+- 2025-02-01 Charlotte Flair (f)
+- 2025-02-01 Jey Uso (m)
+
+## WrestleMania final matches
+
+- 1985-03-31 WrestleMania: Hulk Hogan / Mr. T. / Paul Orndorff / Roddy Piper
+- 1986-04-07 WrestleMania 2: Hulk Hogan / King Kong Bundy
+- 1987-03-29 WrestleMania III: Hulk Hogan / Andre the Giant
+- 1988-03-27 WrestleMania IV: Randy Savage / Ted DiBiase
+- 1989-04-02 WrestleMania V: Randy Savage / Hulk Hogan
+- 1990-04-01 WrestleMania VI: The Ultimate Warrior / Hulk Hogan
+- 1991-03-24 WrestleMania VII: Sergeant Slaughter / Hulk Hogan
+- 1992-04-05 WrestleMania VIII: Hulk Hogan / Sid Justice
+- 1993-04-04 WrestleMania IX: Hulk Hogan / Yokozuna
+- 1994-03-20 WrestleMania X: Bret Hart / Yokozuna
+- 1995-04-02 WrestleMania XI: Bam Bam Bigelow / Lawrence Taylor
+- 1996-03-31 WrestleMania XII: Shawn Michaels / Bret Hart
+- 1997-03-23 WrestleMania 13: The Undertaker / Sycho Sid
+- 1998-03-29 WrestleMania XIV: Stone Cold Steve Austin / Shawn Michaels
+- 1999-03-28 WrestleMania XV: Stone Cold Steve Austin / The Rock
+- 2000-04-02 WrestleMania 2000: Triple H / Mick Foley, The Big Show, The Rock
+- 2001-04-01 WrestleMania X-Seven: Stone Cold Steve Austin / The Rock
+- 2002-03-17 WrestleMania X8: Triple H / Chris Jericho
+- 2003-03-30 WrestleMania XIX: Brock Lesnar / Kurt Angle
+- 2004-03-14 WrestleMania XX: Shawn Michaels, Triple H / Chris Benoit
+- 2005-04-03 WrestleMania 21: Triple H / Batista
+- 2006-04-02 WrestleMania 22: Triple H / John Cena
+- 2007-04-01 WrestleMania 23: John Cena / Shawn Michaels
+- 2008-03-30 WrestleMania XXIV: The Undertaker / Edge
+- 2009-04-05 WrestleMania XXV: Triple H / Randy Orton
+- 2010-03-28 WrestleMania XXVI: The Undertaker / Shawn Michaels
+- 2011-04-03 WrestleMania XXVII: The Miz / John Cena
+- 2012-04-01 WrestleMania XXVIII: The Rock / John Cena
+- 2013-04-07 WrestleMania 29: John Cena / The Rock
+- 2014-04-06 WrestleMania XXX: Bryan Danielson / Batista, Randy Orton
+- 2015-03-29 WrestleMania 31: Brock Lesnar (c), Roman Reigns / Seth Rollins
+- 2016-04-03 WrestleMania 32: Roman Reigns / Triple H
+- 2017-04-02 WrestleMania 33: The Undertaker / Roman Reigns
+- 2018-04-08 WrestleMania 34: Brock Lesnar / Roman Reigns
+- 2019-04-07 WrestleMania 35: Charlotte Flair (c), Ronda Rousey / Becky Lynch
+- 2020-03-25 WrestleMania 36 - Day 1 Taping Part 2: A.J. Styles / The Undertaker
+- 2020-03-26 WrestleMania 36 - Day 2 Taping: Drew McIntyre / Brock Lesnar
+- 2021-04-10 WrestleMania 37 - Night 1: Bianca Belair / Sasha Banks
+- 2021-04-11 WrestleMania 37 - Night 2: Roman Reigns / Daniel Bryan, Edge
+- 2022-04-02 WrestleMania 38 - Night 1: Kevin Owens / Stone Cold Steve Austin
+- 2022-04-03 WrestleMania 38 - Night 2: Roman Reigns / Brock Lesnar
+- 2023-04-01 WrestleMania 39 - Night 1: Jimmy Uso / Jey Uso / Kevin Owens / Sami Zayn
+- 2023-04-02 WrestleMania 39 - Night 2: Roman Reigns / Cody Rhodes
+- 2024-04-06 WrestleMania XL - Night 1: Seth Rollins / The Rock / Cody Rhodes / Roman Reigns
+- 2024-04-07 WrestleMania XL - Night 2: Cody Rhodes / Roman Reigns
+- 2025-04-19 WrestleMania 41 - Night 1: Seth Rollins / CM Punk / Roman Reigns
+- 2025-04-20 WrestleMania 41 - Night 2: Cody Rhodes / John Cena
+
+## AEW PPV final matches
+
+- 2019-05-25 AEW Double Or Nothing: Chris Jericho / Kenny Omega
+- 2019-06-29 AEW Fyter Fest: Jon Moxley / Joey Janela
+- 2019-07-13 AEW Fight for the Fallen: Matt Jackson / Nick Jackson / Cody Rhodes / Dustin Rhodes
+- 2019-08-31 AEW All Out: Chris Jericho / Hangman Page
+- 2019-11-09 AEW Full Gear: Jon Moxley / Kenny Omega
+- 2020-02-29 AEW Revolution: Jon Moxley / Chris Jericho
+- 2020-09-05 AEW All Out 2020: Jon Moxley / MJF
+- 2020-11-07 AEW Full Gear 2020: Jon Moxley / Eddie Kingston
+- 2021-03-07 AEW Revolution 2021: Jon Moxley / Kenny Omega
+- 2021-05-30 AEW Double Or Nothing 2021: Shawn Spears / MJF / Dax Harwood / Cash Wheeler / Santana / Sammy Guevara / Ortiz / Jake Hager / Chris Jericho / Wardlow
+- 2021-09-05 AEW All Out 2021: Kenny Omega / Christian Cage
+- 2021-11-13 AEW Full Gear 2021: Hangman Page / Kenny Omega
+- 2022-03-06 AEW Revolution 2022: Hangman Page / Adam Cole
+- 2022-05-29 AEW Double Or Nothing 2022: Hangman Page / CM Punk
+- 2022-09-04 AEW All Out 2022: CM Punk / Jon Moxley
+- 2022-11-19 AEW Full Gear 2022: MJF / Jon Moxley
+- 2023-03-05 AEW Revolution 2023: MJF / Bryan Danielson
+- 2023-05-28 AEW Double Or Nothing 2023: Kenny Omega / Hangman Page / Wheeler Yuta / Jon Moxley / Claudio Castagnoli / Bryan Danielson / Matt Jackson / Nick Jackson
+- 2023-08-27 AEW All In: London: Adam Cole / MJF
+- 2023-09-03 AEW All Out 2023: Jon Moxley / Orange Cassidy
+- 2023-10-01 AEW WrestleDream: Darby Allin / Christian Cage
+- 2023-11-18 AEW Full Gear 2023: MJF / Jay White
+- 2023-12-30 AEW Worlds End: MJF / Samoa Joe
+- 2024-03-03 AEW Revolution 2024: Sting / Matt Jackson / Darby Allin / Nick Jackson
+- 2024-04-21 AEW Dynasty: Swerve Strickland / Samoa Joe
+- 2024-05-26 AEW Double Or Nothing 2024: Jack Perry / Kazuchika Okada / Matt Jackson / Nick Jackson / Bryan Danielson / Cash Wheeler / Darby Allin / Dax Harwood
+- 2024-08-25 AEW All In London 2024: Swerve Strickland / Bryan Danielson
+- 2024-09-07 AEW All Out 2024: Hangman Page / Swerve Strickland
+- 2026-02-14 AEW Grand Slam Australia 2026: MJF / Brody King
+- 2026-03-15 AEW Revolution 2026: Hangman Page / MJF
+- 2026-04-12 AEW Dynasty 2026: Kenny Omega / MJF
+
+## Top of pool
+
+- Kane (m): cage, d1990s, d2000s, d2010s, ecwChamp, european, hardcore, hiac, ic, ladder, tag, wcw, whc, wwe, wweChamp
+- Big Show (m): aew, cage, d1990s, d2000s, d2010s, d2020s, ecwChamp, hardcore, hiac, ic, ladder, nxt, tag, us, wcw, wcwChamp, whc, wwe, wweChamp
+- Kofi Kingston (m): cage, d2000s, d2010s, d2020s, ic, ladder, nxt, tag, us, whc, wwe
+- The Miz (m): cage, d2000s, d2010s, d2020s, ic, ladder, us, wmMain, wwe, wweChamp
+- Randy Orton (m): cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
+- John Cena (m): cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
+- Dolph Ziggler (m): cage, d2000s, d2010s, d2020s, hiac, ic, ladder, nxt, nxtChamp, tag, us, whc, wwe
+- Chris Jericho (m): aew, aewChamp, aewPpvMain, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecw, european, hardcore, hiac, ic, ladder, marathon, tag, tv, us, wcw, wcwChamp, whc, wmMain, wwe
+- Sheamus (m): cage, d2000s, d2010s, d2020s, hiac, ladder, nxt, rumble, us, whc, wwe, wweChamp
+- Seth Rollins (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, rumble, universal, us, wmMain, wwe, wweChamp
+- Jon Moxley (m): aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, nxt, tag, us, wwe, wweChamp
+- Jey Uso (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, rumble, tag, wmMain, wwe, wweChamp
+- Roman Reigns (m): cage, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, rumble, tag, universal, us, wmMain, wwe, wweChamp
+- Jimmy Uso (m): cage, d2010s, d2020s, nxt, wmMain, wwe
+- R-Truth (m): d2000s, d2010s, d2020s, ladder, twentyFourSeven, us, wwe
+- Natalya (f): cage, d2000s, d2010s, d2020s, ladder, nxt, tag, womens, wwe
+- A.J. Styles (m): cage, d2000s, d2010s, d2020s, ic, ladder, marathon, tag, tna, us, wcw, whc, wmMain, wwe
+- Matt Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecwChamp, european, ladder, tag, tna, us, wwe
+- Jeff Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, european, hardcore, hiac, ic, ladder, marathon, tag, tna, us, whc, wwe, wweChamp
+- The Undertaker (m): cage, d1990s, d2000s, d2010s, hardcore, hiac, ladder, marathon, rumble, whc, wmMain, wwe, wweChamp
+- Cody Rhodes (m): aew, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, rumble, tag, tna, wmMain, wwe, wweChamp
+- Jack Swagger (m): cage, d2000s, d2010s, ecwChamp, hiac, us, whc, wwe
+- Zack Ryder (m): cage, d2000s, d2010s, d2020s, ic, ladder, nxt, us, wwe
+- Bryan Danielson (m): aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, tag, us, whc, wmMain, wwe, wweChamp
+- Drew McIntyre (m): cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, nxtChamp, rumble, wmMain, wwe, wweChamp
+- Edge (m): cage, d1990s, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
+- Goldust (m): cage, d1990s, d2000s, d2010s, hardcore, ic, ladder, tag, wwe
+- Kurt Angle (m): cage, d1990s, d2000s, d2010s, european, hardcore, hiac, ic, ladder, marathon, tna, us, wcwChamp, whc, wmMain, wwe, wweChamp
+- Heath Slater (m): d2010s, d2020s, nxt, tag, twentyFourSeven, wwe
+- Kevin Owens (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, nxtChamp, universal, us, wmMain, wwe
+- Titus O'Neil (m): d2010s, d2020s, nxt, twentyFourSeven, wwe
+- CM Punk (m): aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, ecwChamp, hiac, ic, ladder, marathon, tag, whc, wmMain, wwe, wweChamp
+- Rob Van Dam (m): aew, cage, d1990s, d2000s, d2010s, d2020s, ecw, hardcore, ic, ladder, marathon, tag, tna, tv, wwe, wweChamp
+- Christian (m): cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecwChamp, european, hardcore, ic, ladder, tag, whc, wwe
+- Cesaro (m): cage, d2010s, d2020s, ic, ladder, nxt, tag, wwe
+- Rey Mysterio (m): cage, cruiser, d2000s, d2010s, d2020s, hiac, ic, ladder, rumble, tag, us, whc, wwe, wweChamp
+- Bray Wyatt (m): cage, d2010s, d2020s, hiac, ladder, nxt, tag, universal, whc, wwe
+- Becky Lynch (f): cage, d2010s, d2020s, hiac, ladder, nxt, rumble, tag, wmMain, womens, wwe
+- Naomi (f): d2010s, d2020s, ladder, nxt, tag, womens, wwe
+- Big E (m): cage, d2010s, d2020s, ic, ladder, tag, wwe, wweChamp
+
+## Trivia counts
+
+- rumble: 45
+- wmMain: 33
+- wmCity: 39
+- lineage: 258
+- classic: 383
+- promotion: 91
+
+## Trivia sample
+
+- [classic] Who did Samoa Joe defeat at TNA Final Resolution '06? -> **Christopher Daniels** (of ['Christopher Daniels', 'Sting', 'John Cena', 'Randy Orton'])
+- [classic] Who did Brock Lesnar defeat at WWE WrestleMania 39 - Night 2 (2023)? -> **Omos** (of ['Omos', 'John Cena', 'Roman Reigns', 'The Miz'])
+- [classic] Who did MJF defeat at AEW Revolution (2020)? -> **Cody Rhodes** (of ['Randy Orton', 'Cody Rhodes', 'Sheamus', 'Chris Jericho'])
+- [classic] Who did Charlotte defeat at WWE Hell In A Cell 2015? -> **Nikki Bella** (of ['Paige', 'Naomi', 'Nikki Bella', 'Gail Kim'])
+- [classic] Who did A.J. Styles defeat at TNA Bound for Glory '13? -> **Bully Ray** (of ['Samoa Joe', 'Mr. Anderson', 'Rob Van Dam', 'Bully Ray'])
+- [classic] Who did Kevin Owens defeat at WWE Payback '16? -> **Sami Zayn** (of ['Jon Moxley', 'Randy Orton', 'The Miz', 'Sami Zayn'])
+- [classic] Who did Gunther defeat at WWE King And Queen Of The Ring 2024? -> **Randy Orton** (of ['Randy Orton', 'Bryan Danielson', 'Jey Uso', 'Kevin Owens'])
+- [classic] Who did Liv Morgan defeat at WWE Summerslam 2024? -> **Rhea Ripley** (of ['Jordynne Grace', 'Nia Jax', 'Rhea Ripley', 'IYO SKY'])
+- [classic] Who did Alex Shelley defeat at TNA Genesis '09? -> **Chris Sabin** (of ['Chris Sabin', 'Sting', 'Scott Steiner', 'Booker T.'])
+- [classic] Who did Kurt Angle defeat at TNA Hard Justice '07? -> **Samoa Joe** (of ['Samoa Joe', 'Sting', 'Abyss', 'Chris Sabin'])
+- [classic] Who did Bobby Roode defeat at TNA No Surrender '11? -> **Gunner** (of ['Jeff Hardy', 'Samoa Joe', 'Matt Hardy', 'Gunner'])
+- [classic] Who did Mr. Anderson defeat at TNA Genesis '11? -> **Jeff Hardy** (of ['Jeff Hardy', 'Scott Steiner', 'Matt Hardy', 'James Storm'])
+- [classic] Who did Austin Aries defeat at TNA No Surrender '11? -> **Brian Kendrick** (of ['Sting', 'Brian Kendrick', 'Kurt Angle', 'Jeff Jarrett'])
+- [classic] Who did Kevin Owens defeat at WWE Fastlane '16? -> **Dolph Ziggler** (of ['The Miz', 'Randy Orton', 'Roman Reigns', 'Dolph Ziggler'])
+- [classic] Who did Samoa Joe defeat at TNA Turning Point '06? -> **Kurt Angle** (of ['Sting', 'A.J. Styles', 'Kevin Nash', 'Kurt Angle'])
+- [classic] Who did Elix Skipper defeat at TNA Final Resolution '05? -> **Sonjay Dutt** (of ['Sonjay Dutt', 'Chris Benoit', 'Jeff Hardy', 'A.J. Styles'])
+- [classic] Who did Gunther defeat at WWE Summerslam 2024? -> **Damian Priest** (of ['Damian Priest', 'A.J. Styles', 'Seth Rollins', 'Jimmy Uso'])
+- [classic] Who did Seth Rollins defeat at WWE Hell In a Cell 2021? -> **Cesaro** (of ['Cesaro', 'Kevin Owens', 'Big Show', 'John Cena'])
+- [classic] Who did Kurt Angle defeat at TNA Final Resolution (Dec '08)? -> **Rhino** (of ['Booker T.', 'Rhino', 'Eric Young', 'A.J. Styles'])
+- [classic] Who did Chris Benoit defeat at WWE ECW One Night Stand '05? -> **Eddie Guerrero** (of ['Eddie Guerrero', 'Rey Mysterio', 'A.J. Styles', 'Jeff Jarrett'])
+- [classic] Who did Bobby Lashley defeat at WWE Payback 2020? -> **Apollo Crews** (of ['Roman Reigns', 'Seth Rollins', 'Apollo Crews', 'The Miz'])
+- [classic] Who did Charlotte defeat at WWE Night of Champions '15? -> **Nikki Bella** (of ['Naomi', 'Nikki Bella', 'Paige', 'Gail Kim'])
+- [classic] Who did Chris Jericho defeat at WWE Roadblock '16? -> **Jack Swagger** (of ['Jack Swagger', 'The Miz', 'Seth Rollins', 'Roman Reigns'])
+- [classic] Who did Rhea Ripley defeat at WWE WrestleMania 39 - Night 1 (2023)? -> **Charlotte Flair** (of ['Becky Lynch', 'Alexa Bliss', 'Charlotte Flair', 'Raquel Rodriguez'])
+- [classic] Who did Seth Rollins defeat at WWE Payback 2023? -> **Shinsuke Nakamura** (of ['A.J. Styles', 'Chris Jericho', 'Shinsuke Nakamura', 'Bryan Danielson'])
+- [classic] Who did Jinder Mahal defeat at WWE SummerSlam '17? -> **Shinsuke Nakamura** (of ['Shinsuke Nakamura', 'Randy Orton', 'Dolph Ziggler', 'Chris Jericho'])
+- [classic] Who did Robert Roode defeat at TNA Sacrifice '07? -> **Jeff Jarrett** (of ['Samoa Joe', 'Abyss', 'Scott Steiner', 'Jeff Jarrett'])
+- [lineage] At WWE Clash of Champions '16 (Raw), Roman Reigns won the United States Championship. Who did they take it from? -> **Rusev** (of ['A.J. Styles', 'Chris Jericho', 'John Cena', 'Rusev'])
+- [lineage] At WWF WrestleMania VIII (1992), Randy Savage won the WWE Championship. Who did they take it from? -> **Ric Flair** (of ['Yokozuna', 'Kane', 'Hulk Hogan', 'Ric Flair'])
+- [lineage] At WWE WrestleMania 35 (2019), Kofi Kingston won the World Heavyweight Championship. Who did they take it from? -> **Bryan Danielson** (of ['A.J. Styles', 'Randy Orton', 'Bray Wyatt', 'Bryan Danielson'])
+- [lineage] At WWE SummerSlam '14, Dolph Ziggler won the Intercontinental Championship. Who did they take it from? -> **The Miz** (of ['Jon Moxley', 'The Miz', 'Big Show', 'Kofi Kingston'])
+- [lineage] At WWE Unforgiven '06, John Cena won the WWE Championship. Who did they take it from? -> **Edge** (of ['Randy Orton', 'Edge', 'Cody Rhodes', 'CM Punk'])
+- [lineage] At WWF Royal Rumble '95, Jeff Jarrett won the Intercontinental Championship. Who did they take it from? -> **Razor Ramon** (of ['Razor Ramon', 'Chris Jericho', 'Christian', 'Shawn Michaels'])
+- [lineage] At WWE WrestleMania 34 (2018), Seth Rollins won the Intercontinental Championship. Who did they take it from? -> **The Miz** (of ['The Miz', 'Kofi Kingston', 'Jeff Hardy', 'Big Show'])
+- [lineage] At WWE No Mercy '16, Dolph Ziggler won the Intercontinental Championship. Who did they take it from? -> **The Miz** (of ['The Miz', 'Big Show', 'Roman Reigns', 'Cody Rhodes'])
+- [lineage] At WWF Armageddon '99, Chris Jericho won the Intercontinental Championship. Who did they take it from? -> **Chyna** (of ['Shawn Michaels', 'Chyna', 'Triple H', 'Kurt Angle'])
+- [lineage] At WWE No Way Out '09, Edge won the World Heavyweight Championship. Who did they take it from? -> **John Cena** (of ['John Cena', 'Chris Jericho', 'Jeff Hardy', 'Randy Orton'])
+- [lineage] At WWF Backlash '02, Eddie Guerrero won the Intercontinental Championship. Who did they take it from? -> **Rob Van Dam** (of ['Kane', 'Edge', 'Chris Benoit', 'Rob Van Dam'])
+- [lineage] At WWF SummerSlam '89, The Ultimate Warrior won the Intercontinental Championship. Who did they take it from? -> **Rick Rude** (of ['Rick Rude', 'Jeff Jarrett', 'Roddy Piper', 'Ricky Steamboat'])
+- [lineage] At WWE No Mercy '04, John Cena won the United States Championship. Who did they take it from? -> **Booker T.** (of ['Booker T.', 'The Miz', 'Randy Orton', 'Chris Benoit'])
+- [lineage] At WCW StarrCade '98, Kevin Nash won the WCW World Heavyweight Championship. Who did they take it from? -> **Goldberg** (of ['Chris Benoit', 'Booker T.', 'Ric Flair', 'Goldberg'])
+- [lineage] At WWF Vengeance '01, Chris Jericho won the WCW World Heavyweight Championship. Who did they take it from? -> **The Rock** (of ['Booker T.', 'The Rock', 'Sting', 'Scott Steiner'])
+- [promotion] Which promotion ran the pay-per-view SuperBrawl V? -> **WCW** (of ['TNA', 'WCW', 'WWE', 'AEW'])
+- [promotion] Which promotion ran the pay-per-view SuperBrawl II? -> **WCW** (of ['TNA', 'WWE', 'WCW', 'AEW'])
+- [promotion] Which promotion ran the pay-per-view Boston Brawl: Internet Event? -> **WCW** (of ['TNA', 'AEW', 'WCW', 'ECW'])
+- [rumble] Who won the 2022 men's Royal Rumble match? -> **Brock Lesnar** (of ['A.J. Styles', 'Drew McIntyre', 'Brock Lesnar', 'Randy Orton'])
+- [wmCity] Which city hosted WrestleMania XIX (2003)? -> **Seattle** (of ['Boston', 'Seattle', 'Arlington', 'Atlantic City'])
+- [wmCity] Which city hosted WrestleMania XI (1995)? -> **Hartford** (of ['Hartford', 'Las Vegas', 'Atlanta', 'New Orleans'])
+- [wmCity] Which city hosted WrestleMania XV (1999)? -> **Philadelphia** (of ['Philadelphia', 'Miami', 'Tampa', 'Glendale'])
+- [wmCity] Which city hosted WrestleMania XXVIII (2012)? -> **Miami** (of ['Miami', 'Las Vegas', 'Boston', 'Seattle'])
+- [wmCity] Which city hosted WrestleMania 22 (2006)? -> **Chicago** (of ['New York', 'Orlando', 'Seattle', 'Chicago'])
+- [wmMain] Who won the main event of WrestleMania VI? -> **The Ultimate Warrior** (of ['Ted DiBiase', 'Randy Savage', 'Hulk Hogan', 'The Ultimate Warrior'])
+- [wmMain] Who won the main event of WrestleMania 38 - Night 1? -> **Stone Cold Steve Austin** (of ['Kofi Kingston', 'The Miz', 'Kevin Owens', 'Stone Cold Steve Austin'])
+- [wmMain] Who won the main event of WrestleMania X8? -> **Triple H** (of ['Triple H', 'John Cena', 'The Undertaker', 'Chris Jericho'])
+- [wmMain] Who won the main event of WrestleMania 33? -> **Roman Reigns** (of ['The Undertaker', 'The Miz', 'Roman Reigns', 'Kane'])
+- [wmMain] Who won the main event of WrestleMania XIX? -> **Brock Lesnar** (of ['Chris Jericho', 'Brock Lesnar', 'Jeff Hardy', 'Kurt Angle'])
+- [wmMain] Who won the main event of WrestleMania 23? -> **John Cena** (of ['The Undertaker', 'Shawn Michaels', 'The Miz', 'John Cena'])
+- [wmMain] Who won the main event of WrestleMania VII? -> **Hulk Hogan** (of ['Ric Flair', 'Diamond Dallas Page', 'Sergeant Slaughter', 'Hulk Hogan'])
+- [wmMain] Who won the main event of WrestleMania IV? -> **Randy Savage** (of ['Shawn Michaels', 'Ted DiBiase', 'Jake Roberts', 'Randy Savage'])
+- [wmMain] Who won the main event of WrestleMania XXIV? -> **The Undertaker** (of ['A.J. Styles', 'The Undertaker', 'Kane', 'Edge'])

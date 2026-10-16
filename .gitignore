@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# raw datasets (re-download with scripts/fetch_ringside.py)
+/data/raw/
+!.env.example
