@@ -382,6 +382,8 @@ def main():
     names = collections.Counter(w["name"] for w in pool)
     report.append(f"- pool size {len(pool)}; duplicate display names: {[n for n, c in names.items() if c > 1][:30]}")
 
+    write_split_candidates(members, display, matches, total_n, report)
+
     counts = collections.Counter(t for w in pool for t in w["tags"])
     criteria = [{"id": c[0], "group": c[1], "family": c[2], "label": c[3], "detail": c[4], "count": counts[c[0]]}
                 for c in CRITERIA]
@@ -407,6 +409,46 @@ def main():
                                               for q in sorted(sample, key=lambda q: q["type"])]
     (OUT / "REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"pool {len(pool)} wrestlers, {len(questions)} questions -> {OUT}")
+
+
+def write_split_candidates(members, display, matches, total_n, report):
+    """Likely renames the merges tab doesn't cover yet: one name contains the
+    other (Charlotte / Charlotte Flair) and the two careers barely overlap."""
+    years = collections.defaultdict(set)
+    for m in matches.values():
+        for p in m["parts"]:
+            years[p[0]].add(int(m["date"][:4]))
+    people = [r for r in members if total_n[r] >= 15 and not re.search(r", | & ", display[r])]
+    def words(n):
+        return [w for w in re.sub(r"[^a-z0-9 ]", "", clean_name(n).lower()).split() if w != "the"]
+
+    keys = {r: words(display[r]) for r in people}
+    out = []
+    for a in people:
+        ka = keys[a]
+        if not ka or len("".join(ka)) < 4:
+            continue
+        for b in people:
+            kb = keys[b]
+            n = len(ka)
+            # whole words at the start or end: "Charlotte" / "Charlotte Flair", "Neville" / "Adrian Neville"
+            if a == b or ka == kb or len(kb) <= n or (kb[:n] != ka and kb[-n:] != ka):
+                continue
+            ya, yb = years[a], years[b]
+            if len(ya & yb) > 1:
+                continue  # active at the same time: probably two people (Jey / Jimmy Uso)
+            keep, merge = (a, b) if total_n[a] >= total_n[b] else (b, a)
+            out.append((total_n[a] + total_n[b], display[keep], display[merge],
+                        f"{min(years[merge])}-{max(years[merge])} vs {min(years[keep])}-{max(years[keep])}"))
+    out.sort(reverse=True)
+    path = OUT / "merge_candidates.csv"
+    OUT.mkdir(parents=True, exist_ok=True)
+    with open(path, "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow(["keep", "merge", "display", "note"])
+        for _, keep, merge, note in out:
+            w.writerow([keep, merge, keep, f"CANDIDATE: careers {note}"])
+    report.append(f"- possible name splits to review: {len(out)} (data/generated/merge_candidates.csv)")
 
 
 def total_n_raw(root, members, raw_count):

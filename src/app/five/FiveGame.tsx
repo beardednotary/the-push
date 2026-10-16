@@ -144,7 +144,7 @@ export default function FiveGame({ day, number, questions }: { day: string; numb
         </div>
         <div className="flash" aria-live="polite">
           {shown && shown.choice === shown.answer && <Plate tone="gold">+{pointsFor(true, shown.ms)}</Plate>}
-          {shown && shown.choice !== null && shown.choice !== shown.answer && <Plate tone="red">No sale</Plate>}
+          {shown && shown.choice !== null && shown.choice !== shown.answer && <Plate tone="red">Wrong</Plate>}
         </div>
         {!shown && secsLeft <= 3 && secsLeft > 0 && (
           <div className="count">

@@ -1,7 +1,8 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // A stray package-lock.json in the home folder makes Next guess the wrong workspace root.
+  outputFileTracingRoot: process.cwd(),
 };
 
 export default nextConfig;

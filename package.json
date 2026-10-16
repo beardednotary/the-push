@@ -5,7 +5,11 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "data:pull": "python scripts/pull_curation.py",
+    "data:import": "python scripts/import_ringside.py",
+    "data:check": "npx tsx@4.20.6 scripts/check-puzzles.ts",
+    "data": "npm run data:pull && npm run data:import && npm run data:check"
   },
   "dependencies": {
     "@upstash/redis": "^1.35.4",

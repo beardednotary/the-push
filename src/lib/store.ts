@@ -1,5 +1,6 @@
-// Leaderboards and pick counts. Upstash Redis when UPSTASH_REDIS_REST_URL/TOKEN
-// are set; otherwise an in-memory store that is fine for local dev only.
+// Leaderboards and pick counts. Upstash Redis when its REST URL/token are set
+// (UPSTASH_REDIS_REST_* from Upstash directly, or KV_REST_API_* from Vercel's
+// marketplace integration); otherwise an in-memory store for local dev only.
 import { Redis } from "@upstash/redis";
 
 const TTL_SECONDS = 60 * 60 * 24 * 45;
@@ -16,8 +17,10 @@ export interface Store {
 }
 
 function upstash(): Store | null {
-  if (!process.env.UPSTASH_REDIS_REST_URL || !process.env.UPSTASH_REDIS_REST_TOKEN) return null;
-  const r = Redis.fromEnv();
+  const url = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
+  const token = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
+  if (!url || !token) return null;
+  const r = new Redis({ url, token });
   return {
     async submit(board, member, score) {
       await r.zadd(board, { gt: true }, { score, member });
