@@ -66,6 +66,16 @@ export default function Home() {
             <span>See the replay</span>
           </Link>
         </section>
+        <section className="segment">
+          <div className="meta">
+            <Plate tone="gold">Championships</Plate>
+          </div>
+          <h2 className="chrome">The belts</h2>
+          <p>Win the night or win the week. Daily and World Heavyweight titles for both games, with full title histories.</p>
+          <Link className="cta ghost" href="/titles">
+            <span>See the champions</span>
+          </Link>
+        </section>
       </main>
     </>
   );

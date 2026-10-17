@@ -1,6 +1,7 @@
 // Daily "tonight's card is live" reminders over standard web push.
 import { createHash } from "node:crypto";
 import webpush, { type PushSubscription } from "web-push";
+import { career } from "./career";
 import { puzzleNumber, todayKey } from "./day";
 import { store } from "./store";
 
@@ -38,11 +39,22 @@ export async function sendReminders({ force = false } = {}) {
   if (!configured()) return { error: "VAPID keys are not set" };
   const day = todayKey();
   const [subs, played] = await Promise.all([store.allSubs(), store.playedOn(day)]);
-  const payload = JSON.stringify({
-    title: `Card No. ${puzzleNumber(day)} is live`,
+  const number = puzzleNumber(day);
+  const generic = JSON.stringify({
+    title: `Card No. ${number} is live`,
     body: "Five questions, fifteen seconds each, plus the Immaculate Ring. Ring the bell.",
     url: "/",
   });
+  // someone on an Iron Man streak gets told what's at stake
+  const payloadFor = async (playerId?: string) => {
+    const streak = playerId ? (await career(playerId)).streak : 0;
+    if (streak < 2) return generic;
+    return JSON.stringify({
+      title: `Keep your ${streak}-day streak alive`,
+      body: `Card No. ${number} is live. Don't break the Iron Man streak now.`,
+      url: "/",
+    });
+  };
   let sent = 0;
   let skipped = 0;
   let removed = 0;
@@ -62,7 +74,7 @@ export async function sendReminders({ force = false } = {}) {
         return;
       }
       try {
-        await webpush.sendNotification(rec.sub, payload, { TTL: 60 * 60 * 12, urgency: "normal" });
+        await webpush.sendNotification(rec.sub, await payloadFor(rec.playerId), { TTL: 60 * 60 * 12, urgency: "normal" });
         sent++;
       } catch (e) {
         const status = (e as { statusCode?: number }).statusCode;

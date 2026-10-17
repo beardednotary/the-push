@@ -4,6 +4,7 @@ import { Leaderboard, NextMatch, ShareButton, track, useSaved } from "@/componen
 import { Bug, Plate } from "@/components/Chrome";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
+import { YourRecord } from "@/components/record";
 import { ringBoardLabel } from "@/lib/scoring";
 import { ringCode, sharePath } from "@/lib/share";
 
@@ -240,6 +241,7 @@ function Results({ day, number, cells, rows, cols }: { day: string; number: numb
         <div className="num score">{squares}/9</div>
         <div className="sub">Rarity {rarity} · lower is rarer</div>
       </div>
+      <YourRecord />
       <div className="stack">
         <ShareButton game="ring" text={share} path={sharePath("ring", number, ringCode(rarity, cells.map(Boolean)))} />
         <Leaderboard game="ring" day={day} payload={{ cells: cells.map((c) => c?.id ?? null) }} format={ringBoardLabel} />

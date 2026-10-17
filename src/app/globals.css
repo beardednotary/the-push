@@ -296,3 +296,40 @@ button { font: inherit; color: inherit; }
 .stats th { text-align: left; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; font-size: 12px; color: var(--text-2); padding: 8px; border-bottom: 2px solid var(--steel); }
 .stats td { padding: 8px; border-bottom: 1px solid #222736; }
 .stats td .muted { font-size: 13px; }
+
+/* ---------- your record ---------- */
+.record { margin: 22px 0 6px; }
+.record-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.record-grid > div { background: var(--plate-2); padding: 12px 14px; box-shadow: inset 4px 0 0 var(--gold); display: flex; flex-direction: column; gap: 2px; }
+.record-grid .big { font-size: 52px; color: var(--gold); }
+.record-grid .rankname { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; font-size: 28px; line-height: 1; color: var(--text); margin-bottom: 6px; }
+.record-grid .caps { font-size: 12px; color: var(--text-2); }
+.record-grid small { color: var(--text-2); font-size: 13px; }
+.honors { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 4px; }
+.honors li { background: var(--plate-2); padding: 8px 12px; font-weight: 700; text-transform: uppercase; font-size: 14px; letter-spacing: 0.03em; }
+.honors li.holding { box-shadow: inset 4px 0 0 var(--gold); }
+
+/* ---------- your record ---------- */
+.record { margin: 22px 0 6px; }
+.record-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.record-grid > div { background: var(--plate-2); padding: 12px 14px; box-shadow: inset 4px 0 0 var(--gold); display: flex; flex-direction: column; gap: 2px; }
+.record-grid .big { font-size: 52px; color: var(--gold); }
+.record-grid .rankname { font-family: var(--font-display); font-weight: 600; text-transform: uppercase; font-size: 28px; line-height: 1; color: var(--text); margin-bottom: 6px; }
+.record-grid .caps { font-size: 12px; color: var(--text-2); }
+.record-grid small { color: var(--text-2); font-size: 13px; }
+.honors { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 4px; }
+.honors li { background: var(--plate-2); padding: 8px 12px; font-weight: 700; text-transform: uppercase; font-size: 14px; letter-spacing: 0.03em; }
+.honors li.holding { box-shadow: inset 4px 0 0 var(--gold); }
+.standings .nm .plate { min-height: 22px; font-size: 11px; padding: 0 8px; margin-right: 4px; }
+.standings .reigns { color: var(--gold); font-family: var(--font-display); font-size: 18px; }
+.standings .tier { display: block; font-size: 11px; color: var(--text-2); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 700; }
+
+/* ---------- titles ---------- */
+.belt-name { font-size: clamp(34px, 9vw, 52px); margin: 8px 0 10px; }
+.holder { display: flex; flex-direction: column; gap: 2px; padding: 12px 14px; background: linear-gradient(90deg, #2a2410, var(--plate-2)); box-shadow: inset 5px 0 0 var(--gold); }
+.holder .num { font-size: 40px; color: var(--gold); }
+.lineage { list-style: none; padding: 0; margin: 10px 0; display: grid; gap: 4px; }
+.lineage li { display: grid; grid-template-columns: 40px 1fr; gap: 0 10px; padding: 8px 12px 8px 0; background: var(--plate-2); align-items: center; }
+.lineage .no { grid-row: span 2; font-family: var(--font-display); font-size: 22px; color: var(--text-2); text-align: center; }
+.lineage .who { font-weight: 800; text-transform: uppercase; letter-spacing: 0.02em; }
+.lineage .when { font-size: 13px; color: var(--text-2); }

@@ -50,8 +50,14 @@ export function notTracked(): boolean {
   return safeGet("push:notrack") === "1";
 }
 
-/** Bump an anonymous daily counter (games started, finished, shared). */
+/** Bump an anonymous daily counter (games started, finished, shared). Finishes also
+ *  count toward the player's streak and rank, even on ?notrack devices. */
 export function track(event: string) {
+  if (event.endsWith(":finish")) {
+    fetch("/api/player", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: playerId() }), keepalive: true })
+      .then(() => window.dispatchEvent(new Event("push:career")))
+      .catch(() => {});
+  }
   if (notTracked()) return;
   const body = event.endsWith(":finish") ? { event, playerId: playerId() } : { event };
   fetch("/api/stat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(() => {});
@@ -61,7 +67,8 @@ export function ShareButton({ text, path, game }: { text: string; path: string; 
   const [copied, setCopied] = useState(false);
   async function share() {
     track(`${game}:share`);
-    const full = `${text}\n${location.origin}${path}`;
+    const streak = Number(safeGet("push:streak") ?? 0);
+    const full = `${text}${streak >= 2 ? `\n🔥 ${streak}-day streak` : ""}\n${location.origin}${path}`;
     if (navigator.share) {
       try {
         await navigator.share({ text: full });
@@ -84,6 +91,9 @@ interface Row {
   name: string;
   score: number;
   me: boolean;
+  champ?: string | null; // belt id currently held in this game
+  reigns?: number;
+  tier?: string;
 }
 
 export function Leaderboard({ game, day, payload, format }: { game: "five" | "ring"; day: string; payload: object; format: (score: number) => string }) {
@@ -134,12 +144,19 @@ export function Leaderboard({ game, day, payload, format }: { game: "five" | "ri
         </p>
       )}
       {rows && rows.length === 0 && <p className="muted">Nobody on the board yet. Be first.</p>}
+      <p className="muted small">
+        Tonight&apos;s #1 signed-in player takes the belt at midnight Eastern. <Link href="/titles" style={{ color: "var(--gold)" }}>Title history</Link>
+      </p>
       {rows && rows.length > 0 && (
         <ol className="standings">
           {rows.map((r) => (
             <li key={r.rank} className={r.me ? "me" : ""}>
               <span className="rk">{r.rank}</span>
-              <span className="nm">{r.name}</span>
+              <span className="nm">
+                {r.champ && <Plate tone="gold">{r.champ.endsWith("weekly") ? "World Champ" : "Champ"}</Plate>} {r.name}
+                {(r.reigns ?? 0) > 1 && <span className="reigns"> {r.reigns}x</span>}
+                {r.tier && <small className="tier">{r.tier}</small>}
+              </span>
               <span className="sc">{format(r.score)}</span>
             </li>
           ))}

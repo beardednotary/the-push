@@ -4,6 +4,7 @@ import { Leaderboard, NextMatch, ShareButton, notTracked, track, useSaved } from
 import { Bug, Plate } from "@/components/Chrome";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
+import { YourRecord } from "@/components/record";
 import { SECONDS_PER_QUESTION, pointsFor } from "@/lib/scoring";
 import { MARK_EMOJI, fiveCode, sharePath, type Mark } from "@/lib/share";
 
@@ -228,6 +229,7 @@ function Results({ day, number, questions, answers, untimed }: { day: string; nu
             );
           })}
         </ol>
+        <YourRecord />
         <div className="stack">
           <ShareButton game="five" text={share} path={sharePath("five", number, fiveCode(total, marks, untimed))} />
           {untimed ? (

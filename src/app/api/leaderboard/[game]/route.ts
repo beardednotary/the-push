@@ -3,15 +3,31 @@ import { todayKey } from "@/lib/day";
 import { scoreFive, type FiveAnswer } from "@/lib/five";
 import { fiveCard, ringCard } from "@/lib/cards";
 import { checkGuess } from "@/lib/ring";
+import { careers } from "@/lib/career";
 import { cleanId, cleanName, store } from "@/lib/store";
+import { ensureCrowned, honors } from "@/lib/titles";
 
 type Game = "five" | "ring";
 const GAMES: Game[] = ["five", "ring"];
 
 async function board(game: Game, day: string, me?: string) {
+  await ensureCrowned();
   const top = await store.top(`lb:${game}:${day}`, 20);
-  const names = await store.names(top.map((t) => t.member));
-  return top.map((t, i) => ({ rank: i + 1, name: names[t.member] ?? "Anonymous", score: t.score, me: t.member === me }));
+  const ids = top.map((t) => t.member);
+  const [names, h, c] = await Promise.all([store.names(ids), honors(), careers(ids)]);
+  return top.map((t, i) => {
+    const mine = h[t.member];
+    return {
+      rank: i + 1,
+      name: names[t.member] ?? "Anonymous",
+      score: t.score,
+      me: t.member === me,
+      // flair: belt held in this game, total reigns in this game's belts, career rank
+      champ: mine?.holds.find((b) => b.startsWith(`${game}-`)) ?? null,
+      reigns: Object.entries(mine?.reigns ?? {}).filter(([b]) => b.startsWith(`${game}-`)).reduce((a, [, n]) => a + n, 0),
+      tier: c[t.member]?.rank ?? "Jobber",
+    };
+  });
 }
 
 export async function GET(req: Request, { params }: { params: Promise<{ game: string }> }) {

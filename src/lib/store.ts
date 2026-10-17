@@ -14,7 +14,7 @@ export interface Store {
   get(hash: string, field: string): Promise<number>;
   /** A frozen value (a day's card). setOnce never overwrites. */
   getText(key: string): Promise<string | null>;
-  setOnce(key: string, value: string): Promise<void>;
+  setOnce(key: string, value: string): Promise<boolean>;
   /** First day this player finished a game (records `day` if there's none yet). */
   firstSeen(playerId: string, day: string): Promise<string>;
   /** Add to a set; true if it wasn't there yet. */
@@ -30,6 +30,17 @@ export interface Store {
   /** Who finished a game today, so reminders skip them. */
   markPlayed(day: string, playerId: string): Promise<void>;
   playedOn(day: string): Promise<Set<string>>;
+  /** Permanent records (player careers, title counts): no expiry. */
+  hashGet(key: string): Promise<Record<string, string>>;
+  hashSet(key: string, fields: Record<string, string | number>): Promise<void>;
+  hashBump(key: string, field: string, by?: number): Promise<number>;
+  setAdd(key: string, member: string): Promise<void>;
+  setHas(key: string, member: string): Promise<boolean>;
+  /** Every member and score of a leaderboard. */
+  all(board: string): Promise<{ member: string; score: number }[]>;
+  /** Append-only lists (title lineages). */
+  listPush(key: string, value: string): Promise<void>;
+  list(key: string): Promise<string[]>;
 }
 
 function upstash(): Store | null {
@@ -74,7 +85,7 @@ function upstash(): Store | null {
       return v == null ? null : typeof v === "string" ? v : JSON.stringify(v);
     },
     async setOnce(key, value) {
-      await r.set(key, value, { nx: true, ex: 60 * 60 * 24 * 400 });
+      return (await r.set(key, value, { nx: true, ex: 60 * 60 * 24 * 400 })) === "OK";
     },
     async counts(hash) {
       const all = await r.hgetall<Record<string, unknown>>(hash);
@@ -106,17 +117,49 @@ function upstash(): Store | null {
     async playedOn(day) {
       return new Set((await r.smembers(`played:${day}`)).map(String));
     },
+    async hashGet(key) {
+      const all = await r.hgetall<Record<string, unknown>>(key);
+      return Object.fromEntries(Object.entries(all ?? {}).map(([k, v]) => [k, String(v)]));
+    },
+    async hashSet(key, fields) {
+      await r.hset(key, fields);
+    },
+    async hashBump(key, field, by = 1) {
+      return r.hincrby(key, field, by);
+    },
+    async setAdd(key, member) {
+      await r.sadd(key, member);
+    },
+    async setHas(key, member) {
+      return (await r.sismember(key, member)) === 1;
+    },
+    async all(board) {
+      const flat = await r.zrange<(string | number)[]>(board, 0, -1, { rev: true, withScores: true });
+      const out: { member: string; score: number }[] = [];
+      for (let i = 0; i < flat.length; i += 2) out.push({ member: String(flat[i]), score: Number(flat[i + 1]) });
+      return out;
+    },
+    async listPush(key, value) {
+      await r.rpush(key, value);
+    },
+    async list(key) {
+      return (await r.lrange<unknown>(key, 0, -1)).map((v) => (typeof v === "string" ? v : JSON.stringify(v)));
+    },
   };
 }
 
 function memory(): Store {
-  type Mem = { z: Map<string, Map<string, number>>; h: Map<string, Map<string, number>>; n: Map<string, string>; subs: Map<string, string>; played: Map<string, Set<string>>; t: Map<string, string> };
+  type Mem = { z: Map<string, Map<string, number>>; h: Map<string, Map<string, number>>; n: Map<string, string>; subs: Map<string, string>; played: Map<string, Set<string>>; t: Map<string, string>; hs: Map<string, Map<string, string>>; sets: Map<string, Set<string>>; lists: Map<string, string[]> };
   const g = globalThis as unknown as { __pushStore?: Mem };
-  const s = (g.__pushStore ??= { z: new Map(), h: new Map(), n: new Map(), subs: new Map(), played: new Map(), t: new Map() });
+  const s = (g.__pushStore ??= { z: new Map(), h: new Map(), n: new Map(), subs: new Map(), played: new Map(), t: new Map(), hs: new Map(), sets: new Map(), lists: new Map() });
   // the dev store outlives hot reloads; add slots that newer code expects
   s.subs ??= new Map();
   s.played ??= new Map();
   s.t ??= new Map();
+  s.hs ??= new Map();
+  s.sets ??= new Map();
+  s.lists ??= new Map();
+  const hmap = (k: string) => s.hs.get(k) ?? s.hs.set(k, new Map()).get(k)!;
   const board = (k: string) => s.z.get(k) ?? s.z.set(k, new Map()).get(k)!;
   const hash = (k: string) => s.h.get(k) ?? s.h.set(k, new Map()).get(k)!;
   const sorted = (k: string) => [...board(k)].sort((a, b) => b[1] - a[1]);
@@ -159,7 +202,9 @@ function memory(): Store {
       return true;
     },
     async setOnce(key, value) {
-      if (!s.t.has(key)) s.t.set(key, value);
+      if (s.t.has(key)) return false;
+      s.t.set(key, value);
+      return true;
     },
     async setName(id, name) {
       s.n.set(id, name);
@@ -181,6 +226,32 @@ function memory(): Store {
     },
     async playedOn(day) {
       return new Set(s.played.get(day) ?? []);
+    },
+    async hashGet(key) {
+      return Object.fromEntries(hmap(key));
+    },
+    async hashSet(key, fields) {
+      for (const [f, v] of Object.entries(fields)) hmap(key).set(f, String(v));
+    },
+    async hashBump(key, field, by = 1) {
+      const n = Number(hmap(key).get(field) ?? 0) + by;
+      hmap(key).set(field, String(n));
+      return n;
+    },
+    async setAdd(key, member) {
+      (s.sets.get(key) ?? s.sets.set(key, new Set()).get(key)!).add(member);
+    },
+    async setHas(key, member) {
+      return s.sets.get(key)?.has(member) ?? false;
+    },
+    async all(k) {
+      return sorted(k).map(([member, score]) => ({ member, score }));
+    },
+    async listPush(key, value) {
+      (s.lists.get(key) ?? s.lists.set(key, []).get(key)!).push(value);
+    },
+    async list(key) {
+      return [...(s.lists.get(key) ?? [])];
     },
   };
 }
