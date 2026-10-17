@@ -9,8 +9,8 @@ const ui = Saira_Condensed({ variable: "--font-ui", weight: ["500", "700", "800"
 const description = "Daily wrestling trivia: five questions, fifteen seconds each, and the Immaculate Ring. New card every night.";
 
 export const metadata: Metadata = {
-  // absolute base for the share-banner URL; update when the real domain is live
-  metadataBase: new URL("https://the-push-wrestling.vercel.app"),
+  // absolute base for share-banner and share-card URLs
+  metadataBase: new URL("https://playthepush.com"),
   title: "The Push: daily wrestling games",
   description,
   openGraph: { title: "The Push", description, siteName: "The Push", type: "website" },

@@ -56,7 +56,7 @@ Each import also writes `data/generated/merge_candidates.csv`: likely renames no
 
 ## Production
 
-- Live at https://the-push-wrestling.vercel.app (Vercel, auto-deploys `main`).
+- Live at https://playthepush.com (Vercel, auto-deploys `main`). pushwrestling.net and the old the-push-wrestling.vercel.app alias redirect there; `src/middleware.ts` enforces the one address.
 - Leaderboards use the Upstash database connected in Vercel's Storage tab. `/api/health` reports `{"store":"upstash","ok":true}` when that is working.
 
 ## Known gaps
