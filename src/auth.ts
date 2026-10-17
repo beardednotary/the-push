@@ -1,0 +1,55 @@
+// Optional sign-in (Auth.js). Each provider switches on when its keys exist in the
+// environment, so the site works with any subset while they're being set up:
+//   Google   AUTH_GOOGLE_ID, AUTH_GOOGLE_SECRET
+//   Discord  AUTH_DISCORD_ID, AUTH_DISCORD_SECRET
+//   Email    AUTH_RESEND_KEY (sends from signin@playthepush.com, domain verified in Resend)
+// Plus AUTH_SECRET always. Accounts and sessions live in Upstash.
+import { UpstashRedisAdapter } from "@auth/upstash-redis-adapter";
+import { Redis } from "@upstash/redis";
+import NextAuth from "next-auth";
+import Discord from "next-auth/providers/discord";
+import Google from "next-auth/providers/google";
+import Resend from "next-auth/providers/resend";
+
+const url = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
+const token = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
+const redis = url && token ? new Redis({ url, token }) : null;
+
+const providers = [
+  process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET ? Google : null,
+  process.env.AUTH_DISCORD_ID && process.env.AUTH_DISCORD_SECRET ? Discord : null,
+  process.env.AUTH_RESEND_KEY && redis ? Resend({ from: "The Push <signin@playthepush.com>" }) : null,
+].filter((p) => p !== null);
+
+/** Which sign-in options to show. Empty means sign-in is off (local dev, or keys not added yet). */
+export const signInOptions = {
+  google: providers.includes(Google),
+  discord: providers.includes(Discord),
+  email: Boolean(process.env.AUTH_RESEND_KEY && redis),
+};
+export const signInEnabled = Boolean(redis && process.env.AUTH_SECRET && providers.length);
+
+export const { handlers, auth, signIn, signOut } = NextAuth({
+  adapter: redis ? UpstashRedisAdapter(redis, { baseKeyPrefix: "auth:" }) : undefined,
+  providers,
+  session: { strategy: redis ? "database" : "jwt" },
+  trustHost: true,
+  pages: { signIn: "/signin", verifyRequest: "/signin?sent=1", error: "/signin" },
+  callbacks: {
+    session({ session, user }) {
+      if (user?.id && session.user) session.user.id = user.id;
+      return session;
+    },
+  },
+});
+
+/** Each account keeps one player ID, so scores and reminders follow it across devices. */
+export async function accountPlayerId(userId: string, localId: string | null): Promise<string | null> {
+  if (!redis) return localId;
+  const key = "account:player";
+  const existing = await redis.hget<string>(key, userId);
+  if (existing) return String(existing);
+  if (!localId) return null;
+  await redis.hset(key, { [userId]: localId });
+  return localId;
+}

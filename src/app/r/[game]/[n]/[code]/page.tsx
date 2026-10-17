@@ -15,7 +15,13 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!r) return {};
   const title = `${headline(r)}. Can you beat it?`;
   const description = "The Push: daily wrestling trivia. New card every night.";
-  return { title, description, openGraph: { title, description }, twitter: { card: "summary_large_image", title, description } };
+  return {
+    title,
+    description,
+    robots: { index: false, follow: true },
+    openGraph: { title, description },
+    twitter: { card: "summary_large_image", title, description },
+  };
 }
 
 export default async function SharedResultPage({ params }: { params: Promise<Params> }) {

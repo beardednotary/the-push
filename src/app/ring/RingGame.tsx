@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Leaderboard, NextMatch, ShareButton, useSaved } from "@/components/client";
 import { Bug, Plate } from "@/components/Chrome";
 import { RemindMe } from "@/components/RemindMe";
+import { SignInNudge } from "@/components/account";
 import { ringBoardLabel } from "@/lib/scoring";
 import { ringCode, sharePath } from "@/lib/share";
 
@@ -233,6 +234,7 @@ function Results({ day, number, cells }: { day: string; number: number; cells: (
         <Leaderboard game="ring" day={day} payload={{ cells: cells.map((c) => c?.id ?? null) }} format={ringBoardLabel} />
       </div>
       <RemindMe />
+      <SignInNudge />
       <NextMatch to="five" />
     </section>
   );

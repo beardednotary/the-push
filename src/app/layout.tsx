@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
+import { AccountLink } from "@/components/account";
 import { Ticker } from "@/components/Chrome";
 import "./globals.css";
 
@@ -42,9 +44,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <footer className="footer">
           Data: <a href="https://www.kaggle.com/datasets/theodorerubin/ringside-wrestling-archive">Ringside Wrestling Archive</a>.
           Not affiliated with any promotion. A <a href="https://dahvio.com">DahVio Studios</a> production.{" "}
-          <a href="/privacy">Privacy</a>
+          <a href="/privacy">Privacy</a> <AccountLink />
         </footer>
         <Ticker />
+        <Analytics />
       </body>
     </html>
   );

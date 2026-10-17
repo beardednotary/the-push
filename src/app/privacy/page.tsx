@@ -23,7 +23,7 @@ export default function PrivacyPage() {
         <p>
           The Push (playthepush.com) is a free daily wrestling trivia game made by DahVio Studios. This page explains what we
           collect, why, and what you can do about it. Short version: you can play without an account, we don&apos;t sell
-          anything about you, and there are no ad trackers.
+          anything about you, and there are no ad trackers or tracking cookies.
         </p>
 
         <h2>What we collect</h2>
@@ -51,6 +51,10 @@ export default function PrivacyPage() {
             run your account and keep your scores and settings together across devices.
           </li>
           <li>
+            <b>Visit statistics.</b> We use Vercel Web Analytics to count page views, referring sites, countries and device
+            types. It uses no cookies and doesn&apos;t identify you or follow you across other sites.
+          </li>
+          <li>
             <b>Server logs.</b> Our hosting provider records standard request information such as IP address and browser type to
             keep the site running and secure.
           </li>
@@ -59,12 +63,12 @@ export default function PrivacyPage() {
         <h2>What we don&apos;t do</h2>
         <ul>
           <li>We don&apos;t sell or rent your information.</li>
-          <li>We don&apos;t use advertising or analytics trackers. If that ever changes, this page will be updated first and we&apos;ll ask for consent where the law requires it.</li>
+          <li>We don&apos;t use advertising trackers or cookie-based analytics. If that ever changes, this page will be updated first and we&apos;ll ask for consent where the law requires it.</li>
         </ul>
 
         <h2>Who helps us run the site</h2>
         <ul>
-          <li><b>Vercel</b> hosts the site.</li>
+          <li><b>Vercel</b> hosts the site and provides the cookie-free visit statistics.</li>
           <li><b>Upstash</b> stores leaderboards, reminder subscriptions and accounts.</li>
           <li><b>Apple, Google, Mozilla and Microsoft</b> deliver push notifications to your device, if you turn reminders on.</li>
           <li><b>Google and Discord</b> handle sign-in, if you choose them, and <b>Resend</b> sends sign-in emails.</li>
