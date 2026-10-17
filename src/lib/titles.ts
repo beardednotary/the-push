@@ -2,6 +2,7 @@
 // day or week ends, the top signed-in player on that board wins it; consecutive wins
 // are one reign with title defenses, so "3x champion" means three separate reigns.
 // Crowning is lazy and idempotent: whoever loads a page after midnight triggers it.
+import { adminPlayerIds } from "./admin";
 import { addDays, todayKey } from "./day";
 import { store } from "./store";
 
@@ -45,8 +46,9 @@ export function weekStart(day: string): string {
 }
 
 async function eligible(): Promise<Set<string>> {
-  // signed-in players: each account owns one player ID (see accountPlayerId in auth.ts)
-  return new Set(Object.values(await store.hashGet("account:player")));
+  // signed-in players (each account owns one player ID, see accountPlayerId in auth.ts), minus admins
+  const [links, admins] = await Promise.all([store.hashGet("account:player"), adminPlayerIds()]);
+  return new Set(Object.values(links).filter((id) => !admins.has(id)));
 }
 
 async function decide(belt: Belt, period: string, signedIn: Set<string>): Promise<Result> {

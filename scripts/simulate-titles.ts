@@ -8,7 +8,10 @@ import { BELTS, CHAMPIONSHIPS_START, ensureCrowned, honors, reigns, results } fr
 async function main() {
   if (process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL) throw new Error("refusing to run against a real database");
   // ann and bob are signed in; cat is not, so cat can top a board but never win a belt
-  await store.hashSet("account:player", { u1: "ann-0000001", u2: "bob-0000002" });
+  await store.hashSet("account:player", { u1: "ann-0000001", u2: "bob-0000002", u9: "boss-000009" });
+  // the boss is an admin: tops every board, never takes a belt
+  process.env.ADMIN_EMAILS = "boss@example.com";
+  await store.setOnce("auth:user:email:boss@example.com", "u9");
   await Promise.all([store.setName("ann-0000001", "Ann"), store.setName("bob-0000002", "Bob"), store.setName("cat-0000003", "Cat")]);
 
   // day offset -> [ann, bob, cat] Daily Five scores (null = didn't play)
@@ -34,6 +37,8 @@ async function main() {
       await store.submit(`lb:ring:${day}`, ids[p], 9000 - s); // reverse order on the Ring
       await recordFinish(ids[p], day);
     }
+    await store.submit(`lb:five:${day}`, "boss-000009", 1000);
+    await store.submit(`lb:ring:${day}`, "boss-000009", 9891);
   }
   const today = addDays(CHAMPIONSHIPS_START, five.length);
   await ensureCrowned(today);

@@ -39,7 +39,7 @@ export default async function TitlesPage() {
         </div>
         <p className="muted">
           Each game has a daily title and a World Heavyweight title for the best week (Monday to Sunday). When a night or week
-          ends, the top <b>signed-in</b> player takes the belt. Win again and it&apos;s a successful defense; lose it and win it
+          ends, the top <b>signed-in</b> player takes the belt (the site&apos;s staff aren&apos;t eligible). Win again and it&apos;s a successful defense; lose it and win it
           back, and that&apos;s another reign.
         </p>
         <div className="stack">

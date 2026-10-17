@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { auth } from "@/auth";
+import { isAdmin } from "@/lib/admin";
 import { Bug, Plate } from "@/components/Chrome";
 import { addDays, puzzleNumber, todayKey } from "@/lib/day";
 import { readStats } from "@/lib/stats";
@@ -9,12 +10,7 @@ import { store } from "@/lib/store";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Stats · The Push", robots: { index: false, follow: false } };
 
-// Only for emails listed in ADMIN_EMAILS (comma-separated, set in Vercel). Everyone else gets a 404.
-function isAdmin(email?: string | null) {
-  const admins = (process.env.ADMIN_EMAILS ?? "").split(",").map((e) => e.trim().toLowerCase()).filter(Boolean);
-  return Boolean(email && admins.includes(email.toLowerCase()));
-}
-
+// Only for emails listed in ADMIN_EMAILS. Everyone else gets a 404.
 const pct = (a: number, b: number) => (b ? `${Math.round((100 * a) / b)}%` : "–");
 
 export default async function StatsPage() {
