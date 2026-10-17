@@ -3,6 +3,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Leaderboard, NextMatch, ShareButton, useSaved } from "@/components/client";
 import { Bug, Plate } from "@/components/Chrome";
 import { SECONDS_PER_QUESTION, pointsFor } from "@/lib/scoring";
+import { MARK_EMOJI, fiveCode, sharePath, type Mark } from "@/lib/share";
 
 interface Q {
   id: string;
@@ -161,17 +162,18 @@ export default function FiveGame({ day, number, questions }: { day: string; numb
   );
 }
 
-function square(a: Answered) {
-  if (a.choice === null) return "⬛";
-  if (a.choice !== a.answer) return "🟥";
-  return pointsFor(true, a.ms) >= 150 ? "🟩" : "🟨";
+function mark(a: Answered): Mark {
+  if (a.choice === null) return "X";
+  if (a.choice !== a.answer) return "R";
+  return pointsFor(true, a.ms) >= 150 ? "G" : "Y";
 }
 
 function Results({ day, number, questions, answers }: { day: string; number: number; questions: Q[]; answers: Answered[] }) {
   const pts = answers.map((a) => pointsFor(a.choice === a.answer, a.ms));
   const total = pts.reduce((a, b) => a + b, 0);
   const right = answers.filter((a) => a.choice === a.answer).length;
-  const share = `THE PUSH · Daily Five No. ${number}\n${answers.map(square).join("")}  ${total}/1000`;
+  const marks = answers.map(mark);
+  const share = `THE PUSH · Daily Five No. ${number}\n${marks.map((m) => MARK_EMOJI[m]).join("")}  ${total}/1000`;
   return (
     <>
       <Bug>
@@ -205,7 +207,7 @@ function Results({ day, number, questions, answers }: { day: string; number: num
           })}
         </ol>
         <div className="stack">
-          <ShareButton text={share} />
+          <ShareButton text={share} path={sharePath("five", number, fiveCode(total, marks))} />
           <Leaderboard game="five" day={day} payload={{ answers: answers.map(({ choice, ms }) => ({ choice, ms })) }} format={(s) => String(s)} />
         </div>
         <NextMatch to="ring" />

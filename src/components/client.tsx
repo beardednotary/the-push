@@ -45,10 +45,10 @@ export function useSaved<T>(key: string, initial: T): [T, (v: T) => void, boolea
   return [value, save, loaded];
 }
 
-export function ShareButton({ text }: { text: string }) {
+export function ShareButton({ text, path }: { text: string; path: string }) {
   const [copied, setCopied] = useState(false);
   async function share() {
-    const full = `${text}\n${location.origin}`;
+    const full = `${text}\n${location.origin}${path}`;
     if (navigator.share) {
       try {
         await navigator.share({ text: full });

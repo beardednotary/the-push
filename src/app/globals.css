@@ -202,3 +202,14 @@ button { font: inherit; color: inherit; }
 
 .footer { padding: 30px 16px 26px; text-align: center; font-size: 13px; color: var(--text-2); letter-spacing: 0.04em; }
 .footer a { color: var(--text-2); }
+
+/* ---------- shared result page ---------- */
+.marks { display: flex; gap: 8px; margin-top: 18px; }
+.marks i { width: 44px; height: 44px; transform: skewX(var(--skew)); }
+.ring-result { display: flex; gap: 22px; align-items: center; margin-top: 16px; }
+.minigrid { display: grid; grid-template-columns: repeat(3, 34px); gap: 5px; }
+.minigrid i { width: 34px; height: 34px; border: 1px solid #2a2f3c; background: var(--plate-2); }
+.minigrid i.on { background: var(--green); border-color: var(--green); }
+.ring-result .score { font-size: 96px; }
+.center { text-align: center; }
+.center a { color: var(--gold); }

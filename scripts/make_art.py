@@ -8,6 +8,7 @@ Writes Next.js file-convention assets into src/app/ (picked up automatically):
     apple-icon.jpg                            180x180, opaque
     favicon.ico                               16/32/48
 and art/preview.png, a contact sheet showing everything at real size.
+Also src/share-assets/share-bg.jpg, the backdrop for per-result share cards.
 """
 import math
 import pathlib
@@ -65,6 +66,19 @@ def banner():
     return im
 
 
+def share_bg():
+    """Backdrop for per-result share cards: the walk-out pushed right, the left faded to black for the score."""
+    canvas = Image.new("RGB", (1200, 630), INK)
+    canvas.paste(SRC.resize((1201, 630), Image.LANCZOS), (300, 0))
+    fade = Image.new("L", canvas.size, 0)
+    fd = ImageDraw.Draw(fade)
+    for x0 in range(300, 760):
+        fd.line([(x0, 0), (x0, 630)], fill=int(255 * (1 - (x0 - 300) / 460) ** 1.4))
+    fd.rectangle((0, 0, 300, 630), fill=255)
+    canvas = Image.composite(Image.new("RGB", canvas.size, INK), canvas, fade)
+    return ImageEnhance.Brightness(canvas).enhance(0.9)
+
+
 def square(cx, top, side, contrast=1.0, size=512):
     box = (cx - side // 2, top, cx + side // 2, top + side)
     sq = SRC.crop(box)
@@ -77,6 +91,7 @@ def main():
     b = banner()
     b.save(APP / "opengraph-image.jpg", quality=86, optimize=True, progressive=True)
     b.save(APP / "twitter-image.jpg", quality=86, optimize=True, progressive=True)
+    share_bg().save(ROOT / "src/share-assets/share-bg.jpg", quality=84, optimize=True, progressive=True)
 
     big = square(FIGURE_X, 96, 780)                   # whole walk-out, curtains just at the edges
     small = square(FIGURE_X, 104, 470, contrast=1.35)  # head to hips: a shape that survives 16-32px

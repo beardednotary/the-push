@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { Leaderboard, NextMatch, ShareButton, useSaved } from "@/components/client";
 import { Bug, Plate } from "@/components/Chrome";
 import { ringBoardLabel } from "@/lib/scoring";
+import { ringCode, sharePath } from "@/lib/share";
 
 interface Side {
   id: string;
@@ -227,7 +228,7 @@ function Results({ day, number, cells }: { day: string; number: number; cells: (
         <div className="sub">Rarity {rarity} · lower is rarer</div>
       </div>
       <div className="stack">
-        <ShareButton text={share} />
+        <ShareButton text={share} path={sharePath("ring", number, ringCode(rarity, cells.map(Boolean)))} />
         <Leaderboard game="ring" day={day} payload={{ cells: cells.map((c) => c?.id ?? null) }} format={ringBoardLabel} />
       </div>
       <NextMatch to="five" />
