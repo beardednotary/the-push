@@ -34,8 +34,12 @@ def main():
         if not url:
             print(f"- {tab}: no link in sheet.json, keeping the local file")
             continue
-        with urllib.request.urlopen(url, timeout=30) as resp:
-            text = resp.read().decode("utf-8-sig")
+        try:
+            with urllib.request.urlopen(url, timeout=30) as resp:
+                text = resp.read().decode("utf-8-sig")
+        except Exception as e:
+            print(f"- {tab}: couldn't download ({e}); keeping the local file. Is the tab published?")
+            continue
         rows = list(csv.reader(io.StringIO(text)))
         got = [h.strip().lower() for h in rows[0]] if rows else []
         if got[: len(want)] != want:

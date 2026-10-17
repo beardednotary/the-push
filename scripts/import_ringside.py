@@ -18,6 +18,7 @@ import json
 import pathlib
 import random
 import re
+import unicodedata
 import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
@@ -126,7 +127,9 @@ def clean_name(n):
 
 
 def name_key(n):
-    k = re.sub(r"[^a-z0-9]", "", clean_name(n).lower())
+    # fold accents first so "André the Giant" and "Andre the Giant" match
+    folded = unicodedata.normalize("NFKD", clean_name(n)).encode("ascii", "ignore").decode()
+    k = re.sub(r"[^a-z0-9]", "", folded.lower())
     return k[3:] if k.startswith("the") and len(k) > 6 else k
 
 
@@ -374,7 +377,8 @@ def main():
     report.append(f"- REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): {rejected}")
 
     # ---- beyond the ring: Wikidata facts ------------------------------------
-    add_wikidata_tags(members, wrestlers, display, aliases, tags, report)
+    wd_names = add_wikidata_tags(members, wrestlers, display, aliases, tags, report)
+    add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report)
 
     # ---- curation overrides -----------------------------------------------
     # (after Wikidata, so the tags sheet always has the final say)
@@ -438,6 +442,44 @@ def main():
 WIKIDATA_FACTS = {"actor": "actor", "music": "music", "mma": "combat", "boxer": "combat", "amateur": "amateur",
                   "olympian": "olympian", "nfl": "profootball", "cfl": "profootball", "college": "college", "strength": "strength"}
 BORN = {"CA": "bornCA", "JP": "bornJP", "MX": "bornMX", "GB": "bornUK"}
+
+
+def add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report):
+    """Fill gaps in the archive's title histories from Wikipedia's champion lists
+    (scripts/fetch_titles.py). Only adds; a name must point to exactly one of our people."""
+    path = RAW.parent / "titles_wiki.json"
+    if not path.exists():
+        report.append("- Title lists: data/raw/titles_wiki.json missing (run scripts/fetch_titles.py)")
+        return
+    lists = json.loads(path.read_text(encoding="utf-8"))
+    by_key = collections.defaultdict(set)
+    for root, ids in members.items():
+        names = {display[root], *aliases[root], *wd_names.get(root, [])}
+        for i in ids:
+            names.add(wrestlers[i]["ring_name"])
+            if wrestlers[i].get("real_name"):
+                names.add(wrestlers[i]["real_name"])
+        for n in names:
+            if n and len(name_key(n)) >= 3:
+                by_key[name_key(n)].add(root)
+    added, unmatched = collections.Counter(), collections.defaultdict(list)
+    for group, names in lists.items():
+        if group not in CRITERION_IDS:
+            continue
+        for n in names:
+            roots = by_key.get(name_key(n), set())
+            if not roots and '"' in n:  # '"Hangman" Adam Page' -> 'Adam Page'
+                roots = by_key.get(name_key(re.sub(r'"[^"]*"', "", n)), set())
+            if len(roots) != 1:
+                unmatched[group].append(n)
+                continue
+            root = next(iter(roots))
+            if group not in tags[root]:
+                tags[root].add(group)
+                added[group] += 1
+    report.append(f"- Title lists (Wikipedia): champions added that the archive was missing: {dict(added)}")
+    report.append(f"- Title lists: names not matched to one person (often tag teams or pre-1980 champions): "
+                  + "; ".join(f"{g}: {len(v)}" for g, v in unmatched.items()))
 
 
 def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
@@ -513,6 +555,8 @@ def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
         for name, q, t in review:
             w.writerow([name, f"https://www.wikidata.org/wiki/{q}", " ".join(t)])
     report.append(f"- Wikidata: {sum(1 for q in matched.values() if q)} people matched, {conflicts} skipped as ambiguous; tags added: {dict(added)}")
+    # real names and aliases from Wikidata, so title lists that use "Dwayne Johnson" still find The Rock
+    return {root: [people[q]["label"], *people[q]["aliases"]] for root, q in matched.items() if q}
 
 
 def write_split_candidates(members, display, matches, total_n, report):

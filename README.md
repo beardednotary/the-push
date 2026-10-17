@@ -22,6 +22,7 @@ Without Upstash credentials the leaderboards live in memory, which is fine for l
 pip install kagglehub
 python scripts/fetch_ringside.py      # downloads ~360 MB into data/raw/ (git-ignored)
 python scripts/fetch_wikidata.py      # life outside the ring (acting, sports, birthplace) into data/raw/ (git-ignored)
+python scripts/fetch_titles.py        # Wikipedia champion lists; fills gaps in the archive's title histories
 python scripts/import_ringside.py     # writes data/generated/{ring,trivia}.json + REPORT.md
 npx tsx scripts/check-puzzles.ts      # simulates a year of daily puzzles
 ```
