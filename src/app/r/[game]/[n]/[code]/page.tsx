@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!r) return {};
   const title = `${headline(r)}. Can you beat it?`;
   const description = "The Push: daily wrestling trivia. New card every night.";
-  return pageMeta(`/r/${p.game}/${p.n}/${p.code}`, title, description, { robots: { index: false, follow: true } });
+  return pageMeta(`/r/${p.game}/${p.n}/${p.code}`, title, description, { robots: { index: false, follow: true } }, false);
 }
 
 export default async function SharedResultPage({ params }: { params: Promise<Params> }) {
