@@ -91,7 +91,10 @@ function memory(): Store {
   };
 }
 
-export const store: Store = upstash() ?? memory();
+const live = upstash();
+if (!live && process.env.VERCEL) console.warn("No Upstash keys found: leaderboards are in memory and will not persist");
+export const storeKind: "upstash" | "memory" = live ? "upstash" : "memory";
+export const store: Store = live ?? memory();
 
 export function cleanName(raw: unknown): string {
   return String(raw ?? "").replace(/[^\p{L}\p{N} ._'-]/gu, "").trim().slice(0, 20) || "Anonymous";
