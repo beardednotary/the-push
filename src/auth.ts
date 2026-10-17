@@ -15,18 +15,22 @@ const url = process.env.UPSTASH_REDIS_REST_URL ?? process.env.KV_REST_API_URL;
 const token = process.env.UPSTASH_REDIS_REST_TOKEN ?? process.env.KV_REST_API_TOKEN;
 const redis = url && token ? new Redis({ url, token }) : null;
 
-const providers = [
-  process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET ? Google : null,
-  process.env.AUTH_DISCORD_ID && process.env.AUTH_DISCORD_SECRET ? Discord : null,
-  process.env.AUTH_RESEND_KEY && redis ? Resend({ from: "The Push <signin@playthepush.com>" }) : null,
-].filter((p) => p !== null);
-
-/** Which sign-in options to show. Empty means sign-in is off (local dev, or keys not added yet). */
-export const signInOptions = {
-  google: providers.includes(Google),
-  discord: providers.includes(Discord),
+const has = {
+  google: Boolean(process.env.AUTH_GOOGLE_ID && process.env.AUTH_GOOGLE_SECRET),
+  discord: Boolean(process.env.AUTH_DISCORD_ID && process.env.AUTH_DISCORD_SECRET),
   email: Boolean(process.env.AUTH_RESEND_KEY && redis),
 };
+
+const providers = [
+  has.google ? Google : null,
+  // Discord now returns an "iss" value on the callback (RFC 9207); Auth.js rejects it
+  // unless the provider declares Discord's issuer (from its openid-configuration).
+  has.discord ? Discord({ issuer: "https://discord.com" }) : null,
+  has.email ? Resend({ from: "The Push <signin@playthepush.com>" }) : null,
+].filter((p) => p !== null);
+
+/** Which sign-in options to show. All false means sign-in is off (local dev, or keys not added yet). */
+export const signInOptions = has;
 export const signInEnabled = Boolean(redis && process.env.AUTH_SECRET && providers.length);
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
