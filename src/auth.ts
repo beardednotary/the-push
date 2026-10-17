@@ -27,7 +27,7 @@ const providers = [
   // Discord now returns an "iss" value on the callback (RFC 9207); Auth.js rejects it
   // unless the provider declares Discord's issuer (from its openid-configuration).
   has.discord ? Discord({ issuer: "https://discord.com", allowDangerousEmailAccountLinking: true }) : null,
-  has.email ? Resend({ from: "The Push <signin@playthepush.com>", allowDangerousEmailAccountLinking: true }) : null,
+  has.email ? Resend({ from: "The Push <signin@playthepush.com>" }) : null,
 ].filter((p) => p !== null);
 
 /** Which sign-in options to show. All false means sign-in is off (local dev, or keys not added yet). */
