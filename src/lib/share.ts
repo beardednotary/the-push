@@ -1,6 +1,6 @@
 // A shared result lives in its URL: /r/five/<no>/<code> or /r/ring/<no>/<code>.
 // Codes are strictly validated, so no free text ever reaches a share image.
-//   five: "742-GGRYX"     score 0-1000, then one mark per question
+//   five: "742-GGRYX"     score 0-1000, then one mark per question; a trailing "u" marks an untimed game (max 500)
 //         G right and fast · Y right but slow · R wrong · X time ran out
 //   ring: "120-110011101"  rarity 0-900, then nine cells (1 filled, 0 empty), row by row
 
@@ -11,6 +11,7 @@ export interface FiveResult {
   number: number;
   score: number;
   marks: Mark[];
+  untimed: boolean;
 }
 export interface RingResult {
   game: "ring";
@@ -21,8 +22,8 @@ export interface RingResult {
 }
 export type SharedResult = FiveResult | RingResult;
 
-export function fiveCode(score: number, marks: Mark[]) {
-  return `${score}-${marks.join("")}`;
+export function fiveCode(score: number, marks: Mark[], untimed = false) {
+  return `${score}-${marks.join("")}${untimed ? "u" : ""}`;
 }
 
 export function ringCode(rarity: number, cells: boolean[]) {
@@ -37,9 +38,10 @@ export function parseResult(game: string, n: string, code: string): SharedResult
   const number = Number(n);
   if (!/^\d{1,5}$/.test(n) || number < 1) return null;
   if (game === "five") {
-    const m = /^(\d{1,4})-([GYRX]{5})$/.exec(code);
-    if (!m || Number(m[1]) > 1000) return null;
-    return { game, number, score: Number(m[1]), marks: m[2].split("") as Mark[] };
+    const m = /^(\d{1,4})-([GYRX]{5})(u?)$/.exec(code);
+    const untimed = m?.[3] === "u";
+    if (!m || Number(m[1]) > (untimed ? 500 : 1000)) return null;
+    return { game, number, score: Number(m[1]), marks: m[2].split("") as Mark[], untimed };
   }
   if (game === "ring") {
     const m = /^(\d{1,3})-([01]{9})$/.exec(code);
@@ -55,6 +57,6 @@ export const MARK_EMOJI: Record<Mark, string> = { G: "🟩", Y: "🟨", R: "🟥
 
 export function headline(r: SharedResult) {
   return r.game === "five"
-    ? `${r.score} on Daily Five No. ${r.number}`
+    ? `${r.score} on Daily Five No. ${r.number}${r.untimed ? " (untimed)" : ""}`
     : `${r.squares}/9 on Immaculate Ring No. ${r.number}`;
 }

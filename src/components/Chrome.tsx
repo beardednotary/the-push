@@ -30,6 +30,7 @@ export function Ticker() {
     <>
       <Link href="/five">Opening contest · Daily Five · 5 questions, 15 seconds each</Link>
       <Link href="/ring">Main event · Immaculate Ring · 9 squares, 9 guesses</Link>
+      <Link href="/yesterday">Post-show · Yesterday&apos;s answers and the Ring answer key</Link>
       <span>New card every night at midnight Eastern</span>
     </>
   );

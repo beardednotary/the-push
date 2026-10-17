@@ -32,8 +32,8 @@ export function questionsFor(day: string): Question[] {
   return BUCKETS.map((b) => b[((n % b.length) + b.length) % b.length]);
 }
 
-export function publicQuestions(day: string): PublicQuestion[] {
-  return questionsFor(day).map(({ answer: _answer, ...q }) => q);
+export function publicQuestions(card: Question[]): PublicQuestion[] {
+  return card.map(({ answer: _answer, ...q }) => q);
 }
 
 export interface FiveAnswer {
@@ -41,8 +41,7 @@ export interface FiveAnswer {
   ms: number;
 }
 
-export function scoreFive(day: string, answers: FiveAnswer[]): { score: number; correct: boolean[] } {
-  const qs = questionsFor(day);
+export function scoreFive(qs: Question[], answers: FiveAnswer[]): { score: number; correct: boolean[] } {
   const correct = qs.map((q, i) => answers[i]?.choice === q.answer);
   const score = qs.reduce((sum, _q, i) => sum + pointsFor(correct[i], Number(answers[i]?.ms) || 0), 0);
   return { score, correct };

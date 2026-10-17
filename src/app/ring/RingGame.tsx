@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Leaderboard, NextMatch, ShareButton, useSaved } from "@/components/client";
+import { Leaderboard, NextMatch, ShareButton, track, useSaved } from "@/components/client";
 import { Bug, Plate } from "@/components/Chrome";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
@@ -44,6 +44,8 @@ export default function RingGame({ day, number, rows, cols }: { day: string; num
     if (hit) cells[cell] = hit;
     const guesses = saved.guesses - 1;
     const next = { cells, guesses, done: guesses <= 0 || cells.every(Boolean) };
+    if (saved.guesses === 9) track("ring:start");
+    if (next.done) track("ring:finish");
     save(next);
     if (hit || next.done) setOpen(null);
   }
@@ -94,29 +96,30 @@ export default function RingGame({ day, number, rows, cols }: { day: string; num
           </Row>
         ))}
       </div>
-      <p className="detail">
-        {focus ? (
-          <>
-            <b>{focus.label}:</b> {focus.detail}
-          </>
-        ) : over ? (
-          ""
-        ) : (
-          "Tap a square to name a wrestler who fits its row and column. Tap a pad to read its rule."
-        )}
-      </p>
+      {!over && (
+        <>
+          <p className="detail">Tap a square and name a wrestler who fits both its row and its column.</p>
+          <ul className="rulebook" aria-label="Today's rules">
+            {[...rows.map((r) => ({ ...r, kind: "row" })), ...cols.map((c) => ({ ...c, kind: "col" }))].map((c) => (
+              <li key={c.id} className={`${c.kind}${focus?.id === c.id ? " on" : ""}`}>
+                <b>{c.label}:</b> {c.detail}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
 
       {!over && (
-        <button className="cta ghost full" onClick={() => save({ ...saved, done: true })}>
+        <button className="cta ghost full" onClick={() => { track("ring:finish"); save({ ...saved, done: true }); }}>
           <span>Tap out</span>
         </button>
       )}
 
-      {over && <Results day={day} number={number} cells={saved.cells} />}
+      {over && <Results day={day} number={number} cells={saved.cells} rows={rows} cols={cols} />}
 
       {open !== null && !over && (
         <Picker
-          title={[rows[Math.floor(open / 3)].label, cols[open % 3].label]}
+          sides={[rows[Math.floor(open / 3)], cols[open % 3]]}
           used={saved.cells.filter((c): c is Filled => !!c).map((c) => c.id)}
           guesses={saved.guesses}
           onClose={() => setOpen(null)}
@@ -141,13 +144,13 @@ function Row({ children }: { children: React.ReactNode }) {
 }
 
 function Picker({
-  title,
+  sides,
   used,
   guesses,
   onClose,
   onGuess,
 }: {
-  title: [string, string];
+  sides: [Side, Side];
   used: number[];
   guesses: number;
   onClose: () => void;
@@ -177,8 +180,16 @@ function Picker({
     <div className="sheet-bg" onClick={onClose}>
       <div className="sheet" role="dialog" aria-modal onClick={(e) => e.stopPropagation()}>
         <h3>
-          {title[0]} <em>×</em> {title[1]}
+          {sides[0].label} <em>×</em> {sides[1].label}
         </h3>
+        <ul className="rulebook tight">
+          <li className="row">
+            <b>{sides[0].label}:</b> {sides[0].detail}
+          </li>
+          <li className="col">
+            <b>{sides[1].label}:</b> {sides[1].detail}
+          </li>
+        </ul>
         <input
           ref={input}
           className="search"
@@ -217,7 +228,7 @@ function Picker({
   );
 }
 
-function Results({ day, number, cells }: { day: string; number: number; cells: (Filled | null)[] }) {
+function Results({ day, number, cells, rows, cols }: { day: string; number: number; cells: (Filled | null)[]; rows: Side[]; cols: Side[] }) {
   const squares = cells.filter(Boolean).length;
   const rarity = cells.reduce((s, c) => s + (c ? c.rarity : 100), 0);
   const grid = [0, 1, 2].map((r) => cells.slice(r * 3, r * 3 + 3).map((c) => (c ? "🟩" : "⬜")).join("")).join("\n");
@@ -230,12 +241,74 @@ function Results({ day, number, cells }: { day: string; number: number; cells: (
         <div className="sub">Rarity {rarity} · lower is rarer</div>
       </div>
       <div className="stack">
-        <ShareButton text={share} path={sharePath("ring", number, ringCode(rarity, cells.map(Boolean)))} />
+        <ShareButton game="ring" text={share} path={sharePath("ring", number, ringCode(rarity, cells.map(Boolean)))} />
         <Leaderboard game="ring" day={day} payload={{ cells: cells.map((c) => c?.id ?? null) }} format={ringBoardLabel} />
       </div>
+      <MostPicked rows={rows} cols={cols} mine={cells} />
       <RemindMe />
       <SignInNudge />
       <NextMatch to="five" />
+    </section>
+  );
+}
+
+interface Picks {
+  total: number;
+  top: { name: string; pct: number }[];
+  possible: number;
+}
+
+/** What everyone else put in each square, with your own picks marked. */
+function MostPicked({ rows, cols, mine }: { rows: Side[]; cols: Side[]; mine: (Filled | null)[] }) {
+  const [picks, setPicks] = useState<Picks[] | null>(null);
+  useEffect(() => {
+    fetch("/api/ring/picks")
+      .then((r) => r.json())
+      .then(setPicks)
+      .catch(() => {});
+  }, []);
+  if (!picks) return null;
+  return (
+    <section>
+      <div className="section-head">
+        <Plate tone="gold">Most picked</Plate>
+        <Plate tone="dark">Tonight</Plate>
+      </div>
+      <div className="ring picked">
+        <div className="corner" />
+        {cols.map((c) => (
+          <div key={c.id} className="pad col">
+            {c.label}
+          </div>
+        ))}
+        {rows.map((r, ri) => (
+          <Row key={r.id}>
+            <div className="pad row">{r.label}</div>
+            {cols.map((_c, ci) => {
+              const i = ri * 3 + ci;
+              const p = picks[i];
+              const best = p?.top[0];
+              return (
+                <div key={i} className="cell picked-cell">
+                  {best ? (
+                    <span>
+                      {best.name}
+                      <span className="rar">{best.pct}%</span>
+                    </span>
+                  ) : (
+                    <span className="muted">No picks yet</span>
+                  )}
+                  {mine[i] && mine[i]!.name !== best?.name && <small className="mine">You: {mine[i]!.name}</small>}
+                  <small className="possible">{p?.possible ?? 0} possible</small>
+                </div>
+              );
+            })}
+          </Row>
+        ))}
+      </div>
+      <p className="muted" style={{ fontSize: 15 }}>
+        Full answer key for every square posts tomorrow on <a href="/yesterday" style={{ color: "var(--gold)" }}>Yesterday&apos;s card</a>.
+      </p>
     </section>
   );
 }

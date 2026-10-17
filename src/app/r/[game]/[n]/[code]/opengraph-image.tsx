@@ -42,7 +42,9 @@ function Five({ r }: { r: Extract<SharedResult, { game: "five" }> }) {
     <div style={{ display: "flex", flexDirection: "column" }}>
       <div style={{ display: "flex", alignItems: "flex-end", gap: 14, marginTop: 6 }}>
         <div style={{ display: "flex", fontFamily: "Teko", fontSize: 230, lineHeight: 0.8, color: GOLD }}>{r.score}</div>
-        <div style={{ display: "flex", fontFamily: "Saira", fontSize: 30, color: "#9aa6b8", marginBottom: 18 }}>/ 1000</div>
+        <div style={{ display: "flex", fontFamily: "Saira", fontSize: 30, color: "#9aa6b8", marginBottom: 18 }}>
+          {r.untimed ? "/ 500 · UNTIMED" : "/ 1000"}
+        </div>
       </div>
       <div style={{ display: "flex", gap: 12, marginTop: 26, marginLeft: 8 }}>
         {r.marks.map((m, i) => (

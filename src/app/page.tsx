@@ -56,6 +56,16 @@ export default function Home() {
             <span>Ring the bell</span>
           </Link>
         </section>
+        <section className="segment">
+          <div className="meta">
+            <Plate tone="dark">Post-show</Plate>
+          </div>
+          <h2 className="chrome">Yesterday&apos;s card</h2>
+          <p>The answers, how everyone did, and the full Immaculate Ring answer key.</p>
+          <Link className="cta ghost" href="/yesterday">
+            <span>See the replay</span>
+          </Link>
+        </section>
       </main>
     </>
   );

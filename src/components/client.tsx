@@ -45,9 +45,21 @@ export function useSaved<T>(key: string, initial: T): [T, (v: T) => void, boolea
   return [value, save, loaded];
 }
 
-export function ShareButton({ text, path }: { text: string; path: string }) {
+/** Your own devices: visit any page with ?notrack once and they stop counting (?track undoes it). */
+export function notTracked(): boolean {
+  return safeGet("push:notrack") === "1";
+}
+
+/** Bump an anonymous daily counter (games started, finished, shared). */
+export function track(event: string) {
+  if (notTracked()) return;
+  fetch("/api/stat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ event }), keepalive: true }).catch(() => {});
+}
+
+export function ShareButton({ text, path, game }: { text: string; path: string; game: "five" | "ring" }) {
   const [copied, setCopied] = useState(false);
   async function share() {
+    track(`${game}:share`);
     const full = `${text}\n${location.origin}${path}`;
     if (navigator.share) {
       try {

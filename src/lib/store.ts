@@ -12,6 +12,11 @@ export interface Store {
   rank(board: string, member: string): Promise<{ rank: number; of: number } | null>;
   incr(hash: string, field: string): Promise<number>;
   get(hash: string, field: string): Promise<number>;
+  /** A frozen value (a day's card). setOnce never overwrites. */
+  getText(key: string): Promise<string | null>;
+  setOnce(key: string, value: string): Promise<void>;
+  /** Every numeric field of a counter hash. */
+  counts(hash: string): Promise<Record<string, number>>;
   setName(id: string, name: string): Promise<void>;
   names(ids: string[]): Promise<Record<string, string>>;
   /** Web push subscriptions, keyed by a hash of the endpoint; values are JSON. */
@@ -51,6 +56,17 @@ function upstash(): Store | null {
     async get(hash, field) {
       return Number((await r.hget(hash, field)) ?? 0);
     },
+    async getText(key) {
+      const v = await r.get<unknown>(key);
+      return v == null ? null : typeof v === "string" ? v : JSON.stringify(v);
+    },
+    async setOnce(key, value) {
+      await r.set(key, value, { nx: true, ex: 60 * 60 * 24 * 400 });
+    },
+    async counts(hash) {
+      const all = await r.hgetall<Record<string, unknown>>(hash);
+      return Object.fromEntries(Object.entries(all ?? {}).map(([k, v]) => [k, Number(v) || 0]));
+    },
     async setName(id, name) {
       await r.hset("players", { [id]: name });
     },
@@ -81,9 +97,13 @@ function upstash(): Store | null {
 }
 
 function memory(): Store {
-  type Mem = { z: Map<string, Map<string, number>>; h: Map<string, Map<string, number>>; n: Map<string, string>; subs: Map<string, string>; played: Map<string, Set<string>> };
+  type Mem = { z: Map<string, Map<string, number>>; h: Map<string, Map<string, number>>; n: Map<string, string>; subs: Map<string, string>; played: Map<string, Set<string>>; t: Map<string, string> };
   const g = globalThis as unknown as { __pushStore?: Mem };
-  const s = (g.__pushStore ??= { z: new Map(), h: new Map(), n: new Map(), subs: new Map(), played: new Map() });
+  const s = (g.__pushStore ??= { z: new Map(), h: new Map(), n: new Map(), subs: new Map(), played: new Map(), t: new Map() });
+  // the dev store outlives hot reloads; add slots that newer code expects
+  s.subs ??= new Map();
+  s.played ??= new Map();
+  s.t ??= new Map();
   const board = (k: string) => s.z.get(k) ?? s.z.set(k, new Map()).get(k)!;
   const hash = (k: string) => s.h.get(k) ?? s.h.set(k, new Map()).get(k)!;
   const sorted = (k: string) => [...board(k)].sort((a, b) => b[1] - a[1]);
@@ -107,6 +127,15 @@ function memory(): Store {
     },
     async get(k, field) {
       return hash(k).get(field) ?? 0;
+    },
+    async counts(k) {
+      return Object.fromEntries(hash(k));
+    },
+    async getText(key) {
+      return s.t.get(key) ?? null;
+    },
+    async setOnce(key, value) {
+      if (!s.t.has(key)) s.t.set(key, value);
     },
     async setName(id, name) {
       s.n.set(id, name);

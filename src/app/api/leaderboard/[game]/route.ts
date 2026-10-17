@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { todayKey } from "@/lib/day";
 import { scoreFive, type FiveAnswer } from "@/lib/five";
+import { fiveCard, ringCard } from "@/lib/cards";
 import { checkGuess } from "@/lib/ring";
 import { cleanId, cleanName, store } from "@/lib/store";
 
@@ -33,15 +34,16 @@ export async function POST(req: Request, { params }: { params: Promise<{ game: s
   if (game === "five") {
     const answers: FiveAnswer[] = Array.isArray(body.answers) ? body.answers.slice(0, 5) : [];
     // a human can't read and tap in under a third of a second
-    score = scoreFive(day, answers.map((a) => ({ choice: a?.choice ?? null, ms: Math.max(300, Number(a?.ms) || 0) }))).score;
+    score = scoreFive(await fiveCard(day), answers.map((a) => ({ choice: a?.choice ?? null, ms: Math.max(300, Number(a?.ms) || 0) }))).score;
   } else {
     const cells: (number | null)[] = Array.isArray(body.cells) ? body.cells.slice(0, 9) : [];
+    const grid = await ringCard(day);
     const used = new Set<number>();
     let correct = 0;
     let rarity = 0;
     for (let c = 0; c < 9; c++) {
       const id = cells[c];
-      const ok = id != null && !used.has(id) && checkGuess(day, c, id).correct;
+      const ok = id != null && !used.has(id) && checkGuess(grid, c, id).correct;
       if (!ok) {
         rarity += 100;
         continue;

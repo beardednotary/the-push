@@ -2,7 +2,7 @@
 // "Remind me tomorrow": daily web push, offered only after a finished game.
 import { useEffect, useState } from "react";
 import { Plate } from "./Chrome";
-import { playerId } from "./client";
+import { playerId, track } from "./client";
 
 type State = "loading" | "hidden" | "ios-install" | "denied" | "off" | "on" | "working" | "error";
 
@@ -52,6 +52,7 @@ export function RemindMe() {
       const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: keyBytes(PUBLIC_KEY) });
       await post({ action: "subscribe", subscription: sub.toJSON(), playerId: playerId() });
       await post({ action: "played", playerId: playerId() });
+      track("remind:on");
       setState("on");
     } catch {
       setState("error");

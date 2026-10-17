@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { todayKey } from "@/lib/day";
+import { ringCard } from "@/lib/cards";
 import { checkGuess } from "@/lib/ring";
 import { store } from "@/lib/store";
 
@@ -8,7 +9,7 @@ export async function POST(req: Request) {
   const { cell, wrestlerId } = await req.json().catch(() => ({}));
   const day = todayKey();
   const c = Number(cell);
-  const { correct, wrestler } = checkGuess(day, c, Number(wrestlerId));
+  const { correct, wrestler } = checkGuess(await ringCard(day), c, Number(wrestlerId));
   if (!wrestler) return NextResponse.json({ error: "unknown wrestler" }, { status: 400 });
   if (!correct) return NextResponse.json({ correct: false, name: wrestler.name });
   const hash = `ring:${day}:picks`;

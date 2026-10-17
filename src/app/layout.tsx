@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
-import { Analytics } from "@vercel/analytics/next";
 import { AccountLink } from "@/components/account";
 import { Ticker } from "@/components/Chrome";
+import { Tracking } from "@/components/Tracking";
 import { SITE_DESCRIPTION, pageMeta } from "@/lib/meta";
 import "./globals.css";
 
@@ -44,7 +44,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <a href="/privacy">Privacy</a> <AccountLink />
         </footer>
         <Ticker />
-        <Analytics />
+        <Tracking />
       </body>
     </html>
   );

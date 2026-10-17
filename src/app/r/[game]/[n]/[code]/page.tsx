@@ -40,7 +40,7 @@ export default async function SharedResultPage({ params }: { params: Promise<Par
           {r.game === "five" ? (
             <>
               <div className="num score">{r.score}</div>
-              <div className="sub">out of 1000</div>
+              <div className="sub">{r.untimed ? "out of 500 · untimed" : "out of 1000"}</div>
               <div className="marks" aria-label="Question by question">
                 {r.marks.map((m, i) => (
                   <i key={i} style={{ background: MARK_COLOR[m] }} />

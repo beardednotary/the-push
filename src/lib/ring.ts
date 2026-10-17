@@ -80,14 +80,24 @@ export function gridFor(day: string): Grid {
   throw new Error(`no fair grid for ${day}`);
 }
 
+/** Rebuild a grid from saved criterion ids (null if the data no longer has one of them). */
+export function gridFromIds(rowIds: string[], colIds: string[]): Grid | null {
+  const rows = rowIds.map((id) => BY_CRITERION.get(id));
+  const cols = colIds.map((id) => BY_CRITERION.get(id));
+  if (rows.some((c) => !c) || cols.some((c) => !c)) return null;
+  const r = rows as Criterion[];
+  const c = cols as Criterion[];
+  return { rows: r, cols: c, answerCounts: r.flatMap((x) => c.map((y) => WELL_KNOWN.filter((w) => fits(w, x.id, y.id)).length)) };
+}
+
 export function cellCriteria(grid: Grid, cell: number): [Criterion, Criterion] {
   return [grid.rows[Math.floor(cell / 3)], grid.cols[cell % 3]];
 }
 
-export function checkGuess(day: string, cell: number, wrestlerId: number): { correct: boolean; wrestler?: Wrestler } {
+export function checkGuess(grid: Grid, cell: number, wrestlerId: number): { correct: boolean; wrestler?: Wrestler } {
   const w = BY_ID.get(wrestlerId);
   if (!w || cell < 0 || cell > 8) return { correct: false };
-  const [r, c] = cellCriteria(gridFor(day), cell);
+  const [r, c] = cellCriteria(grid, cell);
   return { correct: fits(w, r.id, c.id), wrestler: w };
 }
 
@@ -124,4 +134,10 @@ export function searchWrestlers(q: string, limit = 8): { id: number; name: strin
   }
   scored.sort((a, b) => b.s - a.s);
   return scored.slice(0, limit).map(({ w, via }) => (via ? { id: w.id, name: w.name, aka: via } : { id: w.id, name: w.name }));
+}
+
+/** Every wrestler who fits a cell, best known first. */
+export function cellAnswers(grid: Grid, cell: number): Wrestler[] {
+  const [r, c] = cellCriteria(grid, cell);
+  return WRESTLERS.filter((w) => fits(w, r.id, c.id)); // WRESTLERS is already sorted by popularity
 }

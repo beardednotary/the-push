@@ -18,3 +18,7 @@ export function prettyDay(day: string): string {
     weekday: "long", month: "long", day: "numeric", timeZone: "UTC",
   });
 }
+
+export function addDays(day: string, n: number): string {
+  return new Date(Date.parse(`${day}T12:00:00Z`) + n * 86_400_000).toISOString().slice(0, 10);
+}

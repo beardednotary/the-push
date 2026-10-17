@@ -4,7 +4,7 @@ import type { MetadataRoute } from "next";
 // those pages carry a noindex tag instead.
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", allow: "/", disallow: ["/api/", "/signin", "/account"] },
+    rules: { userAgent: "*", allow: "/", disallow: ["/api/", "/signin", "/account", "/stats"] },
     sitemap: "https://playthepush.com/sitemap.xml",
   };
 }
