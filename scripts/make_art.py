@@ -98,6 +98,11 @@ def main():
     big.save(APP / "icon.jpg", quality=88, optimize=True)
     big.resize((180, 180), Image.LANCZOS).save(APP / "apple-icon.jpg", quality=90, optimize=True)
     small.save(APP / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
+    # home page hero: the full scene for wide screens, a curtain-to-curtain crop for phones
+    SRC.resize((1600, round(1600 * SRC.height / SRC.width)), Image.LANCZOS).save(
+        ROOT / "public" / "hero-wide.jpg", quality=82, optimize=True, progressive=True)
+    SRC.crop((FIGURE_X - 380, 0, FIGURE_X + 380, SRC.height)).save(
+        ROOT / "public" / "hero-tall.jpg", quality=82, optimize=True, progressive=True)
     # home-screen app icons for the web manifest (Android / installed PWA)
     for px in (192, 512):
         big.resize((px, px), Image.LANCZOS).save(ROOT / "public" / f"icon-{px}.png", optimize=True)

@@ -8,19 +8,31 @@ export default function Home() {
   const day = todayKey();
   return (
     <>
-      <Bug>
-        <Plate tone="dark">No. {puzzleNumber(day)}</Plate>
-      </Bug>
-      <main className="wrap">
-        <div className="headline">
+      <section className="hero">
+        <picture>
+          <source media="(min-width: 700px)" srcSet="/hero-wide.jpg" />
+          <img src="/hero-tall.jpg" alt="A wrestler walks out through the curtain into a packed arena" fetchPriority="high" />
+        </picture>
+        <div className="hero-shade" aria-hidden />
+        <div className="hero-top">
+          <Bug>
+            <Plate tone="dark">No. {puzzleNumber(day)}</Plate>
+          </Bug>
+        </div>
+        <div className="hero-copy wrap">
           <Plate tone="gold">Tonight&apos;s card · {prettyDay(day)}</Plate>
-          <h1 className="chrome" style={{ marginTop: 14 }}>
+          <h1 className="chrome">
             Two matches.
             <br />
             One night.
           </h1>
+          <p>Daily wrestling trivia. A new card drops every night at midnight Eastern.</p>
+          <Link className="cta" href="/five">
+            <span>Ring the bell</span>
+          </Link>
         </div>
-
+      </section>
+      <main className="wrap">
         <section className="segment">
           <div className="meta">
             <Plate tone="dark">Opening contest</Plate>

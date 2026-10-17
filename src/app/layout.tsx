@@ -41,7 +41,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         {children}
         <footer className="footer">
           Data: <a href="https://www.kaggle.com/datasets/theodorerubin/ringside-wrestling-archive">Ringside Wrestling Archive</a>.
-          Not affiliated with any promotion. A <a href="https://dahvio.com">DahVio Studios</a> production.
+          Not affiliated with any promotion. A <a href="https://dahvio.com">DahVio Studios</a> production.{" "}
+          <a href="/privacy">Privacy</a>
         </footer>
         <Ticker />
       </body>
