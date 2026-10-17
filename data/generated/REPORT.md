@@ -6,19 +6,20 @@ Read this after every import; spot-check the lists against what you know.
 - MERGE SKIPPED (name not found): The Undertaker <- Mean Mark Callous
 - MERGE SKIPPED (name not found): Kevin Owens <- Kevin Steen
 - MERGE SKIPPED (name not found): Karrion Kross <- Killer Kross
-- identities: 12814 dataset ids -> 11741 people
+- identities: 12814 dataset ids -> 11740 people
 - events kept 30839, dropped as off-brand after 2025-06-01: {'WWE': 151, 'NXT': 75, 'AEW': 4244}
 - duplicate event listings collapsed: 10713
 - matches after de-dup: 129887
-- gender: Counter({'m': 2991, 'f': 340}) among regulars
+- gender: Counter({'m': 2990, 'f': 340}) among regulars
 - REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): ['Johnny Grunge ECW World Heavyweight Title 1994-03-26', 'Sabu ECW World Heavyweight Title 1995-02-04', 'Jr. WCW Cruiserweight Championship 1996-07-08', 'Jr. WCW Cruiserweight Championship 1998-01-15', 'Kane WWF World Heavyweight Title 1998-09-27', 'Kane WWF European Title 1999-02-15', 'Jr. WCW Cruiserweight Championship 1999-03-15', 'Jr. WCW Cruiserweight Championship 1999-04-26', 'Evan Karagias WCW Hardcore Title 2000-02-28', 'David Arquette WCW World Heavyweight Title 2000-04-25', 'Crowbar WCW Cruiserweight Championship 2000-05-15', 'Kane WWF World Heavyweight Title 2000-06-25', 'Chyna WWF Intercontinental Title 2000-08-27', 'Kevin Nash WCW Cruiserweight Championship 2000-10-02', 'Mr. McMahon ECW World Heavyweight Title 2007-04-29', 'Cody Rhodes WWE Championship 2009-04-26', "Layla WWE Women's Championship (original) 2010-05-11", 'Chris Jericho WWE United States Championship 2017-01-09', 'Dash Wilder WWE 24/7 Title 2019-08-12', 'Claudio Castagnoli WWE Intercontinental Championship 2020-03-08']
-- pool size 2045; duplicate display names: []
+- Wikidata: 2412 people matched, 8 skipped as ambiguous; tags added: {'actor': 339, 'profootball': 61, 'college': 95, 'olympian': 26, 'strength': 36, 'amateur': 267, 'bornJP': 133, 'bornAbroad': 718, 'combat': 78, 'bornMX': 103, 'music': 32, 'bornUK': 126, 'bornCA': 160}
+- pool size 2044; duplicate display names: []
 - possible name splits to review: 128 (data/generated/merge_candidates.csv)
-- trivia questions generated: 858; skipped: {'rumble': 43, 'wmMain': 7, 'lineage-unconfirmed': 105, 'lineage-tv': 182, 'lineage': 10, 'classic-obscure': 198, 'classic': 6}
+- trivia questions generated: 859; skipped: {'rumble': 43, 'wmMain': 7, 'lineage-unconfirmed': 104, 'lineage-tv': 182, 'lineage': 10, 'classic-obscure': 197, 'classic': 7}
 
 ## Criteria counts (pool)
 
-- wwe: 1349
+- wwe: 1348
 - nxt: 494
 - wcw: 326
 - ecw: 191
@@ -26,7 +27,7 @@ Read this after every import; spot-check the lists against what you know.
 - aew: 308
 - wweChamp: 51
 - whc: 30
-- universal: 9
+- universal: 8
 - wcwChamp: 20
 - ecwChamp: 28
 - aewChamp: 9
@@ -43,15 +44,28 @@ Read this after every import; spot-check the lists against what you know.
 - rumble: 35
 - wmMain: 42
 - aewPpvMain: 34
-- hiac: 50
-- cage: 414
+- hiac: 49
+- cage: 413
 - ladder: 221
 - marathon: 66
 - d1980s: 231
 - d1990s: 708
 - d2000s: 574
-- d2010s: 656
-- d2020s: 687
+- d2010s: 655
+- d2020s: 686
+- actor: 215
+- music: 21
+- combat: 50
+- amateur: 115
+- olympian: 10
+- profootball: 38
+- college: 65
+- strength: 23
+- bornCA: 93
+- bornJP: 45
+- bornMX: 43
+- bornUK: 75
+- bornAbroad: 381
 
 ## Royal Rumble winners
 
@@ -196,86 +210,86 @@ Read this after every import; spot-check the lists against what you know.
 
 ## Top of pool
 
-- Kane (m): cage, d1990s, d2000s, d2010s, ecwChamp, european, hardcore, hiac, ic, ladder, tag, wcw, whc, wwe, wweChamp
-- Big Show (m): aew, cage, d1990s, d2000s, d2010s, d2020s, ecwChamp, hardcore, hiac, ic, ladder, nxt, tag, us, wcw, wcwChamp, whc, wwe, wweChamp
-- Kofi Kingston (m): cage, d2000s, d2010s, d2020s, ic, ladder, nxt, tag, us, whc, wwe
-- The Miz (m): cage, d2000s, d2010s, d2020s, ic, ladder, us, wmMain, wwe, wweChamp
-- Randy Orton (m): cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
-- John Cena (m): cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
+- Kane (m): actor, bornAbroad, cage, d1990s, d2000s, d2010s, ecwChamp, european, hardcore, hiac, ic, ladder, tag, wcw, whc, wwe, wweChamp
+- Big Show (m): actor, aew, cage, college, d1990s, d2000s, d2010s, d2020s, ecwChamp, hardcore, hiac, ic, ladder, nxt, tag, us, wcw, wcwChamp, whc, wwe, wweChamp
+- Kofi Kingston (m): bornAbroad, cage, d2000s, d2010s, d2020s, ic, ladder, music, nxt, tag, us, whc, wwe
+- The Miz (m): actor, cage, d2000s, d2010s, d2020s, ic, ladder, us, wmMain, wwe, wweChamp
+- Randy Orton (m): actor, amateur, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
+- John Cena (m): actor, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, music, rumble, tag, us, whc, wmMain, wwe, wweChamp
 - Dolph Ziggler (m): cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, nxtChamp, tag, tna, us, whc, wwe
-- Chris Jericho (m): aew, aewChamp, aewPpvMain, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecw, european, hardcore, hiac, ic, ladder, marathon, tag, tv, us, wcw, wcwChamp, whc, wmMain, wwe
-- Sheamus (m): cage, d2000s, d2010s, d2020s, hiac, ladder, nxt, rumble, us, whc, wwe, wweChamp
+- Chris Jericho (m): actor, aew, aewChamp, aewPpvMain, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecw, european, hardcore, hiac, ic, ladder, marathon, music, tag, tv, us, wcw, wcwChamp, whc, wmMain, wwe
+- Sheamus (m): actor, bornAbroad, cage, d2000s, d2010s, d2020s, hiac, ladder, nxt, rumble, us, whc, wwe, wweChamp
 - Seth Rollins (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, rumble, universal, us, wmMain, wwe, wweChamp
-- Cody Rhodes (m): aew, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, rumble, tag, tna, wmMain, wwe, wweChamp
-- Jon Moxley (m): aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, nxt, tag, us, wwe, wweChamp
-- Claudio Castagnoli (m): aew, aewPpvMain, cage, d2010s, d2020s, ic, ladder, nxt, tag, us, wwe
+- Cody Rhodes (m): actor, aew, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, rumble, tag, tna, wmMain, wwe, wweChamp
+- Jon Moxley (m): actor, aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, nxt, tag, us, wwe, wweChamp
+- Claudio Castagnoli (m): aew, aewPpvMain, bornAbroad, cage, d2010s, d2020s, ic, ladder, nxt, tag, us, wwe
 - Jey Uso (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, rumble, tag, wmMain, wwe, wweChamp
-- Roman Reigns (m): cage, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, rumble, tag, universal, us, wmMain, wwe, wweChamp
+- Roman Reigns (m): actor, cage, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, profootball, rumble, tag, universal, us, wmMain, wwe, wweChamp
 - Jimmy Uso (m): cage, d2010s, d2020s, nxt, wmMain, wwe
 - R-Truth (m): d2000s, d2010s, d2020s, ladder, twentyFourSeven, us, wwe
-- Natalya (f): cage, d2000s, d2010s, d2020s, ladder, nxt, tag, womens, wwe
+- Natalya (f): bornAbroad, bornCA, cage, d2000s, d2010s, d2020s, ladder, nxt, tag, womens, wwe
 - Dustin Rhodes (m): aew, aewPpvMain, cage, d1990s, d2000s, d2010s, d2020s, hardcore, ic, ladder, tag, tna, us, wcw, wwe
 - A.J. Styles (m): cage, d2000s, d2010s, d2020s, ic, ladder, marathon, tag, tna, us, wcw, whc, wmMain, wwe
 - Matt Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecwChamp, european, ladder, tag, tna, us, wwe
-- Jeff Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, european, hardcore, hiac, ic, ladder, marathon, tag, tna, us, whc, wwe, wweChamp
+- Jeff Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, european, hardcore, hiac, ic, ladder, marathon, music, tag, tna, us, whc, wwe, wweChamp
 - The Undertaker (m): cage, d1990s, d2000s, d2010s, hardcore, hiac, ladder, marathon, rumble, whc, wmMain, wwe, wweChamp
-- Jake Hager (m): aew, aewPpvMain, cage, d2000s, d2010s, d2020s, ecwChamp, hiac, us, whc, wwe
+- Jake Hager (m): aew, aewPpvMain, cage, college, combat, d2000s, d2010s, d2020s, ecwChamp, hiac, us, whc, wwe
 - D-Von Dudley (m): cage, d1990s, d2000s, d2010s, ecw, ladder, tag, tna, wwe
-- Drew McIntyre (m): cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, nxtChamp, rumble, tna, wmMain, wwe, wweChamp
-- Christian Cage (m): aew, aewPpvMain, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecwChamp, european, hardcore, ic, ladder, tag, tna, whc, wwe
-- Big E (m): cage, d2010s, d2020s, ic, ladder, nxt, nxtChamp, tag, wwe, wweChamp
-- Edge (m): aew, cage, d1990s, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
-- Zack Ryder (m): cage, d2000s, d2010s, d2020s, ic, ladder, nxt, us, wwe
+- Drew McIntyre (m): actor, bornAbroad, bornUK, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, nxtChamp, rumble, tna, wmMain, wwe, wweChamp
+- Christian Cage (m): actor, aew, aewPpvMain, bornAbroad, bornCA, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecwChamp, european, hardcore, ic, ladder, tag, tna, whc, wwe
+- Big E (m): cage, college, d2010s, d2020s, ic, ladder, nxt, nxtChamp, strength, tag, wwe, wweChamp
+- Edge (m): actor, aew, bornAbroad, bornCA, cage, d1990s, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
+- Zack Ryder (m): actor, cage, d2000s, d2010s, d2020s, ic, ladder, nxt, us, wwe
 - Bryan Danielson (m): aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, tag, us, whc, wmMain, wwe, wweChamp
-- Triple H (m): cage, d1990s, d2000s, d2010s, european, hiac, ic, ladder, rumble, wcw, whc, wmMain, wwe, wweChamp
+- Triple H (m): actor, cage, d1990s, d2000s, d2010s, european, hiac, ic, ladder, rumble, wcw, whc, wmMain, wwe, wweChamp
 - Rey Mysterio (m): cage, cruiser, d1990s, d2000s, d2010s, d2020s, hiac, ic, ladder, rumble, tag, us, wcw, whc, wwe, wweChamp
-- Kurt Angle (m): cage, d1990s, d2000s, d2010s, european, hardcore, hiac, ic, ladder, marathon, tna, us, wcwChamp, whc, wmMain, wwe, wweChamp
+- Kurt Angle (m): amateur, cage, d1990s, d2000s, d2010s, european, hardcore, hiac, ic, ladder, marathon, music, olympian, tna, us, wcwChamp, whc, wmMain, wwe, wweChamp
 - Heath Slater (m): d2010s, d2020s, nxt, tag, twentyFourSeven, wwe
 - Charlotte Flair (f): cage, d2010s, d2020s, hiac, ladder, nxt, rumble, womens, wwe
-- Kevin Owens (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, nxtChamp, universal, us, wmMain, wwe
-- Titus O'Neil (m): d2010s, d2020s, nxt, twentyFourSeven, wwe
-- CM Punk (m): aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, ecwChamp, hiac, ic, ladder, marathon, tag, whc, wmMain, wwe, wweChamp
-- Rob Van Dam (m): aew, cage, d1990s, d2000s, d2010s, d2020s, ecw, hardcore, ic, ladder, marathon, tag, tna, tv, wwe, wweChamp
+- Kevin Owens (m): bornAbroad, bornCA, cage, d2010s, d2020s, hiac, ic, ladder, nxt, nxtChamp, universal, us, wmMain, wwe
+- Titus O'Neil (m): college, d2010s, d2020s, nxt, twentyFourSeven, wwe
+- CM Punk (m): actor, aew, aewChamp, aewPpvMain, cage, combat, d2000s, d2010s, d2020s, ecwChamp, hiac, ic, ladder, marathon, tag, whc, wmMain, wwe, wweChamp
+- Rob Van Dam (m): actor, aew, cage, d1990s, d2000s, d2010s, d2020s, ecw, hardcore, ic, ladder, marathon, tag, tna, tv, wwe, wweChamp
 
 ## Trivia counts
 
 - rumble: 45
 - wmMain: 33
 - wmCity: 39
-- lineage: 254
+- lineage: 255
 - classic: 396
 - promotion: 91
 
 ## Trivia sample
 
-- [classic] Who did Jeff Jarrett defeat at TNA Against All Odds 2011? -> **Kurt Angle** (of ['Kurt Angle', 'Devon', 'Matt Hardy', 'Bobby Roode'])
-- [classic] Who did Kofi Kingston defeat at Clash of Champions 2019? -> **Randy Orton** (of ['Randy Orton', 'The Miz', 'Seth Rollins', 'Roman Reigns'])
-- [classic] Who did Becky Lynch defeat at Royal Rumble 2020? -> **Asuka** (of ['Sasha Banks', 'Asuka', 'Rhea Ripley', 'Tamina'])
-- [classic] Who did Samoa Joe defeat at TNA Turning Point 2005? -> **A.J. Styles** (of ['Chris Benoit', 'Dustin Rhodes', 'A.J. Styles', 'Bobby Roode'])
-- [classic] Who did Charlotte defeat at Hell In A Cell 2015? -> **Nikki Bella** (of ['Nikki Bella', 'Paige', 'Naomi', 'Gail Kim'])
-- [classic] Who did Jeff Hardy defeat at TNA Final Resolution 2012? -> **Bobby Roode** (of ['James Storm', 'Bobby Roode', 'Eric Young', 'A.J. Styles'])
-- [classic] Who did Chris Jericho defeat at Clash of Champions 2016? -> **Sami Zayn** (of ['Sami Zayn', 'Dolph Ziggler', 'Roman Reigns', 'Triple H'])
-- [classic] Who did Gunther defeat at Summerslam 2024? -> **Damian Priest** (of ['Damian Priest', 'A.J. Styles', 'Seth Rollins', 'Cody Rhodes'])
-- [classic] Who did Damian Priest defeat at Backlash France 2024? -> **Jey Uso** (of ['Jon Moxley', 'Jey Uso', 'A.J. Styles', 'Jimmy Uso'])
-- [classic] Who did Kurt Angle defeat at TNA Bound for Glory 2009? -> **Matt Morgan** (of ['A.J. Styles', 'Abyss', 'Matt Morgan', 'Scott Steiner'])
-- [classic] Who did Kurt Angle defeat at TNA Hard Justice 2007? -> **Samoa Joe** (of ['Samoa Joe', 'Sting', 'Abyss', 'Christian Cage'])
-- [classic] Who did Rob Van Dam defeat at TNA Hardcore Justice 2010? -> **Sabu** (of ['Kurt Angle', 'Jeff Hardy', 'Sabu', 'Christopher Daniels'])
-- [classic] Who did Eric Young defeat at TNA Against All Odds 2008? -> **James Storm** (of ['Abyss', 'James Storm', 'A.J. Styles', 'Christian Cage'])
-- [classic] Who did Austin Aries defeat at TNA No Surrender 2011? -> **Brian Kendrick** (of ['Samoa Joe', 'James Storm', 'Sting', 'Brian Kendrick'])
-- [classic] Who did Kevin Owens defeat at Fastlane 2016? -> **Dolph Ziggler** (of ['Randy Orton', 'The Miz', 'Stardust', 'Dolph Ziggler'])
-- [classic] Who did Triple H defeat at Roadblock 2016? -> **Dean Ambrose** (of ['Chris Jericho', 'The Miz', 'Dean Ambrose', 'Stardust'])
-- [classic] Who did Elix Skipper defeat at TNA Final Resolution 2005? -> **Sonjay Dutt** (of ['Bobby Roode', 'Chris Benoit', 'A.J. Styles', 'Sonjay Dutt'])
-- [classic] Who did Cody Rhodes defeat at Bash In Berlin 2024? -> **Kevin Owens** (of ['Jimmy Uso', 'Kevin Owens', 'Drew McIntyre', 'A.J. Styles'])
-- [classic] Who did Bianca Belair defeat at WrestleMania Backlash? -> **Bayley** (of ['Bayley', 'Liv Morgan', 'Asuka', 'Becky Lynch'])
-- [classic] Who did Kurt Angle defeat at TNA Final Resolution 2008? -> **Rhino** (of ['Rhino', 'Sting', 'Christian Cage', 'Samoa Joe'])
-- [classic] Who did Chris Benoit defeat at ECW One Night Stand 2005? -> **Eddie Guerrero** (of ['Eddie Guerrero', 'Bobby Roode', 'Christian Cage', 'Samoa Joe'])
-- [classic] Who did Finn Bálor defeat at SummerSlam 2017? -> **Bray Wyatt** (of ['The Miz', 'Big Show', 'Bray Wyatt', 'Randy Orton'])
-- [classic] Who did Charlotte defeat at Night of Champions 2015? -> **Nikki Bella** (of ['Paige', 'Naomi', 'Gail Kim', 'Nikki Bella'])
-- [classic] Who did Dolph Ziggler defeat at Night of Champions 2015? -> **Rusev** (of ['John Cena', 'Dean Ambrose', 'Randy Orton', 'Rusev'])
-- [classic] Who did Kevin Owens defeat at Elimination Chamber 2015? -> **John Cena** (of ['Stardust', 'Roman Reigns', 'John Cena', 'Randy Orton'])
-- [classic] Who did CM Punk defeat at AEW All In 2023? -> **Samoa Joe** (of ['Roman Reigns', 'Samoa Joe', 'John Cena', 'Seth Rollins'])
-- [classic] Who did Kurt Angle defeat at TNA Turning Point 2012? -> **Devon** (of ['Devon', 'Jeff Hardy', 'Eric Young', 'Rob Van Dam'])
-- [classic] Who did Robert Roode defeat at TNA Sacrifice 2007? -> **Jeff Jarrett** (of ['Eric Young', 'Jeff Jarrett', 'Sting', 'Scott Steiner'])
+- [classic] Who did Samoa Joe defeat at TNA Turning Point 2006? -> **Kurt Angle** (of ['John Cena', 'Sting', 'Kurt Angle', 'Randy Orton'])
+- [classic] Who did Sasha Banks defeat at SummerSlam 2017? -> **Alexa Bliss** (of ['Alexa Bliss', 'Natalya', 'Becky Lynch', 'Charlotte Flair'])
+- [classic] Who did Ricochet defeat at Stomping Grounds 2019? -> **Samoa Joe** (of ['Randy Orton', 'Samoa Joe', 'Dolph Ziggler', 'Seth Rollins'])
+- [classic] Who did Cody Rhodes defeat at Backlash France 2024? -> **A.J. Styles** (of ['Bryan Danielson', 'A.J. Styles', 'Jon Moxley', 'Drew McIntyre'])
+- [classic] Who did Eric Young defeat at TNA Sacrifice 2014? -> **Magnus** (of ['Tigre Uno', 'Magnus', 'Austin Aries', 'James Storm'])
+- [classic] Who did Austin Aries defeat at TNA Against All Odds 2012? -> **Alex Shelley** (of ['Jeff Hardy', 'James Storm', 'Samoa Joe', 'Alex Shelley'])
+- [classic] Who did The Undertaker defeat at SummerSlam 2015? -> **Brock Lesnar** (of ['Dean Ambrose', 'John Cena', 'Randy Orton', 'Brock Lesnar'])
+- [classic] Who did Rhea Ripley defeat at WrestleMania XL? -> **Becky Lynch** (of ['Becky Lynch', 'Hikaru Shida', 'IYO SKY', 'Toni Storm'])
+- [classic] Who did Seth Rollins defeat at Payback 2023? -> **Shinsuke Nakamura** (of ['Claudio Castagnoli', 'Roman Reigns', 'Shinsuke Nakamura', 'Chris Jericho'])
+- [classic] Who did Samoa Joe defeat at TNA Bound for Glory 2007? -> **Christian Cage** (of ['Christian Cage', 'James Storm', 'Scott Steiner', 'Robert Roode'])
+- [classic] Who did Christian Cage defeat at TNA No Surrender 2006? -> **Rhino** (of ['Rhino', 'John Cena', 'A.J. Styles', 'Kurt Angle'])
+- [classic] Who did Eric Young defeat at TNA Against All Odds 2008? -> **James Storm** (of ['Kurt Angle', 'Christian Cage', 'James Storm', 'Scott Steiner'])
+- [classic] Who did Chris Sabin defeat at TNA Against All Odds 2007? -> **Jerry Lynn** (of ['Scott Steiner', 'Jerry Lynn', 'A.J. Styles', 'Christian Cage'])
+- [classic] Who did Kazarian defeat at TNA Genesis 2011? -> **Jay Lethal** (of ['Samoa Joe', 'Jay Lethal', 'Matt Hardy', 'Bobby Roode'])
+- [classic] Who did Charlotte defeat at Hell In A Cell 2015? -> **Nikki Bella** (of ['Paige', 'Naomi', 'Gail Kim', 'Nikki Bella'])
+- [classic] Who did John Cena defeat at Battleground 2015? -> **Kevin Owens** (of ['Cesaro', 'Chris Jericho', 'Seth Rollins', 'Kevin Owens'])
+- [classic] Who did Alexa Bliss defeat at TLC 2017? -> **Mickie James** (of ['Charlotte Flair', 'Emma', 'Bayley', 'Mickie James'])
+- [classic] Who did Gunther defeat at King And Queen Of The Ring 2024? -> **Randy Orton** (of ['Randy Orton', 'Jon Moxley', 'A.J. Styles', 'Jimmy Uso'])
+- [classic] Who did Jeff Hardy defeat at Money in the Bank 2020? -> **Cesaro** (of ['Cesaro', 'Jon Moxley', 'Seth Rollins', 'Randy Orton'])
+- [classic] Who did Jay Lethal defeat at TNA Genesis 2007? -> **Sonjay Dutt** (of ['Kurt Angle', 'Sonjay Dutt', 'Scott Steiner', 'A.J. Styles'])
+- [classic] Who did Elix Skipper defeat at TNA Final Resolution 2005? -> **Sonjay Dutt** (of ['Chris Benoit', 'Sonjay Dutt', 'Chris Jericho', 'Christian Cage'])
+- [classic] Who did Dean Ambrose defeat at SummerSlam 2016? -> **Dolph Ziggler** (of ['Roman Reigns', 'Seth Rollins', 'Dolph Ziggler', 'The Miz'])
+- [classic] Who did Austin Aries defeat at TNA Final Resolution 2012? -> **Bully Ray** (of ['Devon', 'A.J. Styles', 'Bully Ray', 'James Storm'])
+- [classic] Who did Christopher Daniels defeat at TNA Genesis 2013? -> **James Storm** (of ['A.J. Styles', 'Rob Van Dam', 'Devon', 'James Storm'])
+- [classic] Who did Roman Reigns defeat at Fastlane 2015? -> **Daniel Bryan** (of ['Randy Orton', 'Stardust', 'Daniel Bryan', 'Sheamus'])
+- [classic] Who did Brock Lesnar defeat at Crown Jewel 2022? -> **Bobby Lashley** (of ['A.J. Styles', 'Chris Jericho', 'Bobby Lashley', 'Edge'])
+- [classic] Who did Gunner defeat at TNA Genesis 2012? -> **Rob Van Dam** (of ['Sting', 'Eric Young', 'Rob Van Dam', 'Bobby Roode'])
+- [classic] Who did Christian Cage defeat at TNA Against All Odds 2006? -> **Jeff Jarrett** (of ['A.J. Styles', 'Samoa Joe', 'Kevin Nash', 'Jeff Jarrett'])
 - [lineage] Who did Kevin Owens beat for the United States Championship at Battleground 2017? -> **A.J. Styles** (of ['Dolph Ziggler', 'A.J. Styles', 'Sheamus', 'Roman Reigns'])
 - [lineage] Who did Yokozuna beat for the WWE Championship at WrestleMania IX? -> **Bret Hart** (of ['The Rock', 'Kane', 'Diesel', 'Bret Hart'])
 - [lineage] Who did Daniel Bryan beat for the Intercontinental Championship at WrestleMania 31? -> **Bad News Barrett** (of ['Dolph Ziggler', 'Bad News Barrett', 'Kofi Kingston', 'The Miz'])
@@ -290,9 +304,9 @@ Read this after every import; spot-check the lists against what you know.
 - [lineage] Who did Matt Hardy beat for the United States Championship at Backlash 2008? -> **Montel Vontavious Porter** (of ['Dolph Ziggler', 'John Cena', 'Montel Vontavious Porter', 'Randy Orton'])
 - [lineage] Who did Booker T beat for the WCW World Heavyweight Championship at WCW Bash At The Beach 2000? -> **Jeff Jarrett** (of ['Kevin Nash', 'Sting', 'Scott Steiner', 'Jeff Jarrett'])
 - [lineage] Who did Bobby Lashley beat for the ECW World Heavyweight Championship at One Night Stand 2007? -> **Mr. McMahon** (of ['Jack Swagger', 'Mr. McMahon', 'Matt Hardy', 'Chavo Guerrero'])
-- [promotion] Which promotion ran Wrestlepalooza? -> **ECW** (of ['AEW', 'TNA', 'WWE', 'ECW'])
-- [promotion] Which promotion ran SuperBrawl VII? -> **WCW** (of ['WWE', 'ECW', 'WCW', 'AEW'])
-- [promotion] Which promotion ran Souled Out? -> **WCW** (of ['TNA', 'WCW', 'WWE', 'AEW'])
+- [promotion] Which promotion ran L.A. Melee? -> **WCW** (of ['WCW', 'WWE', 'TNA', 'AEW'])
+- [promotion] Which promotion ran Barely Legal? -> **ECW** (of ['ECW', 'TNA', 'WCW', 'AEW'])
+- [promotion] Which promotion ran SuperBrawl? -> **WCW** (of ['ECW', 'AEW', 'WCW', 'WWE'])
 - [rumble] Who won the 2022 men's Royal Rumble? -> **Brock Lesnar** (of ['A.J. Styles', 'Drew McIntyre', 'Brock Lesnar', 'Randy Orton'])
 - [wmCity] Which city hosted WrestleMania XIX? -> **Seattle** (of ['Boston', 'Seattle', 'Arlington', 'Atlantic City'])
 - [wmCity] Which city hosted WrestleMania XI? -> **Hartford** (of ['Hartford', 'Las Vegas', 'Atlanta', 'New Orleans'])

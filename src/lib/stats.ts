@@ -20,6 +20,15 @@ export function countStat(day: string, field: string) {
   return store.incr(statsKey(day), field);
 }
 
+/** Count a finishing player once per day, and note whether they first played on an earlier day. */
+export async function countPlayer(day: string, playerId: string) {
+  const first = await store.firstSeen(playerId, day);
+  if (await store.addOnce(`players:${day}`, playerId)) {
+    await countStat(day, "players");
+    if (first < day) await countStat(day, "returning");
+  }
+}
+
 export function readStats(day: string) {
   return store.counts(statsKey(day));
 }

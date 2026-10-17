@@ -69,15 +69,16 @@ CRITERIA = [
     ("tna", "promotion", "tna", "TNA / Impact", "Wrestled for TNA / Impact."),
     ("aew", "promotion", "aew", "AEW", "Wrestled for AEW."),
     ("wweChamp", "title", "wwe", "WWE Champion", "Held the WWF/WWE Championship."),
-    ("whc", "title", "wwe", "World Heavyweight Champ", "Held WWE's World Heavyweight Championship, the 2002-13 'big gold belt' or the 2023- title. Not the WWE Championship."),
+    ("whc", "title", "wwe", "World Heavy­weight Champ",  # soft hyphen: breaks cleanly in narrow pads
+      "Held WWE's World Heavyweight Championship, the 2002-13 'big gold belt' or the 2023- title. Not the WWE Championship."),
     ("universal", "title", "wwe", "Universal Champion", "Held the WWE Universal Championship."),
     ("wcwChamp", "title", "wcw", "WCW World Champion", "Held the WCW World Heavyweight Championship."),
     ("ecwChamp", "title", "ecw", "ECW World Champion", "Held the ECW World Heavyweight Championship (any era)."),
     ("aewChamp", "title", "aew", "AEW World Champion", "Held the AEW World Championship."),
-    ("ic", "title", "wwe", "Intercontinental Champ", "Held the WWF/WWE Intercontinental Championship."),
+    ("ic", "title", "wwe", "IC Champion", "Held the WWF/WWE Intercontinental Championship."),
     ("us", "title", "us", "U.S. Champion", "Held the United States Championship, in WCW or WWE."),
     ("tv", "title", "tv", "WCW/ECW TV Champ", "Held the WCW World Television or ECW World Television title. Other mid-card belts don't count."),
-    ("cruiser", "title", "cruiser", "Cruiserweight Champ", "Held a WCW/WWF/WWE/NXT Cruiserweight or Light Heavyweight title."),
+    ("cruiser", "title", "cruiser", "Cruiser Champ", "Held a WCW/WWF/WWE/NXT Cruiserweight or Light Heavyweight title."),
     ("hardcore", "title", "hardcore", "Hardcore Champion", "Held a WWF/WWE or WCW Hardcore title."),
     ("european", "title", "wwe", "European Champion", "Held the WWF/WWE European Championship."),
     ("nxtChamp", "title", "nxt", "NXT Champion", "Held the NXT Championship."),
@@ -96,6 +97,20 @@ CRITERIA = [
     ("d2000s", "era", "era", "Wrestled in the 2000s", "Has 3+ recorded major-promotion matches in 2000-09."),
     ("d2010s", "era", "era", "Wrestled in the 2010s", "Has 3+ recorded major-promotion matches in 2010-19."),
     ("d2020s", "era", "era", "Wrestled in the 2020s", "Has 3+ recorded major-promotion matches in 2020-."),
+    # Beyond the ring (from Wikidata, matched by name; gaps get patched in the tags sheet)
+    ("actor", "life", "actor", "Actor", "Has acted in film or TV (Wikidata lists them as an actor)."),
+    ("music", "life", "music", "Musician", "Has worked as a singer, rapper or musician."),
+    ("combat", "life", "combat", "MMA or Boxing", "Has fought as an MMA fighter or boxer."),
+    ("amateur", "life", "amateur", "Amateur Wrestler", "Competed in amateur (scholastic, collegiate or Olympic-style) wrestling."),
+    ("olympian", "life", "olympian", "Olympian", "Competed at the Olympic Games, in any sport."),
+    ("profootball", "life", "football", "Pro Football", "Played professional football in the NFL, CFL or AFL."),
+    ("college", "life", "college", "College Athlete", "Played on an NCAA college team (football, basketball and so on)."),
+    ("strength", "life", "strength", "Strength Athlete", "Competed as a bodybuilder, powerlifter, weightlifter or strongman."),
+    ("bornCA", "life", "born", "Born in Canada", "Born in Canada."),
+    ("bornJP", "life", "born", "Born in Japan", "Born in Japan."),
+    ("bornMX", "life", "born", "Born in Mexico", "Born in Mexico."),
+    ("bornUK", "life", "born", "Born in the UK", "Born in the United Kingdom."),
+    ("bornAbroad", "life", "born", "Born Outside the US", "Born anywhere other than the United States."),
 ]
 CRITERION_IDS = {c[0] for c in CRITERIA}
 
@@ -358,7 +373,11 @@ def main():
             tags[r["wrestler_id"]].add(g)
     report.append(f"- REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): {rejected}")
 
+    # ---- beyond the ring: Wikidata facts ------------------------------------
+    add_wikidata_tags(members, wrestlers, display, aliases, tags, report)
+
     # ---- curation overrides -----------------------------------------------
+    # (after Wikidata, so the tags sheet always has the final say)
     key_to_root = collections.defaultdict(set)
     for wid, w in wrestlers.items():
         key_to_root[name_key(w["ring_name"])].add(cid(wid))
@@ -414,6 +433,86 @@ def main():
                                               for q in sorted(sample, key=lambda q: q["type"])]
     (OUT / "REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     print(f"pool {len(pool)} wrestlers, {len(questions)} questions -> {OUT}")
+
+
+WIKIDATA_FACTS = {"actor": "actor", "music": "music", "mma": "combat", "boxer": "combat", "amateur": "amateur",
+                  "olympian": "olympian", "nfl": "profootball", "cfl": "profootball", "college": "college", "strength": "strength"}
+BORN = {"CA": "bornCA", "JP": "bornJP", "MX": "bornMX", "GB": "bornUK"}
+
+
+def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
+    """Match Wikidata wrestlers to our people by name and add life-outside-the-ring tags.
+    A match needs a name that points to exactly one person on each side; anything
+    ambiguous is skipped (a wrong match would put false facts on the grid)."""
+    path = RAW.parent / "wikidata.json"
+    if not path.exists():
+        report.append("- Wikidata: data/raw/wikidata.json missing (run scripts/fetch_wikidata.py); no beyond-the-ring tags")
+        return
+    people = json.loads(path.read_text(encoding="utf-8"))
+    wd_by_key = collections.defaultdict(set)
+    for q, rec in people.items():
+        for n in [rec["label"], *rec["aliases"]]:
+            if n:
+                wd_by_key[name_key(n)].add(q)
+    ours_by_key = collections.defaultdict(set)
+    for root, ids in members.items():
+        names = {display[root], *aliases[root]}
+        for i in ids:
+            names.add(wrestlers[i]["ring_name"])
+            if wrestlers[i].get("real_name"):
+                names.add(wrestlers[i]["real_name"])
+        for n in names:
+            if n and len(name_key(n)) >= 4:
+                ours_by_key[name_key(n)].add(root)
+
+    matched, conflicts = {}, 0
+    # pins from data/curation/wikidata.csv win over name matching
+    pinned_roots = set()
+    with open(CUR / "wikidata.csv", newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            roots = ours_by_key.get(name_key(row["wrestler"]), set())
+            if len(roots) == 1 and row["qid"] in people:
+                matched[next(iter(roots))] = row["qid"]
+                pinned_roots |= roots
+            else:
+                report.append(f"- WIKIDATA PIN SKIPPED: {dict(row)}")
+    for k, roots in ours_by_key.items():
+        qs = wd_by_key.get(k, set())
+        if len(roots) != 1 or len(qs) != 1:
+            continue
+        root, q = next(iter(roots)), next(iter(qs))
+        if root in pinned_roots:
+            continue
+        if matched.get(root, q) != q:
+            conflicts += 1  # two names point to different Wikidata people: trust neither
+            matched[root] = None
+        elif root not in matched:
+            matched[root] = q
+    added = collections.Counter()
+    for root, q in matched.items():
+        if not q:
+            continue
+        rec = people[q]
+        new = {WIKIDATA_FACTS[f] for f in rec["facts"] if f in WIKIDATA_FACTS}
+        born = rec.get("born_in")
+        if born:
+            if born in BORN:
+                new.add(BORN[born])
+            if born != "US":
+                new.add("bornAbroad")
+        for t in new:
+            tags[root].add(t)
+            added[t] += 1
+    # a review sheet: well-known people and their new tags, to scan for anything Wikidata got wrong
+    LIFE = set(WIKIDATA_FACTS.values()) | set(BORN.values()) | {"bornAbroad"}
+    review = sorted(((display[r], q, sorted(tags[r] & LIFE)) for r, q in matched.items() if q and tags[r] & LIFE),
+                    key=lambda x: x[0])
+    with open(OUT / "wikidata_review.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f, lineterminator="\n")
+        w.writerow(["wrestler", "wikidata", "tags"])
+        for name, q, t in review:
+            w.writerow([name, f"https://www.wikidata.org/wiki/{q}", " ".join(t)])
+    report.append(f"- Wikidata: {sum(1 for q in matched.values() if q)} people matched, {conflicts} skipped as ambiguous; tags added: {dict(added)}")
 
 
 def write_split_candidates(members, display, matches, total_n, report):

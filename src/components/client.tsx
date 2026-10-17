@@ -53,7 +53,8 @@ export function notTracked(): boolean {
 /** Bump an anonymous daily counter (games started, finished, shared). */
 export function track(event: string) {
   if (notTracked()) return;
-  fetch("/api/stat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ event }), keepalive: true }).catch(() => {});
+  const body = event.endsWith(":finish") ? { event, playerId: playerId() } : { event };
+  fetch("/api/stat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(() => {});
 }
 
 export function ShareButton({ text, path, game }: { text: string; path: string; game: "five" | "ring" }) {

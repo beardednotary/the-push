@@ -46,6 +46,8 @@ export default async function StatsPage() {
             <thead>
               <tr>
                 <th>No.</th>
+                <th>Players</th>
+                <th>returning</th>
                 <th>Five started</th>
                 <th>untimed</th>
                 <th>finished</th>
@@ -65,6 +67,10 @@ export default async function StatsPage() {
                     <td>
                       <b>{puzzleNumber(d)}</b> <span className="muted">{d.slice(5)}</span>
                     </td>
+                    <td>{s["players"] ?? 0}</td>
+                    <td>
+                      {s["returning"] ?? 0} <span className="muted">{pct(s["returning"] ?? 0, s["players"] ?? 0)}</span>
+                    </td>
                     <td>{five}</td>
                     <td>{s["five:start_untimed"] ?? 0}</td>
                     <td>
@@ -83,7 +89,10 @@ export default async function StatsPage() {
             </tbody>
           </table>
         </div>
-        <p className="muted small">Counting began with the release that added this page; earlier days show zero.</p>
+        <p className="muted small">
+          Players = unique devices that finished a game. Returning = of those, how many first played on an earlier day. Counts
+          began when each column was added; earlier days show zero.
+        </p>
       </main>
     </>
   );

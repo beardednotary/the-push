@@ -15,6 +15,10 @@ export interface Store {
   /** A frozen value (a day's card). setOnce never overwrites. */
   getText(key: string): Promise<string | null>;
   setOnce(key: string, value: string): Promise<void>;
+  /** First day this player finished a game (records `day` if there's none yet). */
+  firstSeen(playerId: string, day: string): Promise<string>;
+  /** Add to a set; true if it wasn't there yet. */
+  addOnce(key: string, member: string): Promise<boolean>;
   /** Every numeric field of a counter hash. */
   counts(hash: string): Promise<Record<string, number>>;
   setName(id: string, name: string): Promise<void>;
@@ -55,6 +59,15 @@ function upstash(): Store | null {
     },
     async get(hash, field) {
       return Number((await r.hget(hash, field)) ?? 0);
+    },
+    async firstSeen(playerId, day) {
+      await r.hsetnx("players:first", playerId, day);
+      return String((await r.hget("players:first", playerId)) ?? day);
+    },
+    async addOnce(key, member) {
+      const added = await r.sadd(key, member);
+      await r.expire(key, TTL_SECONDS);
+      return added === 1;
     },
     async getText(key) {
       const v = await r.get<unknown>(key);
@@ -133,6 +146,17 @@ function memory(): Store {
     },
     async getText(key) {
       return s.t.get(key) ?? null;
+    },
+    async firstSeen(playerId, day) {
+      const k = `first:${playerId}`;
+      if (!s.t.has(k)) s.t.set(k, day);
+      return s.t.get(k)!;
+    },
+    async addOnce(key, member) {
+      const set = s.played.get(key) ?? s.played.set(key, new Set()).get(key)!;
+      if (set.has(member)) return false;
+      set.add(member);
+      return true;
     },
     async setOnce(key, value) {
       if (!s.t.has(key)) s.t.set(key, value);

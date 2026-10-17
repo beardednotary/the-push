@@ -21,6 +21,7 @@ Without Upstash credentials the leaderboards live in memory, which is fine for l
 ```bash
 pip install kagglehub
 python scripts/fetch_ringside.py      # downloads ~360 MB into data/raw/ (git-ignored)
+python scripts/fetch_wikidata.py      # life outside the ring (acting, sports, birthplace) into data/raw/ (git-ignored)
 python scripts/import_ringside.py     # writes data/generated/{ring,trivia}.json + REPORT.md
 npx tsx scripts/check-puzzles.ts      # simulates a year of daily puzzles
 ```
@@ -51,6 +52,8 @@ git add -A && git commit -m "Update curation" && git push   # Vercel redeploys
 | `tags.csv` | facts the dataset lacks or gets wrong: `wrestler,tag,action(add/remove),note` |
 
 The archive has no AEW, NJPW or ROH title histories, so `tags.csv` supplies AEW World Champions.
+
+`wikidata.csv` pins people Wikidata lists under another name (The Rock is "Dwayne Johnson") or not as a wrestler at all (Mark Henry). Name matches only count when a name points to exactly one person on each side; `data/generated/wikidata_review.csv` lists every tag Wikidata supplied, for spotting mistakes (fix them with `remove` rows in `tags.csv`, which always wins).
 
 Each import also writes `data/generated/merge_candidates.csv`: likely renames not yet merged (one name contains the other and the careers barely overlap). Copy the real ones into the `merges` tab.
 

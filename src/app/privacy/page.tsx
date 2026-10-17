@@ -31,7 +31,8 @@ export default function PrivacyPage() {
         <ul>
           <li>
             <b>A random player ID, stored in your browser.</b> It lets the site remember today&apos;s progress and your
-            leaderboard entries. Your game progress itself stays in your browser.
+            leaderboard entries, and lets us count how many players come back on later days (we note the first day each ID
+            finished a game). Your game progress itself stays in your browser.
           </li>
           <li>
             <b>Leaderboard entries.</b> If you post a score, we store the ring name you type, your score and your player ID.

@@ -4278,8 +4278,8 @@
   "options": [
    "Kevin Owens",
    "Bray Wyatt",
-   "The Fiend",
-   "Brock Lesnar"
+   "Brock Lesnar",
+   "Finn Bálor"
   ],
   "answer": 0
  },
@@ -4289,47 +4289,47 @@
   "prompt": "Who did Brock Lesnar beat for the Universal Championship at WrestleMania 33?",
   "options": [
    "Seth Rollins",
-   "Goldberg",
+   "Finn Bálor",
    "Kevin Owens",
-   "Braun Strowman"
+   "Goldberg"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "lineage:82:2018-08-19",
   "type": "lineage",
   "prompt": "Who did Roman Reigns beat for the Universal Championship at SummerSlam 2018?",
   "options": [
-   "Kevin Owens",
-   "Goldberg",
    "Brock Lesnar",
-   "Braun Strowman"
+   "Bray Wyatt",
+   "Kevin Owens",
+   "Goldberg"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "lineage:82:2019-04-07",
   "type": "lineage",
   "prompt": "Who did Seth Rollins beat for the Universal Championship at WrestleMania 35?",
   "options": [
-   "Kevin Owens",
-   "Bray Wyatt",
    "Braun Strowman",
-   "Brock Lesnar"
+   "Brock Lesnar",
+   "The Fiend",
+   "Finn Bálor"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "lineage:82:2019-07-14",
   "type": "lineage",
   "prompt": "Who did Brock Lesnar beat for the Universal Championship at Extreme Rules 2019?",
   "options": [
-   "Bray Wyatt",
+   "The Fiend",
+   "Braun Strowman",
    "Kevin Owens",
-   "Seth Rollins",
-   "Goldberg"
+   "Seth Rollins"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "lineage:82:2019-08-11",
@@ -4338,7 +4338,7 @@
   "options": [
    "Brock Lesnar",
    "The Fiend",
-   "Kevin Owens",
+   "Finn Bálor",
    "Roman Reigns"
   ],
   "answer": 0
@@ -4348,46 +4348,58 @@
   "type": "lineage",
   "prompt": "Who did The Fiend beat for the Universal Championship at Crown Jewel 2019?",
   "options": [
-   "Kevin Owens",
+   "Seth Rollins",
    "Roman Reigns",
-   "Braun Strowman",
-   "Seth Rollins"
+   "Kevin Owens",
+   "Goldberg"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "lineage:82:2020-02-27",
   "type": "lineage",
   "prompt": "Who did Goldberg beat for the Universal Championship at Super Showdown 2020?",
   "options": [
-   "Braun Strowman",
    "Finn Bálor",
-   "Bray Wyatt",
-   "The Fiend"
+   "Brock Lesnar",
+   "The Fiend",
+   "Seth Rollins"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "lineage:82:2020-03-25",
   "type": "lineage",
   "prompt": "Who did Braun Strowman beat for the Universal Championship at WrestleMania 36?",
   "options": [
-   "Goldberg",
-   "Kevin Owens",
+   "Brock Lesnar",
+   "Finn Bálor",
    "Seth Rollins",
-   "Bray Wyatt"
+   "Goldberg"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "lineage:82:2020-08-23",
   "type": "lineage",
-  "prompt": "Who did Bray Wyatt beat for the Universal Championship at SummerSlam 2020?",
+  "prompt": "Who did The Fiend beat for the Universal Championship at SummerSlam 2020?",
   "options": [
-   "The Fiend",
-   "Finn Bálor",
+   "Roman Reigns",
+   "Seth Rollins",
    "Braun Strowman",
-   "Kevin Owens"
+   "Brock Lesnar"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "lineage:82:2020-08-30",
+  "type": "lineage",
+  "prompt": "Who did Roman Reigns beat for the Universal Championship at Payback 2020?",
+  "options": [
+   "Finn Bálor",
+   "Brock Lesnar",
+   "The Fiend",
+   "Braun Strowman"
   ],
   "answer": 2
  },
@@ -4397,33 +4409,33 @@
   "prompt": "Who did John Cena beat for the World Heavyweight Championship at Royal Rumble 2017?",
   "options": [
    "Randy Orton",
-   "Jinder Mahal",
    "A.J. Styles",
-   "Daniel Bryan"
+   "Jinder Mahal",
+   "Bray Wyatt"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "lineage:85:2017-02-12",
   "type": "lineage",
   "prompt": "Who did Bray Wyatt beat for the World Heavyweight Championship at Elimination Chamber 2017?",
   "options": [
+   "Kofi Kingston",
+   "Randy Orton",
    "Jinder Mahal",
-   "John Cena",
-   "A.J. Styles",
-   "Daniel Bryan"
+   "John Cena"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "lineage:85:2017-04-02",
   "type": "lineage",
   "prompt": "Who did Randy Orton beat for the World Heavyweight Championship at WrestleMania 33?",
   "options": [
-   "A.J. Styles",
-   "Daniel Bryan",
+   "John Cena",
+   "Jinder Mahal",
    "Bray Wyatt",
-   "John Cena"
+   "Daniel Bryan"
   ],
   "answer": 2
  },
@@ -4432,21 +4444,21 @@
   "type": "lineage",
   "prompt": "Who did Jinder Mahal beat for the World Heavyweight Championship at Backlash 2017?",
   "options": [
-   "A.J. Styles",
+   "John Cena",
+   "Kofi Kingston",
    "Randy Orton",
-   "Daniel Bryan",
-   "Kofi Kingston"
+   "Bray Wyatt"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "lineage:85:2019-04-07",
   "type": "lineage",
   "prompt": "Who did Kofi Kingston beat for the World Heavyweight Championship at WrestleMania 35?",
   "options": [
-   "Jinder Mahal",
+   "John Cena",
    "Daniel Bryan",
-   "Bray Wyatt",
+   "Randy Orton",
    "A.J. Styles"
   ],
   "answer": 1
@@ -4457,47 +4469,47 @@
   "prompt": "Who did Cody defeat at AEW Double Or Nothing 2019?",
   "options": [
    "Cesaro",
-   "Seth Rollins",
    "Dustin Rhodes",
-   "Dolph Ziggler"
+   "Roman Reigns",
+   "Seth Rollins"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:7691",
   "type": "classic",
   "prompt": "Who did Gunther defeat at Clash At The Castle 2022?",
   "options": [
+   "Edge",
    "Sheamus",
-   "A.J. Styles",
    "Kevin Owens",
-   "Roman Reigns"
+   "Cody Rhodes"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:1387",
   "type": "classic",
   "prompt": "Who did Cody Rhodes defeat at Backlash France 2024?",
   "options": [
+   "Bryan Danielson",
+   "A.J. Styles",
    "Jon Moxley",
-   "Seth Rollins",
-   "Christian Cage",
-   "A.J. Styles"
+   "Drew McIntyre"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:156428",
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA Turning Point 2005?",
   "options": [
-   "Chris Benoit",
-   "Dustin Rhodes",
-   "A.J. Styles",
-   "Bobby Roode"
+   "Jeff Hardy",
+   "Chris Jericho",
+   "Rey Mysterio",
+   "A.J. Styles"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:107993",
@@ -4505,9 +4517,9 @@
   "prompt": "Who did Jon Moxley defeat at AEW Revolution 2022?",
   "options": [
    "Bryan Danielson",
-   "The Miz",
-   "Seth Rollins",
-   "Cody Rhodes"
+   "Roman Reigns",
+   "A.J. Styles",
+   "Seth Rollins"
   ],
   "answer": 0
  },
@@ -4517,9 +4529,9 @@
   "prompt": "Who did Roman Reigns defeat at Elimination Chamber 2023?",
   "options": [
    "The Miz",
-   "Chris Jericho",
+   "Cody Rhodes",
    "Sami Zayn",
-   "John Cena"
+   "Chris Jericho"
   ],
   "answer": 2
  },
@@ -4528,8 +4540,8 @@
   "type": "classic",
   "prompt": "Who did Rhea Ripley defeat at WrestleMania 39?",
   "options": [
-   "Becky Lynch",
-   "Bianca Belair",
+   "Alexa Bliss",
+   "Raquel Rodriguez",
    "Kris Statlander",
    "Charlotte Flair"
   ],
@@ -4540,34 +4552,34 @@
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Lockdown 2010?",
   "options": [
-   "Christopher Daniels",
-   "Mr. Anderson",
+   "Jeff Hardy",
+   "A.J. Styles",
    "Ric Flair",
-   "Jeff Hardy"
+   "Mr. Anderson"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:142944",
   "type": "classic",
   "prompt": "Who did Austin Aries defeat at TNA Destination X 2012?",
   "options": [
-   "Rob Van Dam",
-   "Devon",
-   "Jeff Hardy",
-   "Bobby Roode"
+   "Bobby Roode",
+   "Samoa Joe",
+   "Kurt Angle",
+   "Rob Van Dam"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:68236",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Fastlane 2015?",
   "options": [
-   "John Cena",
-   "Seth Rollins",
+   "Randy Orton",
+   "Stardust",
    "Daniel Bryan",
-   "Dean Ambrose"
+   "Sheamus"
   ],
   "answer": 2
  },
@@ -4576,12 +4588,12 @@
   "type": "classic",
   "prompt": "Who did Kevin Owens defeat at Elimination Chamber 2015?",
   "options": [
-   "Stardust",
    "Roman Reigns",
-   "John Cena",
-   "Randy Orton"
+   "Cesaro",
+   "Randy Orton",
+   "John Cena"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:69473",
@@ -4589,9 +4601,9 @@
   "prompt": "Who did John Cena defeat at Money In The Bank 2015?",
   "options": [
    "Kevin Owens",
-   "Stardust",
+   "Dean Ambrose",
    "Sheamus",
-   "Dolph Ziggler"
+   "Seth Rollins"
   ],
   "answer": 0
  },
@@ -4600,9 +4612,9 @@
   "type": "classic",
   "prompt": "Who did Sami Zayn defeat at Battleground 2016?",
   "options": [
-   "Sheamus",
-   "Randy Orton",
-   "The Miz",
+   "Chris Jericho",
+   "Roman Reigns",
+   "Seth Rollins",
    "Kevin Owens"
   ],
   "answer": 3
@@ -4612,116 +4624,116 @@
   "type": "classic",
   "prompt": "Who did Brock Lesnar defeat at Survivor Series 2018?",
   "options": [
-   "A.J. Styles",
-   "Triple H",
    "Daniel Bryan",
-   "Roman Reigns"
+   "Triple H",
+   "John Cena",
+   "Randy Orton"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:82880",
   "type": "classic",
   "prompt": "Who did Kofi Kingston defeat at WrestleMania 35?",
   "options": [
-   "Roman Reigns",
-   "Seth Rollins",
    "Daniel Bryan",
-   "The Miz"
+   "Cesaro",
+   "Chris Jericho",
+   "Dolph Ziggler"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:114756",
   "type": "classic",
   "prompt": "Who did Chris Jericho defeat at AEW Full Gear 2019?",
   "options": [
+   "Seth Rollins",
    "Cody",
-   "Dolph Ziggler",
-   "The Miz",
-   "Roman Reigns"
+   "Cesaro",
+   "Kofi Kingston"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:109108",
   "type": "classic",
   "prompt": "Who did Daniel Bryan defeat at AEW Full Gear 2021?",
   "options": [
-   "Paul Wight",
-   "Miro",
    "John Cena",
-   "Cody Rhodes"
+   "Randy Orton",
+   "Cody Rhodes",
+   "Miro"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:88815",
   "type": "classic",
   "prompt": "Who did Bianca Belair defeat at WrestleMania 38?",
   "options": [
+   "Saraya",
+   "Shayna Baszler",
    "Becky Lynch",
-   "Lita",
-   "Charlotte Flair",
-   "Shayna Baszler"
+   "Toni Storm"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:88816",
   "type": "classic",
   "prompt": "Who did Cody Rhodes defeat at WrestleMania 38?",
   "options": [
-   "Sheamus",
    "Seth Rollins",
-   "Edge",
-   "Jon Moxley"
+   "Roman Reigns",
+   "Chris Jericho",
+   "Sheamus"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:89050",
   "type": "classic",
   "prompt": "Who did Cody Rhodes defeat at WrestleMania Backlash 2022?",
   "options": [
+   "Seth Rollins",
    "Kevin Owens",
-   "The Miz",
-   "A.J. Styles",
-   "Seth Rollins"
+   "Jon Moxley",
+   "Chris Jericho"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:7695",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Clash At The Castle 2022?",
   "options": [
-   "The Miz",
-   "Seth Rollins",
+   "Cody Rhodes",
    "Drew McIntyre",
-   "Cody Rhodes"
+   "A.J. Styles",
+   "Edge"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:5362",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at WrestleMania 39?",
   "options": [
-   "A.J. Styles",
-   "Cody Rhodes",
-   "Chris Jericho",
-   "Drew McIntyre"
+   "John Cena",
+   "Seth Rollins",
+   "Kevin Owens",
+   "Cody Rhodes"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:4228",
   "type": "classic",
   "prompt": "Who did Cody Rhodes defeat at Summerslam 2023?",
   "options": [
-   "Claudio Castagnoli",
-   "A.J. Styles",
+   "Chris Jericho",
+   "Roman Reigns",
    "Brock Lesnar",
    "The Miz"
   ],
@@ -4732,43 +4744,43 @@
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Summerslam 2023?",
   "options": [
-   "John Cena",
-   "Chris Jericho",
+   "Claudio Castagnoli",
    "Finn Bálor",
-   "A.J. Styles"
+   "Cody Rhodes",
+   "The Miz"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:4046",
   "type": "classic",
   "prompt": "Who did MJF defeat at AEW All In 2023?",
   "options": [
+   "John Cena",
    "Adam Cole",
    "Claudio Castagnoli",
-   "A.J. Styles",
    "Jon Moxley"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:1702",
   "type": "classic",
   "prompt": "Who did Sami Zayn defeat at WrestleMania XL?",
   "options": [
-   "Kevin Owens",
-   "Drew McIntyre",
-   "Cody Rhodes",
-   "Gunther"
+   "Jey Uso",
+   "Gunther",
+   "A.J. Styles",
+   "Drew McIntyre"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:1695",
   "type": "classic",
   "prompt": "Who did Bayley defeat at WrestleMania XL?",
   "options": [
-   "Rhea Ripley",
+   "Nia Jax",
    "Hikaru Shida",
    "IYO SKY",
    "Becky Lynch"
@@ -4780,21 +4792,21 @@
   "type": "classic",
   "prompt": "Who did Sami Zayn defeat at Clash At The Castle 2024?",
   "options": [
-   "Jey Uso",
+   "Cody Rhodes",
+   "Seth Rollins",
    "A.J. Styles",
-   "Chad Gable",
-   "Jimmy Uso"
+   "Chad Gable"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:149",
   "type": "classic",
   "prompt": "Who did Gunther defeat at Bash In Berlin 2024?",
   "options": [
-   "Cody Rhodes",
-   "Jon Moxley",
    "Jimmy Uso",
+   "Jey Uso",
+   "Jon Moxley",
    "Randy Orton"
   ],
   "answer": 3
@@ -4804,10 +4816,10 @@
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA No Surrender 2005?",
   "options": [
-   "A.J. Styles",
-   "Christian Cage",
+   "Jeff Hardy",
+   "Rey Mysterio",
    "Chris Sabin",
-   "Jeff Hardy"
+   "Jeff Jarrett"
   ],
   "answer": 2
  },
@@ -4816,57 +4828,57 @@
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA Final Resolution 2006?",
   "options": [
-   "Kurt Angle",
-   "Randy Orton",
-   "A.J. Styles",
-   "Christopher Daniels"
+   "Sting",
+   "Christopher Daniels",
+   "Bobby Roode",
+   "Christian Cage"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:154861",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Genesis 2006?",
   "options": [
-   "Kevin Nash",
-   "John Cena",
    "Samoa Joe",
-   "Bobby Roode"
+   "Bobby Roode",
+   "Rob Van Dam",
+   "Sting"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:154731",
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA Turning Point 2006?",
   "options": [
-   "Kurt Angle",
-   "Sting",
    "John Cena",
+   "Sting",
+   "Kurt Angle",
    "Randy Orton"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:147431",
   "type": "classic",
   "prompt": "Who did Jeff Jarrett defeat at TNA Against All Odds 2011?",
   "options": [
-   "Kurt Angle",
-   "Devon",
-   "Matt Hardy",
-   "Bobby Roode"
+   "Rob Van Dam",
+   "Bobby Roode",
+   "James Storm",
+   "Kurt Angle"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:69843",
   "type": "classic",
   "prompt": "Who did John Cena defeat at Battleground 2015?",
   "options": [
+   "Cesaro",
    "Chris Jericho",
    "Seth Rollins",
-   "Stardust",
    "Kevin Owens"
   ],
   "answer": 3
@@ -4876,82 +4888,82 @@
   "type": "classic",
   "prompt": "Who did Triple H defeat at Roadblock 2016?",
   "options": [
-   "Chris Jericho",
-   "The Miz",
    "Dean Ambrose",
-   "Stardust"
+   "Sheamus",
+   "The Miz",
+   "Dolph Ziggler"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:78682",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at No Mercy 2017?",
   "options": [
-   "Dolph Ziggler",
+   "Chris Jericho",
+   "Kevin Owens",
    "Big Show",
-   "John Cena",
-   "Randy Orton"
+   "John Cena"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:80425",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Backlash 2018?",
   "options": [
-   "The Undertaker",
-   "A.J. Styles",
+   "Roman Reigns",
    "The Miz",
-   "Randy Orton"
+   "The Undertaker",
+   "Triple H"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:83805",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at SummerSlam 2019?",
   "options": [
+   "Dustin Rhodes",
    "Chris Jericho",
-   "Dolph Ziggler",
-   "Cody",
-   "Brock Lesnar"
+   "Brock Lesnar",
+   "Roman Reigns"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:84645",
   "type": "classic",
   "prompt": "Who did Adam Cole defeat at Survivor Series 2019?",
   "options": [
-   "Seth Rollins",
-   "Pete Dunne",
-   "The Miz",
-   "Roman Reigns"
+   "Dolph Ziggler",
+   "Kofi Kingston",
+   "Randy Orton",
+   "Pete Dunne"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:85668",
   "type": "classic",
   "prompt": "Who did Drew McIntyre defeat at Money in the Bank 2020?",
   "options": [
-   "Dolph Ziggler",
-   "R-Truth",
    "Seth Rollins",
-   "Sheamus"
+   "R-Truth",
+   "Dolph Ziggler",
+   "Randy Orton"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:113350",
   "type": "classic",
   "prompt": "Who did Jon Moxley defeat at AEW Double or Nothing 2020?",
   "options": [
-   "The Miz",
+   "R-Truth",
    "Mr. Brodie Lee",
-   "Chris Jericho",
-   "Dolph Ziggler"
+   "Dolph Ziggler",
+   "Sheamus"
   ],
   "answer": 1
  },
@@ -4960,34 +4972,34 @@
   "type": "classic",
   "prompt": "Who did Drew McIntyre defeat at SummerSlam 2020?",
   "options": [
-   "Sheamus",
    "Jon Moxley",
    "Randy Orton",
-   "Dolph Ziggler"
+   "R-Truth",
+   "Chris Jericho"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:112727",
   "type": "classic",
   "prompt": "Who did Jon Moxley defeat at AEW All Out 2020?",
   "options": [
-   "MJF",
-   "Cody",
-   "R-Truth",
-   "Chris Jericho"
+   "The Miz",
+   "Dolph Ziggler",
+   "Randy Orton",
+   "MJF"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:86204",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Clash of Champions 2020?",
   "options": [
-   "Dolph Ziggler",
-   "Jey Uso",
    "Chris Jericho",
-   "Seth Rollins"
+   "Jey Uso",
+   "Sheamus",
+   "Jon Moxley"
   ],
   "answer": 1
  },
@@ -4996,10 +5008,10 @@
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Survivor Series 2020?",
   "options": [
-   "Dolph Ziggler",
+   "Cody",
    "Jon Moxley",
    "Drew McIntyre",
-   "Cody"
+   "Dolph Ziggler"
   ],
   "answer": 2
  },
@@ -5008,60 +5020,60 @@
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at WrestleMania Backlash?",
   "options": [
-   "Sheamus",
-   "Cody Rhodes",
+   "John Cena",
    "Cesaro",
-   "Seth Rollins"
+   "Edge",
+   "Randy Orton"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:87270",
   "type": "classic",
   "prompt": "Who did Charlotte Flair defeat at Money in the Bank 2021?",
   "options": [
-   "Becky Lynch",
+   "Carmella",
+   "Asuka",
    "Bayley",
-   "Rhea Ripley",
-   "Bianca Belair"
+   "Rhea Ripley"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:87272",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Money in the Bank 2021?",
   "options": [
-   "Paul Wight",
    "Cesaro",
-   "Edge",
-   "Sheamus"
+   "Sheamus",
+   "John Cena",
+   "Edge"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:87473",
   "type": "classic",
   "prompt": "Who did Edge defeat at SummerSlam 2021?",
   "options": [
-   "Cody Rhodes",
+   "Paul Wight",
+   "Roman Reigns",
    "Seth Rollins",
-   "Cesaro",
-   "Roman Reigns"
+   "Cesaro"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:87475",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at SummerSlam 2021?",
   "options": [
-   "John Cena",
    "Cody Rhodes",
-   "Paul Wight",
-   "Kofi Kingston"
+   "Cesaro",
+   "Randy Orton",
+   "John Cena"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:87861",
@@ -5070,8 +5082,8 @@
   "options": [
    "Roman Reigns",
    "Drew McIntyre",
-   "Paul Wight",
-   "Kofi Kingston"
+   "Sheamus",
+   "Jon Moxley"
   ],
   "answer": 1
  },
@@ -5080,24 +5092,24 @@
   "type": "classic",
   "prompt": "Who did Becky Lynch defeat at Survivor Series 2021?",
   "options": [
+   "Carmella",
    "Alexa Bliss",
-   "Asuka",
-   "Bianca Belair",
-   "Charlotte Flair"
+   "Charlotte Flair",
+   "Shayna Baszler"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:7694",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Clash At The Castle 2022?",
   "options": [
-   "A.J. Styles",
-   "Riddle",
-   "Kevin Owens",
-   "Cody Rhodes"
+   "Chris Jericho",
+   "Jon Moxley",
+   "The Miz",
+   "Riddle"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:7688",
@@ -5105,23 +5117,35 @@
   "prompt": "Who did CM Punk defeat at AEW All Out 2022?",
   "options": [
    "Edge",
+   "Jon Moxley",
    "Cody Rhodes",
-   "Kevin Owens",
-   "Jon Moxley"
+   "A.J. Styles"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:4862",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Night Of Champions 2023?",
   "options": [
-   "Claudio Castagnoli",
-   "John Cena",
+   "Cody Rhodes",
+   "The Miz",
    "A.J. Styles",
-   "Kevin Owens"
+   "Jon Moxley"
   ],
   "answer": 2
+ },
+ {
+  "id": "classic:1697",
+  "type": "classic",
+  "prompt": "Who did Rhea Ripley defeat at WrestleMania XL?",
+  "options": [
+   "Becky Lynch",
+   "Hikaru Shida",
+   "IYO SKY",
+   "Toni Storm"
+  ],
+  "answer": 0
  },
  {
   "id": "classic:1162",
@@ -5129,9 +5153,9 @@
   "prompt": "Who did Gunther defeat at King And Queen Of The Ring 2024?",
   "options": [
    "Randy Orton",
-   "Drew McIntyre",
-   "Jimmy Uso",
-   "Jey Uso"
+   "Jon Moxley",
+   "A.J. Styles",
+   "Jimmy Uso"
   ],
   "answer": 0
  },
@@ -5140,12 +5164,12 @@
   "type": "classic",
   "prompt": "Who did Gunther defeat at Summerslam 2024?",
   "options": [
+   "Cody Rhodes",
    "Damian Priest",
-   "A.J. Styles",
-   "Seth Rollins",
-   "Cody Rhodes"
+   "Jey Uso",
+   "A.J. Styles"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:145",
@@ -5154,8 +5178,8 @@
   "options": [
    "Jimmy Uso",
    "Kevin Owens",
-   "Drew McIntyre",
-   "A.J. Styles"
+   "Christian Cage",
+   "Drew McIntyre"
   ],
   "answer": 1
  },
@@ -5176,46 +5200,46 @@
   "type": "classic",
   "prompt": "Who did Christian Cage defeat at TNA Destination X 2007?",
   "options": [
-   "Jeff Jarrett",
+   "Eric Young",
    "A.J. Styles",
-   "Sting",
-   "Samoa Joe"
+   "Samoa Joe",
+   "Sting"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:153482",
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA Bound for Glory 2007?",
   "options": [
-   "Eric Young",
-   "A.J. Styles",
    "Christian Cage",
-   "Sting"
+   "James Storm",
+   "Scott Steiner",
+   "Robert Roode"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:151440",
   "type": "classic",
   "prompt": "Who did Alex Shelley defeat at TNA Genesis 2009?",
   "options": [
+   "A.J. Styles",
+   "Scott Steiner",
    "Chris Sabin",
-   "Sting",
-   "Kevin Nash",
-   "Samoa Joe"
+   "Kevin Nash"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:150136",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Bound for Glory 2009?",
   "options": [
-   "A.J. Styles",
-   "Abyss",
+   "Eric Young",
+   "Scott Steiner",
    "Matt Morgan",
-   "Scott Steiner"
+   "A.J. Styles"
   ],
   "answer": 2
  },
@@ -5224,22 +5248,22 @@
   "type": "classic",
   "prompt": "Who did A.J. Styles defeat at TNA Genesis 2010?",
   "options": [
-   "Brother Ray",
-   "Christopher Daniels",
+   "Sting",
    "Kurt Angle",
-   "Jeff Hardy"
+   "Rob Van Dam",
+   "Abyss"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:148904",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Slammiversary VIII 2010?",
   "options": [
-   "Jeff Hardy",
+   "Mick Foley",
    "Kazarian",
    "Sting",
-   "Ric Flair"
+   "Hernandez"
   ],
   "answer": 1
  },
@@ -5248,247 +5272,235 @@
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Sacrifice 2012?",
   "options": [
-   "Rob Van Dam",
    "A.J. Styles",
+   "Bobby Roode",
    "Samoa Joe",
-   "Christopher Daniels"
+   "Devon"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:141856",
   "type": "classic",
   "prompt": "Who did Jeff Hardy defeat at TNA Bound for Glory 2012?",
   "options": [
-   "Austin Aries",
-   "Sting",
    "Kurt Angle",
+   "Sting",
+   "Austin Aries",
    "Devon"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:139131",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Slammiversary XI 2013?",
   "options": [
-   "Sting",
-   "James Storm",
    "A.J. Styles",
-   "Samoa Joe"
+   "Mr. Anderson",
+   "James Storm",
+   "Rob Van Dam"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:68616",
   "type": "classic",
   "prompt": "Who did Randy Orton defeat at WrestleMania 31?",
   "options": [
-   "Seth Rollins",
-   "Cesaro",
-   "Sheamus",
-   "Dean Ambrose"
+   "Dolph Ziggler",
+   "Goldust",
+   "Dean Ambrose",
+   "Seth Rollins"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:69666",
   "type": "classic",
   "prompt": "Who did Chris Jericho defeat at Beast In The East 2015?",
   "options": [
-   "Seth Rollins",
-   "Cesaro",
-   "Sheamus",
-   "Neville"
+   "Neville",
+   "John Cena",
+   "Roman Reigns",
+   "Dean Ambrose"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:70179",
   "type": "classic",
   "prompt": "Who did The Undertaker defeat at SummerSlam 2015?",
   "options": [
-   "Brock Lesnar",
+   "Dean Ambrose",
    "John Cena",
-   "Roman Reigns",
-   "Sheamus"
+   "Randy Orton",
+   "Brock Lesnar"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:72933",
   "type": "classic",
   "prompt": "Who did Kevin Owens defeat at Payback 2016?",
   "options": [
-   "Dean Ambrose",
-   "Randy Orton",
-   "The Miz",
-   "Sami Zayn"
+   "Sami Zayn",
+   "Chris Jericho",
+   "Roman Reigns",
+   "Stardust"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:74526",
   "type": "classic",
   "prompt": "Who did Chris Jericho defeat at Clash of Champions 2016?",
   "options": [
+   "Sheamus",
    "Sami Zayn",
-   "Dolph Ziggler",
    "Roman Reigns",
    "Triple H"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:76415",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Fastlane 2017?",
   "options": [
-   "Chris Jericho",
-   "Braun Strowman",
-   "The Miz",
-   "Cesaro"
+   "Seth Rollins",
+   "Big Show",
+   "John Cena",
+   "Braun Strowman"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:80195",
   "type": "classic",
   "prompt": "Who did Charlotte Flair defeat at WrestleMania 34?",
   "options": [
-   "Carmella",
-   "Nikki Bella",
-   "Becky Lynch",
-   "Asuka"
+   "Toni Storm",
+   "Kairi Sane",
+   "Asuka",
+   "Becky Lynch"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:118709",
   "type": "classic",
   "prompt": "Who did A.J. Styles defeat at Money in the Bank 18 2018?",
   "options": [
-   "The Undertaker",
-   "Triple H",
    "Shinsuke Nakamura",
-   "John Cena"
+   "The Undertaker",
+   "John Cena",
+   "Dean Ambrose"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:115445",
   "type": "classic",
   "prompt": "Who did Cody defeat at AEW All Out 2019?",
   "options": [
+   "Dolph Ziggler",
+   "Roman Reigns",
    "Shawn Spears",
-   "Dustin Rhodes",
-   "Randy Orton",
-   "Dolph Ziggler"
+   "The Miz"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:85551",
   "type": "classic",
   "prompt": "Who did Charlotte Flair defeat at WrestleMania 36?",
   "options": [
-   "Shayna Baszler",
-   "Bayley",
    "Rhea Ripley",
-   "Naomi"
+   "Shayna Baszler",
+   "Tamina",
+   "Nikki Cross"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:86916",
   "type": "classic",
   "prompt": "Who did Cesaro defeat at WrestleMania 37?",
   "options": [
+   "Roman Reigns",
+   "John Cena",
    "Seth Rollins",
-   "Jon Moxley",
-   "Cody Rhodes",
-   "Edge"
+   "Randy Orton"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:86920",
   "type": "classic",
   "prompt": "Who did Bianca Belair defeat at WrestleMania 37?",
   "options": [
-   "Alexa Bliss",
-   "Charlotte Flair",
    "Sasha Banks",
-   "Becky Lynch"
+   "Alexa Bliss",
+   "Carmella",
+   "Charlotte Flair"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:86924",
   "type": "classic",
   "prompt": "Who did Sheamus defeat at WrestleMania 37?",
   "options": [
+   "Randy Orton",
    "Riddle",
-   "Roman Reigns",
-   "Seth Rollins",
-   "John Cena"
+   "John Cena",
+   "Roman Reigns"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:8100",
   "type": "classic",
   "prompt": "Who did Bianca Belair defeat at SummerSlam 2022?",
   "options": [
+   "Ronda Rousey",
    "Charlotte Flair",
-   "Becky Lynch",
-   "Natalya",
-   "Shayna Baszler"
+   "Liv Morgan",
+   "Becky Lynch"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:7686",
   "type": "classic",
   "prompt": "Who did Chris Jericho defeat at AEW All Out 2022?",
   "options": [
-   "Cody Rhodes",
    "Roman Reigns",
-   "A.J. Styles",
-   "Bryan Danielson"
+   "Kevin Owens",
+   "Bryan Danielson",
+   "Jon Moxley"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:6834",
   "type": "classic",
   "prompt": "Who did MJF defeat at AEW Full Gear 2022?",
   "options": [
-   "Roman Reigns",
-   "Kevin Owens",
+   "Chris Jericho",
    "Jon Moxley",
-   "Sheamus"
+   "The Miz",
+   "A.J. Styles"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:5367",
   "type": "classic",
   "prompt": "Who did Rey Mysterio defeat at WrestleMania 39?",
   "options": [
-   "Seth Rollins",
    "Dominik Mysterio",
-   "John Cena",
-   "Chris Jericho"
-  ],
-  "answer": 1
- },
- {
-  "id": "classic:4867",
-  "type": "classic",
-  "prompt": "Who did Brock Lesnar defeat at Night Of Champions 2023?",
-  "options": [
-   "Cody Rhodes",
    "Roman Reigns",
    "John Cena",
    "Seth Rollins"
@@ -5496,50 +5508,62 @@
   "answer": 0
  },
  {
+  "id": "classic:4867",
+  "type": "classic",
+  "prompt": "Who did Brock Lesnar defeat at Night Of Champions 2023?",
+  "options": [
+   "The Miz",
+   "Cody Rhodes",
+   "Seth Rollins",
+   "Claudio Castagnoli"
+  ],
+  "answer": 1
+ },
+ {
   "id": "classic:4231",
   "type": "classic",
   "prompt": "Who did Gunther defeat at Summerslam 2023?",
   "options": [
-   "The Miz",
+   "Jon Moxley",
+   "Roman Reigns",
    "Drew McIntyre",
-   "Seth Rollins",
    "Cody Rhodes"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:1511",
   "type": "classic",
   "prompt": "Who did Roderick Strong defeat at AEW Dynasty 2024?",
   "options": [
-   "Jey Uso",
-   "A.J. Styles",
    "Kyle O'Reilly",
-   "Kevin Owens"
+   "Jimmy Uso",
+   "Jey Uso",
+   "Jon Moxley"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:158267",
   "type": "classic",
   "prompt": "Who did Petey Williams defeat at TNA Victory Road 2004?",
   "options": [
-   "Chris Sabin",
-   "Diamond Dallas Page",
    "Raven",
-   "A.J. Styles"
+   "A.J. Styles",
+   "Diamond Dallas Page",
+   "Chris Sabin"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:157230",
   "type": "classic",
   "prompt": "Who did Christopher Daniels defeat at TNA No Surrender 2005?",
   "options": [
-   "Dustin Rhodes",
+   "Christian Cage",
    "Petey Williams",
-   "Bobby Roode",
-   "A.J. Styles"
+   "Dustin Rhodes",
+   "Samoa Joe"
   ],
   "answer": 1
  },
@@ -5548,21 +5572,21 @@
   "type": "classic",
   "prompt": "Who did A.J. Styles defeat at TNA Genesis 2005?",
   "options": [
-   "Rey Mysterio",
-   "Petey Williams",
-   "Jeff Hardy",
-   "Bobby Roode"
+   "Jeff Jarrett",
+   "Dustin Rhodes",
+   "Samoa Joe",
+   "Petey Williams"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:154858",
   "type": "classic",
   "prompt": "Who did Christian Cage defeat at TNA Genesis 2006?",
   "options": [
-   "Kevin Nash",
    "Randy Orton",
    "Bobby Roode",
+   "Rob Van Dam",
    "A.J. Styles"
   ],
   "answer": 3
@@ -5572,22 +5596,22 @@
   "type": "classic",
   "prompt": "Who did Jay Lethal defeat at TNA No Surrender 2007?",
   "options": [
-   "Christian Cage",
    "James Storm",
-   "Scott Steiner",
-   "Kurt Angle"
+   "Kurt Angle",
+   "A.J. Styles",
+   "Abyss"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:153484",
   "type": "classic",
   "prompt": "Who did Sting defeat at TNA Bound for Glory 2007?",
   "options": [
-   "Jeff Jarrett",
+   "Christian Cage",
    "Kurt Angle",
    "A.J. Styles",
-   "Eric Young"
+   "Abyss"
   ],
   "answer": 1
  },
@@ -5595,18 +5619,6 @@
   "id": "classic:153117",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Final Resolution 2008?",
-  "options": [
-   "Booker T",
-   "Christian Cage",
-   "A.J. Styles",
-   "Abyss"
-  ],
-  "answer": 1
- },
- {
-  "id": "classic:152932",
-  "type": "classic",
-  "prompt": "Who did Kurt Angle defeat at TNA Against All Odds 2008?",
   "options": [
    "Kevin Nash",
    "A.J. Styles",
@@ -5616,11 +5628,11 @@
   "answer": 2
  },
  {
-  "id": "classic:152336",
+  "id": "classic:152932",
   "type": "classic",
-  "prompt": "Who did A.J. Styles defeat at TNA Slammiversary 2008?",
+  "prompt": "Who did Kurt Angle defeat at TNA Against All Odds 2008?",
   "options": [
-   "Kurt Angle",
+   "Christian Cage",
    "James Storm",
    "Scott Steiner",
    "Kevin Nash"
@@ -5628,146 +5640,158 @@
   "answer": 0
  },
  {
+  "id": "classic:152336",
+  "type": "classic",
+  "prompt": "Who did A.J. Styles defeat at TNA Slammiversary 2008?",
+  "options": [
+   "Scott Steiner",
+   "Kurt Angle",
+   "Abyss",
+   "Sting"
+  ],
+  "answer": 1
+ },
+ {
   "id": "classic:151783",
   "type": "classic",
   "prompt": "Who did Sting defeat at TNA Bound for Glory IV 2008?",
   "options": [
-   "Scott Steiner",
    "Samoa Joe",
-   "Abyss",
-   "Booker T"
+   "Christian Cage",
+   "Eric Young",
+   "Kevin Nash"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:146717",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Slammiversary IX 2011?",
   "options": [
-   "Jeff Jarrett",
-   "Jeff Hardy",
-   "Rob Van Dam",
-   "Sting"
+   "Matt Hardy",
+   "Devon",
+   "A.J. Styles",
+   "Jeff Jarrett"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:146543",
   "type": "classic",
   "prompt": "Who did A.J. Styles defeat at TNA Destination X 2011?",
   "options": [
-   "Kurt Angle",
    "Matt Hardy",
-   "Jeff Hardy",
-   "Christopher Daniels"
+   "Kurt Angle",
+   "Christopher Daniels",
+   "Jeff Hardy"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:144140",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Victory Road 2012?",
   "options": [
-   "Samoa Joe",
-   "Sting",
    "Jeff Hardy",
-   "A.J. Styles"
+   "Christopher Daniels",
+   "Samoa Joe",
+   "Rob Van Dam"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:143224",
   "type": "classic",
   "prompt": "Who did Austin Aries defeat at TNA Slammiversary 2012?",
   "options": [
-   "Samoa Joe",
-   "Eric Young",
-   "Devon",
-   "James Storm"
+   "A.J. Styles",
+   "Kurt Angle",
+   "Sting",
+   "Samoa Joe"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:142941",
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA Destination X 2012?",
   "options": [
-   "A.J. Styles",
-   "Sting",
-   "Bobby Roode",
-   "Kurt Angle"
+   "Eric Young",
+   "Christopher Daniels",
+   "Kurt Angle",
+   "Rob Van Dam"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:141193",
   "type": "classic",
   "prompt": "Who did Christopher Daniels defeat at TNA Final Resolution 2012?",
   "options": [
-   "Rob Van Dam",
-   "Eric Young",
    "A.J. Styles",
-   "James Storm"
+   "Samoa Joe",
+   "Devon",
+   "Sting"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:137609",
   "type": "classic",
   "prompt": "Who did Bobby Roode defeat at TNA Bound for Glory 2013?",
   "options": [
+   "Christopher Daniels",
+   "A.J. Styles",
    "Kurt Angle",
-   "Sting",
-   "Devon",
-   "James Storm"
+   "Rob Van Dam"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:69841",
   "type": "classic",
   "prompt": "Who did Bray Wyatt defeat at Battleground 2015?",
   "options": [
-   "Dean Ambrose",
-   "John Cena",
    "Roman Reigns",
-   "Sheamus"
+   "Seth Rollins",
+   "John Cena",
+   "Stardust"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:70178",
   "type": "classic",
   "prompt": "Who did Kevin Owens defeat at SummerSlam 2015?",
   "options": [
-   "Cesaro",
+   "Sheamus",
+   "Dolph Ziggler",
    "Roman Reigns",
-   "John Cena",
-   "Dean Ambrose"
+   "Cesaro"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:72935",
   "type": "classic",
   "prompt": "Who did Dean Ambrose defeat at Payback 2016?",
   "options": [
-   "Stardust",
-   "Sheamus",
-   "Roman Reigns",
-   "Chris Jericho"
+   "Dolph Ziggler",
+   "Chris Jericho",
+   "Kevin Owens",
+   "Roman Reigns"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:73444",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Money In The Bank 2016?",
   "options": [
-   "Sheamus",
+   "Triple H",
    "Roman Reigns",
    "Kevin Owens",
-   "Chris Jericho"
+   "Dean Ambrose"
   ],
   "answer": 1
  },
@@ -5776,12 +5800,12 @@
   "type": "classic",
   "prompt": "Who did Randy Orton defeat at Elimination Chamber 2017?",
   "options": [
-   "Dean Ambrose",
    "Luke Harper",
-   "Cesaro",
-   "Chris Jericho"
+   "Big Show",
+   "Dolph Ziggler",
+   "John Cena"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:81242",
@@ -5789,9 +5813,9 @@
   "prompt": "Who did Seth Rollins defeat at SummerSlam 2018?",
   "options": [
    "Dolph Ziggler",
-   "The Miz",
-   "Triple H",
-   "John Cena"
+   "The Undertaker",
+   "John Cena",
+   "Dean Ambrose"
   ],
   "answer": 0
  },
@@ -5800,33 +5824,33 @@
   "type": "classic",
   "prompt": "Who did The Miz defeat at SummerSlam 2018?",
   "options": [
+   "Randy Orton",
+   "A.J. Styles",
    "Daniel Bryan",
-   "Triple H",
-   "John Cena",
-   "A.J. Styles"
+   "Triple H"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:81454",
   "type": "classic",
   "prompt": "Who did Becky Lynch defeat at Hell in a Cell 2018?",
   "options": [
-   "Alexa Bliss",
-   "Shayna Baszler",
+   "Nia Jax",
    "Charlotte Flair",
-   "Kairi Sane"
+   "Alexa Bliss",
+   "Nikki Bella"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:81741",
   "type": "classic",
   "prompt": "Who did Ronda Rousey defeat at Evolution 2018?",
   "options": [
-   "Asuka",
+   "Shayna Baszler",
    "Nikki Bella",
-   "Becky Lynch",
+   "Toni Storm",
    "Alexa Bliss"
   ],
   "answer": 1
@@ -5837,71 +5861,71 @@
   "prompt": "Who did Seth Rollins defeat at Survivor Series 2018?",
   "options": [
    "Dean Ambrose",
-   "Shinsuke Nakamura",
-   "The Undertaker",
-   "Roman Reigns"
+   "Triple H",
+   "John Cena",
+   "Shinsuke Nakamura"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:82110",
   "type": "classic",
   "prompt": "Who did Ronda Rousey defeat at TLC 2018?",
   "options": [
-   "Shayna Baszler",
+   "Nia Jax",
    "Kairi Sane",
-   "Charlotte Flair",
-   "Nia Jax"
+   "Carmella",
+   "Asuka"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:82361",
   "type": "classic",
   "prompt": "Who did Asuka defeat at Royal Rumble 2019?",
   "options": [
+   "Natalya",
    "Becky Lynch",
-   "Mandy Rose",
-   "Trish Stratus",
-   "Sasha Banks"
+   "Charlotte Flair",
+   "Alexa Bliss"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:82363",
   "type": "classic",
   "prompt": "Who did Ronda Rousey defeat at Royal Rumble 2019?",
   "options": [
-   "Natalya",
+   "Mandy Rose",
+   "Alexa Bliss",
    "Sasha Banks",
-   "Charlotte Flair",
-   "Asuka"
+   "Becky Lynch"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:82366",
   "type": "classic",
   "prompt": "Who did Brock Lesnar defeat at Royal Rumble 2019?",
   "options": [
-   "Cody",
-   "Chris Jericho",
+   "Randy Orton",
    "Finn Bálor",
-   "Kofi Kingston"
+   "Roman Reigns",
+   "Seth Rollins"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:83429",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Stomping Grounds 2019?",
   "options": [
-   "Randy Orton",
+   "Kofi Kingston",
+   "The Miz",
    "Drew McIntyre",
-   "Seth Rollins",
-   "Chris Jericho"
+   "Randy Orton"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:83570",
@@ -5909,56 +5933,56 @@
   "prompt": "Who did Aleister Black defeat at Extreme Rules 2019?",
   "options": [
    "Kofi Kingston",
-   "The Miz",
    "Cesaro",
-   "Randy Orton"
+   "Seth Rollins",
+   "Dustin Rhodes"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:113827",
   "type": "classic",
   "prompt": "Who did Jon Moxley defeat at AEW Revolution 2020?",
   "options": [
-   "Roman Reigns",
-   "Chris Jericho",
-   "Dolph Ziggler",
-   "Cesaro"
+   "Randy Orton",
+   "R-Truth",
+   "The Miz",
+   "Chris Jericho"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:86035",
   "type": "classic",
   "prompt": "Who did Bayley defeat at SummerSlam 2020?",
   "options": [
-   "Charlotte Flair",
-   "Rhea Ripley",
-   "Becky Lynch",
-   "Asuka"
+   "Sasha Banks",
+   "Nikki Cross",
+   "Asuka",
+   "Rhea Ripley"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:86039",
   "type": "classic",
   "prompt": "Who did Asuka defeat at SummerSlam 2020?",
   "options": [
+   "Becky Lynch",
    "Bayley",
-   "Nikki Cross",
-   "Sasha Banks",
-   "Rhea Ripley"
+   "Charlotte Flair",
+   "Sasha Banks"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:86404",
   "type": "classic",
   "prompt": "Who did Sasha Banks defeat at Survivor Series 2020?",
   "options": [
-   "Becky Lynch",
+   "Shayna Baszler",
    "Bayley",
-   "Charlotte Flair",
+   "Becky Lynch",
    "Asuka"
   ],
   "answer": 3
@@ -5968,9 +5992,9 @@
   "type": "classic",
   "prompt": "Who did Sasha Banks defeat at TLC 2020?",
   "options": [
-   "Shayna Baszler",
-   "Bayley",
+   "Rhea Ripley",
    "Becky Lynch",
+   "Asuka",
    "Carmella"
   ],
   "answer": 3
@@ -5980,9 +6004,9 @@
   "type": "classic",
   "prompt": "Who did Bobby Lashley defeat at WrestleMania 37?",
   "options": [
-   "Sheamus",
-   "Randy Orton",
-   "Roman Reigns",
+   "Kofi Kingston",
+   "Paul Wight",
+   "Seth Rollins",
    "Drew McIntyre"
   ],
   "answer": 3
@@ -5992,9 +6016,9 @@
   "type": "classic",
   "prompt": "Who did Kevin Owens defeat at WrestleMania 37?",
   "options": [
-   "Kofi Kingston",
-   "Paul Wight",
    "Seth Rollins",
+   "Sheamus",
+   "Jon Moxley",
    "Sami Zayn"
   ],
   "answer": 3
@@ -6004,9 +6028,9 @@
   "type": "classic",
   "prompt": "Who did Rhea Ripley defeat at WrestleMania 37?",
   "options": [
-   "Carmella",
-   "Liv Morgan",
-   "Bianca Belair",
+   "Shayna Baszler",
+   "Charlotte Flair",
+   "Becky Lynch",
    "Asuka"
   ],
   "answer": 3
@@ -6016,24 +6040,24 @@
   "type": "classic",
   "prompt": "Who did Sami Zayn defeat at Hell In a Cell 2021?",
   "options": [
-   "Cody Rhodes",
-   "John Cena",
-   "Randy Orton",
-   "Kevin Owens"
+   "Kevin Owens",
+   "Kofi Kingston",
+   "Sheamus",
+   "Paul Wight"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:5358",
   "type": "classic",
   "prompt": "Who did Bianca Belair defeat at WrestleMania 39?",
   "options": [
-   "Asuka",
-   "Alexa Bliss",
    "Raquel Rodriguez",
-   "Rhea Ripley"
+   "Kris Statlander",
+   "Asuka",
+   "Jade Cargill"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:945",
@@ -6041,47 +6065,47 @@
   "prompt": "Who did Damian Priest defeat at Clash At The Castle 2024?",
   "options": [
    "Jey Uso",
-   "Bryan Danielson",
    "Drew McIntyre",
-   "Kevin Owens"
+   "Seth Rollins",
+   "Bryan Danielson"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:75283",
   "type": "classic",
   "prompt": "Who did Goldberg defeat at Survivor Series 2016?",
   "options": [
-   "Sheamus",
    "Brock Lesnar",
-   "The Miz",
-   "Stardust"
+   "Randy Orton",
+   "Seth Rollins",
+   "Roman Reigns"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:156969",
   "type": "classic",
   "prompt": "Who did Austin Aries defeat at TNA Unbreakable 2005?",
   "options": [
+   "A.J. Styles",
+   "Rey Mysterio",
    "Roderick Strong",
-   "Chris Jericho",
-   "Jeff Hardy",
-   "Dustin Rhodes"
+   "Samoa Joe"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:156429",
   "type": "classic",
   "prompt": "Who did Jeff Jarrett defeat at TNA Turning Point 2005?",
   "options": [
-   "A.J. Styles",
-   "Rey Mysterio",
    "Rhino",
-   "Samoa Joe"
+   "Samoa Joe",
+   "Dustin Rhodes",
+   "Jeff Hardy"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:154856",
@@ -6089,9 +6113,9 @@
   "prompt": "Who did Christopher Daniels defeat at TNA Genesis 2006?",
   "options": [
    "Chris Sabin",
-   "Sting",
-   "A.J. Styles",
-   "Christian Cage"
+   "Randy Orton",
+   "Christian Cage",
+   "Bobby Roode"
   ],
   "answer": 0
  },
@@ -6100,57 +6124,57 @@
   "type": "classic",
   "prompt": "Who did Christian Cage defeat at TNA Against All Odds 2007?",
   "options": [
-   "Kurt Angle",
+   "Scott Steiner",
    "Samoa Joe",
-   "Robert Roode",
+   "Kurt Angle",
    "Abyss"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:154126",
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA Sacrifice 2007?",
   "options": [
-   "Scott Steiner",
-   "Kurt Angle",
    "A.J. Styles",
+   "Kurt Angle",
+   "Robert Roode",
    "Abyss"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:153967",
   "type": "classic",
   "prompt": "Who did Jay Lethal defeat at TNA Slammiversary 2007?",
   "options": [
-   "Chris Sabin",
-   "Christian Cage",
    "Samoa Joe",
+   "Christian Cage",
+   "Chris Sabin",
    "Jeff Jarrett"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:153634",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA No Surrender 2007?",
   "options": [
-   "Sting",
-   "Christian Cage",
-   "Abyss",
-   "Scott Steiner"
+   "Eric Young",
+   "James Storm",
+   "A.J. Styles",
+   "Abyss"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:153479",
   "type": "classic",
   "prompt": "Who did Jay Lethal defeat at TNA Bound for Glory 2007?",
   "options": [
-   "Scott Steiner",
-   "Robert Roode",
-   "A.J. Styles",
+   "Christian Cage",
+   "Jeff Jarrett",
+   "Kurt Angle",
    "Christopher Daniels"
   ],
   "answer": 3
@@ -6160,12 +6184,12 @@
   "type": "classic",
   "prompt": "Who did Kevin Nash defeat at TNA Turning Point 2008?",
   "options": [
-   "Christian Cage",
-   "Abyss",
+   "Samoa Joe",
+   "Scott Steiner",
    "Kurt Angle",
-   "Samoa Joe"
+   "Sting"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:149062",
@@ -6173,9 +6197,9 @@
   "prompt": "Who did Rob Van Dam defeat at TNA Sacrifice 2010?",
   "options": [
    "A.J. Styles",
-   "Christopher Daniels",
-   "Sting",
-   "Abyss"
+   "Brother Ray",
+   "Abyss",
+   "Jeff Hardy"
   ],
   "answer": 0
  },
@@ -6184,21 +6208,21 @@
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Hardcore Justice 2011?",
   "options": [
-   "Sting",
-   "Rob Van Dam",
+   "Jeff Jarrett",
+   "Jeff Hardy",
    "Samoa Joe",
-   "A.J. Styles"
+   "Sting"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:145636",
   "type": "classic",
   "prompt": "Who did Austin Aries defeat at TNA Bound for Glory 2011?",
   "options": [
-   "Bobby Roode",
-   "Jeff Hardy",
    "Kurt Angle",
+   "A.J. Styles",
+   "Devon",
    "Brian Kendrick"
   ],
   "answer": 3
@@ -6208,9 +6232,9 @@
   "type": "classic",
   "prompt": "Who did Austin Aries defeat at TNA Against All Odds 2012?",
   "options": [
+   "Jeff Hardy",
+   "James Storm",
    "Samoa Joe",
-   "A.J. Styles",
-   "Devon",
    "Alex Shelley"
   ],
   "answer": 3
@@ -6220,24 +6244,24 @@
   "type": "classic",
   "prompt": "Who did Austin Aries defeat at TNA Sacrifice 2012?",
   "options": [
-   "Jeff Hardy",
+   "Sting",
+   "Bully Ray",
    "James Storm",
-   "Samoa Joe",
-   "Bully Ray"
+   "A.J. Styles"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:141194",
   "type": "classic",
   "prompt": "Who did Jeff Hardy defeat at TNA Final Resolution 2012?",
   "options": [
-   "James Storm",
    "Bobby Roode",
-   "Eric Young",
-   "A.J. Styles"
+   "Devon",
+   "Kurt Angle",
+   "Eric Young"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:137612",
@@ -6247,7 +6271,7 @@
    "Bully Ray",
    "Kurt Angle",
    "Samoa Joe",
-   "Christopher Daniels"
+   "Devon"
   ],
   "answer": 0
  },
@@ -6256,22 +6280,22 @@
   "type": "classic",
   "prompt": "Who did Rusev defeat at Fastlane 2015?",
   "options": [
-   "John Cena",
    "Roman Reigns",
+   "John Cena",
    "Seth Rollins",
-   "Randy Orton"
+   "Dean Ambrose"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:68619",
   "type": "classic",
   "prompt": "Who did John Cena defeat at WrestleMania 31?",
   "options": [
-   "Roman Reigns",
-   "Rusev",
    "Seth Rollins",
-   "Dean Ambrose"
+   "Rusev",
+   "Randy Orton",
+   "Roman Reigns"
   ],
   "answer": 1
  },
@@ -6280,10 +6304,10 @@
   "type": "classic",
   "prompt": "Who did Randy Orton defeat at Battleground 2015?",
   "options": [
-   "Seth Rollins",
+   "Roman Reigns",
    "Sheamus",
-   "John Cena",
-   "Roman Reigns"
+   "Goldust",
+   "Dean Ambrose"
   ],
   "answer": 1
  },
@@ -6292,60 +6316,60 @@
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Survivor Series 2015?",
   "options": [
-   "Randy Orton",
+   "Dolph Ziggler",
+   "Sheamus",
    "Alberto Del Rio",
-   "Cesaro",
-   "Sheamus"
+   "Chris Jericho"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:71217",
   "type": "classic",
   "prompt": "Who did Dean Ambrose defeat at Survivor Series 2015?",
   "options": [
-   "Chris Jericho",
-   "Dolph Ziggler",
    "Kevin Owens",
+   "Roman Reigns",
+   "Stardust",
    "Seth Rollins"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:71222",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Survivor Series 2015?",
   "options": [
-   "Dean Ambrose",
-   "Seth Rollins",
-   "Cesaro",
-   "Chris Jericho"
+   "Goldust",
+   "Stardust",
+   "John Cena",
+   "Dean Ambrose"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:71415",
   "type": "classic",
   "prompt": "Who did Dean Ambrose defeat at TLC 2015?",
   "options": [
-   "Cesaro",
-   "Sheamus",
-   "John Cena",
-   "Kevin Owens"
+   "Chris Jericho",
+   "Kevin Owens",
+   "Dolph Ziggler",
+   "Seth Rollins"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:72421",
   "type": "classic",
   "prompt": "Who did Charlotte defeat at Roadblock 2016?",
   "options": [
-   "Alexa Bliss",
    "Natalya",
-   "Nikki Bella",
+   "Alexa Bliss",
+   "Naomi",
    "Bayley"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:74528",
@@ -6354,8 +6378,8 @@
   "options": [
    "Rusev",
    "Dolph Ziggler",
-   "The Miz",
-   "Chris Jericho"
+   "Triple H",
+   "Stardust"
   ],
   "answer": 0
  },
@@ -6364,22 +6388,22 @@
   "type": "classic",
   "prompt": "Who did Kevin Owens defeat at Clash of Champions 2016?",
   "options": [
+   "Stardust",
+   "Randy Orton",
    "Seth Rollins",
-   "Dolph Ziggler",
-   "Triple H",
-   "Stardust"
+   "Roman Reigns"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:75974",
   "type": "classic",
   "prompt": "Who did Neville defeat at Royal Rumble 2017?",
   "options": [
-   "Dolph Ziggler",
-   "John Cena",
+   "Randy Orton",
+   "The Miz",
    "Rich Swann",
-   "The Miz"
+   "Chris Jericho"
   ],
   "answer": 2
  },
@@ -6388,93 +6412,93 @@
   "type": "classic",
   "prompt": "Who did Kevin Owens defeat at WrestleMania 33?",
   "options": [
-   "Randy Orton",
-   "The Miz",
-   "Chris Jericho",
-   "Dolph Ziggler"
+   "Cesaro",
+   "Big Show",
+   "Roman Reigns",
+   "Chris Jericho"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:76722",
   "type": "classic",
   "prompt": "Who did Brock Lesnar defeat at WrestleMania 33?",
   "options": [
-   "Dean Ambrose",
-   "Big Show",
-   "Roman Reigns",
-   "Goldberg"
+   "Randy Orton",
+   "Goldberg",
+   "Seth Rollins",
+   "The Miz"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:77014",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Payback 2017?",
   "options": [
-   "Randy Orton",
    "Samoa Joe",
-   "Chris Jericho",
-   "The Miz"
+   "Roman Reigns",
+   "Big Show",
+   "Chris Jericho"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:77667",
   "type": "classic",
   "prompt": "Who did Jinder Mahal defeat at Money In The Bank 2017?",
   "options": [
-   "Randy Orton",
+   "The Miz",
+   "Dean Ambrose",
    "Seth Rollins",
-   "Roman Reigns",
-   "Chris Jericho"
+   "Randy Orton"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:77899",
   "type": "classic",
   "prompt": "Who did Brock Lesnar defeat at Great Balls of Fire 2017?",
   "options": [
-   "Randy Orton",
-   "Dolph Ziggler",
-   "Roman Reigns",
-   "Samoa Joe"
+   "Samoa Joe",
+   "Big Show",
+   "Chris Jericho",
+   "Seth Rollins"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:79966",
   "type": "classic",
   "prompt": "Who did Shinsuke Nakamura defeat at Fastlane 2018?",
   "options": [
+   "The Miz",
    "Rusev",
-   "Roman Reigns",
    "A.J. Styles",
-   "Dolph Ziggler"
+   "Seth Rollins"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:79967",
   "type": "classic",
   "prompt": "Who did Randy Orton defeat at Fastlane 2018?",
   "options": [
-   "Roman Reigns",
-   "Bobby Roode",
    "Dean Ambrose",
-   "Dolph Ziggler"
+   "Seth Rollins",
+   "Dolph Ziggler",
+   "Bobby Roode"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:80364",
   "type": "classic",
   "prompt": "Who did Cedric Alexander defeat at Greatest Royal Rumble 2018?",
   "options": [
-   "A.J. Styles",
+   "Randy Orton",
    "Roman Reigns",
-   "Seth Rollins",
+   "Dean Ambrose",
    "Kalisto"
   ],
   "answer": 3
@@ -6484,12 +6508,12 @@
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Money in the Bank 18 2018?",
   "options": [
-   "Randy Orton",
-   "Roman Reigns",
+   "Elias",
+   "John Cena",
    "Triple H",
-   "Elias"
+   "Dolph Ziggler"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:80974",
@@ -6499,7 +6523,7 @@
    "Roman Reigns",
    "John Cena",
    "Triple H",
-   "Dolph Ziggler"
+   "Randy Orton"
   ],
   "answer": 0
  },
@@ -6508,82 +6532,94 @@
   "type": "classic",
   "prompt": "Who did Dolph Ziggler defeat at Crown Jewel 2018?",
   "options": [
-   "Kurt Angle",
+   "The Undertaker",
+   "Dean Ambrose",
    "John Cena",
-   "Triple H",
-   "Randy Orton"
+   "Kurt Angle"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:81783",
   "type": "classic",
   "prompt": "Who did Dolph Ziggler defeat at Crown Jewel 2018?",
   "options": [
-   "Jeff Hardy",
-   "Triple H",
-   "John Cena",
-   "Seth Rollins"
+   "Roman Reigns",
+   "Seth Rollins",
+   "The Miz",
+   "Triple H"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:81786",
   "type": "classic",
   "prompt": "Who did Shane McMahon defeat at Crown Jewel 2018?",
   "options": [
-   "Roman Reigns",
    "Dolph Ziggler",
-   "The Miz",
-   "Dean Ambrose"
+   "Roman Reigns",
+   "Triple H",
+   "Seth Rollins"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:83197",
   "type": "classic",
   "prompt": "Who did Kofi Kingston defeat at Money in the Bank 2019?",
   "options": [
-   "Kevin Owens",
-   "Seth Rollins",
+   "The Miz",
    "Cesaro",
-   "Chris Jericho"
+   "Roman Reigns",
+   "Kevin Owens"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:83426",
   "type": "classic",
   "prompt": "Who did Ricochet defeat at Stomping Grounds 2019?",
   "options": [
-   "The Miz",
-   "Cody",
-   "Kofi Kingston",
-   "Samoa Joe"
+   "Randy Orton",
+   "Samoa Joe",
+   "Dolph Ziggler",
+   "Seth Rollins"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:84026",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Clash of Champions 2019?",
   "options": [
-   "Randy Orton",
+   "Kofi Kingston",
    "Braun Strowman",
    "Cody",
-   "Chris Jericho"
+   "Cesaro"
   ],
   "answer": 1
+ },
+ {
+  "id": "classic:84646",
+  "type": "classic",
+  "prompt": "Who did The Fiend defeat at Survivor Series 2019?",
+  "options": [
+   "Daniel Bryan",
+   "Roman Reigns",
+   "Seth Rollins",
+   "Cody"
+  ],
+  "answer": 0
  },
  {
   "id": "classic:85098",
   "type": "classic",
   "prompt": "Who did Becky Lynch defeat at Royal Rumble 2020?",
   "options": [
-   "Sasha Banks",
+   "Bayley",
    "Asuka",
-   "Rhea Ripley",
-   "Tamina"
+   "Sasha Banks",
+   "Naomi"
   ],
   "answer": 1
  },
@@ -6592,84 +6628,84 @@
   "type": "classic",
   "prompt": "Who did MJF defeat at AEW Revolution 2020?",
   "options": [
-   "Cody",
-   "Seth Rollins",
-   "Chris Jericho",
-   "R-Truth"
+   "Dolph Ziggler",
+   "Jon Moxley",
+   "The Miz",
+   "Cody"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:85663",
   "type": "classic",
   "prompt": "Who did Jeff Hardy defeat at Money in the Bank 2020?",
   "options": [
-   "Seth Rollins",
    "Cesaro",
-   "Roman Reigns",
-   "The Miz"
-  ],
-  "answer": 1
- },
- {
-  "id": "classic:85788",
-  "type": "classic",
-  "prompt": "Who did Drew McIntyre defeat at Backlash 2020?",
-  "options": [
-   "Dolph Ziggler",
    "Jon Moxley",
-   "The Miz",
-   "Bobby Lashley"
-  ],
-  "answer": 3
- },
- {
-  "id": "classic:112294",
-  "type": "classic",
-  "prompt": "Who did MJF defeat at AEW Full Gear 2020?",
-  "options": [
-   "Chris Jericho",
-   "Cody",
    "Seth Rollins",
    "Randy Orton"
   ],
   "answer": 0
  },
  {
+  "id": "classic:85788",
+  "type": "classic",
+  "prompt": "Who did Drew McIntyre defeat at Backlash 2020?",
+  "options": [
+   "Bobby Lashley",
+   "Sheamus",
+   "Seth Rollins",
+   "The Miz"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "classic:112294",
+  "type": "classic",
+  "prompt": "Who did MJF defeat at AEW Full Gear 2020?",
+  "options": [
+   "Sheamus",
+   "Chris Jericho",
+   "Dolph Ziggler",
+   "Jon Moxley"
+  ],
+  "answer": 1
+ },
+ {
   "id": "classic:87041",
   "type": "classic",
   "prompt": "Who did Bianca Belair defeat at WrestleMania Backlash?",
   "options": [
+   "Shayna Baszler",
    "Bayley",
-   "Liv Morgan",
-   "Asuka",
-   "Becky Lynch"
+   "Alexa Bliss",
+   "Charlotte Flair"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:87165",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Hell In a Cell 2021?",
   "options": [
-   "Sheamus",
+   "Kofi Kingston",
+   "Jon Moxley",
    "Cesaro",
-   "Roman Reigns",
-   "Cody Rhodes"
+   "Randy Orton"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:88059",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Survivor Series 2021?",
   "options": [
-   "Cody Rhodes",
    "Big E",
-   "Seth Rollins",
-   "John Cena"
+   "Randy Orton",
+   "Paul Wight",
+   "Sheamus"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:8852",
@@ -6677,9 +6713,9 @@
   "prompt": "Who did Adam Cole defeat at AEW Double Or Nothing 2022?",
   "options": [
    "Seth Rollins",
-   "Jon Moxley",
+   "A.J. Styles",
    "Samoa Joe",
-   "Roman Reigns"
+   "Cody Rhodes"
   ],
   "answer": 2
  },
@@ -6688,12 +6724,12 @@
   "type": "classic",
   "prompt": "Who did Brock Lesnar defeat at Crown Jewel 2022?",
   "options": [
-   "Bobby Lashley",
-   "Roman Reigns",
+   "A.J. Styles",
    "Chris Jericho",
-   "Sheamus"
+   "Bobby Lashley",
+   "Edge"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:6079",
@@ -6701,69 +6737,69 @@
   "prompt": "Who did Roman Reigns defeat at Royal Rumble 2023?",
   "options": [
    "Seth Rollins",
-   "A.J. Styles",
    "Kevin Owens",
-   "Claudio Castagnoli"
+   "John Cena",
+   "Chris Jericho"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:4520",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Money In The Bank 2023?",
   "options": [
-   "A.J. Styles",
-   "Chris Jericho",
-   "Finn Bálor",
-   "Kevin Owens"
-  ],
-  "answer": 2
- },
- {
-  "id": "classic:4038",
-  "type": "classic",
-  "prompt": "Who did CM Punk defeat at AEW All In 2023?",
-  "options": [
-   "Roman Reigns",
-   "Samoa Joe",
-   "John Cena",
-   "Seth Rollins"
-  ],
-  "answer": 1
- },
- {
-  "id": "classic:3991",
-  "type": "classic",
-  "prompt": "Who did Seth Rollins defeat at Payback 2023?",
-  "options": [
    "The Miz",
-   "Shinsuke Nakamura",
+   "Finn Bálor",
    "Cody Rhodes",
    "Jon Moxley"
   ],
   "answer": 1
  },
  {
+  "id": "classic:4038",
+  "type": "classic",
+  "prompt": "Who did CM Punk defeat at AEW All In 2023?",
+  "options": [
+   "A.J. Styles",
+   "Roman Reigns",
+   "Cody Rhodes",
+   "Samoa Joe"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "classic:3991",
+  "type": "classic",
+  "prompt": "Who did Seth Rollins defeat at Payback 2023?",
+  "options": [
+   "Claudio Castagnoli",
+   "Roman Reigns",
+   "Shinsuke Nakamura",
+   "Chris Jericho"
+  ],
+  "answer": 2
+ },
+ {
   "id": "classic:1690",
   "type": "classic",
   "prompt": "Who did Drew McIntyre defeat at WrestleMania XL?",
   "options": [
-   "Jey Uso",
+   "Cody Rhodes",
+   "Seth Rollins",
    "Jon Moxley",
-   "Bryan Danielson",
-   "Seth Rollins"
+   "Jey Uso"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:1693",
   "type": "classic",
   "prompt": "Who did L.A. Knight defeat at WrestleMania XL?",
   "options": [
-   "Drew McIntyre",
-   "Jon Moxley",
+   "Randy Orton",
+   "Kevin Owens",
    "A.J. Styles",
-   "Cody Rhodes"
+   "Drew McIntyre"
   ],
   "answer": 2
  },
@@ -6772,48 +6808,48 @@
   "type": "classic",
   "prompt": "Who did Damian Priest defeat at Backlash France 2024?",
   "options": [
-   "Jon Moxley",
    "Jey Uso",
-   "A.J. Styles",
-   "Jimmy Uso"
+   "Bryan Danielson",
+   "Jon Moxley",
+   "Cody Rhodes"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:86842",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Fastlane 2021?",
   "options": [
-   "Cody Rhodes",
-   "Sheamus",
-   "Roman Reigns",
-   "Shinsuke Nakamura"
+   "Shinsuke Nakamura",
+   "Kofi Kingston",
+   "Cesaro",
+   "Jon Moxley"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:79121",
   "type": "classic",
   "prompt": "Who did Charlotte Flair defeat at Survivor Series 2017?",
   "options": [
-   "Sasha Banks",
    "Alexa Bliss",
-   "Natalya",
+   "Asuka",
+   "Naomi",
    "Becky Lynch"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:78904",
   "type": "classic",
   "prompt": "Who did Alexa Bliss defeat at TLC 2017?",
   "options": [
-   "Mickie James",
-   "Becky Lynch",
+   "Charlotte Flair",
    "Emma",
-   "Asuka"
+   "Bayley",
+   "Mickie James"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:77292",
@@ -6821,9 +6857,9 @@
   "prompt": "Who did Shinsuke Nakamura defeat at Backlash 2017?",
   "options": [
    "Dolph Ziggler",
-   "Seth Rollins",
-   "The Miz",
-   "Randy Orton"
+   "Dean Ambrose",
+   "Big Show",
+   "Roman Reigns"
   ],
   "answer": 0
  },
@@ -6832,9 +6868,9 @@
   "type": "classic",
   "prompt": "Who did Diamond Dallas Page defeat at TNA Turning Point 2004?",
   "options": [
-   "A.J. Styles",
-   "Raven",
    "Chris Sabin",
+   "Raven",
+   "A.J. Styles",
    "Petey Williams"
   ],
   "answer": 1
@@ -6844,34 +6880,34 @@
   "type": "classic",
   "prompt": "Who did Elix Skipper defeat at TNA Final Resolution 2005?",
   "options": [
-   "Bobby Roode",
    "Chris Benoit",
-   "A.J. Styles",
-   "Sonjay Dutt"
+   "Sonjay Dutt",
+   "Chris Jericho",
+   "Christian Cage"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:157401",
   "type": "classic",
   "prompt": "Who did Lance Storm defeat at ECW One Night Stand 2005?",
   "options": [
+   "A.J. Styles",
    "Chris Jericho",
    "Dustin Rhodes",
-   "A.J. Styles",
-   "Bobby Roode"
+   "Jeff Hardy"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:157404",
   "type": "classic",
   "prompt": "Who did Sabu defeat at ECW One Night Stand 2005?",
   "options": [
-   "Jeff Hardy",
-   "Rey Mysterio",
+   "Samoa Joe",
+   "Christian Cage",
    "Rhyno",
-   "A.J. Styles"
+   "Chris Benoit"
   ],
   "answer": 2
  },
@@ -6880,144 +6916,144 @@
   "type": "classic",
   "prompt": "Who did Chris Benoit defeat at ECW One Night Stand 2005?",
   "options": [
-   "Eddie Guerrero",
+   "A.J. Styles",
    "Bobby Roode",
-   "Christian Cage",
-   "Samoa Joe"
+   "Eddie Guerrero",
+   "Jeff Hardy"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:156092",
   "type": "classic",
   "prompt": "Who did Christian Cage defeat at TNA Against All Odds 2006?",
   "options": [
-   "Kevin Nash",
+   "A.J. Styles",
    "Samoa Joe",
-   "Jeff Jarrett",
-   "Bobby Roode"
+   "Kevin Nash",
+   "Jeff Jarrett"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:155591",
   "type": "classic",
   "prompt": "Who did Rob Van Dam defeat at ECW One Night Stand 2006?",
   "options": [
-   "A.J. Styles",
-   "Jeff Jarrett",
+   "Kevin Nash",
    "John Cena",
-   "Kurt Angle"
+   "Samoa Joe",
+   "Bobby Roode"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:155097",
   "type": "classic",
   "prompt": "Who did Christian Cage defeat at TNA No Surrender 2006?",
   "options": [
+   "Rhino",
+   "John Cena",
    "A.J. Styles",
-   "Samoa Joe",
-   "Rob Van Dam",
-   "Rhino"
+   "Kurt Angle"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:154120",
   "type": "classic",
   "prompt": "Who did Robert Roode defeat at TNA Sacrifice 2007?",
   "options": [
-   "Eric Young",
    "Jeff Jarrett",
-   "Sting",
-   "Scott Steiner"
-  ],
-  "answer": 1
- },
- {
-  "id": "classic:153863",
-  "type": "classic",
-  "prompt": "Who did Christian Cage defeat at TNA Victory Road 2007?",
-  "options": [
-   "Chris Harris",
-   "A.J. Styles",
-   "Samoa Joe",
-   "Sting"
-  ],
-  "answer": 0
- },
- {
-  "id": "classic:153731",
-  "type": "classic",
-  "prompt": "Who did Kurt Angle defeat at TNA Hard Justice 2007?",
-  "options": [
-   "Samoa Joe",
-   "Sting",
+   "Kurt Angle",
    "Abyss",
    "Christian Cage"
   ],
   "answer": 0
  },
  {
+  "id": "classic:153863",
+  "type": "classic",
+  "prompt": "Who did Christian Cage defeat at TNA Victory Road 2007?",
+  "options": [
+   "Samoa Joe",
+   "A.J. Styles",
+   "Kurt Angle",
+   "Chris Harris"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "classic:153731",
+  "type": "classic",
+  "prompt": "Who did Kurt Angle defeat at TNA Hard Justice 2007?",
+  "options": [
+   "Scott Steiner",
+   "Abyss",
+   "Samoa Joe",
+   "Christian Cage"
+  ],
+  "answer": 2
+ },
+ {
   "id": "classic:153628",
   "type": "classic",
   "prompt": "Who did Rhino defeat at TNA No Surrender 2007?",
   "options": [
-   "Kurt Angle",
-   "A.J. Styles",
-   "Christian Cage",
-   "James Storm"
+   "Sting",
+   "James Storm",
+   "Robert Roode",
+   "Samoa Joe"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:153331",
   "type": "classic",
   "prompt": "Who did Jay Lethal defeat at TNA Genesis 2007?",
   "options": [
-   "James Storm",
-   "Jeff Jarrett",
+   "Kurt Angle",
    "Sonjay Dutt",
-   "Christian Cage"
+   "Scott Steiner",
+   "A.J. Styles"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:152806",
   "type": "classic",
   "prompt": "Who did Jay Lethal defeat at TNA Destination X 2008?",
   "options": [
-   "Samoa Joe",
    "Petey Williams",
-   "Sting",
+   "Samoa Joe",
+   "Christian Cage",
    "Booker T"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:151658",
   "type": "classic",
   "prompt": "Who did Sting defeat at TNA Turning Point 2008?",
   "options": [
-   "Booker T",
-   "A.J. Styles",
-   "Eric Young",
-   "Christian Cage"
+   "Scott Steiner",
+   "Kurt Angle",
+   "James Storm",
+   "A.J. Styles"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:151562",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Final Resolution 2008?",
   "options": [
-   "Rhino",
    "Sting",
-   "Christian Cage",
-   "Samoa Joe"
+   "Rhino",
+   "Samoa Joe",
+   "Kevin Nash"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:151342",
@@ -7025,21 +7061,21 @@
   "prompt": "Who did Alex Shelley defeat at TNA Against All Odds 2009?",
   "options": [
    "Kevin Nash",
-   "Kurt Angle",
-   "Sting",
-   "Eric Young"
+   "Samoa Joe",
+   "Eric Young",
+   "Sting"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:150137",
   "type": "classic",
   "prompt": "Who did A.J. Styles defeat at TNA Bound for Glory 2009?",
   "options": [
-   "Kevin Nash",
+   "Scott Steiner",
    "Sting",
    "Bobby Lashley",
-   "Abyss"
+   "Eric Young"
   ],
   "answer": 1
  },
@@ -7048,12 +7084,12 @@
   "type": "classic",
   "prompt": "Who did Kazarian defeat at TNA Genesis 2011?",
   "options": [
-   "Sting",
-   "Matt Hardy",
+   "Samoa Joe",
    "Jay Lethal",
-   "Kurt Angle"
+   "Matt Hardy",
+   "Bobby Roode"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:147256",
@@ -7061,88 +7097,100 @@
   "prompt": "Who did A.J. Styles defeat at TNA Victory Road 2011?",
   "options": [
    "Bobby Roode",
-   "Matt Hardy",
-   "Samoa Joe",
-   "Jeff Jarrett"
+   "Rob Van Dam",
+   "James Storm",
+   "Matt Hardy"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:146536",
   "type": "classic",
   "prompt": "Who did Kazarian defeat at TNA Destination X 2011?",
   "options": [
-   "Sting",
-   "Samoa Joe",
+   "Bobby Roode",
+   "James Storm",
    "Matt Hardy",
-   "James Storm"
+   "Samoa Joe"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:146000",
   "type": "classic",
   "prompt": "Who did Austin Aries defeat at TNA No Surrender 2011?",
   "options": [
-   "Samoa Joe",
+   "Brian Kendrick",
    "James Storm",
-   "Sting",
-   "Brian Kendrick"
+   "Jeff Hardy",
+   "Kurt Angle"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:145139",
   "type": "classic",
   "prompt": "Who did James Storm defeat at TNA Final Resolution 2011?",
   "options": [
-   "Bobby Roode",
-   "Jeff Jarrett",
-   "Matt Hardy",
-   "Kurt Angle"
+   "Kurt Angle",
+   "Rob Van Dam",
+   "Samoa Joe",
+   "Jeff Jarrett"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:141190",
   "type": "classic",
   "prompt": "Who did Austin Aries defeat at TNA Final Resolution 2012?",
   "options": [
+   "Devon",
+   "A.J. Styles",
    "Bully Ray",
-   "Rob Van Dam",
-   "Jeff Hardy",
-   "Samoa Joe"
+   "James Storm"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:135641",
   "type": "classic",
   "prompt": "Who did Eric Young defeat at TNA Sacrifice 2014?",
   "options": [
+   "Tigre Uno",
    "Magnus",
-   "Sanada",
-   "Mr. Anderson",
-   "Tigre Uno"
+   "Austin Aries",
+   "James Storm"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:69149",
   "type": "classic",
   "prompt": "Who did Sheamus defeat at Payback 2015?",
   "options": [
+   "Randy Orton",
+   "Dean Ambrose",
    "Roman Reigns",
-   "John Cena",
-   "Dolph Ziggler",
-   "Cesaro"
+   "Dolph Ziggler"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:70485",
   "type": "classic",
   "prompt": "Who did Charlotte defeat at Night of Champions 2015?",
+  "options": [
+   "Paige",
+   "Nikki Bella",
+   "Naomi",
+   "Gail Kim"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "classic:70866",
+  "type": "classic",
+  "prompt": "Who did Charlotte defeat at Hell In A Cell 2015?",
   "options": [
    "Paige",
    "Naomi",
@@ -7152,98 +7200,86 @@
   "answer": 3
  },
  {
-  "id": "classic:70866",
-  "type": "classic",
-  "prompt": "Who did Charlotte defeat at Hell In A Cell 2015?",
-  "options": [
-   "Nikki Bella",
-   "Paige",
-   "Naomi",
-   "Gail Kim"
-  ],
-  "answer": 0
- },
- {
   "id": "classic:71835",
   "type": "classic",
   "prompt": "Who did Kalisto defeat at Royal Rumble 2016?",
   "options": [
    "The Miz",
    "Randy Orton",
-   "Alberto Del Rio",
-   "Sheamus"
+   "Roman Reigns",
+   "Alberto Del Rio"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:71836",
   "type": "classic",
   "prompt": "Who did Charlotte defeat at Royal Rumble 2016?",
   "options": [
-   "Naomi",
-   "Natalya",
-   "Carmella",
-   "Becky Lynch"
+   "Bayley",
+   "Dana Brooke",
+   "Becky Lynch",
+   "Sasha Banks"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:72152",
   "type": "classic",
   "prompt": "Who did Kevin Owens defeat at Fastlane 2016?",
   "options": [
-   "Randy Orton",
+   "Dolph Ziggler",
    "The Miz",
-   "Stardust",
-   "Dolph Ziggler"
+   "Sheamus",
+   "Triple H"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:72659",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at WrestleMania 32?",
   "options": [
-   "Stardust",
-   "Seth Rollins",
    "Chris Jericho",
-   "Triple H"
+   "Sheamus",
+   "Triple H",
+   "Seth Rollins"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:72936",
   "type": "classic",
   "prompt": "Who did Charlotte defeat at Payback 2016?",
   "options": [
-   "Dana Brooke",
+   "Sasha Banks",
+   "Naomi",
    "Natalya",
-   "Becky Lynch",
-   "Bayley"
+   "Dana Brooke"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:73829",
   "type": "classic",
   "prompt": "Who did Natalya defeat at Battleground 2016?",
   "options": [
-   "Sasha Banks",
-   "Brie Bella",
    "Becky Lynch",
-   "Charlotte"
+   "Charlotte",
+   "Nikki Bella",
+   "Dana Brooke"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:74326",
   "type": "classic",
   "prompt": "Who did The Miz defeat at Backlash 2016?",
   "options": [
-   "Kevin Owens",
-   "Dean Ambrose",
+   "Stardust",
+   "Triple H",
    "Dolph Ziggler",
-   "Roman Reigns"
+   "Kevin Owens"
   ],
   "answer": 2
  },
@@ -7252,72 +7288,72 @@
   "type": "classic",
   "prompt": "Who did The Miz defeat at Survivor Series 2016?",
   "options": [
-   "Seth Rollins",
-   "Sami Zayn",
    "Chris Jericho",
-   "Stardust"
+   "Randy Orton",
+   "Sami Zayn",
+   "Sheamus"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:75972",
   "type": "classic",
   "prompt": "Who did Charlotte Flair defeat at Royal Rumble 2017?",
   "options": [
-   "Natalya",
-   "Mickie James",
    "Emma",
-   "Bayley"
+   "Nia Jax",
+   "Bayley",
+   "Natalya"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:76147",
   "type": "classic",
   "prompt": "Who did Becky Lynch defeat at Elimination Chamber 2017?",
   "options": [
-   "Emma",
-   "Mickie James",
    "Naomi",
-   "Bayley"
+   "Asuka",
+   "Bayley",
+   "Mickie James"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:77013",
   "type": "classic",
   "prompt": "Who did Alexa Bliss defeat at Payback 2017?",
   "options": [
+   "Asuka",
+   "Mickie James",
    "Bayley",
-   "Becky Lynch",
-   "Naomi",
-   "Asuka"
+   "Nia Jax"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:77016",
   "type": "classic",
   "prompt": "Who did Braun Strowman defeat at Payback 2017?",
   "options": [
-   "Chris Jericho",
-   "Dean Ambrose",
+   "Dolph Ziggler",
    "Roman Reigns",
-   "John Cena"
+   "Seth Rollins",
+   "Chris Jericho"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:77482",
   "type": "classic",
   "prompt": "Who did The Miz defeat at Extreme Rules 2017?",
   "options": [
-   "Seth Rollins",
    "Cesaro",
+   "Dean Ambrose",
    "Big Show",
-   "Dean Ambrose"
+   "Randy Orton"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:78679",
@@ -7325,9 +7361,9 @@
   "prompt": "Who did Finn Bálor defeat at No Mercy 2017?",
   "options": [
    "Randy Orton",
-   "Dolph Ziggler",
+   "Roman Reigns",
    "Bray Wyatt",
-   "Dean Ambrose"
+   "Seth Rollins"
   ],
   "answer": 2
  },
@@ -7336,10 +7372,10 @@
   "type": "classic",
   "prompt": "Who did Ronda Rousey defeat at Hell in a Cell 2018?",
   "options": [
-   "Asuka",
+   "Toni Storm",
    "Alexa Bliss",
-   "Nia Jax",
-   "Toni Storm"
+   "Kairi Sane",
+   "Shayna Baszler"
   ],
   "answer": 1
  },
@@ -7348,10 +7384,10 @@
   "type": "classic",
   "prompt": "Who did Shayna Baszler defeat at Evolution 2018?",
   "options": [
-   "Ronda Rousey",
+   "Toni Storm",
    "Kairi Sane",
-   "Asuka",
-   "Becky Lynch"
+   "Becky Lynch",
+   "Asuka"
   ],
   "answer": 1
  },
@@ -7360,10 +7396,10 @@
   "type": "classic",
   "prompt": "Who did Finn Bálor defeat at TLC 2018?",
   "options": [
+   "A.J. Styles",
    "Randy Orton",
-   "Seth Rollins",
    "Drew McIntyre",
-   "Dolph Ziggler"
+   "John Cena"
   ],
   "answer": 2
  },
@@ -7372,10 +7408,10 @@
   "type": "classic",
   "prompt": "Who did Bayley defeat at Money in the Bank 2019?",
   "options": [
-   "Lacey Evans",
+   "Trish Stratus",
    "Charlotte Flair",
-   "Mandy Rose",
-   "Ronda Rousey"
+   "Becky Lynch",
+   "Alexa Bliss"
   ],
   "answer": 1
  },
@@ -7384,57 +7420,57 @@
   "type": "classic",
   "prompt": "Who did Finn Bálor defeat at Super Showdown 2019?",
   "options": [
-   "Cesaro",
-   "Andrade",
    "The Miz",
-   "Kofi Kingston"
+   "Roman Reigns",
+   "Andrade",
+   "Chris Jericho"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:83802",
   "type": "classic",
   "prompt": "Who did Charlotte Flair defeat at SummerSlam 2019?",
   "options": [
-   "Ronda Rousey",
-   "Becky Lynch",
-   "Trish Stratus",
-   "Natalya"
+   "Lacey Evans",
+   "Sasha Banks",
+   "Bayley",
+   "Trish Stratus"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:85903",
   "type": "classic",
   "prompt": "Who did Bayley defeat at The Horror Show at Extreme Rules 2020?",
   "options": [
-   "Carmella",
-   "Nikki Cross",
-   "Becky Lynch",
-   "Asuka"
+   "Charlotte Flair",
+   "Tamina",
+   "Shayna Baszler",
+   "Nikki Cross"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:86074",
   "type": "classic",
   "prompt": "Who did Big E defeat at Payback 2020?",
   "options": [
-   "The Miz",
+   "Roman Reigns",
+   "Chris Jericho",
    "Seth Rollins",
-   "Sheamus",
-   "Dolph Ziggler"
+   "Sheamus"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:87037",
   "type": "classic",
   "prompt": "Who did Sheamus defeat at WrestleMania Backlash?",
   "options": [
-   "Cesaro",
-   "Kofi Kingston",
-   "Paul Wight",
+   "Roman Reigns",
+   "Seth Rollins",
+   "Cody Rhodes",
    "Ricochet"
   ],
   "answer": 3
@@ -7444,21 +7480,21 @@
   "type": "classic",
   "prompt": "Who did Becky Lynch defeat at Day 1 2022?",
   "options": [
-   "Natalya",
-   "Lita",
-   "Ronda Rousey",
-   "Liv Morgan"
+   "Carmella",
+   "Liv Morgan",
+   "Bianca Belair",
+   "Lita"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:88455",
   "type": "classic",
   "prompt": "Who did Bobby Lashley defeat at Royal Rumble 2022?",
   "options": [
-   "Seth Rollins",
-   "A.J. Styles",
-   "Chris Jericho",
+   "Jon Moxley",
+   "Edge",
+   "Cody Rhodes",
    "Brock Lesnar"
   ],
   "answer": 3
@@ -7468,9 +7504,9 @@
   "type": "classic",
   "prompt": "Who did Becky Lynch defeat at Elimination Chamber 2022?",
   "options": [
-   "Bianca Belair",
-   "Shayna Baszler",
-   "Ronda Rousey",
+   "Natalya",
+   "Carmella",
+   "Toni Storm",
    "Lita"
   ],
   "answer": 3
@@ -7480,21 +7516,21 @@
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at WrestleMania 38?",
   "options": [
-   "Chris Jericho",
    "Brock Lesnar",
-   "A.J. Styles",
-   "Kevin Owens"
+   "Edge",
+   "Jon Moxley",
+   "The Miz"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:8448",
   "type": "classic",
   "prompt": "Who did Bobby Lashley defeat at Money In The Bank 2022?",
   "options": [
-   "Jon Moxley",
+   "A.J. Styles",
+   "Roman Reigns",
    "Edge",
-   "Cody Rhodes",
    "Austin Theory"
   ],
   "answer": 3
@@ -7504,46 +7540,46 @@
   "type": "classic",
   "prompt": "Who did Ronda Rousey defeat at Money In The Bank 2022?",
   "options": [
-   "Charlotte Flair",
-   "Carmella",
-   "Lita",
-   "Natalya"
+   "Saraya",
+   "Natalya",
+   "Bianca Belair",
+   "Carmella"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:7692",
   "type": "classic",
   "prompt": "Who did Liv Morgan defeat at Clash At The Castle 2022?",
   "options": [
+   "Ronda Rousey",
    "Shayna Baszler",
-   "Toni Storm",
-   "Saraya",
-   "Natalya"
+   "Becky Lynch",
+   "Toni Storm"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:6754",
   "type": "classic",
   "prompt": "Who did A.J. Styles defeat at Survivor Series 2022?",
   "options": [
-   "Sheamus",
    "Roman Reigns",
-   "Kevin Owens",
-   "Finn Bálor"
+   "Finn Bálor",
+   "Jon Moxley",
+   "Edge"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:4863",
   "type": "classic",
   "prompt": "Who did Trish Stratus defeat at Night Of Champions 2023?",
   "options": [
-   "Raquel Rodriguez",
+   "Charlotte Flair",
    "Becky Lynch",
-   "Rhea Ripley",
-   "Alexa Bliss"
+   "Jade Cargill",
+   "Bianca Belair"
   ],
   "answer": 1
  },
@@ -7552,57 +7588,57 @@
   "type": "classic",
   "prompt": "Who did Asuka defeat at Night Of Champions 2023?",
   "options": [
-   "Raquel Rodriguez",
-   "Bianca Belair",
-   "Alexa Bliss",
-   "Jade Cargill"
+   "Charlotte Flair",
+   "Becky Lynch",
+   "Rhea Ripley",
+   "Bianca Belair"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:3988",
   "type": "classic",
   "prompt": "Who did Rey Mysterio defeat at Payback 2023?",
   "options": [
-   "The Miz",
-   "Austin Theory",
-   "A.J. Styles",
-   "Cody Rhodes"
+   "John Cena",
+   "Seth Rollins",
+   "Chris Jericho",
+   "Austin Theory"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:82875",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at WrestleMania 35?",
   "options": [
-   "Randy Orton",
-   "Brock Lesnar",
+   "Dolph Ziggler",
+   "Dustin Rhodes",
    "Cesaro",
-   "Roman Reigns"
+   "Brock Lesnar"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:76409",
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at Fastlane 2017?",
   "options": [
-   "John Cena",
-   "Randy Orton",
+   "Chris Jericho",
    "Big Show",
-   "Sami Zayn"
+   "Sami Zayn",
+   "The Miz"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:77896",
   "type": "classic",
   "prompt": "Who did The Miz defeat at Great Balls of Fire 2017?",
   "options": [
-   "John Cena",
-   "Roman Reigns",
    "Seth Rollins",
+   "Chris Jericho",
+   "John Cena",
    "Dean Ambrose"
   ],
   "answer": 3
@@ -7612,22 +7648,22 @@
   "type": "classic",
   "prompt": "Who did Asuka defeat at TLC 2017?",
   "options": [
-   "Bayley",
+   "Natalya",
    "Mickie James",
-   "Nia Jax",
-   "Emma"
+   "Emma",
+   "Alexa Bliss"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:157989",
   "type": "classic",
   "prompt": "Who did Jeff Jarrett defeat at TNA Final Resolution 2005?",
   "options": [
-   "Samoa Joe",
-   "Jeff Hardy",
+   "Dustin Rhodes",
+   "Chris Jericho",
    "Monty Brown",
-   "Dustin Rhodes"
+   "Chris Benoit"
   ],
   "answer": 2
  },
@@ -7636,46 +7672,46 @@
   "type": "classic",
   "prompt": "Who did Christopher Daniels defeat at TNA Sacrifice 2005?",
   "options": [
-   "Christian Cage",
-   "Rey Mysterio",
-   "Chris Jericho",
-   "Austin Aries"
+   "Dustin Rhodes",
+   "Austin Aries",
+   "A.J. Styles",
+   "Rey Mysterio"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:156971",
   "type": "classic",
   "prompt": "Who did Chris Sabin defeat at TNA Unbreakable 2005?",
   "options": [
-   "Chris Jericho",
-   "Chris Benoit",
+   "Bobby Roode",
    "Petey Williams",
-   "Samoa Joe"
+   "Dustin Rhodes",
+   "Rey Mysterio"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:155586",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at ECW One Night Stand 2006?",
   "options": [
-   "Christian Cage",
-   "John Cena",
+   "Rob Van Dam",
    "Randy Orton",
-   "Kevin Nash"
+   "Sting",
+   "Samoa Joe"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:154480",
   "type": "classic",
   "prompt": "Who did Chris Sabin defeat at TNA Against All Odds 2007?",
   "options": [
-   "Kurt Angle",
+   "Scott Steiner",
    "Jerry Lynn",
-   "Christian Cage",
-   "Robert Roode"
+   "A.J. Styles",
+   "Christian Cage"
   ],
   "answer": 1
  },
@@ -7684,22 +7720,22 @@
   "type": "classic",
   "prompt": "Who did Eric Young defeat at TNA Slammiversary 2007?",
   "options": [
-   "Scott Steiner",
+   "Jeff Jarrett",
+   "Sting",
    "Robert Roode",
-   "Kurt Angle",
-   "James Storm"
+   "Abyss"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:153333",
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA Genesis 2007?",
   "options": [
-   "Abyss",
+   "A.J. Styles",
    "Robert Roode",
-   "James Storm",
-   "Sting"
+   "Eric Young",
+   "Kurt Angle"
   ],
   "answer": 1
  },
@@ -7708,20 +7744,20 @@
   "type": "classic",
   "prompt": "Who did Eric Young defeat at TNA Against All Odds 2008?",
   "options": [
-   "Abyss",
+   "Kurt Angle",
+   "Christian Cage",
    "James Storm",
-   "A.J. Styles",
-   "Christian Cage"
+   "Scott Steiner"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:150477",
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA Hard Justice 2009?",
   "options": [
-   "Scott Steiner",
-   "Bobby Lashley",
+   "Kurt Angle",
+   "A.J. Styles",
    "Homicide",
    "Eric Young"
   ],
@@ -7732,48 +7768,48 @@
   "type": "classic",
   "prompt": "Who did Mr. Anderson defeat at TNA Against All Odds 2010?",
   "options": [
-   "A.J. Styles",
+   "Abyss",
+   "Rob Van Dam",
    "Kurt Angle",
-   "Hernandez",
-   "Sting"
+   "A.J. Styles"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:148605",
   "type": "classic",
   "prompt": "Who did Rob Van Dam defeat at TNA Hardcore Justice 2010?",
   "options": [
-   "Kurt Angle",
-   "Jeff Hardy",
    "Sabu",
-   "Christopher Daniels"
+   "Hernandez",
+   "Sting",
+   "Abyss"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:147669",
   "type": "classic",
   "prompt": "Who did Mr. Anderson defeat at TNA Genesis 2011?",
   "options": [
-   "Devon",
    "A.J. Styles",
    "Jeff Hardy",
-   "Jeff Jarrett"
+   "Jeff Jarrett",
+   "Kurt Angle"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:147425",
   "type": "classic",
   "prompt": "Who did Kazarian defeat at TNA Against All Odds 2011?",
   "options": [
+   "James Storm",
    "Samoa Joe",
-   "Matt Hardy",
-   "Robbie E.",
-   "A.J. Styles"
+   "Sting",
+   "Robbie E."
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:146540",
@@ -7781,9 +7817,9 @@
   "prompt": "Who did Rob Van Dam defeat at TNA Destination X 2011?",
   "options": [
    "Jerry Lynn",
-   "James Storm",
    "Matt Hardy",
-   "Samoa Joe"
+   "Kurt Angle",
+   "Jeff Hardy"
   ],
   "answer": 0
  },
@@ -7792,20 +7828,20 @@
   "type": "classic",
   "prompt": "Who did Bobby Roode defeat at TNA No Surrender 2011?",
   "options": [
-   "A.J. Styles",
-   "Gunner",
    "Jeff Jarrett",
-   "Matt Hardy"
+   "Matt Hardy",
+   "Gunner",
+   "Samoa Joe"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:145643",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Bound for Glory 2011?",
   "options": [
+   "Matt Hardy",
    "Rob Van Dam",
-   "Sting",
    "James Storm",
    "Bobby Roode"
   ],
@@ -7816,163 +7852,163 @@
   "type": "classic",
   "prompt": "Who did Christopher Daniels defeat at TNA Genesis 2013?",
   "options": [
-   "James Storm",
-   "Samoa Joe",
-   "Sting",
-   "Devon"
+   "A.J. Styles",
+   "Rob Van Dam",
+   "Devon",
+   "James Storm"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:135011",
   "type": "classic",
   "prompt": "Who did Bobby Lashley defeat at TNA Slammiversary XII 2014?",
   "options": [
-   "Sanada",
-   "Mr. Anderson",
    "Samoa Joe",
+   "James Storm",
+   "Kenny King",
    "Angelina Love"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:70170",
   "type": "classic",
   "prompt": "Who did Sheamus defeat at SummerSlam 2015?",
   "options": [
-   "Chris Jericho",
-   "Goldust",
-   "Stardust",
-   "Randy Orton"
+   "Randy Orton",
+   "Roman Reigns",
+   "John Cena",
+   "Dean Ambrose"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:70483",
   "type": "classic",
   "prompt": "Who did Dolph Ziggler defeat at Night of Champions 2015?",
   "options": [
+   "Seth Rollins",
+   "Rusev",
    "John Cena",
-   "Dean Ambrose",
-   "Randy Orton",
-   "Rusev"
+   "Randy Orton"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:70487",
   "type": "classic",
   "prompt": "Who did John Cena defeat at Night of Champions 2015?",
   "options": [
-   "Seth Rollins",
    "Randy Orton",
-   "Stardust",
-   "Dean Ambrose"
+   "Seth Rollins",
+   "Dean Ambrose",
+   "Goldust"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:70488",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Night of Champions 2015?",
   "options": [
-   "Sting",
-   "Randy Orton",
    "John Cena",
-   "Sheamus"
+   "Randy Orton",
+   "Sheamus",
+   "Sting"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:71416",
   "type": "classic",
   "prompt": "Who did Charlotte defeat at TLC 2015?",
   "options": [
-   "Paige",
    "Nikki Bella",
-   "Naomi",
-   "Gail Kim"
+   "Gail Kim",
+   "Paige",
+   "Naomi"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:72419",
   "type": "classic",
   "prompt": "Who did Chris Jericho defeat at Roadblock 2016?",
   "options": [
-   "Seth Rollins",
-   "Stardust",
    "Jack Swagger",
-   "Sheamus"
+   "The Miz",
+   "Seth Rollins",
+   "Triple H"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:73106",
   "type": "classic",
   "prompt": "Who did Rusev defeat at Extreme Rules 2016?",
   "options": [
-   "Kalisto",
-   "The Miz",
    "Seth Rollins",
-   "Roman Reigns"
+   "Kalisto",
+   "Randy Orton",
+   "Stardust"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:74141",
   "type": "classic",
   "prompt": "Who did Brock Lesnar defeat at SummerSlam 2016?",
   "options": [
-   "Chris Jericho",
-   "Stardust",
+   "Sheamus",
    "Randy Orton",
-   "Sheamus"
+   "Dolph Ziggler",
+   "Seth Rollins"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:75636",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Roadblock 2016?",
   "options": [
+   "Roman Reigns",
+   "Stardust",
    "Chris Jericho",
-   "The Miz",
-   "Dolph Ziggler",
-   "Kevin Owens"
+   "Triple H"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:78426",
   "type": "classic",
   "prompt": "Who did Natalya defeat at SummerSlam 2017?",
   "options": [
-   "Bayley",
-   "Naomi",
    "Charlotte Flair",
-   "Emma"
+   "Asuka",
+   "Emma",
+   "Naomi"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:78429",
   "type": "classic",
   "prompt": "Who did Sasha Banks defeat at SummerSlam 2017?",
   "options": [
-   "Asuka",
    "Alexa Bliss",
-   "Bayley",
-   "Becky Lynch"
+   "Natalya",
+   "Becky Lynch",
+   "Charlotte Flair"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:80204",
   "type": "classic",
   "prompt": "Who did Brock Lesnar defeat at WrestleMania 34?",
   "options": [
-   "The Miz",
+   "A.J. Styles",
    "Dean Ambrose",
    "Roman Reigns",
    "Triple H"
@@ -7984,12 +8020,12 @@
   "type": "classic",
   "prompt": "Who did Dean Ambrose defeat at TLC 2018?",
   "options": [
-   "John Cena",
-   "Dolph Ziggler",
-   "Jeff Hardy",
-   "Seth Rollins"
+   "The Undertaker",
+   "Seth Rollins",
+   "Roman Reigns",
+   "Triple H"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:84024",
@@ -7997,9 +8033,9 @@
   "prompt": "Who did Kofi Kingston defeat at Clash of Champions 2019?",
   "options": [
    "Randy Orton",
+   "Roman Reigns",
    "The Miz",
-   "Seth Rollins",
-   "Roman Reigns"
+   "Triple H"
   ],
   "answer": 0
  },
@@ -8008,82 +8044,82 @@
   "type": "classic",
   "prompt": "Who did Jake Hager defeat at AEW Revolution 2020?",
   "options": [
-   "Dolph Ziggler",
+   "Roman Reigns",
    "Sheamus",
-   "Dustin Rhodes",
-   "R-Truth"
+   "Randy Orton",
+   "Dustin Rhodes"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:85785",
   "type": "classic",
   "prompt": "Who did Sheamus defeat at Backlash 2020?",
   "options": [
-   "Jon Moxley",
    "Jeff Hardy",
-   "Seth Rollins",
+   "Chris Jericho",
+   "Jon Moxley",
    "R-Truth"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:87468",
   "type": "classic",
   "prompt": "Who did Damian Priest defeat at SummerSlam 2021?",
   "options": [
-   "Sheamus",
-   "Randy Orton",
-   "John Cena",
-   "Cesaro"
+   "Seth Rollins",
+   "Cody Rhodes",
+   "Cesaro",
+   "Sheamus"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:87863",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Crown Jewel 2021?",
   "options": [
-   "Kofi Kingston",
-   "Jon Moxley",
    "John Cena",
-   "Brock Lesnar"
+   "Brock Lesnar",
+   "Sheamus",
+   "Seth Rollins"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:5355",
   "type": "classic",
   "prompt": "Who did Brock Lesnar defeat at WrestleMania 39?",
   "options": [
-   "Omos",
    "Chris Jericho",
-   "Cody Rhodes",
-   "Jon Moxley"
+   "Seth Rollins",
+   "Omos",
+   "Claudio Castagnoli"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:4518",
   "type": "classic",
   "prompt": "Who did Cody Rhodes defeat at Money In The Bank 2023?",
   "options": [
-   "A.J. Styles",
    "Claudio Castagnoli",
    "Kevin Owens",
-   "Dominik Mysterio"
+   "Dominik Mysterio",
+   "Jon Moxley"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:2163",
   "type": "classic",
   "prompt": "Who did Rhea Ripley defeat at Elimination Chamber 2024?",
   "options": [
-   "Becky Lynch",
+   "Hikaru Shida",
    "Nia Jax",
-   "Toni Storm",
-   "IYO SKY"
+   "IYO SKY",
+   "Bayley"
   ],
   "answer": 1
  },
@@ -8092,36 +8128,36 @@
   "type": "classic",
   "prompt": "Who did Luke Harper defeat at Backlash 2017?",
   "options": [
-   "Roman Reigns",
-   "Big Show",
+   "Chris Jericho",
    "Erick Rowan",
-   "Dean Ambrose"
+   "Dolph Ziggler",
+   "Seth Rollins"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:77892",
   "type": "classic",
   "prompt": "Who did Bray Wyatt defeat at Great Balls of Fire 2017?",
   "options": [
-   "Dean Ambrose",
    "Cesaro",
    "Seth Rollins",
-   "Dolph Ziggler"
+   "Chris Jericho",
+   "Dean Ambrose"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:76416",
   "type": "classic",
   "prompt": "Who did Bayley defeat at Fastlane 2017?",
   "options": [
-   "Mickie James",
    "Charlotte Flair",
+   "Alexa Bliss",
    "Asuka",
-   "Naomi"
+   "Sasha Banks"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:80363",
@@ -8140,10 +8176,10 @@
   "type": "classic",
   "prompt": "Who did Jeff Jarrett defeat at TNA Against All Odds 2005?",
   "options": [
-   "Chris Benoit",
-   "A.J. Styles",
+   "Christian Cage",
+   "Bobby Roode",
    "Kevin Nash",
-   "Jeff Hardy"
+   "Chris Benoit"
   ],
   "answer": 2
  },
@@ -8153,117 +8189,117 @@
   "prompt": "Who did James Storm defeat at TNA Victory Road 2007?",
   "options": [
    "Sting",
-   "Kurt Angle",
    "Rhino",
+   "Abyss",
    "Jeff Jarrett"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:151233",
   "type": "classic",
   "prompt": "Who did A.J. Styles defeat at TNA Destination X 2009?",
   "options": [
-   "Kevin Nash",
-   "Scott Steiner",
-   "Booker T",
-   "Bobby Lashley"
+   "Abyss",
+   "Mick Foley",
+   "Eric Young",
+   "Booker T"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:149060",
   "type": "classic",
   "prompt": "Who did Jeff Hardy defeat at TNA Sacrifice 2010?",
   "options": [
+   "Mr. Anderson",
+   "Abyss",
    "Sting",
-   "Hernandez",
-   "Christopher Daniels",
-   "Mr. Anderson"
+   "A.J. Styles"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:148751",
   "type": "classic",
   "prompt": "Who did Jay Lethal defeat at TNA Victory Road 2010?",
   "options": [
-   "Rob Van Dam",
    "Ric Flair",
-   "Hernandez",
-   "Mick Foley"
+   "A.J. Styles",
+   "Sting",
+   "Christopher Daniels"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:147429",
   "type": "classic",
   "prompt": "Who did Rob Van Dam defeat at TNA Against All Odds 2011?",
   "options": [
-   "Bobby Roode",
+   "Devon",
+   "Matt Hardy",
    "Jeff Jarrett",
-   "James Storm",
-   "Matt Hardy"
+   "Jeff Hardy"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:145998",
   "type": "classic",
   "prompt": "Who did Matt Morgan defeat at TNA No Surrender 2011?",
   "options": [
-   "Samoa Joe",
-   "Sting",
+   "Kurt Angle",
    "Devon",
-   "A.J. Styles"
+   "Jeff Hardy",
+   "Samoa Joe"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:145340",
   "type": "classic",
   "prompt": "Who did Bobby Roode defeat at TNA Turning Point 2011?",
   "options": [
+   "Sting",
    "A.J. Styles",
-   "Jeff Hardy",
-   "Kurt Angle",
-   "Jeff Jarrett"
+   "Devon",
+   "Matt Hardy"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:144521",
   "type": "classic",
   "prompt": "Who did Kazarian defeat at TNA Against All Odds 2012?",
   "options": [
-   "Kurt Angle",
    "A.J. Styles",
-   "Eric Young",
-   "Devon"
+   "Samoa Joe",
+   "Jeff Hardy",
+   "James Storm"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:141850",
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA Bound for Glory 2012?",
   "options": [
+   "Magnus",
+   "Kurt Angle",
    "Sting",
-   "Devon",
-   "Jeff Hardy",
-   "Magnus"
+   "Bobby Roode"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:68620",
   "type": "classic",
   "prompt": "Who did The Undertaker defeat at WrestleMania 31?",
   "options": [
-   "Dolph Ziggler",
+   "Chris Jericho",
    "Bray Wyatt",
-   "Randy Orton",
-   "Roman Reigns"
+   "Stardust",
+   "Dolph Ziggler"
   ],
   "answer": 1
  },
@@ -8271,42 +8307,6 @@
   "id": "classic:69151",
   "type": "classic",
   "prompt": "Who did Bray Wyatt defeat at Payback 2015?",
-  "options": [
-   "Ryback",
-   "Seth Rollins",
-   "John Cena",
-   "Sheamus"
-  ],
-  "answer": 0
- },
- {
-  "id": "classic:69317",
-  "type": "classic",
-  "prompt": "Who did Neville defeat at Elimination Chamber 2015?",
-  "options": [
-   "Bo Dallas",
-   "Seth Rollins",
-   "Chris Jericho",
-   "Dolph Ziggler"
-  ],
-  "answer": 0
- },
- {
-  "id": "classic:129418",
-  "type": "classic",
-  "prompt": "Who did Bobby Roode defeat at TNA Bound For Glory 2015?",
-  "options": [
-   "Chris Jericho",
-   "Bobby Lashley",
-   "Stardust",
-   "Dolph Ziggler"
-  ],
-  "answer": 1
- },
- {
-  "id": "classic:71412",
-  "type": "classic",
-  "prompt": "Who did Rusev defeat at TLC 2015?",
   "options": [
    "Seth Rollins",
    "Stardust",
@@ -8316,50 +8316,86 @@
   "answer": 3
  },
  {
-  "id": "classic:72154",
+  "id": "classic:69317",
   "type": "classic",
-  "prompt": "Who did Charlotte defeat at Fastlane 2016?",
+  "prompt": "Who did Neville defeat at Elimination Chamber 2015?",
   "options": [
-   "Brie Bella",
-   "Naomi",
-   "Dana Brooke",
-   "Bayley"
+   "Bo Dallas",
+   "Roman Reigns",
+   "Stardust",
+   "Chris Jericho"
   ],
   "answer": 0
  },
  {
-  "id": "classic:74133",
+  "id": "classic:129418",
   "type": "classic",
-  "prompt": "Who did Charlotte defeat at SummerSlam 2016?",
+  "prompt": "Who did Bobby Roode defeat at TNA Bound For Glory 2015?",
   "options": [
-   "Dana Brooke",
-   "Bayley",
-   "Becky Lynch",
-   "Sasha Banks"
+   "Stardust",
+   "Seth Rollins",
+   "Randy Orton",
+   "Bobby Lashley"
   ],
   "answer": 3
  },
  {
-  "id": "classic:74137",
+  "id": "classic:71412",
   "type": "classic",
-  "prompt": "Who did Dean Ambrose defeat at SummerSlam 2016?",
+  "prompt": "Who did Rusev defeat at TLC 2015?",
   "options": [
-   "The Miz",
-   "Dolph Ziggler",
+   "Randy Orton",
+   "Ryback",
    "Chris Jericho",
    "Roman Reigns"
   ],
   "answer": 1
  },
  {
+  "id": "classic:72154",
+  "type": "classic",
+  "prompt": "Who did Charlotte defeat at Fastlane 2016?",
+  "options": [
+   "Naomi",
+   "Nikki Bella",
+   "Brie Bella",
+   "Dana Brooke"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "classic:74133",
+  "type": "classic",
+  "prompt": "Who did Charlotte defeat at SummerSlam 2016?",
+  "options": [
+   "Carmella",
+   "Sasha Banks",
+   "Alexa Bliss",
+   "Natalya"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "classic:74137",
+  "type": "classic",
+  "prompt": "Who did Dean Ambrose defeat at SummerSlam 2016?",
+  "options": [
+   "Roman Reigns",
+   "Seth Rollins",
+   "Dolph Ziggler",
+   "The Miz"
+  ],
+  "answer": 2
+ },
+ {
   "id": "classic:74698",
   "type": "classic",
   "prompt": "Who did Baron Corbin defeat at No Mercy 2016?",
   "options": [
-   "Roman Reigns",
-   "Sheamus",
+   "Dolph Ziggler",
+   "Stardust",
    "Jack Swagger",
-   "Stardust"
+   "Sheamus"
   ],
   "answer": 2
  },
@@ -8368,9 +8404,9 @@
   "type": "classic",
   "prompt": "Who did Sami Zayn defeat at Backlash 2017?",
   "options": [
-   "Chris Jericho",
+   "Dean Ambrose",
    "Baron Corbin",
-   "Roman Reigns",
+   "Seth Rollins",
    "John Cena"
   ],
   "answer": 1
@@ -8380,22 +8416,22 @@
   "type": "classic",
   "prompt": "Who did Finn Bálor defeat at SummerSlam 2017?",
   "options": [
-   "The Miz",
-   "Big Show",
+   "Randy Orton",
    "Bray Wyatt",
-   "Randy Orton"
+   "Dolph Ziggler",
+   "John Cena"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:78678",
   "type": "classic",
   "prompt": "Who did The Miz defeat at No Mercy 2017?",
   "options": [
-   "Chris Jericho",
+   "Dolph Ziggler",
    "Cesaro",
    "Jason Jordan",
-   "Dolph Ziggler"
+   "Roman Reigns"
   ],
   "answer": 2
  },
@@ -8404,10 +8440,10 @@
   "type": "classic",
   "prompt": "Who did Nia Jax defeat at WrestleMania 34?",
   "options": [
-   "Toni Storm",
+   "Charlotte Flair",
    "Alexa Bliss",
-   "Shayna Baszler",
-   "Charlotte Flair"
+   "Becky Lynch",
+   "Shayna Baszler"
   ],
   "answer": 1
  },
@@ -8416,34 +8452,34 @@
   "type": "classic",
   "prompt": "Who did Daniel Bryan defeat at Money in the Bank 18 2018?",
   "options": [
-   "Randy Orton",
    "Big Cass",
-   "Dean Ambrose",
-   "John Cena"
+   "The Miz",
+   "Triple H",
+   "Dolph Ziggler"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:83193",
   "type": "classic",
   "prompt": "Who did Charlotte Flair defeat at Money in the Bank 2019?",
   "options": [
-   "Ronda Rousey",
-   "Lacey Evans",
+   "Natalya",
    "Becky Lynch",
-   "Asuka"
+   "Ronda Rousey",
+   "Mandy Rose"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:86073",
   "type": "classic",
   "prompt": "Who did Bobby Lashley defeat at Payback 2020?",
   "options": [
-   "Randy Orton",
+   "Dolph Ziggler",
    "Apollo Crews",
-   "The Miz",
-   "Dolph Ziggler"
+   "Randy Orton",
+   "Sheamus"
   ],
   "answer": 1
  },
@@ -8452,91 +8488,55 @@
   "type": "classic",
   "prompt": "Who did Bobby Lashley defeat at Clash of Champions 2020?",
   "options": [
+   "R-Truth",
+   "The Miz",
    "Apollo Crews",
-   "Roman Reigns",
-   "Jon Moxley",
-   "Dolph Ziggler"
+   "Sheamus"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:86658",
   "type": "classic",
   "prompt": "Who did Sasha Banks defeat at Royal Rumble 2021?",
   "options": [
-   "Charlotte Flair",
-   "Carmella",
-   "Bianca Belair",
-   "Shayna Baszler"
+   "Becky Lynch",
+   "Liv Morgan",
+   "Rhea Ripley",
+   "Carmella"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:88301",
   "type": "classic",
   "prompt": "Who did Edge defeat at Day 1 2022?",
   "options": [
-   "Jon Moxley",
+   "Sheamus",
+   "A.J. Styles",
    "The Miz",
-   "Roman Reigns",
-   "Cody Rhodes"
+   "Jon Moxley"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:88546",
   "type": "classic",
   "prompt": "Who did Rey Mysterio defeat at Elimination Chamber 2022?",
   "options": [
-   "Edge",
-   "Seth Rollins",
+   "Roman Reigns",
    "The Miz",
-   "Cody Rhodes"
+   "Cody Rhodes",
+   "Edge"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:4517",
   "type": "classic",
   "prompt": "Who did Gunther defeat at Money In The Bank 2023?",
   "options": [
-   "The Miz",
-   "A.J. Styles",
-   "Claudio Castagnoli",
-   "Matt Riddle"
-  ],
-  "answer": 3
- },
- {
-  "id": "classic:1159",
-  "type": "classic",
-  "prompt": "Who did Liv Morgan defeat at King And Queen Of The Ring 2024?",
-  "options": [
-   "IYO SKY",
-   "Rhea Ripley",
-   "Becky Lynch",
-   "Toni Storm"
-  ],
-  "answer": 2
- },
- {
-  "id": "classic:81249",
-  "type": "classic",
-  "prompt": "Who did Shinsuke Nakamura defeat at SummerSlam 2018?",
-  "options": [
-   "John Cena",
-   "Jeff Hardy",
-   "A.J. Styles",
-   "Dean Ambrose"
-  ],
-  "answer": 1
- },
- {
-  "id": "classic:81782",
-  "type": "classic",
-  "prompt": "Who did The Miz defeat at Crown Jewel 2018?",
-  "options": [
-   "Rey Mysterio",
+   "Matt Riddle",
    "John Cena",
    "A.J. Styles",
    "Roman Reigns"
@@ -8544,40 +8544,64 @@
   "answer": 0
  },
  {
+  "id": "classic:81249",
+  "type": "classic",
+  "prompt": "Who did Shinsuke Nakamura defeat at SummerSlam 2018?",
+  "options": [
+   "Triple H",
+   "The Miz",
+   "Jeff Hardy",
+   "Dolph Ziggler"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "classic:81782",
+  "type": "classic",
+  "prompt": "Who did The Miz defeat at Crown Jewel 2018?",
+  "options": [
+   "Triple H",
+   "Roman Reigns",
+   "Dean Ambrose",
+   "Rey Mysterio"
+  ],
+  "answer": 3
+ },
+ {
   "id": "classic:79831",
   "type": "classic",
   "prompt": "Who did Asuka defeat at Elimination Chamber 2018?",
   "options": [
+   "Carmella",
    "Nia Jax",
-   "Ronda Rousey",
-   "Alexa Bliss",
-   "Kairi Sane"
+   "Kairi Sane",
+   "Nikki Bella"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:85542",
   "type": "classic",
   "prompt": "Who did Becky Lynch defeat at WrestleMania 36?",
   "options": [
+   "Sasha Banks",
    "Tamina",
-   "Shayna Baszler",
-   "Rhea Ripley",
-   "Naomi"
+   "Nikki Cross",
+   "Shayna Baszler"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:79119",
   "type": "classic",
   "prompt": "Who did Baron Corbin defeat at Survivor Series 2017?",
   "options": [
-   "Randy Orton",
-   "Cesaro",
-   "Chris Jericho",
-   "The Miz"
+   "The Miz",
+   "John Cena",
+   "Roman Reigns",
+   "Chris Jericho"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "classic:157368",
@@ -8586,7 +8610,7 @@
   "options": [
    "Jeff Hardy",
    "Sonjay Dutt",
-   "Christian Cage",
+   "Rey Mysterio",
    "Bobby Roode"
   ],
   "answer": 1
@@ -8596,36 +8620,36 @@
   "type": "classic",
   "prompt": "Who did Christian Cage defeat at TNA Turning Point 2005?",
   "options": [
-   "Dustin Rhodes",
-   "Chris Benoit",
-   "Jeff Jarrett",
-   "Monty Brown"
+   "Chris Jericho",
+   "Jeff Hardy",
+   "Monty Brown",
+   "Rey Mysterio"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:155965",
   "type": "classic",
   "prompt": "Who did Alex Shelley defeat at TNA Destination X 2006?",
   "options": [
-   "Jay Lethal",
-   "John Cena",
    "Christian Cage",
-   "Samoa Joe"
+   "Sting",
+   "Jeff Jarrett",
+   "Jay Lethal"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:155972",
   "type": "classic",
   "prompt": "Who did Christian Cage defeat at TNA Destination X 2006?",
   "options": [
-   "Kurt Angle",
-   "Monty Brown",
+   "Bobby Roode",
    "Sting",
-   "Bobby Roode"
+   "Monty Brown",
+   "Rob Van Dam"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:155721",
@@ -8633,30 +8657,30 @@
   "prompt": "Who did Bobby Roode defeat at TNA Sacrifice 2006?",
   "options": [
    "John Cena",
-   "Christian Cage",
    "Rhino",
+   "Samoa Joe",
    "Kurt Angle"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:155280",
   "type": "classic",
   "prompt": "Who did Chris Sabin defeat at TNA Hard Justice 2006?",
   "options": [
-   "Christian Cage",
+   "A.J. Styles",
    "Sting",
-   "Jeff Jarrett",
-   "Alex Shelley"
+   "Alex Shelley",
+   "John Cena"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:154728",
   "type": "classic",
   "prompt": "Who did A.J. Styles defeat at TNA Turning Point 2006?",
   "options": [
-   "Bobby Roode",
+   "Jeff Jarrett",
    "Sting",
    "Rhino",
    "Rob Van Dam"
@@ -8668,32 +8692,32 @@
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Victory Road 2009?",
   "options": [
-   "A.J. Styles",
    "Mick Foley",
-   "Kevin Nash",
-   "Bobby Lashley"
+   "Scott Steiner",
+   "Eric Young",
+   "Abyss"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:149381",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Destination X 2010?",
   "options": [
-   "Sting",
-   "Mick Foley",
+   "Christopher Daniels",
    "Mr. Anderson",
-   "A.J. Styles"
+   "Mick Foley",
+   "Jeff Hardy"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:147668",
   "type": "classic",
   "prompt": "Who did Mr. Anderson defeat at TNA Genesis 2011?",
   "options": [
-   "Bobby Roode",
-   "Samoa Joe",
+   "Jeff Hardy",
+   "Sting",
    "Matt Morgan",
    "James Storm"
   ],
@@ -8705,9 +8729,9 @@
   "prompt": "Who did Bobby Roode defeat at TNA No Surrender 2011?",
   "options": [
    "Bully Ray",
-   "Sting",
-   "Jeff Jarrett",
-   "James Storm"
+   "Kurt Angle",
+   "Matt Hardy",
+   "Sting"
   ],
   "answer": 0
  },
@@ -8716,22 +8740,22 @@
   "type": "classic",
   "prompt": "Who did Austin Aries defeat at TNA Final Resolution 2011?",
   "options": [
-   "Bobby Roode",
    "Kid Kash",
-   "Sting",
-   "Jeff Hardy"
+   "Jeff Hardy",
+   "Bobby Roode",
+   "Sting"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:144884",
   "type": "classic",
   "prompt": "Who did Gunner defeat at TNA Genesis 2012?",
   "options": [
-   "Jeff Hardy",
-   "Bobby Roode",
+   "Sting",
+   "Eric Young",
    "Rob Van Dam",
-   "Eric Young"
+   "Bobby Roode"
   ],
   "answer": 2
  },
@@ -8740,12 +8764,12 @@
   "type": "classic",
   "prompt": "Who did Hernandez defeat at TNA Slammiversary 2012?",
   "options": [
-   "Kid Kash",
    "Samoa Joe",
-   "Kurt Angle",
-   "Bobby Roode"
+   "Kid Kash",
+   "A.J. Styles",
+   "Jeff Hardy"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:141446",
@@ -8753,8 +8777,8 @@
   "prompt": "Who did Kurt Angle defeat at TNA Turning Point 2012?",
   "options": [
    "Devon",
-   "Jeff Hardy",
-   "Eric Young",
+   "Christopher Daniels",
+   "A.J. Styles",
    "Rob Van Dam"
   ],
   "answer": 0
@@ -8764,10 +8788,10 @@
   "type": "classic",
   "prompt": "Who did Mr. Anderson defeat at TNA Genesis 2013?",
   "options": [
-   "James Storm",
-   "Bully Ray",
+   "A.J. Styles",
+   "Kurt Angle",
    "Samoa Joe",
-   "Rob Van Dam"
+   "Bully Ray"
   ],
   "answer": 2
  },
@@ -8778,8 +8802,8 @@
   "options": [
    "Naomi",
    "Gail Kim",
-   "Paige",
-   "Charlotte"
+   "Charlotte",
+   "Paige"
   ],
   "answer": 0
  },
@@ -8788,10 +8812,10 @@
   "type": "classic",
   "prompt": "Who did Kevin Owens defeat at Night of Champions 2015?",
   "options": [
-   "Sheamus",
-   "Seth Rollins",
+   "Dean Ambrose",
+   "Dolph Ziggler",
    "Ryback",
-   "John Cena"
+   "Roman Reigns"
   ],
   "answer": 2
  },
@@ -8800,46 +8824,46 @@
   "type": "classic",
   "prompt": "Who did Charlotte defeat at Survivor Series 2015?",
   "options": [
-   "Paige",
-   "Nikki Bella",
    "Naomi",
-   "Gail Kim"
+   "Gail Kim",
+   "Nikki Bella",
+   "Paige"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:71220",
   "type": "classic",
   "prompt": "Who did Tyler Breeze defeat at Survivor Series 2015?",
   "options": [
-   "John Cena",
-   "Roman Reigns",
+   "Chris Jericho",
    "Dolph Ziggler",
-   "Cesaro"
+   "Randy Orton",
+   "John Cena"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:72423",
   "type": "classic",
   "prompt": "Who did Sami Zayn defeat at Roadblock 2016?",
   "options": [
-   "The Miz",
-   "Randy Orton",
-   "Seth Rollins",
-   "Stardust"
+   "Sheamus",
+   "Chris Jericho",
+   "Stardust",
+   "Seth Rollins"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:73440",
   "type": "classic",
   "prompt": "Who did Apollo Crews defeat at Money In The Bank 2016?",
   "options": [
-   "Roman Reigns",
-   "Chris Jericho",
+   "Randy Orton",
+   "Seth Rollins",
    "Sheamus",
-   "Seth Rollins"
+   "Dolph Ziggler"
   ],
   "answer": 2
  },
@@ -8848,70 +8872,70 @@
   "type": "classic",
   "prompt": "Who did Bray Wyatt defeat at No Mercy 2016?",
   "options": [
-   "Randy Orton",
-   "Seth Rollins",
    "Dean Ambrose",
-   "Chris Jericho"
+   "The Miz",
+   "Triple H",
+   "Randy Orton"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:78433",
   "type": "classic",
   "prompt": "Who did Jinder Mahal defeat at SummerSlam 2017?",
   "options": [
+   "Dean Ambrose",
+   "Randy Orton",
    "Shinsuke Nakamura",
-   "Chris Jericho",
-   "Seth Rollins",
-   "Dolph Ziggler"
+   "John Cena"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:118707",
   "type": "classic",
   "prompt": "Who did Roman Reigns defeat at Money in the Bank 18 2018?",
   "options": [
-   "Jinder Mahal",
+   "A.J. Styles",
    "The Miz",
-   "Triple H",
-   "Seth Rollins"
+   "The Undertaker",
+   "Jinder Mahal"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "classic:83301",
   "type": "classic",
   "prompt": "Who did Seth Rollins defeat at Super Showdown 2019?",
   "options": [
-   "Dolph Ziggler",
-   "Cody",
+   "Roman Reigns",
    "Baron Corbin",
-   "The Miz"
+   "Kofi Kingston",
+   "Randy Orton"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:83307",
   "type": "classic",
   "prompt": "Who did Kofi Kingston defeat at Super Showdown 2019?",
   "options": [
-   "Dolph Ziggler",
-   "Triple H",
    "Roman Reigns",
-   "The Miz"
+   "Dolph Ziggler",
+   "Seth Rollins",
+   "Chris Jericho"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:83576",
   "type": "classic",
   "prompt": "Who did Kofi Kingston defeat at Extreme Rules 2019?",
   "options": [
-   "Seth Rollins",
-   "Cesaro",
+   "Dustin Rhodes",
+   "Cody",
    "Samoa Joe",
-   "Dustin Rhodes"
+   "Cesaro"
   ],
   "answer": 2
  },
@@ -8920,10 +8944,10 @@
   "type": "classic",
   "prompt": "Who did Big E defeat at SummerSlam 2021?",
   "options": [
-   "Sheamus",
+   "Cody Rhodes",
    "Baron Corbin",
-   "Roman Reigns",
-   "Jon Moxley"
+   "Kofi Kingston",
+   "Randy Orton"
   ],
   "answer": 1
  },
@@ -8932,46 +8956,34 @@
   "type": "classic",
   "prompt": "Who did Charlotte Flair defeat at Extreme Rules 2021?",
   "options": [
-   "Sasha Banks",
-   "Rhea Ripley",
-   "Bayley",
-   "Alexa Bliss"
+   "Becky Lynch",
+   "Shayna Baszler",
+   "Alexa Bliss",
+   "Carmella"
   ],
-  "answer": 3
- },
- {
-  "id": "classic:441",
-  "type": "classic",
-  "prompt": "Who did Nia Jax defeat at Summerslam 2024?",
-  "options": [
-   "Hikaru Shida",
-   "Jordynne Grace",
-   "Naomi",
-   "Bayley"
-  ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:85543",
   "type": "classic",
   "prompt": "Who did Sami Zayn defeat at WrestleMania 36?",
   "options": [
-   "Roman Reigns",
    "Daniel Bryan",
-   "Randy Orton",
-   "Sheamus"
+   "Dolph Ziggler",
+   "Chris Jericho",
+   "Jon Moxley"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "classic:77298",
   "type": "classic",
   "prompt": "Who did Jinder Mahal defeat at Backlash 2017?",
   "options": [
-   "Roman Reigns",
-   "Seth Rollins",
+   "Chris Jericho",
+   "Dean Ambrose",
    "Randy Orton",
-   "Chris Jericho"
+   "Big Show"
   ],
   "answer": 2
  },
@@ -8980,82 +8992,82 @@
   "type": "classic",
   "prompt": "Who did Otis defeat at WrestleMania 36?",
   "options": [
-   "Randy Orton",
-   "Seth Rollins",
-   "R-Truth",
-   "Dolph Ziggler"
+   "Chris Jericho",
+   "Dolph Ziggler",
+   "Sheamus",
+   "Randy Orton"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:78784",
   "type": "classic",
   "prompt": "Who did Randy Orton defeat at Hell in a Cell 2017?",
   "options": [
-   "Rusev",
-   "Chris Jericho",
+   "John Cena",
    "Seth Rollins",
-   "Cesaro"
+   "Rusev",
+   "Roman Reigns"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "classic:85552",
   "type": "classic",
   "prompt": "Who did Aleister Black defeat at WrestleMania 36?",
   "options": [
-   "Dolph Ziggler",
-   "R-Truth",
+   "The Miz",
    "Bobby Lashley",
-   "Roman Reigns"
+   "Dolph Ziggler",
+   "Randy Orton"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:74327",
   "type": "classic",
   "prompt": "Who did Bray Wyatt defeat at Backlash 2016?",
   "options": [
-   "Dolph Ziggler",
+   "Seth Rollins",
+   "Dean Ambrose",
    "Randy Orton",
-   "Sheamus",
-   "The Miz"
+   "Stardust"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:80427",
   "type": "classic",
   "prompt": "Who did Jeff Hardy defeat at Backlash 2018?",
   "options": [
-   "John Cena",
-   "Dolph Ziggler",
    "Randy Orton",
-   "Seth Rollins"
+   "The Undertaker",
+   "A.J. Styles",
+   "John Cena"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "classic:157983",
   "type": "classic",
   "prompt": "Who did Dustin Rhodes defeat at TNA Final Resolution 2005?",
   "options": [
-   "A.J. Styles",
+   "Chris Jericho",
+   "Jeff Jarrett",
    "Kid Kash",
-   "Samoa Joe",
-   "Chris Jericho"
+   "Bobby Roode"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "classic:155286",
   "type": "classic",
   "prompt": "Who did Jeff Jarrett defeat at TNA Hard Justice 2006?",
   "options": [
-   "A.J. Styles",
+   "John Cena",
    "Bobby Roode",
    "Sting",
-   "Rob Van Dam"
+   "A.J. Styles"
   ],
   "answer": 2
  },
@@ -9065,9 +9077,9 @@
   "prompt": "Who did James Storm defeat at TNA Final Resolution 2007?",
   "options": [
    "Petey Williams",
-   "Abyss",
    "Robert Roode",
-   "A.J. Styles"
+   "Jeff Jarrett",
+   "Abyss"
   ],
   "answer": 0
  },
@@ -9077,21 +9089,21 @@
   "prompt": "Who did Awesome Kong defeat at TNA Against All Odds 2008?",
   "options": [
    "A.J. Styles",
-   "Scott Steiner",
    "O. D. B.",
-   "James Storm"
+   "Kurt Angle",
+   "Sting"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "classic:152159",
   "type": "classic",
   "prompt": "Who did Gail Kim defeat at TNA Victory Road 2008?",
   "options": [
-   "A.J. Styles",
-   "James Storm",
+   "Christian Cage",
+   "Booker T",
    "Angelina Love",
-   "Kurt Angle"
+   "Scott Steiner"
   ],
   "answer": 2
  },
@@ -9100,57 +9112,57 @@
   "type": "classic",
   "prompt": "Who did Sonjay Dutt defeat at TNA Victory Road 2008?",
   "options": [
+   "Samoa Joe",
    "Jay Lethal",
-   "Sting",
-   "James Storm",
-   "Scott Steiner"
+   "Kevin Nash",
+   "A.J. Styles"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "classic:144888",
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Genesis 2012?",
   "options": [
+   "Sting",
    "A.J. Styles",
-   "James Storm",
-   "Devon",
-   "Bobby Roode"
+   "Rob Van Dam",
+   "James Storm"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:142241",
   "type": "classic",
   "prompt": "Who did Jeff Hardy defeat at TNA No Surrender 2012?",
   "options": [
-   "Devon",
+   "Kurt Angle",
    "Sting",
-   "Samoa Joe",
-   "Christopher Daniels"
+   "James Storm",
+   "Samoa Joe"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "classic:73827",
   "type": "classic",
   "prompt": "Who did Rusev defeat at Battleground 2016?",
   "options": [
+   "Randy Orton",
    "Chris Jericho",
-   "Zack Ryder",
-   "Dean Ambrose",
-   "Randy Orton"
+   "Stardust",
+   "Zack Ryder"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "classic:76156",
   "type": "classic",
   "prompt": "Who did Naomi defeat at Elimination Chamber 2017?",
   "options": [
-   "Bayley",
-   "Natalya",
    "Emma",
+   "Natalya",
+   "Nia Jax",
    "Alexa Bliss"
   ],
   "answer": 3
@@ -9160,21 +9172,21 @@
   "type": "classic",
   "prompt": "Who did Brock Lesnar defeat at No Mercy 2017?",
   "options": [
+   "John Cena",
+   "Braun Strowman",
    "The Miz",
-   "Big Show",
-   "Seth Rollins",
-   "Braun Strowman"
+   "Dean Ambrose"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "classic:80970",
   "type": "classic",
   "prompt": "Who did Finn Bálor defeat at Extreme Rules 2018?",
   "options": [
-   "John Cena",
-   "Seth Rollins",
-   "Triple H",
+   "Roman Reigns",
+   "Dean Ambrose",
+   "The Miz",
    "Baron Corbin"
   ],
   "answer": 3
@@ -9184,34 +9196,34 @@
   "type": "classic",
   "prompt": "Who did The Miz defeat at Crown Jewel 2018?",
   "options": [
+   "Triple H",
    "The Undertaker",
-   "John Cena",
-   "Dean Ambrose",
-   "Jeff Hardy"
+   "Jeff Hardy",
+   "Seth Rollins"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "classic:83305",
   "type": "classic",
   "prompt": "Who did Randy Orton defeat at Super Showdown 2019?",
   "options": [
-   "The Miz",
+   "Chris Jericho",
+   "Kofi Kingston",
    "Triple H",
-   "Roman Reigns",
-   "Dustin Rhodes"
+   "Roman Reigns"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "promotion:Victory Road",
   "type": "promotion",
   "prompt": "Which promotion ran Victory Road?",
   "options": [
-   "ECW",
    "AEW",
+   "ECW",
    "TNA",
-   "WWE"
+   "WCW"
   ],
   "answer": 2
  },
@@ -9220,72 +9232,72 @@
   "type": "promotion",
   "prompt": "Which promotion ran All Out?",
   "options": [
-   "TNA",
    "AEW",
+   "TNA",
    "WWE",
-   "ECW"
+   "WCW"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "promotion:Emergence",
   "type": "promotion",
   "prompt": "Which promotion ran Emergence?",
   "options": [
-   "AEW",
    "WWE",
-   "TNA",
-   "ECW"
+   "AEW",
+   "WCW",
+   "TNA"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "promotion:All In London",
   "type": "promotion",
   "prompt": "Which promotion ran All In London?",
   "options": [
-   "ECW",
+   "AEW",
    "WWE",
-   "WCW",
-   "AEW"
+   "TNA",
+   "ECW"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "promotion:Slammiversary",
   "type": "promotion",
   "prompt": "Which promotion ran Slammiversary?",
   "options": [
-   "WCW",
+   "TNA",
    "AEW",
    "ECW",
-   "TNA"
+   "WCW"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "promotion:Double Or Nothing",
   "type": "promotion",
   "prompt": "Which promotion ran Double Or Nothing?",
   "options": [
-   "AEW",
    "WCW",
    "WWE",
-   "TNA"
+   "AEW",
+   "ECW"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "promotion:Under Siege",
   "type": "promotion",
   "prompt": "Which promotion ran Under Siege?",
   "options": [
-   "WWE",
+   "ECW",
    "AEW",
-   "TNA",
-   "ECW"
+   "WCW",
+   "TNA"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "promotion:Dynasty",
@@ -9293,23 +9305,23 @@
   "prompt": "Which promotion ran Dynasty?",
   "options": [
    "ECW",
-   "AEW",
-   "WCW",
-   "TNA"
+   "WWE",
+   "TNA",
+   "AEW"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "promotion:Rebellion",
   "type": "promotion",
   "prompt": "Which promotion ran Rebellion?",
   "options": [
+   "TNA",
    "WWE",
-   "WCW",
    "ECW",
-   "TNA"
+   "WCW"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "promotion:Sacrifice",
@@ -9318,8 +9330,8 @@
   "options": [
    "TNA",
    "AEW",
-   "ECW",
-   "WCW"
+   "WCW",
+   "ECW"
   ],
   "answer": 0
  },
@@ -9328,24 +9340,24 @@
   "type": "promotion",
   "prompt": "Which promotion ran Revolution?",
   "options": [
-   "WCW",
-   "TNA",
+   "AEW",
+   "WWE",
    "ECW",
-   "AEW"
+   "WCW"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "promotion:No Surrender",
   "type": "promotion",
   "prompt": "Which promotion ran No Surrender?",
   "options": [
-   "TNA",
-   "WCW",
    "WWE",
-   "ECW"
+   "AEW",
+   "ECW",
+   "TNA"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "promotion:Hard To Kill",
@@ -9353,23 +9365,23 @@
   "prompt": "Which promotion ran Hard To Kill?",
   "options": [
    "WWE",
-   "WCW",
    "TNA",
+   "ECW",
    "AEW"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "promotion:Worlds End",
   "type": "promotion",
   "prompt": "Which promotion ran Worlds End?",
   "options": [
-   "ECW",
-   "AEW",
    "WWE",
-   "WCW"
+   "ECW",
+   "WCW",
+   "AEW"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "promotion:Full Gear",
@@ -9377,9 +9389,9 @@
   "prompt": "Which promotion ran Full Gear?",
   "options": [
    "AEW",
-   "TNA",
+   "WWE",
    "WCW",
-   "ECW"
+   "TNA"
   ],
   "answer": 0
  },
@@ -9388,12 +9400,12 @@
   "type": "promotion",
   "prompt": "Which promotion ran WrestleDream?",
   "options": [
+   "WCW",
    "TNA",
-   "AEW",
-   "ECW",
-   "WCW"
+   "WWE",
+   "AEW"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "promotion:All In: London",
@@ -9401,9 +9413,9 @@
   "prompt": "Which promotion ran All In: London?",
   "options": [
    "ECW",
-   "WCW",
+   "TNA",
    "AEW",
-   "TNA"
+   "WCW"
   ],
   "answer": 2
  },
@@ -9414,32 +9426,32 @@
   "options": [
    "WWE",
    "TNA",
-   "WCW",
-   "AEW"
+   "AEW",
+   "ECW"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "promotion:Fyter Fest",
   "type": "promotion",
   "prompt": "Which promotion ran Fyter Fest?",
   "options": [
-   "WWE",
    "TNA",
-   "ECW",
-   "AEW"
+   "WWE",
+   "AEW",
+   "WCW"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "promotion:One Night Only: Rivals",
   "type": "promotion",
   "prompt": "Which promotion ran One Night Only: Rivals?",
   "options": [
-   "ECW",
+   "AEW",
    "TNA",
    "WWE",
-   "AEW"
+   "WCW"
   ],
   "answer": 1
  },
@@ -9448,9 +9460,9 @@
   "type": "promotion",
   "prompt": "Which promotion ran One Night Only: Joker's Wild?",
   "options": [
-   "ECW",
-   "AEW",
    "WCW",
+   "AEW",
+   "ECW",
    "TNA"
   ],
   "answer": 3
@@ -9461,9 +9473,9 @@
   "prompt": "Which promotion ran One Night Only: Live 2?",
   "options": [
    "TNA",
-   "WCW",
    "AEW",
-   "WWE"
+   "WWE",
+   "WCW"
   ],
   "answer": 0
  },
@@ -9472,56 +9484,56 @@
   "type": "promotion",
   "prompt": "Which promotion ran Bound For Glory?",
   "options": [
+   "AEW",
+   "TNA",
    "WCW",
-   "ECW",
-   "WWE",
-   "TNA"
+   "ECW"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "promotion:One Night Only: Knockouts Knockdown",
   "type": "promotion",
   "prompt": "Which promotion ran One Night Only: Knockouts Knockdown?",
   "options": [
-   "WWE",
-   "TNA",
+   "ECW",
+   "WCW",
    "AEW",
-   "ECW"
+   "TNA"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "promotion:One Night Only: Live",
   "type": "promotion",
   "prompt": "Which promotion ran One Night Only: Live?",
   "options": [
-   "WWE",
+   "ECW",
    "AEW",
-   "WCW",
-   "TNA"
+   "TNA",
+   "WWE"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "promotion:One Night Only: Gutcheck",
   "type": "promotion",
   "prompt": "Which promotion ran One Night Only: Gutcheck?",
   "options": [
-   "TNA",
    "WCW",
+   "AEW",
    "WWE",
-   "ECW"
+   "TNA"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "promotion:One Night Only: Classic Tournament",
   "type": "promotion",
   "prompt": "Which promotion ran One Night Only: Classic Tournament?",
   "options": [
-   "AEW",
    "WWE",
+   "AEW",
    "ECW",
    "TNA"
   ],
@@ -9532,53 +9544,17 @@
   "type": "promotion",
   "prompt": "Which promotion ran One Night Only: World Cup 3?",
   "options": [
-   "TNA",
-   "WCW",
-   "ECW",
-   "AEW"
-  ],
-  "answer": 0
- },
- {
-  "id": "promotion:One Night Only: Joker's Wild 3",
-  "type": "promotion",
-  "prompt": "Which promotion ran One Night Only: Joker's Wild 3?",
-  "options": [
-   "TNA",
-   "WCW",
-   "WWE",
-   "AEW"
-  ],
-  "answer": 0
- },
- {
-  "id": "promotion:One Night Only: Knockouts Knockdown 3",
-  "type": "promotion",
-  "prompt": "Which promotion ran One Night Only: Knockouts Knockdown 3?",
-  "options": [
+   "AEW",
    "WWE",
    "WCW",
-   "ECW",
    "TNA"
   ],
   "answer": 3
  },
  {
-  "id": "promotion:One Night Only: Hardcore Justice 4",
+  "id": "promotion:One Night Only: Joker's Wild 3",
   "type": "promotion",
-  "prompt": "Which promotion ran One Night Only: Hardcore Justice 4?",
-  "options": [
-   "WWE",
-   "WCW",
-   "TNA",
-   "AEW"
-  ],
-  "answer": 2
- },
- {
-  "id": "promotion:One Night Only: Turning Point",
-  "type": "promotion",
-  "prompt": "Which promotion ran One Night Only: Turning Point?",
+  "prompt": "Which promotion ran One Night Only: Joker's Wild 3?",
   "options": [
    "WWE",
    "TNA",
@@ -9588,23 +9564,11 @@
   "answer": 1
  },
  {
-  "id": "promotion:Slammiversary XII",
+  "id": "promotion:One Night Only: Knockouts Knockdown 3",
   "type": "promotion",
-  "prompt": "Which promotion ran Slammiversary XII?",
+  "prompt": "Which promotion ran One Night Only: Knockouts Knockdown 3?",
   "options": [
    "ECW",
-   "WWE",
-   "WCW",
-   "TNA"
-  ],
-  "answer": 3
- },
- {
-  "id": "promotion:Lockdown",
-  "type": "promotion",
-  "prompt": "Which promotion ran Lockdown?",
-  "options": [
-   "WCW",
    "AEW",
    "TNA",
    "WWE"
@@ -9612,28 +9576,76 @@
   "answer": 2
  },
  {
-  "id": "promotion:Slammiversary XI",
+  "id": "promotion:One Night Only: Hardcore Justice 4",
   "type": "promotion",
-  "prompt": "Which promotion ran Slammiversary XI?",
+  "prompt": "Which promotion ran One Night Only: Hardcore Justice 4?",
+  "options": [
+   "ECW",
+   "TNA",
+   "WWE",
+   "WCW"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "promotion:One Night Only: Turning Point",
+  "type": "promotion",
+  "prompt": "Which promotion ran One Night Only: Turning Point?",
+  "options": [
+   "TNA",
+   "WWE",
+   "AEW",
+   "ECW"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "promotion:Slammiversary XII",
+  "type": "promotion",
+  "prompt": "Which promotion ran Slammiversary XII?",
   "options": [
    "WCW",
    "TNA",
    "AEW",
-   "WWE"
+   "ECW"
   ],
   "answer": 1
+ },
+ {
+  "id": "promotion:Lockdown",
+  "type": "promotion",
+  "prompt": "Which promotion ran Lockdown?",
+  "options": [
+   "TNA",
+   "WCW",
+   "AEW",
+   "ECW"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "promotion:Slammiversary XI",
+  "type": "promotion",
+  "prompt": "Which promotion ran Slammiversary XI?",
+  "options": [
+   "ECW",
+   "AEW",
+   "WCW",
+   "TNA"
+  ],
+  "answer": 3
  },
  {
   "id": "promotion:Genesis",
   "type": "promotion",
   "prompt": "Which promotion ran Genesis?",
   "options": [
-   "WCW",
    "TNA",
    "AEW",
+   "WCW",
    "WWE"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "promotion:Final Resolution",
@@ -9641,23 +9653,23 @@
   "prompt": "Which promotion ran Final Resolution?",
   "options": [
    "ECW",
+   "WWE",
    "TNA",
-   "AEW",
-   "WWE"
+   "AEW"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "promotion:Turning Point",
   "type": "promotion",
   "prompt": "Which promotion ran Turning Point?",
   "options": [
-   "TNA",
-   "WCW",
+   "WWE",
    "ECW",
-   "AEW"
+   "TNA",
+   "WCW"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "promotion:Hardcore Justice",
@@ -9667,7 +9679,7 @@
    "TNA",
    "WWE",
    "WCW",
-   "AEW"
+   "ECW"
   ],
   "answer": 0
  },
@@ -9676,19 +9688,19 @@
   "type": "promotion",
   "prompt": "Which promotion ran Destination X?",
   "options": [
-   "TNA",
+   "WWE",
+   "WCW",
    "ECW",
-   "AEW",
-   "WCW"
+   "TNA"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "promotion:Against All Odds",
   "type": "promotion",
   "prompt": "Which promotion ran Against All Odds?",
   "options": [
-   "AEW",
+   "ECW",
    "WCW",
    "WWE",
    "TNA"
@@ -9701,11 +9713,11 @@
   "prompt": "Which promotion ran Slammiversary IX?",
   "options": [
    "WCW",
+   "TNA",
    "ECW",
-   "AEW",
-   "TNA"
+   "WWE"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "promotion:Slammiversary VIII",
@@ -9726,8 +9738,8 @@
   "options": [
    "WCW",
    "TNA",
-   "AEW",
-   "WWE"
+   "WWE",
+   "ECW"
   ],
   "answer": 1
  },
@@ -9736,36 +9748,36 @@
   "type": "promotion",
   "prompt": "Which promotion ran Bound for Glory IV?",
   "options": [
-   "AEW",
-   "ECW",
    "TNA",
-   "WCW"
+   "ECW",
+   "WCW",
+   "WWE"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "promotion:Unbreakable",
   "type": "promotion",
   "prompt": "Which promotion ran Unbreakable?",
   "options": [
+   "ECW",
+   "TNA",
    "WCW",
-   "WWE",
-   "AEW",
-   "TNA"
+   "AEW"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "promotion:Greed",
   "type": "promotion",
   "prompt": "Which promotion ran Greed?",
   "options": [
-   "AEW",
-   "WCW",
+   "TNA",
    "ECW",
-   "WWE"
+   "WCW",
+   "AEW"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "promotion:SuperBrawl Revenge",
@@ -9773,7 +9785,7 @@
   "prompt": "Which promotion ran SuperBrawl Revenge?",
   "options": [
    "WWE",
-   "TNA",
+   "ECW",
    "WCW",
    "AEW"
   ],
@@ -9784,48 +9796,48 @@
   "type": "promotion",
   "prompt": "Which promotion ran Sin?",
   "options": [
+   "ECW",
    "AEW",
    "WCW",
-   "WWE",
-   "TNA"
+   "WWE"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "promotion:Guilty As Charged",
   "type": "promotion",
   "prompt": "Which promotion ran Guilty As Charged?",
   "options": [
-   "WWE",
+   "WCW",
    "TNA",
-   "AEW",
-   "ECW"
+   "ECW",
+   "WWE"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "promotion:StarrCade",
   "type": "promotion",
   "prompt": "Which promotion ran StarrCade?",
   "options": [
+   "ECW",
    "WCW",
-   "AEW",
    "TNA",
-   "ECW"
+   "WWE"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "promotion:Massacre On 34th Street",
   "type": "promotion",
   "prompt": "Which promotion ran Massacre On 34th Street?",
   "options": [
-   "ECW",
-   "WWE",
    "TNA",
-   "WCW"
+   "ECW",
+   "AEW",
+   "WWE"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "promotion:Mayhem",
@@ -9833,11 +9845,11 @@
   "prompt": "Which promotion ran Mayhem?",
   "options": [
    "WWE",
-   "AEW",
    "WCW",
-   "TNA"
+   "AEW",
+   "ECW"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "promotion:Millennium Final",
@@ -9846,7 +9858,7 @@
   "options": [
    "WWE",
    "WCW",
-   "ECW",
+   "TNA",
    "AEW"
   ],
   "answer": 1
@@ -9856,12 +9868,12 @@
   "type": "promotion",
   "prompt": "Which promotion ran November To Remember?",
   "options": [
-   "WCW",
    "ECW",
+   "WWE",
    "AEW",
-   "WWE"
+   "WCW"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "promotion:Halloween Havoc",
@@ -9869,9 +9881,9 @@
   "prompt": "Which promotion ran Halloween Havoc?",
   "options": [
    "ECW",
-   "AEW",
+   "TNA",
    "WCW",
-   "WWE"
+   "AEW"
   ],
   "answer": 2
  },
@@ -9880,48 +9892,48 @@
   "type": "promotion",
   "prompt": "Which promotion ran Anarchy Rulz?",
   "options": [
-   "TNA",
-   "WWE",
    "ECW",
-   "WCW"
+   "WCW",
+   "TNA",
+   "WWE"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "promotion:Fall Brawl",
   "type": "promotion",
   "prompt": "Which promotion ran Fall Brawl?",
   "options": [
-   "AEW",
    "WCW",
-   "WWE",
+   "ECW",
+   "AEW",
    "TNA"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "promotion:New Blood Rising",
   "type": "promotion",
   "prompt": "Which promotion ran New Blood Rising?",
   "options": [
-   "ECW",
-   "WWE",
    "WCW",
-   "TNA"
+   "ECW",
+   "TNA",
+   "WWE"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "promotion:Heat Wave",
   "type": "promotion",
   "prompt": "Which promotion ran Heat Wave?",
   "options": [
-   "WCW",
    "ECW",
-   "AEW",
-   "WWE"
+   "WCW",
+   "TNA",
+   "AEW"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "promotion:Bash At The Beach",
@@ -9929,7 +9941,7 @@
   "prompt": "Which promotion ran Bash At The Beach?",
   "options": [
    "WCW",
-   "TNA",
+   "WWE",
    "AEW",
    "ECW"
   ],
@@ -9940,34 +9952,34 @@
   "type": "promotion",
   "prompt": "Which promotion ran The Great American Bash?",
   "options": [
-   "ECW",
-   "WCW",
    "WWE",
-   "TNA"
+   "ECW",
+   "AEW",
+   "WCW"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "promotion:Hardcore Heaven",
   "type": "promotion",
   "prompt": "Which promotion ran Hardcore Heaven?",
   "options": [
-   "ECW",
    "TNA",
-   "AEW",
-   "WCW"
+   "WWE",
+   "WCW",
+   "ECW"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "promotion:Slamboree",
   "type": "promotion",
   "prompt": "Which promotion ran Slamboree?",
   "options": [
-   "TNA",
+   "ECW",
    "AEW",
    "WCW",
-   "ECW"
+   "WWE"
   ],
   "answer": 2
  },
@@ -9976,53 +9988,77 @@
   "type": "promotion",
   "prompt": "Which promotion ran Spring Stampede?",
   "options": [
+   "WWE",
    "WCW",
-   "AEW",
    "ECW",
-   "TNA"
+   "AEW"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "promotion:Uncensored",
   "type": "promotion",
   "prompt": "Which promotion ran Uncensored?",
   "options": [
-   "TNA",
    "AEW",
+   "WCW",
    "ECW",
-   "WCW"
+   "TNA"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "promotion:Living Dangerously",
   "type": "promotion",
   "prompt": "Which promotion ran Living Dangerously?",
   "options": [
-   "TNA",
-   "AEW",
+   "WCW",
    "ECW",
-   "WCW"
+   "WWE",
+   "AEW"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "promotion:SuperBrawl",
   "type": "promotion",
   "prompt": "Which promotion ran SuperBrawl?",
   "options": [
+   "ECW",
    "AEW",
    "WCW",
-   "WWE",
-   "ECW"
+   "WWE"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "promotion:Souled Out",
   "type": "promotion",
   "prompt": "Which promotion ran Souled Out?",
+  "options": [
+   "WWE",
+   "TNA",
+   "AEW",
+   "WCW"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "promotion:Road Wild",
+  "type": "promotion",
+  "prompt": "Which promotion ran Road Wild?",
+  "options": [
+   "TNA",
+   "ECW",
+   "WWE",
+   "WCW"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "promotion:SuperBrawl IX",
+  "type": "promotion",
+  "prompt": "Which promotion ran SuperBrawl IX?",
   "options": [
    "TNA",
    "WCW",
@@ -10030,30 +10066,6 @@
    "AEW"
   ],
   "answer": 1
- },
- {
-  "id": "promotion:Road Wild",
-  "type": "promotion",
-  "prompt": "Which promotion ran Road Wild?",
-  "options": [
-   "WWE",
-   "AEW",
-   "WCW",
-   "ECW"
-  ],
-  "answer": 2
- },
- {
-  "id": "promotion:SuperBrawl IX",
-  "type": "promotion",
-  "prompt": "Which promotion ran SuperBrawl IX?",
-  "options": [
-   "WCW",
-   "AEW",
-   "ECW",
-   "WWE"
-  ],
-  "answer": 0
  },
  {
   "id": "promotion:World War 3",
@@ -10062,44 +10074,44 @@
   "options": [
    "TNA",
    "WWE",
-   "WCW",
-   "AEW"
+   "ECW",
+   "WCW"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "promotion:L.A. Melee",
   "type": "promotion",
   "prompt": "Which promotion ran L.A. Melee?",
   "options": [
-   "TNA",
    "WCW",
    "WWE",
+   "TNA",
    "AEW"
   ],
-  "answer": 1
+  "answer": 0
  },
  {
   "id": "promotion:Wrestlepalooza",
   "type": "promotion",
   "prompt": "Which promotion ran Wrestlepalooza?",
   "options": [
-   "AEW",
-   "TNA",
    "WWE",
-   "ECW"
+   "ECW",
+   "AEW",
+   "TNA"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "promotion:Profiles in Pain",
   "type": "promotion",
   "prompt": "Which promotion ran Profiles in Pain?",
   "options": [
-   "TNA",
    "WWE",
+   "ECW",
    "WCW",
-   "AEW"
+   "TNA"
   ],
   "answer": 2
  },
@@ -10108,12 +10120,12 @@
   "type": "promotion",
   "prompt": "Which promotion ran Malice at The Palace?",
   "options": [
+   "WCW",
+   "ECW",
    "WWE",
-   "AEW",
-   "TNA",
-   "WCW"
+   "AEW"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "promotion:SuperBrawl VIII",
@@ -10121,35 +10133,35 @@
   "prompt": "Which promotion ran SuperBrawl VIII?",
   "options": [
    "WWE",
-   "WCW",
    "AEW",
+   "WCW",
    "ECW"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "promotion:Boston Brawl: Internet Event",
   "type": "promotion",
   "prompt": "Which promotion ran Boston Brawl: Internet Event?",
   "options": [
-   "WWE",
    "AEW",
    "WCW",
-   "TNA"
+   "TNA",
+   "ECW"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "promotion:Barely Legal",
   "type": "promotion",
   "prompt": "Which promotion ran Barely Legal?",
   "options": [
-   "AEW",
-   "WCW",
    "ECW",
-   "TNA"
+   "TNA",
+   "WCW",
+   "AEW"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "promotion:SuperBrawl VII",
@@ -10157,33 +10169,33 @@
   "prompt": "Which promotion ran SuperBrawl VII?",
   "options": [
    "WWE",
-   "ECW",
    "WCW",
-   "AEW"
+   "TNA",
+   "ECW"
   ],
-  "answer": 2
+  "answer": 1
  },
  {
   "id": "promotion:Hog Wild",
   "type": "promotion",
   "prompt": "Which promotion ran Hog Wild?",
   "options": [
-   "WWE",
+   "WCW",
    "ECW",
    "AEW",
-   "WCW"
+   "WWE"
   ],
-  "answer": 3
+  "answer": 0
  },
  {
   "id": "promotion:SuperBrawl VI",
   "type": "promotion",
   "prompt": "Which promotion ran SuperBrawl VI?",
   "options": [
-   "ECW",
+   "AEW",
    "TNA",
    "WCW",
-   "AEW"
+   "ECW"
   ],
   "answer": 2
  },
@@ -10192,77 +10204,29 @@
   "type": "promotion",
   "prompt": "Which promotion ran SuperBrawl V?",
   "options": [
+   "AEW",
    "WCW",
    "WWE",
-   "AEW",
-   "ECW"
+   "TNA"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "promotion:SuperBrawl IV",
   "type": "promotion",
   "prompt": "Which promotion ran SuperBrawl IV?",
   "options": [
-   "WCW",
-   "WWE",
    "ECW",
-   "AEW"
+   "WWE",
+   "WCW",
+   "TNA"
   ],
-  "answer": 0
+  "answer": 2
  },
  {
   "id": "promotion:Battlebowl",
   "type": "promotion",
   "prompt": "Which promotion ran Battlebowl?",
-  "options": [
-   "ECW",
-   "AEW",
-   "WCW",
-   "TNA"
-  ],
-  "answer": 2
- },
- {
-  "id": "promotion:Beach Blast",
-  "type": "promotion",
-  "prompt": "Which promotion ran Beach Blast?",
-  "options": [
-   "ECW",
-   "AEW",
-   "WWE",
-   "WCW"
-  ],
-  "answer": 3
- },
- {
-  "id": "promotion:SuperBrawl III",
-  "type": "promotion",
-  "prompt": "Which promotion ran SuperBrawl III?",
-  "options": [
-   "WCW",
-   "AEW",
-   "TNA",
-   "ECW"
-  ],
-  "answer": 0
- },
- {
-  "id": "promotion:WrestleWar",
-  "type": "promotion",
-  "prompt": "Which promotion ran WrestleWar?",
-  "options": [
-   "ECW",
-   "WWE",
-   "WCW",
-   "TNA"
-  ],
-  "answer": 2
- },
- {
-  "id": "promotion:SuperBrawl II",
-  "type": "promotion",
-  "prompt": "Which promotion ran SuperBrawl II?",
   "options": [
    "WWE",
    "WCW",
@@ -10270,6 +10234,54 @@
    "TNA"
   ],
   "answer": 1
+ },
+ {
+  "id": "promotion:Beach Blast",
+  "type": "promotion",
+  "prompt": "Which promotion ran Beach Blast?",
+  "options": [
+   "TNA",
+   "WCW",
+   "WWE",
+   "AEW"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "promotion:SuperBrawl III",
+  "type": "promotion",
+  "prompt": "Which promotion ran SuperBrawl III?",
+  "options": [
+   "WWE",
+   "TNA",
+   "ECW",
+   "WCW"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "promotion:WrestleWar",
+  "type": "promotion",
+  "prompt": "Which promotion ran WrestleWar?",
+  "options": [
+   "WWE",
+   "TNA",
+   "AEW",
+   "WCW"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "promotion:SuperBrawl II",
+  "type": "promotion",
+  "prompt": "Which promotion ran SuperBrawl II?",
+  "options": [
+   "TNA",
+   "AEW",
+   "WCW",
+   "WWE"
+  ],
+  "answer": 2
  },
  {
   "id": "promotion:SuperBrawl I",
@@ -10288,11 +10300,11 @@
   "type": "promotion",
   "prompt": "Which promotion ran Grand Slam Australia?",
   "options": [
+   "TNA",
+   "AEW",
    "WCW",
-   "ECW",
-   "WWE",
-   "AEW"
+   "ECW"
   ],
-  "answer": 3
+  "answer": 1
  }
 ]
