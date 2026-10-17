@@ -17,4 +17,5 @@ export function middleware(req: NextRequest) {
   return NextResponse.next();
 }
 
-export const config = { matcher: "/((?!_next/static|_next/image).*)" };
+// api/cron is skipped: Vercel Cron may call the deployment's own host and doesn't follow redirects
+export const config = { matcher: "/((?!_next/static|_next/image|api/cron).*)" };

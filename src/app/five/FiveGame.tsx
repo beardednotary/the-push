@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Leaderboard, NextMatch, ShareButton, useSaved } from "@/components/client";
 import { Bug, Plate } from "@/components/Chrome";
+import { RemindMe } from "@/components/RemindMe";
 import { SECONDS_PER_QUESTION, pointsFor } from "@/lib/scoring";
 import { MARK_EMOJI, fiveCode, sharePath, type Mark } from "@/lib/share";
 
@@ -210,6 +211,7 @@ function Results({ day, number, questions, answers }: { day: string; number: num
           <ShareButton text={share} path={sharePath("five", number, fiveCode(total, marks))} />
           <Leaderboard game="five" day={day} payload={{ answers: answers.map(({ choice, ms }) => ({ choice, ms })) }} format={(s) => String(s)} />
         </div>
+        <RemindMe />
         <NextMatch to="ring" />
       </main>
     </>

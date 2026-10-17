@@ -213,3 +213,9 @@ button { font: inherit; color: inherit; }
 .ring-result .score { font-size: 96px; }
 .center { text-align: center; }
 .center a { color: var(--gold); }
+
+/* ---------- reminders ---------- */
+.remind { margin: 28px 0 0; padding: 16px; background: var(--plate-2); box-shadow: inset 5px 0 0 var(--red); }
+.remind p { margin: 12px 0 14px; color: var(--text-2); }
+.remind b { color: var(--text); }
+.linkish { background: none; border: 0; padding: 0; color: var(--gold); text-decoration: underline; cursor: pointer; font: inherit; }

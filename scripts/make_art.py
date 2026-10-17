@@ -98,6 +98,9 @@ def main():
     big.save(APP / "icon.jpg", quality=88, optimize=True)
     big.resize((180, 180), Image.LANCZOS).save(APP / "apple-icon.jpg", quality=90, optimize=True)
     small.save(APP / "favicon.ico", sizes=[(16, 16), (32, 32), (48, 48)])
+    # home-screen app icons for the web manifest (Android / installed PWA)
+    for px in (192, 512):
+        big.resize((px, px), Image.LANCZOS).save(ROOT / "public" / f"icon-{px}.png", optimize=True)
 
     # contact sheet: everything at real size on the site's background
     sheet = Image.new("RGB", (1260, 1040), INK)

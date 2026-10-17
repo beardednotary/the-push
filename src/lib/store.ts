@@ -14,6 +14,13 @@ export interface Store {
   get(hash: string, field: string): Promise<number>;
   setName(id: string, name: string): Promise<void>;
   names(ids: string[]): Promise<Record<string, string>>;
+  /** Web push subscriptions, keyed by a hash of the endpoint; values are JSON. */
+  saveSub(key: string, json: string): Promise<void>;
+  deleteSub(key: string): Promise<void>;
+  allSubs(): Promise<Record<string, string>>;
+  /** Who finished a game today, so reminders skip them. */
+  markPlayed(day: string, playerId: string): Promise<void>;
+  playedOn(day: string): Promise<Set<string>>;
 }
 
 function upstash(): Store | null {
@@ -52,12 +59,31 @@ function upstash(): Store | null {
       const vals = await r.hmget<Record<string, string>>("players", ...ids);
       return vals ?? {};
     },
+    async saveSub(key, json) {
+      await r.hset("push:subs", { [key]: json });
+    },
+    async deleteSub(key) {
+      await r.hdel("push:subs", key);
+    },
+    async allSubs() {
+      const all = await r.hgetall<Record<string, unknown>>("push:subs");
+      // the client may hand back parsed JSON; normalise to strings
+      return Object.fromEntries(Object.entries(all ?? {}).map(([k, v]) => [k, typeof v === "string" ? v : JSON.stringify(v)]));
+    },
+    async markPlayed(day, playerId) {
+      await r.sadd(`played:${day}`, playerId);
+      await r.expire(`played:${day}`, 60 * 60 * 72);
+    },
+    async playedOn(day) {
+      return new Set((await r.smembers(`played:${day}`)).map(String));
+    },
   };
 }
 
 function memory(): Store {
-  const g = globalThis as unknown as { __pushStore?: { z: Map<string, Map<string, number>>; h: Map<string, Map<string, number>>; n: Map<string, string> } };
-  const s = (g.__pushStore ??= { z: new Map(), h: new Map(), n: new Map() });
+  type Mem = { z: Map<string, Map<string, number>>; h: Map<string, Map<string, number>>; n: Map<string, string>; subs: Map<string, string>; played: Map<string, Set<string>> };
+  const g = globalThis as unknown as { __pushStore?: Mem };
+  const s = (g.__pushStore ??= { z: new Map(), h: new Map(), n: new Map(), subs: new Map(), played: new Map() });
   const board = (k: string) => s.z.get(k) ?? s.z.set(k, new Map()).get(k)!;
   const hash = (k: string) => s.h.get(k) ?? s.h.set(k, new Map()).get(k)!;
   const sorted = (k: string) => [...board(k)].sort((a, b) => b[1] - a[1]);
@@ -87,6 +113,21 @@ function memory(): Store {
     },
     async names(ids) {
       return Object.fromEntries(ids.filter((id) => s.n.has(id)).map((id) => [id, s.n.get(id)!]));
+    },
+    async saveSub(key, json) {
+      s.subs.set(key, json);
+    },
+    async deleteSub(key) {
+      s.subs.delete(key);
+    },
+    async allSubs() {
+      return Object.fromEntries(s.subs);
+    },
+    async markPlayed(day, playerId) {
+      (s.played.get(day) ?? s.played.set(day, new Set()).get(day)!).add(playerId);
+    },
+    async playedOn(day) {
+      return new Set(s.played.get(day) ?? []);
     },
   };
 }
