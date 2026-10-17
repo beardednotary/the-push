@@ -10,5 +10,6 @@ export async function GET(req: Request) {
   if (!secret || req.headers.get("authorization") !== `Bearer ${secret}`) {
     return NextResponse.json({ error: "unauthorized" }, { status: 401 });
   }
-  return NextResponse.json(await sendReminders());
+  const force = new URL(req.url).searchParams.get("force") === "1"; // manual test sends
+  return NextResponse.json(await sendReminders({ force }));
 }

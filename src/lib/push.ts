@@ -33,7 +33,8 @@ function configured() {
   return true;
 }
 
-export async function sendReminders() {
+/** `force` (manual tests) also reminds players who already played today. */
+export async function sendReminders({ force = false } = {}) {
   if (!configured()) return { error: "VAPID keys are not set" };
   const day = todayKey();
   const [subs, played] = await Promise.all([store.allSubs(), store.playedOn(day)]);
@@ -56,7 +57,7 @@ export async function sendReminders() {
         removed++;
         return;
       }
-      if (rec.playerId && played.has(rec.playerId)) {
+      if (!force && rec.playerId && played.has(rec.playerId)) {
         skipped++;
         return;
       }
