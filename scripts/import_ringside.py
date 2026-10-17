@@ -216,6 +216,7 @@ def main():
     # ---- matches -----------------------------------------------------------
     order = {r["id"]: int(float(r["match_order"])) for r in rows("matches") if r["match_order"]}
     matches = {}
+    era_names = collections.defaultdict(collections.Counter)  # (person, year) -> ring names used that year
     with open(RAW / "match_view.csv", newline="", encoding="utf-8") as f:
         for r in csv.DictReader(f):
             if r["event_id"] not in events:
@@ -231,6 +232,7 @@ def main():
                     "order": order.get(r["match_id"], 0), "parts": [],
                 }
             w = cid(r["wrestler_id"])
+            era_names[(w, r["event_date"][:4])][clean_name(wrestlers[r["wrestler_id"]]["ring_name"])] += 1
             if all(p[0] != w for p in m["parts"]):
                 m["parts"].append((w, r["result"], r["team_number"]))
     uniq, mseen = {}, set()
@@ -394,7 +396,8 @@ def main():
     (OUT / "ring.json").write_text(json.dumps({"criteria": criteria, "wrestlers": pool}, separators=(",", ":"),
                                               ensure_ascii=False), encoding="utf-8")
 
-    questions = build_trivia(events, by_event, matches, reigns, title_group, display, gender, ppv_n, report)
+    name_at = era_namer(era_names, display, wrestlers)
+    questions = build_trivia(events, by_event, matches, reigns, title_group, name_at, gender, ppv_n, report)
     (OUT / "trivia.json").write_text(json.dumps(questions, indent=1, ensure_ascii=False), encoding="utf-8")
 
     # ---- report -------------------------------------------------------------
@@ -495,7 +498,28 @@ TRIVIA_TITLE_LABELS = {"wweChamp": "WWE Championship", "wcwChamp": "WCW World He
                        "whc": "World Heavyweight Championship"}
 
 
-def build_trivia(events, by_event, matches, reigns, title_group, display, gender, ppv_n, report):
+def era_namer(era_names, display, wrestlers):
+    """name_at(person, year): the ring name they used that year (Sasha Banks in 2021, Dean Ambrose
+    in 2016), falling back to their display name. Display names that merely restyle the same name
+    ("Steve Austin" shown as "Stone Cold Steve Austin") are kept."""
+    def name_at(root, year):
+        best = None
+        for dy in (0, -1, 1, -2, 2):
+            c = era_names.get((root, str(int(year) + dy)))
+            if c:
+                best = c.most_common(1)[0][0]
+                break
+        shown = display[root]
+        if not best:
+            return shown
+        k, k_shown, k_root = name_key(best), name_key(shown), name_key(wrestlers[root]["ring_name"])
+        if k == k_shown or (k == k_root and k in k_shown):
+            return shown
+        return best
+    return name_at
+
+
+def build_trivia(events, by_event, matches, reigns, title_group, name_at, gender, ppv_n, report):
     rng = random.Random(1985)
     qs = []
     skipped = collections.Counter()
@@ -521,12 +545,12 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
         qs.append({"id": qid, "type": qtype, "prompt": prompt, "options": opts,
                    "answer": opts.index(answer)})
 
-    def famous(ids, k, exclude, g=None):
-        cand = sorted({w for w in ids if display[w] not in exclude and display[w] not in JUNK_NAMES and (not g or gender.get(w) == g)},
-                      key=lambda w: (-ppv_n[w], int(w)))
+    def famous(ids, k, exclude, year, g=None):
+        cand = sorted({w for w in ids if name_at(w, year) not in exclude and name_at(w, year) not in JUNK_NAMES
+                       and (not g or gender.get(w) == g)}, key=lambda w: (-ppv_n[w], int(w)))
         top = cand[:max(k * 3, 8)]
         rng.shuffle(top)
-        return [display[w] for w in top[:k]]
+        return [name_at(w, year) for w in top[:k]]
 
     # Royal Rumble winners; distractors are the biggest names in that same Rumble
     for eid, ms in by_event.items():
@@ -539,8 +563,8 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
                 continue
             w, g, year = winners[0], match_gender(m, gender), ev["date"][:4]
             label = ("women's " if g == "f" else "men's ") if int(year) >= 2018 else ""
-            add("rumble", f"Who won the {year} {label}Royal Rumble?", display[w],
-                famous([p[0] for p in m["parts"]], 3, {display[w]}, g), f"{year}{g}")
+            add("rumble", f"Who won the {year} {label}Royal Rumble?", name_at(w, year),
+                famous([p[0] for p in m["parts"]], 3, {name_at(w, year)}, year, g), f"{year}{g}")
 
     # WrestleMania: final-match winner, host city
     wm_cities = {}
@@ -559,9 +583,10 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
         if len(main["parts"]) == 2 and {p[1] for p in main["parts"]} == {"win", "loss"}:
             win = next(p[0] for p in main["parts"] if p[1] == "win")
             lose = next(p[0] for p in main["parts"] if p[1] == "loss")
+            y = ev["date"][:4]
             add("wmMain", f"Who won the main event of {night.replace(' - ', ' ')}?",
-                display[win], [display[lose]] + famous(year_ids[ev["date"][:4]], 2, {display[win], display[lose]},
-                                                       gender.get(win)), night)
+                name_at(win, y), [name_at(lose, y)] + famous(year_ids[y], 2, {name_at(win, y), name_at(lose, y)},
+                                                             y, gender.get(win)), night)
     cities = sorted({c for _, c in wm_cities.values()})
     for base, (date, city) in wm_cities.items():
         add("wmCity", f"Which city hosted {base}?", city,
@@ -597,8 +622,9 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
                 continue
             yr = int(cur["won_date"][:4])
             near = [r["wrestler_id"] for r in rs if abs(int(r["won_date"][:4]) - yr) <= 6]
-            add("lineage", f"Who did {display[champ]} beat for the {TRIVIA_TITLE_LABELS[g]} at {event_label(ev)}?",
-                display[before], famous(near, 3, {display[champ], display[before]}, gender.get(before)),
+            y = cur["won_date"][:4]
+            add("lineage", f"Who did {name_at(champ, y)} beat for the {TRIVIA_TITLE_LABELS[g]} at {event_label(ev)}?",
+                name_at(before, y), famous(near, 3, {name_at(champ, y), name_at(before, y)}, y, gender.get(before)),
                 f"{tid}:{cur['won_date']}")
 
     # Classics: the highest-rated PPV singles matches
@@ -615,8 +641,9 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
         if min(ppv_n[win], ppv_n[lose]) < 25:
             skipped["classic-obscure"] += 1
             continue
-        add("classic", f"Who did {display[win]} defeat at {event_label(ev)}?", display[lose],
-            famous(peers_by_year[m["date"][:4]], 3, {display[win], display[lose]}, gender.get(lose)), m["id"])
+        y = m["date"][:4]
+        add("classic", f"Who did {name_at(win, y)} defeat at {event_label(ev)}?", name_at(lose, y),
+            famous(peers_by_year[y], 3, {name_at(win, y), name_at(lose, y)}, y, gender.get(lose)), m["id"])
 
     # Which promotion ran this pay-per-view?
     seen_names = set()
