@@ -258,7 +258,7 @@ Read this after every import; spot-check the lists against what you know.
 - [classic] Who did Gunther defeat at Summerslam 2024? -> **Damian Priest** (of ['Damian Priest', 'A.J. Styles', 'Seth Rollins', 'Cody Rhodes'])
 - [classic] Who did Damian Priest defeat at Backlash France 2024? -> **Jey Uso** (of ['Jon Moxley', 'Jey Uso', 'A.J. Styles', 'Jimmy Uso'])
 - [classic] Who did Kurt Angle defeat at TNA Bound for Glory 2009? -> **Matt Morgan** (of ['A.J. Styles', 'Abyss', 'Matt Morgan', 'Scott Steiner'])
-- [classic] Who did Kurt Angle defeat at TNA Hard Justice 2007? -> **Samoa Joe** (of ['Samoa Joe', 'Bobby Roode', 'Abyss', 'Christian Cage'])
+- [classic] Who did Kurt Angle defeat at TNA Hard Justice 2007? -> **Samoa Joe** (of ['Samoa Joe', 'Sting', 'Abyss', 'Christian Cage'])
 - [classic] Who did Rob Van Dam defeat at TNA Hardcore Justice 2010? -> **Sabu** (of ['Kurt Angle', 'Jeff Hardy', 'Sabu', 'Christopher Daniels'])
 - [classic] Who did Eric Young defeat at TNA Against All Odds 2008? -> **James Storm** (of ['Abyss', 'James Storm', 'A.J. Styles', 'Christian Cage'])
 - [classic] Who did Austin Aries defeat at TNA No Surrender 2011? -> **Brian Kendrick** (of ['Samoa Joe', 'James Storm', 'Sting', 'Brian Kendrick'])

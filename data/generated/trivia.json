@@ -40,7 +40,7 @@
   "type": "rumble",
   "prompt": "Who won the 1991 Royal Rumble?",
   "options": [
-   "Animal",
+   "Jake Roberts",
    "Hulk Hogan",
    "The Undertaker",
    "Bret Hart"
@@ -114,7 +114,7 @@
   "options": [
    "Stone Cold Steve Austin",
    "Vader",
-   "D-Lo Brown",
+   "Ken Shamrock",
    "The Rock"
   ],
   "answer": 0
@@ -138,7 +138,7 @@
   "options": [
    "The Rock",
    "Chris Jericho",
-   "Road Dogg",
+   "Albert",
    "JBL"
   ],
   "answer": 0
@@ -557,7 +557,7 @@
   "prompt": "Who won the main event of WrestleMania III?",
   "options": [
    "Hulk Hogan",
-   "Bam Bam Bigelow",
+   "Jim Duggan",
    "Jake Roberts",
    "Andre the Giant"
   ],
@@ -4530,7 +4530,7 @@
   "options": [
    "Becky Lynch",
    "Bianca Belair",
-   "Jade Cargill",
+   "Kris Statlander",
    "Charlotte Flair"
   ],
   "answer": 3
@@ -4831,7 +4831,7 @@
    "Kevin Nash",
    "John Cena",
    "Samoa Joe",
-   "Sting"
+   "Bobby Roode"
   ],
   "answer": 2
  },
@@ -4841,7 +4841,7 @@
   "prompt": "Who did Samoa Joe defeat at TNA Turning Point 2006?",
   "options": [
    "Kurt Angle",
-   "Bobby Roode",
+   "Sting",
    "John Cena",
    "Randy Orton"
   ],
@@ -5178,7 +5178,7 @@
   "options": [
    "Jeff Jarrett",
    "A.J. Styles",
-   "Bobby Roode",
+   "Sting",
    "Samoa Joe"
   ],
   "answer": 3
@@ -5191,7 +5191,7 @@
    "Eric Young",
    "A.J. Styles",
    "Christian Cage",
-   "Bobby Roode"
+   "Sting"
   ],
   "answer": 2
  },
@@ -5261,7 +5261,7 @@
   "prompt": "Who did Jeff Hardy defeat at TNA Bound for Glory 2012?",
   "options": [
    "Austin Aries",
-   "Bobby Roode",
+   "Sting",
    "Kurt Angle",
    "D-Von Dudley"
   ],
@@ -5272,7 +5272,7 @@
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA Slammiversary XI 2013?",
   "options": [
-   "Bobby Roode",
+   "Sting",
    "James Storm",
    "A.J. Styles",
    "Samoa Joe"
@@ -5562,7 +5562,7 @@
   "options": [
    "Kevin Nash",
    "Randy Orton",
-   "Sting",
+   "Bobby Roode",
    "A.J. Styles"
   ],
   "answer": 3
@@ -5669,7 +5669,7 @@
   "prompt": "Who did Kurt Angle defeat at TNA Victory Road 2012?",
   "options": [
    "Samoa Joe",
-   "Bobby Roode",
+   "Sting",
    "Jeff Hardy",
    "A.J. Styles"
   ],
@@ -5693,8 +5693,8 @@
   "prompt": "Who did Samoa Joe defeat at TNA Destination X 2012?",
   "options": [
    "A.J. Styles",
-   "Bobby Roode",
    "Sting",
+   "Bobby Roode",
    "Kurt Angle"
   ],
   "answer": 3
@@ -6089,7 +6089,7 @@
   "prompt": "Who did Christopher Daniels defeat at TNA Genesis 2006?",
   "options": [
    "Chris Sabin",
-   "Bobby Roode",
+   "Sting",
    "A.J. Styles",
    "Christian Cage"
   ],
@@ -6102,7 +6102,7 @@
   "options": [
    "Kurt Angle",
    "Samoa Joe",
-   "Sting",
+   "Bobby Roode",
    "Abyss"
   ],
   "answer": 0
@@ -6136,7 +6136,7 @@
   "type": "classic",
   "prompt": "Who did Kurt Angle defeat at TNA No Surrender 2007?",
   "options": [
-   "Bobby Roode",
+   "Sting",
    "Christian Cage",
    "Abyss",
    "Scott Steiner"
@@ -6149,7 +6149,7 @@
   "prompt": "Who did Jay Lethal defeat at TNA Bound for Glory 2007?",
   "options": [
    "Scott Steiner",
-   "Sting",
+   "Bobby Roode",
    "A.J. Styles",
    "Christopher Daniels"
   ],
@@ -6895,7 +6895,7 @@
    "Kevin Nash",
    "Samoa Joe",
    "Jeff Jarrett",
-   "Sting"
+   "Bobby Roode"
   ],
   "answer": 2
  },
@@ -6943,7 +6943,7 @@
    "Chris Harris",
    "A.J. Styles",
    "Samoa Joe",
-   "Bobby Roode"
+   "Sting"
   ],
   "answer": 0
  },
@@ -6953,7 +6953,7 @@
   "prompt": "Who did Kurt Angle defeat at TNA Hard Justice 2007?",
   "options": [
    "Samoa Joe",
-   "Bobby Roode",
+   "Sting",
    "Abyss",
    "Christian Cage"
   ],
@@ -7555,7 +7555,7 @@
    "Raquel Rodriguez",
    "Bianca Belair",
    "Alexa Bliss",
-   "Kris Statlander"
+   "Jade Cargill"
   ],
   "answer": 1
  },
@@ -7675,7 +7675,7 @@
    "Kurt Angle",
    "Jerry Lynn",
    "Christian Cage",
-   "Sting"
+   "Bobby Roode"
   ],
   "answer": 1
  },
@@ -7723,7 +7723,7 @@
    "Scott Steiner",
    "Bobby Lashley",
    "Homicide",
-   "Mick Foley"
+   "Eric Young"
   ],
   "answer": 2
  },
@@ -7818,7 +7818,7 @@
   "options": [
    "James Storm",
    "Samoa Joe",
-   "Bobby Roode",
+   "Sting",
    "D-Von Dudley"
   ],
   "answer": 0
@@ -8152,7 +8152,7 @@
   "type": "classic",
   "prompt": "Who did James Storm defeat at TNA Victory Road 2007?",
   "options": [
-   "Bobby Roode",
+   "Sting",
    "Kurt Angle",
    "Rhino",
    "Jeff Jarrett"
@@ -8248,7 +8248,7 @@
   "type": "classic",
   "prompt": "Who did Samoa Joe defeat at TNA Bound for Glory 2012?",
   "options": [
-   "Bobby Roode",
+   "Sting",
    "D-Von Dudley",
    "Jeff Hardy",
    "Magnus"
@@ -8622,8 +8622,8 @@
   "options": [
    "Kurt Angle",
    "Monty Brown",
-   "Bobby Roode",
-   "Sting"
+   "Sting",
+   "Bobby Roode"
   ],
   "answer": 1
  },
@@ -8645,7 +8645,7 @@
   "prompt": "Who did Chris Sabin defeat at TNA Hard Justice 2006?",
   "options": [
    "Christian Cage",
-   "Bobby Roode",
+   "Sting",
    "Jeff Jarrett",
    "Alex Shelley"
   ],
@@ -8656,8 +8656,8 @@
   "type": "classic",
   "prompt": "Who did A.J. Styles defeat at TNA Turning Point 2006?",
   "options": [
-   "Sting",
    "Bobby Roode",
+   "Sting",
    "Rhino",
    "Rob Van Dam"
   ],
@@ -8716,9 +8716,9 @@
   "type": "classic",
   "prompt": "Who did Austin Aries defeat at TNA Final Resolution 2011?",
   "options": [
-   "Sting",
-   "Kid Kash",
    "Bobby Roode",
+   "Kid Kash",
+   "Sting",
    "Jeff Hardy"
   ],
   "answer": 1
@@ -8729,7 +8729,7 @@
   "prompt": "Who did Gunner defeat at TNA Genesis 2012?",
   "options": [
    "Jeff Hardy",
-   "Sting",
+   "Bobby Roode",
    "Rob Van Dam",
    "Eric Young"
   ],
@@ -8743,7 +8743,7 @@
    "Kid Kash",
    "Samoa Joe",
    "Kurt Angle",
-   "Sting"
+   "Bobby Roode"
   ],
   "answer": 0
  },
@@ -9066,7 +9066,7 @@
   "options": [
    "Petey Williams",
    "Abyss",
-   "Sting",
+   "Bobby Roode",
    "A.J. Styles"
   ],
   "answer": 0
@@ -9115,7 +9115,7 @@
    "A.J. Styles",
    "James Storm",
    "D-Von Dudley",
-   "Sting"
+   "Bobby Roode"
   ],
   "answer": 1
  },
@@ -9125,7 +9125,7 @@
   "prompt": "Who did Jeff Hardy defeat at TNA No Surrender 2012?",
   "options": [
    "D-Von Dudley",
-   "Bobby Roode",
+   "Sting",
    "Samoa Joe",
    "Christopher Daniels"
   ],

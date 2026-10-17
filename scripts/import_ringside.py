@@ -521,7 +521,7 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
 
     def famous(ids, k, exclude, g=None):
         cand = sorted({w for w in ids if display[w] not in exclude and (not g or gender.get(w) == g)},
-                      key=lambda w: -ppv_n[w])
+                      key=lambda w: (-ppv_n[w], int(w)))
         top = cand[:max(k * 3, 8)]
         rng.shuffle(top)
         return [display[w] for w in top[:k]]

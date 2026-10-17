@@ -36,7 +36,14 @@ What the import does with the archive:
 
 ### Curation (the Google Sheet)
 
-`data/curation/*.csv` are the hand-edited layer on top of the import. Each is meant to be a tab in a Google Sheet, exported to CSV:
+The hand-edited layer on top of the import lives in the Google Sheet **"The Push – curation"**, one tab per file. Edit the sheet, then:
+
+```bash
+npm run data      # pull the sheet, re-import, check a year of puzzles
+git add -A && git commit -m "Update curation" && git push   # Vercel redeploys
+```
+
+`npm run data` downloads the published CSV of each tab (links in `data/curation/sheet.json`) into `data/curation/`, refusing if a tab's columns change. The tabs:
 
 | file | purpose |
 |---|---|
@@ -44,6 +51,13 @@ What the import does with the archive:
 | `tags.csv` | facts the dataset lacks or gets wrong: `wrestler,tag,action(add/remove),note` |
 
 The archive has no AEW, NJPW or ROH title histories, so `tags.csv` supplies AEW World Champions.
+
+Each import also writes `data/generated/merge_candidates.csv`: likely renames not yet merged (one name contains the other and the careers barely overlap). Copy the real ones into the `merges` tab.
+
+## Production
+
+- Live at https://the-push-wrestling.vercel.app (Vercel, auto-deploys `main`).
+- Leaderboards use the Upstash database connected in Vercel's Storage tab. `/api/health` reports `{"store":"upstash","ok":true}` when that is working.
 
 ## Known gaps
 
