@@ -4,7 +4,8 @@ The sheet's tabs are published to the web as CSV (File > Share > Publish to web)
 and their links live in data/curation/sheet.json:
 
     {"merges": "https://docs.google.com/.../pub?gid=0&single=true&output=csv",
-     "tags":   "https://docs.google.com/.../pub?gid=123&single=true&output=csv"}
+     "tags":   "https://docs.google.com/.../pub?gid=123&single=true&output=csv",
+     "wikidata": "...optional third tab..."}
 
     python scripts/pull_curation.py      # then: python scripts/import_ringside.py
 """
@@ -19,6 +20,7 @@ CUR = pathlib.Path(__file__).resolve().parent.parent / "data/curation"
 HEADERS = {
     "merges": ["keep", "merge", "display", "note"],
     "tags": ["wrestler", "tag", "action", "note"],
+    "wikidata": ["wrestler", "qid", "note"],  # optional third tab: pins to Wikidata people
 }
 
 
