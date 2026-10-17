@@ -3,7 +3,11 @@
 import { store } from "./store";
 
 export function adminEmails(): string[] {
-  return (process.env.ADMIN_EMAILS ?? "").split(",").map((e) => e.trim().toLowerCase()).filter(Boolean);
+  // forgiving: commas, semicolons, spaces or new lines between addresses; stray quotes or <> ignored
+  return (process.env.ADMIN_EMAILS ?? "")
+    .split(/[\s,;]+/)
+    .map((e) => e.replace(/["'<>]/g, "").trim().toLowerCase())
+    .filter((e) => e.includes("@"));
 }
 
 export function isAdmin(email?: string | null) {

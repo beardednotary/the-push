@@ -15,7 +15,23 @@ const pct = (a: number, b: number) => (b ? `${Math.round((100 * a) / b)}%` : "â€
 
 export default async function StatsPage() {
   const session = await auth();
-  if (!isAdmin(session?.user?.email)) notFound();
+  if (!session?.user) notFound();
+  if (!isAdmin(session.user.email)) {
+    // signed in but not on the list: say which address to add (only ever shows the viewer their own email)
+    return (
+      <>
+        <Bug>
+          <Plate tone="dark">Stats</Plate>
+        </Bug>
+        <main className="wrap">
+          <p className="muted" style={{ marginTop: 40 }}>
+            You&apos;re signed in as <b>{session.user.email ?? "an account with no email"}</b>, which isn&apos;t on this site&apos;s
+            admin list.
+          </p>
+        </main>
+      </>
+    );
+  }
 
   const today = todayKey();
   const days = Array.from({ length: 14 }, (_, i) => addDays(today, -i)).filter((d) => puzzleNumber(d) >= 1);
