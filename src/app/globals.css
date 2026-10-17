@@ -242,3 +242,9 @@ button { font: inherit; color: inherit; }
 .prose ul { padding-left: 0; list-style: none; display: grid; gap: 10px; }
 .prose li { padding-left: 16px; box-shadow: inset 4px 0 0 var(--steel); }
 .prose a, .footer a.gold { color: var(--gold); }
+/* keep the copy clear of the logo bar; on short screens the hero grows instead of overlapping */
+.hero { padding-top: 96px; }
+@media (min-width: 900px) {
+  .hero-copy .chrome { font-size: clamp(56px, min(8.5vw, 12.5vh), 108px); }
+  .hero-copy { max-width: 680px; padding-bottom: 7vh; }
+}
