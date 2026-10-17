@@ -12,16 +12,16 @@ Read this after every import; spot-check the lists against what you know.
 - matches after de-dup: 129887
 - gender: Counter({'m': 2991, 'f': 340}) among regulars
 - REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): ['Johnny Grunge ECW World Heavyweight Title 1994-03-26', 'Sabu ECW World Heavyweight Title 1995-02-04', 'Jr. WCW Cruiserweight Championship 1996-07-08', 'Jr. WCW Cruiserweight Championship 1998-01-15', 'Kane WWF World Heavyweight Title 1998-09-27', 'Kane WWF European Title 1999-02-15', 'Jr. WCW Cruiserweight Championship 1999-03-15', 'Jr. WCW Cruiserweight Championship 1999-04-26', 'Evan Karagias WCW Hardcore Title 2000-02-28', 'David Arquette WCW World Heavyweight Title 2000-04-25', 'Crowbar WCW Cruiserweight Championship 2000-05-15', 'Kane WWF World Heavyweight Title 2000-06-25', 'Chyna WWF Intercontinental Title 2000-08-27', 'Kevin Nash WCW Cruiserweight Championship 2000-10-02', 'Mr. McMahon ECW World Heavyweight Title 2007-04-29', 'Cody Rhodes WWE Championship 2009-04-26', "Layla WWE Women's Championship (original) 2010-05-11", 'Chris Jericho WWE United States Championship 2017-01-09', 'Dash Wilder WWE 24/7 Title 2019-08-12', 'Claudio Castagnoli WWE Intercontinental Championship 2020-03-08']
-- pool size 2047; duplicate display names: []
+- pool size 2045; duplicate display names: []
 - possible name splits to review: 128 (data/generated/merge_candidates.csv)
 - trivia questions generated: 858; skipped: {'rumble': 43, 'wmMain': 7, 'lineage-unconfirmed': 105, 'lineage-tv': 182, 'lineage': 10, 'classic-obscure': 198, 'classic': 6}
 
 ## Criteria counts (pool)
 
-- wwe: 1351
+- wwe: 1349
 - nxt: 494
-- wcw: 327
-- ecw: 192
+- wcw: 326
+- ecw: 191
 - tna: 241
 - aew: 308
 - wweChamp: 51
@@ -33,12 +33,12 @@ Read this after every import; spot-check the lists against what you know.
 - ic: 94
 - us: 76
 - tv: 35
-- cruiser: 57
+- cruiser: 56
 - hardcore: 50
 - european: 21
 - nxtChamp: 24
 - twentyFourSeven: 56
-- tag: 212
+- tag: 211
 - womens: 82
 - rumble: 35
 - wmMain: 42
@@ -47,10 +47,10 @@ Read this after every import; spot-check the lists against what you know.
 - cage: 414
 - ladder: 221
 - marathon: 66
-- d1980s: 232
-- d1990s: 709
-- d2000s: 575
-- d2010s: 657
+- d1980s: 231
+- d1990s: 708
+- d2000s: 574
+- d2010s: 656
 - d2020s: 687
 
 ## Royal Rumble winners

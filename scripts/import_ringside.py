@@ -37,6 +37,8 @@ SHOW_PATTERNS = {
 }
 # WCW and ECW events after the sales are WWF "Invasion" shows, not the real thing
 PROMO_UNTIL = {"WCW": "2001-03-27", "ECW": "2001-04-05"}
+# Fragments left by splitting "Ted DiBiase, Jr." style names; never real people.
+JUNK_NAMES = {"Jr.", "Jr", "Sr.", "Sr"}
 MIN_PROMO_MATCHES = 3
 MIN_POOL_MATCHES = 15
 
@@ -373,7 +375,7 @@ def main():
     for root in members:
         t = tags.get(root, set()) & CRITERION_IDS
         titled = bool(t & (set(TITLE_GROUPS) | {"tag", "womens", "aewChamp"}))
-        if (total_n[root] < MIN_POOL_MATCHES and not titled) or re.search(r", | & ", display[root]):
+        if (total_n[root] < MIN_POOL_MATCHES and not titled) or re.search(r", | & ", display[root]) or display[root] in JUNK_NAMES:
             continue
         aka = sorted(a for a in aliases[root] if a and name_key(a) != name_key(display[root]))
         pool.append({"id": int(root), "name": display[root], "aka": aka[:8], "g": gender.get(root, ""),
@@ -505,7 +507,7 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
         if qid in seen_ids or re.search(r", | & ", answer):
             skipped[qtype] += 1
             return
-        distractors = [d for d in distractors if not re.search(r", | & ", d or "")]
+        distractors = [d for d in distractors if not re.search(r", | & ", d or "") and d not in JUNK_NAMES]
         opts = [answer]
         for d in distractors:
             if d and d not in opts:
@@ -520,7 +522,7 @@ def build_trivia(events, by_event, matches, reigns, title_group, display, gender
                    "answer": opts.index(answer)})
 
     def famous(ids, k, exclude, g=None):
-        cand = sorted({w for w in ids if display[w] not in exclude and (not g or gender.get(w) == g)},
+        cand = sorted({w for w in ids if display[w] not in exclude and display[w] not in JUNK_NAMES and (not g or gender.get(w) == g)},
                       key=lambda w: (-ppv_n[w], int(w)))
         top = cand[:max(k * 3, 8)]
         rng.shuffle(top)
