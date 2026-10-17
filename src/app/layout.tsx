@@ -1,10 +1,25 @@
 import type { Metadata, Viewport } from "next";
-import { Saira_Condensed, Teko } from "next/font/google";
+import localFont from "next/font/local";
 import { Ticker } from "@/components/Chrome";
 import "./globals.css";
 
-const display = Teko({ variable: "--font-display", weight: ["500", "600", "700"], subsets: ["latin"] });
-const ui = Saira_Condensed({ variable: "--font-ui", weight: ["500", "700", "800"], subsets: ["latin"] });
+// Self-hosted (src/fonts, OFL) so builds never depend on fetching from Google Fonts.
+const display = localFont({
+  variable: "--font-display",
+  src: [
+    { path: "../fonts/teko-500.woff2", weight: "500" },
+    { path: "../fonts/teko-600.woff2", weight: "600" },
+    { path: "../fonts/teko-700.woff2", weight: "700" },
+  ],
+});
+const ui = localFont({
+  variable: "--font-ui",
+  src: [
+    { path: "../fonts/saira-condensed-500.woff2", weight: "500" },
+    { path: "../fonts/saira-condensed-700.woff2", weight: "700" },
+    { path: "../fonts/saira-condensed-800.woff2", weight: "800" },
+  ],
+});
 
 const description = "Daily wrestling trivia: five questions, fifteen seconds each, and the Immaculate Ring. New card every night.";
 
