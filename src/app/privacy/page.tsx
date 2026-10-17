@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/meta";
 import { Bug, Plate } from "@/components/Chrome";
 
-export const metadata: Metadata = { title: "Privacy · The Push" };
+export const metadata: Metadata = pageMeta("/privacy", "Privacy · The Push");
 
 const UPDATED = "October 17, 2026";
 const CONTACT = "ray@dahvio.com";

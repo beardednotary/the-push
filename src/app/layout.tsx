@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import { Analytics } from "@vercel/analytics/next";
 import { AccountLink } from "@/components/account";
 import { Ticker } from "@/components/Chrome";
+import { SITE_DESCRIPTION, pageMeta } from "@/lib/meta";
 import "./globals.css";
 
 // Self-hosted (src/fonts, OFL) so builds never depend on fetching from Google Fonts.
@@ -23,15 +24,11 @@ const ui = localFont({
   ],
 });
 
-const description = "Daily wrestling trivia: five questions, fifteen seconds each, and the Immaculate Ring. New card every night.";
-
 export const metadata: Metadata = {
   // absolute base for share-banner and share-card URLs
   metadataBase: new URL("https://playthepush.com"),
-  title: "The Push: daily wrestling games",
-  description,
-  openGraph: { title: "The Push", description, siteName: "The Push", type: "website" },
-  twitter: { card: "summary_large_image", title: "The Push", description },
+  ...pageMeta("/", "The Push: daily wrestling games"),
+  openGraph: { title: "The Push", description: SITE_DESCRIPTION, url: "/", siteName: "The Push", type: "website" },
 };
 
 export const viewport: Viewport = { themeColor: "#07080b" };

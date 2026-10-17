@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { pageMeta } from "@/lib/meta";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Bug, Plate } from "@/components/Chrome";
@@ -15,13 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   if (!r) return {};
   const title = `${headline(r)}. Can you beat it?`;
   const description = "The Push: daily wrestling trivia. New card every night.";
-  return {
-    title,
-    description,
-    robots: { index: false, follow: true },
-    openGraph: { title, description },
-    twitter: { card: "summary_large_image", title, description },
-  };
+  return pageMeta(`/r/${p.game}/${p.n}/${p.code}`, title, description, { robots: { index: false, follow: true } });
 }
 
 export default async function SharedResultPage({ params }: { params: Promise<Params> }) {
