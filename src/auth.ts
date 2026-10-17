@@ -22,11 +22,12 @@ const has = {
 };
 
 const providers = [
-  has.google ? Google : null,
+  // Same verified email = same person, whichever button they use (Google always verifies).
+  has.google ? Google({ allowDangerousEmailAccountLinking: true }) : null,
   // Discord now returns an "iss" value on the callback (RFC 9207); Auth.js rejects it
   // unless the provider declares Discord's issuer (from its openid-configuration).
-  has.discord ? Discord({ issuer: "https://discord.com" }) : null,
-  has.email ? Resend({ from: "The Push <signin@playthepush.com>" }) : null,
+  has.discord ? Discord({ issuer: "https://discord.com", allowDangerousEmailAccountLinking: true }) : null,
+  has.email ? Resend({ from: "The Push <signin@playthepush.com>", allowDangerousEmailAccountLinking: true }) : null,
 ].filter((p) => p !== null);
 
 /** Which sign-in options to show. All false means sign-in is off (local dev, or keys not added yet). */
@@ -40,6 +41,11 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   trustHost: true,
   pages: { signIn: "/signin", verifyRequest: "/signin?sent=1", error: "/signin" },
   callbacks: {
+    // Email linking is only safe with verified emails; Discord accounts can have unverified ones.
+    signIn({ account, profile }) {
+      if (account?.provider === "discord" && (profile as { verified?: boolean } | undefined)?.verified === false) return false;
+      return true;
+    },
     session({ session, user }) {
       if (user?.id && session.user) session.user.id = user.id;
       return session;
