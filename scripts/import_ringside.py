@@ -7,6 +7,7 @@ Outputs
     data/generated/ring.json    criteria + wrestler pool for the Immaculate Ring
     data/generated/trivia.json  question bank for the Daily Five
     data/generated/REPORT.md    counts and spot-check lists; read it after every import
+    data/generated/fact_check.csv  the guesses worth a human look, best-known wrestlers first
 
 Curation (the Google Sheet tabs, exported as CSV) lives in data/curation/:
     merges.csv  one person split across several dataset ids or ring names
@@ -27,6 +28,8 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 RAW = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "data/raw/ringside"
 OUT = ROOT / "data/generated"
 CUR = ROOT / "data/curation"
+# (check, wrestler names, claim, evidence): what the import guessed rather than read, for fact_check.csv
+CHECKS = []
 
 # The archive's 2025-06+ scrape files thousands of indie shows under the major
 # promotions. Before this date events are trusted; after it, only events whose
@@ -260,6 +263,7 @@ def main():
             roots = {find(i) for i in ids}
             if len(roots) > 1:
                 auto.append(sorted({clean_name(wrestlers[i]["ring_name"]) for i in ids}))
+                CHECKS.append(("Same person", auto[-1], "One wrestler under all these names", "Wikidata lists them as one person"))
                 for other in ids[1:]:
                     union(ids[0], other)
         report.append(f"- REVIEW: {len(auto)} gimmick changes merged via Wikidata aliases: "
@@ -410,6 +414,7 @@ def main():
             tags[wid].add(p.lower())
             if n < SURE_PROMO_MATCHES and total_n_raw(wid, members, raw_count) >= MIN_POOL_MATCHES:
                 one_offs.append((wid, f"{display[wid]}: {p} ({first_show[(wid, p)]})"))
+                CHECKS.append(("Promotion", [display[wid]], f"Wrestled for {p}", f"Only {n} match{'es' if n > 1 else ''}, first: {first_show[(wid, p)]}"))
     for (wid, dec), n in decade_n.items():
         if n >= 3 and f"d{dec}0s" in CRITERION_IDS:
             tags[wid].add(f"d{dec}0s")
@@ -517,6 +522,11 @@ def main():
                 (t.add if o["action"] == "add" else t.discard)(o["tag"])
                 hit[0]["tags"] = sorted(t)
     fam = [w for w in pool if "family" in w["tags"]]
+    for w in fam:
+        CHECKS.append(("Wrestling Family", [w["name"]], "A parent, child or sibling was also a pro wrestler", "Wikidata family links"))
+    for w in pool:
+        if "gaijin" in w["tags"]:
+            CHECKS.append(("Gaijin", [w["name"]], "Not Japanese, and held a Japanese title or won a Japanese tournament", "Wikidata citizenship + Wikipedia title lists"))
     report.append(f"- REVIEW: Wrestling Family ({len(fam)}): " + "; ".join(w["name"] for w in fam[:400]))
     gai = [w for w in pool if "gaijin" in w["tags"]]
     report.append(f"- REVIEW: Gaijin ({len(gai)}): " + "; ".join(w["name"] for w in gai))
@@ -560,6 +570,7 @@ def main():
     lines += ["", "## Trivia sample", ""] + [f"- [{q['type']}] {q['prompt']} -> **{q['options'][q['answer']]}** (of {q['options']})"
                                               for q in sorted(sample, key=lambda q: q["type"])]
     (OUT / "REPORT.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
+    write_fact_check(pool)
     print(f"pool {len(pool)} wrestlers, {len(questions)} questions -> {OUT}")
 
 
@@ -680,6 +691,27 @@ def scene_people(unmatched, taken, pool, report):
     return out
 
 
+def write_fact_check(pool):
+    """One row per guess, for volunteers: the names players actually type come first, and
+    anything outside the game's pool is left off. Fill in verdict (ok / wrong) and a note."""
+    by_key = {}
+    for w in pool:
+        for n in [w["name"], *w["aka"]]:
+            by_key.setdefault(name_key(n), w)
+    rows = []
+    for check, names, claim, evidence in CHECKS:
+        w = next((by_key[name_key(n)] for n in names if name_key(n) in by_key), None)
+        if w:
+            shown = " = ".join(names) if len(names) > 1 else w["name"]
+            rows.append((-w["pop"], check, shown, claim, evidence))
+    rows.sort()
+    with open(OUT / "fact_check.csv", "w", newline="", encoding="utf-8") as f:
+        out = csv.writer(f, lineterminator="\n")
+        out.writerow(["#", "check", "wrestler", "claim", "evidence", "verdict", "note"])
+        for i, (_, check, shown, claim, evidence) in enumerate(rows, 1):
+            out.writerow([i, check, shown, claim, evidence, "", ""])
+
+
 def add_legacy(pool, report):
     """Lucha Legacy: a lucha wrestler (Mexican belt or born in Mexico) whose name or an
     alias is a family or inherited name. Inherited masks the pattern misses (La Parka)
@@ -691,6 +723,7 @@ def add_legacy(pool, report):
         if any(re.search(LEGACY_NAME, n.strip()) for n in [w["name"], *w["aka"]]):
             w["tags"] = sorted({*w["tags"], "legacy"})
             hits.append(w["name"])
+            CHECKS.append(("Lucha Legacy", [w["name"]], "Works a family or inherited lucha name", "Guessed from the name"))
     report.append(f"- REVIEW: Lucha Legacy by name ({len(hits)}): " + "; ".join(sorted(hits)))
 
 
