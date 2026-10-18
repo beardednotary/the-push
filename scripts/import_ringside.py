@@ -222,8 +222,8 @@ CRITERION_IDS = {c[0] for c in CRITERIA}
 # cards exist (see docs/regions.md); the main grid is built from criteria with no scene.
 SCENE = {"iwgpChamp": "jp", "never": "jp", "iwgpJr": "jp", "tripleCrown": "jp", "ghc": "jp", "stardomChamp": "jp",
          "g1": "jp", "bosj": "jp", "carnival": "jp", "gaijin": "jp",
-         "cmllChamp": "mx", "aaaMega": "mx", "reyDeReyes": "mx", "legacy": "mx", "lij": "jp"}
-JP_BELTS = {k for k, v in SCENE.items() if v == "jp" and k not in ("gaijin", "lij")}
+         "cmllChamp": "mx", "aaaMega": "mx", "reyDeReyes": "mx", "legacy": "mx"}
+JP_BELTS = {k for k, v in SCENE.items() if v == "jp" and k != "gaijin"}
 MX_BELTS = {k for k, v in SCENE.items() if v == "mx" and k != "legacy"}
 # Lucha legacy names: El Hijo de / del, La Hija de, Jr., or a numeral (Rey Mysterio Jr., Dr. Wagner Jr., Black Warrior II).
 # Only checked on lucha wrestlers (a Mexican belt or born in Mexico), so Ted DiBiase Jr. doesn't count.
@@ -627,7 +627,7 @@ def main():
     # states, factions and the crossover splits only exist when enough well-known names fit
     known = collections.Counter(t for w in pool if w["pop"] >= WELL_KNOWN_POP for t in w["tags"])
     optional = {c[0] for c in CRITERIA if c[1] == "faction" or c[0].startswith("state") or c[0] in ("wweToAew", "aewToWwe")}
-    dropped = {i for i in optional if known[i] < MIN_WELL_KNOWN and SCENE.get(i) != "jp"}
+    dropped = {i for i in optional if known[i] < MIN_WELL_KNOWN}
     if dropped & {"wweToAew", "aewToWwe"}:  # one side alone is just "AEW and WWE" again
         dropped |= {"wweToAew", "aewToWwe"}
     report.append(f"- dropped for fewer than {MIN_WELL_KNOWN} well-known names: "
