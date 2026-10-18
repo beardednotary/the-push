@@ -103,12 +103,16 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                     <td>
                       {s["five:finish"] ?? 0} <span className="muted">{pct(s["five:finish"] ?? 0, five)}</span>
                     </td>
-                    <td>{s["five:share"] ?? 0}</td>
+                    <td>
+                      {s["five:share"] ?? 0} <span className="muted">of {s["five:share_tap"] ?? 0} taps</span>
+                    </td>
                     <td>{ring}</td>
                     <td>
                       {s["ring:finish"] ?? 0} <span className="muted">{pct(s["ring:finish"] ?? 0, ring)}</span>
                     </td>
-                    <td>{s["ring:share"] ?? 0}</td>
+                    <td>
+                      {s["ring:share"] ?? 0} <span className="muted">of {s["ring:share_tap"] ?? 0} taps</span>
+                    </td>
                     <td>{s["remind:on"] ?? 0}</td>
                   </tr>
                 );
@@ -118,7 +122,8 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
         </div>
         <p className="muted small">
           Players = unique devices that finished a game. Returning = of those, how many first played on an earlier day. Counts
-          began when each column was added; earlier days show zero.
+          began when each column was added; earlier days show zero. Taps = pressed Challenge a friend; shared = actually sent
+          or copied it.
         </p>
 
         <section id="flair">

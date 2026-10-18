@@ -7,12 +7,15 @@ export const STAT_EVENTS = [
   "five:start_untimed",
   "five:finish",
   "five:share",
+  "five:share_tap", // tapped Challenge a friend, whether or not they went through with it
   "ring:start",
   "ring:finish",
   "ring:share",
+  "ring:share_tap",
   "ringjp:start",
   "ringjp:finish",
   "ringjp:share",
+  "ringjp:share_tap",
   "remind:on",
 ] as const;
 export type StatEvent = (typeof STAT_EVENTS)[number];

@@ -68,6 +68,7 @@ export function track(event: string) {
 export function ShareButton({ text, path, game, teaser, dare }: { text: string; path: string; game: "five" | "ring" | `ring${Region}`; teaser: string; dare: string }) {
   const [copied, setCopied] = useState(false);
   async function share() {
+    track(`${game}:share_tap`); // intent, even if they close the share sheet
     const streak = Number(safeGet("push:streak") ?? 0);
     // result, then the streak, then the dare
     const body = `${text}${streak >= 2 ? `\n🔥 ${streak}-day streak` : ""}\n${dare}`;
