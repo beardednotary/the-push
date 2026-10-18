@@ -1,6 +1,14 @@
-# Region cards: design note (phase 2, needs Ray's call)
+# Region cards
 
-A Reddit player asked to pick one scene ("lucha only") or "the world". Phase 1 added the data; this note proposes the product. Nothing here is built yet.
+A Reddit player asked to pick one scene ("lucha only") or "the world".
+
+## Decided (Ray, 2026-10-17)
+
+- No mixed US/Japan/Mexico card ("it'll tank scores"). The main card stays as it is; regions are separate cards.
+- Japan Ring shipped at `/ring/japan`: Japanese belts and tournaments plus life facts. No US promotions, no eras, no birthplace. Every square has a Japanese belt or tournament. Own frozen card, board and picks; no belts.
+- Mexico and region Daily Fives wait for more data.
+
+The original proposal follows.
 
 ## What the data can carry (phase 1, `data/generated/REPORT.md` → "International coverage")
 

@@ -4,6 +4,7 @@ Daily wrestling games, one card a day (midnight Eastern):
 
 - **Daily Five**: five multiple-choice questions, 15 seconds each. 100 points for a right answer plus up to 100 for speed.
 - **Immaculate Ring**: a 3x3 grid. Name a wrestler who fits each row and column; nine guesses; rarer picks rank higher.
+- **Immaculate Ring Japan** (`/ring/japan`): its own nightly grid built only from Japanese belts and tournaments (plus MMA, amateur and acting facts), with its own leaderboard. It never counts toward the belts.
 
 Next.js 15 (App Router) · Upstash Redis for leaderboards · data from the [Ringside Wrestling Archive](https://www.kaggle.com/datasets/theodorerubin/ringside-wrestling-archive) (Kaggle, CC0).
 
@@ -35,7 +36,8 @@ What the import does with the archive:
 - Fixes gender (the source marks most women male) from women's titles and singles opponents.
 - Derives grid criteria: promotions, title groups, Rumble wins, WrestleMania and AEW PPV main events, Hell in a Cell, cage, ladder, 30-minute matches and decades.
 - Generates trivia: Rumble winners, WrestleMania main events and cities, title changes (each one confirmed by its title match), classic PPV matches, and "which promotion ran this PPV".
-- Japan and Mexico: IWGP, NEVER, IWGP Junior, Triple Crown, GHC, World of Stardom, CMLL and AAA Mega champions, plus G1 Climax, Best of the Super Juniors, Champion Carnival and Rey de Reyes winners (Wikipedia). These criteria carry a `scene` (`jp` / `mx`) and stay out of the main grid; tournament-winner trivia (type `tourney`) stays out of the Daily Five. Both wait for region cards (`docs/regions.md`). The report's "International coverage" section shows how thin the archive is outside the US.
+- Japan and Mexico: IWGP, NEVER, IWGP Junior, Triple Crown, GHC, World of Stardom, CMLL and AAA Mega champions, plus G1 Climax, Best of the Super Juniors, Champion Carnival and Rey de Reyes winners (Wikipedia). These criteria carry a `scene` (`jp` / `mx`) and never enter the main grid. The `jp` ones build the Japan Ring (`gridFor(day, "jp")`, frozen at `card:ring:jp:DAY`, board `lb:ring:jp:DAY`, picks `ring:jp:DAY:picks`). Mexico can't fill a grid without US promotions yet, and tournament-winner trivia (type `tourney`) isn't in any Daily Five yet (`docs/regions.md`).
+- Champions on those lists whom the archive has never heard of (Misawa, Kobashi, Mayu Iwatani) join the pool from Wikipedia, with Wikidata's aliases and facts when Wikidata knows them. Their ids start at 1,000,000,000 (Wikidata number) or 3,000,000,000 (name hash). If one is really an archive person under another name, add a `merges` row (`The Great Muta` ← `Keiji Muto`). The report's "International coverage" section shows how thin the archive is outside the US.
 
 ### Curation (the Google Sheet)
 
@@ -52,7 +54,7 @@ git add -A && git commit -m "Update curation" && git push   # Vercel redeploys
 |---|---|
 | `merges.csv` | one person under several names/ids (Daniel Bryan → Bryan Danielson), plus display names |
 | `tags.csv` | facts the dataset lacks or gets wrong: `wrestler,tag,action(add/remove),note` |
-| `questions.csv` | community trivia: `prompt,answer,wrong1,wrong2,wrong3,source,region,approved,note`. `region` is `world`, `us`, `jp` or `mx`. A row is used only once `approved` is `yes` (or `y`, `x`, `true`, `1`); the report lists rows it rejected and why. |
+| `questions.csv` | community trivia. The sheet tab has `prompt`, `answer`, `3 wrong options` (one cell, split by `;`, `|`, `/`, new lines or commas), `source URL`, `region` (`world`, `us`, `jp`, `mx`) and `approved`; columns are found by name. A row is used only once `approved` is `yes` (or `y`, `x`, `true`, `1`), and the report lists rejected rows and why. Approved questions are in the bank but not yet in any Daily Five. |
 
 The archive has no AEW, NJPW or ROH title histories, so `tags.csv` supplies AEW World Champions.
 

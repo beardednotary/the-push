@@ -7,16 +7,18 @@ Read this after every import; spot-check the lists against what you know.
 - MERGE SKIPPED (name not found): The Undertaker <- Mean Mark Callous
 - MERGE SKIPPED (name not found): Kevin Owens <- Kevin Steen
 - MERGE SKIPPED (name not found): Karrion Kross <- Killer Kross
-- identities: 12814 dataset ids -> 11286 people
+- MERGE SKIPPED (name not found): The Great Muta <- Keiji Muto
+- identities: 12814 dataset ids -> 11285 people
 - events kept 30839, dropped as off-brand after 2025-06-01: {'WWE': 151, 'NXT': 75, 'AEW': 4244}
 - duplicate event listings collapsed: 10713
 - matches after de-dup: 129886
-- gender: Counter({'m': 2773, 'f': 316}) among regulars
+- gender: Counter({'m': 2772, 'f': 316}) among regulars
 - REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): ['Johnny Grunge ECW World Heavyweight Title 1994-03-26', 'Sabu ECW World Heavyweight Title 1995-02-04', 'Jr. WCW Cruiserweight Championship 1996-07-08', 'Jr. WCW Cruiserweight Championship 1998-01-15', 'Kane WWF World Heavyweight Title 1998-09-27', 'Kane WWF European Title 1999-02-15', 'Jr. WCW Cruiserweight Championship 1999-03-15', 'Jr. WCW Cruiserweight Championship 1999-04-26', 'Evan Karagias WCW Hardcore Title 2000-02-28', 'David Arquette WCW World Heavyweight Title 2000-04-25', 'Crowbar WCW Cruiserweight Championship 2000-05-15', 'Kane WWF World Heavyweight Title 2000-06-25', 'Chyna WWF Intercontinental Title 2000-08-27', 'Kevin Nash WCW Cruiserweight Championship 2000-10-02', 'Mr. McMahon ECW World Heavyweight Title 2007-04-29', 'Cody Rhodes WWE Championship 2009-04-26', "Layla WWE Women's Championship (original) 2010-05-11", 'Chris Jericho WWE United States Championship 2017-01-09', 'Dash Wilder WWE 24/7 Title 2019-08-12', 'Claudio Castagnoli WWE Intercontinental Championship 2020-03-08']
-- Wikidata: 1977 people matched, 13 skipped as ambiguous; tags added: {'college': 66, 'actor': 266, 'profootball': 49, 'olympian': 22, 'strength': 33, 'amateur': 220, 'bornAbroad': 644, 'bornJP': 133, 'combat': 67, 'bornMX': 98, 'music': 29, 'bornUK': 106, 'bornCA': 137, '(born from citizenship)': 65}
-- Title lists (Wikipedia): champions added that the archive was missing: {'wweChamp': 11, 'whc': 5, 'universal': 1, 'wcwChamp': 2, 'ecwChamp': 7, 'aewChamp': 11, 'ic': 7, 'us': 32, 'tv': 43, 'cruiser': 19, 'hardcore': 19, 'european': 7, 'nxtChamp': 5, 'twentyFourSeven': 5, 'tag': 237, 'womens': 7, 'iwgpChamp': 29, 'never': 19, 'iwgpJr': 27, 'tripleCrown': 14, 'ghc': 12, 'stardomChamp': 8, 'cmllChamp': 10, 'aaaMega': 11, 'g1': 17, 'bosj': 15, 'carnival': 14, 'reyDeReyes': 15}
+- Wikidata: 1977 people matched, 12 skipped as ambiguous; tags added: {'(born from citizenship)': 65, 'college': 66, 'profootball': 49, 'actor': 266, 'olympian': 22, 'strength': 33, 'amateur': 220, 'bornJP': 133, 'bornAbroad': 644, 'combat': 67, 'bornMX': 98, 'music': 29, 'bornUK': 106, 'bornCA': 137}
+- Title lists (Wikipedia): champions added that the archive was missing: {'wweChamp': 11, 'whc': 5, 'universal': 1, 'wcwChamp': 2, 'ecwChamp': 7, 'aewChamp': 11, 'ic': 7, 'us': 32, 'tv': 43, 'cruiser': 19, 'hardcore': 19, 'european': 7, 'nxtChamp': 5, 'twentyFourSeven': 5, 'tag': 237, 'womens': 7, 'iwgpChamp': 29, 'never': 19, 'iwgpJr': 27, 'tripleCrown': 14, 'ghc': 12, 'stardomChamp': 8, 'cmllChamp': 10, 'aaaMega': 11, 'g1': 17, 'bosj': 15, 'carnival': 13, 'reyDeReyes': 15}
 - Title lists: names not matched to one person (often tag teams or pre-1980 champions): wweChamp: 12; whc: 6; universal: 4; wcwChamp: 6; ecwChamp: 9; aewChamp: 1; ic: 9; us: 15; tv: 12; cruiser: 20; hardcore: 9; european: 4; nxtChamp: 3; twentyFourSeven: 10; tag: 215; womens: 16; iwgpChamp: 13; never: 11; iwgpJr: 19; tripleCrown: 25; ghc: 17; stardomChamp: 13; cmllChamp: 11; aaaMega: 7; g1: 4; bosj: 12; carnival: 18; reyDeReyes: 11
-- pool size 1941; duplicate display names: []
+- scene people added from Wikipedia + Wikidata (not in the archive): 91, 10 of them unknown to Wikidata: ['Boltin Oleg', 'El Hijo del Perro Aguayo', 'El Texano Jr.', 'Gran Guerrero', 'Konnan El Barbaro', 'La Parka Jr.', 'Maika', 'Saya Kamitani', 'Sho', 'Xtreme Tiger']; skipped (no single Wikidata match, or name taken): ['Brazo de Plata']
+- pool size 2031; duplicate display names: []
 - possible name splits to review: 103 (data/generated/merge_candidates.csv)
 - trivia questions generated: 870; skipped: {'rumble': 43, 'wmMain': 7, 'lineage-unconfirmed': 103, 'lineage-tv': 183, 'lineage': 10, 'classic-obscure': 184, 'classic': 9}
 - scene trivia (tournament winners): 140
@@ -45,31 +47,31 @@ The archive has six US promotions and no country column. These are events whose 
 | TNA shows held there | Mexico | 1 | 1 | 6 | 2006-2006 | TNA 1 |
 | AEW shows held there | Mexico | 1 | 1 | 0 | 2025-2025 | AEW 1 |
 
-Pool: 1941 wrestlers, 642 well known (pop 150+, the grid's answer pool).
-Born in Japan: 72 (15 well known); born in Mexico: 55 (15 well known).
+Pool: 2031 wrestlers, 642 well known (pop 150+, the grid's answer pool).
+Born in Japan: 133 (15 well known); born in Mexico: 68 (15 well known).
 
 | scene criterion | in pool | well known |
 |---|---|---|
-| iwgpChamp (jp) | 29 | 7 |
-| never (jp) | 19 | 3 |
-| iwgpJr (jp) | 27 | 8 |
-| tripleCrown (jp) | 14 | 0 |
-| ghc (jp) | 12 | 3 |
-| stardomChamp (jp) | 8 | 3 |
-| cmllChamp (mx) | 10 | 6 |
-| aaaMega (mx) | 11 | 8 |
-| g1 (jp) | 17 | 3 |
-| bosj (jp) | 15 | 5 |
-| carnival (jp) | 14 | 1 |
-| reyDeReyes (mx) | 15 | 4 |
-| any jp criterion | 89 | 24 |
-| any mx criterion | 30 | 15 |
+| iwgpChamp (jp) | 40 | 8 |
+| never (jp) | 27 | 3 |
+| iwgpJr (jp) | 43 | 8 |
+| tripleCrown (jp) | 31 | 1 |
+| ghc (jp) | 28 | 3 |
+| stardomChamp (jp) | 19 | 3 |
+| cmllChamp (mx) | 18 | 6 |
+| aaaMega (mx) | 15 | 8 |
+| g1 (jp) | 21 | 3 |
+| bosj (jp) | 25 | 5 |
+| carnival (jp) | 29 | 1 |
+| reyDeReyes (mx) | 26 | 4 |
+| any jp criterion | 159 | 24 |
+| any mx criterion | 50 | 15 |
 
 ## Criteria counts (pool)
 
 - wwe: 1292
 - nxt: 468
-- wcw: 324
+- wcw: 323
 - ecw: 192
 - tna: 258
 - aew: 324
@@ -93,39 +95,39 @@ Born in Japan: 72 (15 well known); born in Mexico: 55 (15 well known).
 - wmMain: 41
 - aewPpvMain: 34
 - hiac: 49
-- cage: 397
+- cage: 396
 - ladder: 213
 - marathon: 66
 - d1980s: 241
-- d1990s: 672
+- d1990s: 671
 - d2000s: 560
 - d2010s: 611
 - d2020s: 672
-- actor: 193
-- music: 21
-- combat: 47
-- amateur: 108
-- olympian: 12
+- actor: 198
+- music: 22
+- combat: 62
+- amateur: 121
+- olympian: 16
 - profootball: 35
-- college: 50
+- college: 51
 - strength: 21
-- bornCA: 85
-- bornJP: 72
-- bornMX: 55
-- bornUK: 64
-- bornAbroad: 399
-- iwgpChamp: 29
-- never: 19
-- iwgpJr: 27
-- tripleCrown: 14
-- ghc: 12
-- stardomChamp: 8
-- cmllChamp: 10
-- aaaMega: 11
-- g1: 17
-- bosj: 15
-- carnival: 14
-- reyDeReyes: 15
+- bornCA: 86
+- bornJP: 133
+- bornMX: 68
+- bornUK: 65
+- bornAbroad: 477
+- iwgpChamp: 40
+- never: 27
+- iwgpJr: 43
+- tripleCrown: 31
+- ghc: 28
+- stardomChamp: 19
+- cmllChamp: 18
+- aaaMega: 15
+- g1: 21
+- bosj: 25
+- carnival: 29
+- reyDeReyes: 26
 
 ## Royal Rumble winners
 

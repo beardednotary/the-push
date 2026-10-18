@@ -1,5 +1,6 @@
 // What everyone picked in the Immaculate Ring, from the per-day pick counts.
-import { cellAnswers, getWrestler, type Grid } from "./ring";
+import { picksKey } from "./cards";
+import { cellAnswers, getWrestler, type Grid, type Region } from "./ring";
 import { store } from "./store";
 
 export interface CellPicks {
@@ -9,8 +10,8 @@ export interface CellPicks {
   examples: string[]; // well-known valid answers, for the answer key
 }
 
-export async function ringPicks(day: string, grid: Grid, examples = 0): Promise<CellPicks[]> {
-  const counts = await store.counts(`ring:${day}:picks`);
+export async function ringPicks(day: string, grid: Grid, examples = 0, region?: Region): Promise<CellPicks[]> {
+  const counts = await store.counts(picksKey(day, region));
   return Array.from({ length: 9 }, (_, cell) => {
     const total = counts[`${cell}:total`] ?? 0;
     const top = Object.entries(counts)

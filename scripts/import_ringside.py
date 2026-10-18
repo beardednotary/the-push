@@ -21,6 +21,7 @@ import random
 import re
 import unicodedata
 import sys
+import zlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 RAW = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "data/raw/ringside"
@@ -132,6 +133,7 @@ CRITERION_IDS = {c[0] for c in CRITERIA}
 # cards exist (see docs/regions.md); the main grid is built from criteria with no scene.
 SCENE = {"iwgpChamp": "jp", "never": "jp", "iwgpJr": "jp", "tripleCrown": "jp", "ghc": "jp", "stardomChamp": "jp",
          "g1": "jp", "bosj": "jp", "carnival": "jp", "cmllChamp": "mx", "aaaMega": "mx", "reyDeReyes": "mx"}
+SCENE_JUNK = r"Wrestling|Lucha Libre|Stardom|Brothers|Vacant|unification|Consejo|Championship|,"
 TOURNAMENT_LABELS = {"g1": "G1 Climax", "bosj": "Best of the Super Juniors", "carnival": "Champion Carnival",
                      "reyDeReyes": "Rey de Reyes"}
 # The archive only has six US promotions, but its 2025-06+ scrape filed some Japanese and
@@ -440,8 +442,8 @@ def main():
     report.append(f"- REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): {rejected}")
 
     # ---- beyond the ring: Wikidata facts ------------------------------------
-    wd_names = add_wikidata_tags(members, wrestlers, display, aliases, tags, report)
-    add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report)
+    wd_names, wd_taken = add_wikidata_tags(members, wrestlers, display, aliases, tags, report)
+    unmatched = add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report)
 
     # ---- curation overrides -----------------------------------------------
     # (after Wikidata, so the tags sheet always has the final say)
@@ -469,6 +471,7 @@ def main():
         aka = sorted(a for a in aliases[root] if a and name_key(a) != name_key(display[root]))
         pool.append({"id": int(root), "name": display[root], "aka": aka[:8], "g": gender.get(root, ""),
                      "tags": sorted(t), "pop": ppv_n[root] * 3 + total_n[root]})
+    pool += scene_people(unmatched, wd_taken, pool, report)
     pool.sort(key=lambda w: -w["pop"])
     names = collections.Counter(w["name"] for w in pool)
     report.append(f"- pool size {len(pool)}; duplicate display names: {[n for n, c in names.items() if c > 1][:30]}")
@@ -529,7 +532,7 @@ def add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report
         for n in names:
             if n and len(name_key(n)) >= 3:
                 by_key[name_key(n)].add(root)
-    added, unmatched = collections.Counter(), collections.defaultdict(list)
+    added, unmatched, unknown = collections.Counter(), collections.defaultdict(list), collections.defaultdict(list)
     for group, names in lists.items():
         if group not in CRITERION_IDS:
             continue
@@ -539,6 +542,8 @@ def add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report
                 roots = by_key.get(name_key(re.sub(r'"[^"]*"', "", n)), set())
             if len(roots) != 1:
                 unmatched[group].append(n)
+                if not roots:
+                    unknown[group].append(n)  # nobody in the archive by that name
                 continue
             root = next(iter(roots))
             if group not in tags[root]:
@@ -547,6 +552,89 @@ def add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report
     report.append(f"- Title lists (Wikipedia): champions added that the archive was missing: {dict(added)}")
     report.append(f"- Title lists: names not matched to one person (often tag teams or pre-1980 champions): "
                   + "; ".join(f"{g}: {len(v)}" for g, v in unmatched.items()))
+    return unknown
+
+
+def scene_people(unmatched, taken, pool, report):
+    """Japanese and Mexican champions the archive has never heard of (Misawa, Mayu Iwatani).
+    A list name that points to exactly one Wikidata wrestler gets that person's id, aliases
+    and life facts. Otherwise the Wikipedia name alone joins (Keiji Muto isn't tagged as a
+    wrestler on Wikidata), minus list junk like "Vacant" or "Saito Brothers"."""
+    path = RAW.parent / "wikidata.json"
+    if not path.exists():
+        return []
+    people = json.loads(path.read_text(encoding="utf-8"))
+    wd_by_key = collections.defaultdict(set)
+    for q, rec in people.items():
+        for n in [rec["label"], *rec["aliases"]]:
+            if n:
+                wd_by_key[name_key(n)].add(q)
+    # tournament lists also carry the name shown that year (Black Tiger II = Eddie Guerrero);
+    # those match people but never start a new one
+    years = json.loads((RAW.parent / "titles_wiki.json").read_text(encoding="utf-8")).get("years", {})
+    shown_only = {sh for rows_ in years.values() for _, sh, link in rows_ if sh != link}
+    found, shown, skipped = collections.defaultdict(set), {}, []
+    for group, names in unmatched.items():
+        if group not in SCENE:
+            continue
+        for n in names:
+            if n in shown_only:
+                continue
+            qs = wd_by_key.get(name_key(n), set())
+            if re.search(SCENE_JUNK, n):
+                continue
+            if len(qs) == 1 and next(iter(qs)) not in taken:
+                q = next(iter(qs))
+            elif not qs:
+                q = f"name:{name_key(n)}"
+            else:
+                skipped.append(n)
+                continue
+            found[q].add(group)
+            shown.setdefault(q, n)
+    # the merges tab also covers these people: "The Great Muta <- Keiji Muto" folds the
+    # Wikipedia name's belts into the archive's person
+    by_name = {name_key(w["name"]): w for w in pool}
+    folds = {}
+    with open(CUR / "merges.csv", newline="", encoding="utf-8") as f:
+        for m in csv.DictReader(f):
+            if name_key(m["keep"]) in by_name:
+                folds[name_key(m["merge"])] = by_name[name_key(m["keep"])]
+    out = []
+    for q, groups in sorted(found.items()):
+        name = shown[q]
+        if name_key(name) in folds:
+            keep = folds[name_key(name)]
+            keep["tags"] = sorted(set(keep["tags"]) | groups)
+            continue
+        if name_key(name) in by_name:
+            skipped.append(name)  # a different person with the same name is already in the pool
+            continue
+        rec = people.get(q, {"label": name, "aliases": [], "facts": []})
+        aka = sorted({a for a in [rec["label"], *rec["aliases"]] if a and name_key(a) != name_key(name)})
+        # stable ids: Wikidata's number, or a hash of the name, far above the archive's ids
+        pid = 1_000_000_000 + int(q[1:]) if q.startswith("Q") else 3_000_000_000 + zlib.crc32(q.encode()) % 1_000_000_000
+        out.append({"id": pid, "name": name, "aka": aka[:8],
+                    "g": "f" if "stardomChamp" in groups else "", "tags": sorted(groups | wd_life_tags(rec)[0]), "pop": 0})
+    report.append(f"- scene people added from Wikipedia + Wikidata (not in the archive): {len(out)}, "
+                  f"{sum(w['id'] >= 3_000_000_000 for w in out)} of them unknown to Wikidata: "
+                  f"{sorted(w['name'] for w in out if w['id'] >= 3_000_000_000)}; "
+                  f"skipped (no single Wikidata match, or name taken): {sorted(set(skipped))}")
+    return out
+
+
+def wd_life_tags(rec):
+    """Life-outside-the-ring tags for one Wikidata person, and whether birth came from citizenship."""
+    new = {WIKIDATA_FACTS[f] for f in rec["facts"] if f in WIKIDATA_FACTS}
+    born, from_citizenship = rec.get("born_in"), False
+    if not born and len(rec.get("citizen", [])) == 1:
+        born, from_citizenship = rec["citizen"][0], True  # no birthplace on Wikidata: a single citizenship stands in
+    if born:
+        if born in BORN:
+            new.add(BORN[born])
+        if born != "US":
+            new.add("bornAbroad")
+    return new, from_citizenship
 
 
 def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
@@ -556,7 +644,7 @@ def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
     path = RAW.parent / "wikidata.json"
     if not path.exists():
         report.append("- Wikidata: data/raw/wikidata.json missing (run scripts/fetch_wikidata.py); no beyond-the-ring tags")
-        return
+        return {}, set()
     people = json.loads(path.read_text(encoding="utf-8"))
     wd_by_key = collections.defaultdict(set)
     for q, rec in people.items():
@@ -601,17 +689,8 @@ def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
     for root, q in matched.items():
         if not q:
             continue
-        rec = people[q]
-        new = {WIKIDATA_FACTS[f] for f in rec["facts"] if f in WIKIDATA_FACTS}
-        born = rec.get("born_in")
-        if not born and len(rec.get("citizen", [])) == 1:
-            born = rec["citizen"][0]  # no birthplace on Wikidata: a single citizenship stands in
-            added["(born from citizenship)"] += 1
-        if born:
-            if born in BORN:
-                new.add(BORN[born])
-            if born != "US":
-                new.add("bornAbroad")
+        new, from_citizenship = wd_life_tags(people[q])
+        added["(born from citizenship)"] += from_citizenship
         for t in new:
             tags[root].add(t)
             added[t] += 1
@@ -626,7 +705,8 @@ def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
             w.writerow([name, f"https://www.wikidata.org/wiki/{q}", " ".join(t)])
     report.append(f"- Wikidata: {sum(1 for q in matched.values() if q)} people matched, {conflicts} skipped as ambiguous; tags added: {dict(added)}")
     # real names and aliases from Wikidata, so title lists that use "Dwayne Johnson" still find The Rock
-    return {root: [people[q]["label"], *people[q]["aliases"]] for root, q in matched.items() if q}
+    names = {root: [people[q]["label"], *people[q]["aliases"]] for root, q in matched.items() if q}
+    return names, {q for q in matched.values() if q}
 
 
 def intl_coverage(promos, kept_events, pool, criteria):

@@ -1,18 +1,19 @@
 import { NextResponse } from "next/server";
 import { todayKey } from "@/lib/day";
-import { ringCard } from "@/lib/cards";
-import { checkGuess } from "@/lib/ring";
+import { picksKey, ringCard } from "@/lib/cards";
+import { checkGuess, isRegion } from "@/lib/ring";
 import { store } from "@/lib/store";
 
 // Check one guess; a correct one is counted toward that cell's rarity.
 export async function POST(req: Request) {
-  const { cell, wrestlerId } = await req.json().catch(() => ({}));
+  const { cell, wrestlerId, region: r } = await req.json().catch(() => ({}));
+  const region = isRegion(r) ? r : undefined;
   const day = todayKey();
   const c = Number(cell);
-  const { correct, wrestler } = checkGuess(await ringCard(day), c, Number(wrestlerId));
+  const { correct, wrestler } = checkGuess(await ringCard(day, region), c, Number(wrestlerId));
   if (!wrestler) return NextResponse.json({ error: "unknown wrestler" }, { status: 400 });
   if (!correct) return NextResponse.json({ correct: false, name: wrestler.name });
-  const hash = `ring:${day}:picks`;
+  const hash = picksKey(day, region);
   const [picks, total] = await Promise.all([store.incr(hash, `${c}:${wrestler.id}`), store.incr(hash, `${c}:total`)]);
   return NextResponse.json({ correct: true, name: wrestler.name, rarity: Math.round((100 * picks) / total) });
 }

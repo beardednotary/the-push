@@ -7,6 +7,8 @@ import { SignInNudge } from "@/components/account";
 import { YourRecord } from "@/components/record";
 import { ringBoardLabel } from "@/lib/scoring";
 import { ringCode, sharePath } from "@/lib/share";
+import { REGIONS, type Region } from "@/lib/regions";
+import { Feeds } from "./Feeds";
 
 interface Side {
   id: string;
@@ -31,8 +33,9 @@ interface Hit {
 
 const START: Saved = { cells: Array(9).fill(null), guesses: 9, done: false };
 
-export default function RingGame({ day, number, rows, cols }: { day: string; number: number; rows: Side[]; cols: Side[] }) {
-  const [saved, save, loaded] = useSaved<Saved>(`push:ring:${day}`, START);
+export default function RingGame({ day, number, rows, cols, region }: { day: string; number: number; rows: Side[]; cols: Side[]; region?: Region }) {
+  const [saved, save, loaded] = useSaved<Saved>(region ? `push:ring:${region}:${day}` : `push:ring:${day}`, START);
+  const stat = region ? `ring${region}` : "ring";
   const [open, setOpen] = useState<number | null>(null);
   const [focus, setFocus] = useState<Side | null>(null);
 
@@ -45,8 +48,8 @@ export default function RingGame({ day, number, rows, cols }: { day: string; num
     if (hit) cells[cell] = hit;
     const guesses = saved.guesses - 1;
     const next = { cells, guesses, done: guesses <= 0 || cells.every(Boolean) };
-    if (saved.guesses === 9) track("ring:start");
-    if (next.done) track("ring:finish");
+    if (saved.guesses === 9) track(`${stat}:start`);
+    if (next.done) track(`${stat}:finish`);
     save(next);
     if (hit || next.done) setOpen(null);
   }
@@ -54,9 +57,10 @@ export default function RingGame({ day, number, rows, cols }: { day: string; num
   return (
     <>
     <Bug>
-      <Plate tone="dark">Ring · No. {number}</Plate>
+      <Plate tone="dark">Ring{region ? ` · ${REGIONS[region].name}` : ""} · No. {number}</Plate>
     </Bug>
     <main className="wrap">
+      <Feeds region={region} />
       <div className="ring">
         <div className="corner">
           <span className="num">{saved.guesses}</span>
@@ -111,12 +115,12 @@ export default function RingGame({ day, number, rows, cols }: { day: string; num
       )}
 
       {!over && (
-        <button className="cta ghost full" onClick={() => { track("ring:finish"); save({ ...saved, done: true }); }}>
+        <button className="cta ghost full" onClick={() => { track(`${stat}:finish`); save({ ...saved, done: true }); }}>
           <span>Tap out</span>
         </button>
       )}
 
-      {over && <Results day={day} number={number} cells={saved.cells} rows={rows} cols={cols} />}
+      {over && <Results day={day} number={number} cells={saved.cells} rows={rows} cols={cols} region={region} />}
 
       {open !== null && !over && (
         <Picker
@@ -128,7 +132,7 @@ export default function RingGame({ day, number, rows, cols }: { day: string; num
             const r = await fetch("/api/ring/guess", {
               method: "POST",
               headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ cell: open, wrestlerId: hit.id }),
+              body: JSON.stringify({ cell: open, wrestlerId: hit.id, region }),
             }).then((r) => r.json());
             record(open, r.correct ? { id: hit.id, name: r.name, rarity: r.rarity } : null);
             return r.correct as boolean;
@@ -229,33 +233,35 @@ function Picker({
   );
 }
 
-function Results({ day, number, cells, rows, cols }: { day: string; number: number; cells: (Filled | null)[]; rows: Side[]; cols: Side[] }) {
+function Results({ day, number, cells, rows, cols, region }: { day: string; number: number; cells: (Filled | null)[]; rows: Side[]; cols: Side[]; region?: Region }) {
   const squares = cells.filter(Boolean).length;
   const rarity = cells.reduce((s, c) => s + (c ? c.rarity : 100), 0);
   const grid = [0, 1, 2].map((r) => cells.slice(r * 3, r * 3 + 3).map((c) => (c ? "🟩" : "⬜")).join("")).join("\n");
   // brag about the rarest pick without naming it (a name would give away an answer)
   const rarest = Math.min(...cells.filter((c): c is Filled => !!c).map((c) => c.rarity));
   const brag = squares > 0 && rarest <= 20 ? `\nRarest pick: ${rarest}% 👀` : "";
-  const share = `THE PUSH · Immaculate Ring No. ${number}\n${grid}\n${squares}/9 · Rarity ${rarity}${brag}`;
+  const title = region ? `Immaculate Ring ${REGIONS[region].name}` : "Immaculate Ring";
+  const share = `THE PUSH · ${title} No. ${number}\n${grid}\n${squares}/9 · Rarity ${rarity}${brag}`;
   return (
     <section>
       <div className="final">
-        <Plate tone="gold">Immaculate Ring · Final</Plate>
+        <Plate tone="gold">{title} · Final</Plate>
         <div className="num score">{squares}/9</div>
         <div className="sub">Rarity {rarity} · lower is rarer</div>
       </div>
       <ShareButton
-        game="ring"
+        game={region ? `ring${region}` : "ring"}
         text={share}
-        path={sharePath("ring", number, ringCode(rarity, cells.map(Boolean)))}
-        teaser="Sends your grid (no names, no spoilers) and a link to tonight's Ring."
+        // the score-card preview only knows the main Ring, so region results link to the grid itself
+        path={region ? `/ring/${REGIONS[region].slug}` : sharePath("ring", number, ringCode(rarity, cells.map(Boolean)))}
+        teaser={`Sends your grid (no names, no spoilers) and a link to tonight's ${title}.`}
         dare="Can you fill the grid?"
       />
       <YourRecord />
       <div className="stack">
-        <Leaderboard game="ring" day={day} payload={{ cells: cells.map((c) => c?.id ?? null) }} format={ringBoardLabel} />
+        <Leaderboard game="ring" region={region} day={day} payload={{ cells: cells.map((c) => c?.id ?? null), region }} format={ringBoardLabel} />
       </div>
-      <MostPicked rows={rows} cols={cols} mine={cells} />
+      <MostPicked rows={rows} cols={cols} mine={cells} region={region} />
       <RemindMe />
       <SignInNudge />
       <NextMatch to="five" />
@@ -270,14 +276,14 @@ interface Picks {
 }
 
 /** What everyone else put in each square, with your own picks marked. */
-function MostPicked({ rows, cols, mine }: { rows: Side[]; cols: Side[]; mine: (Filled | null)[] }) {
+function MostPicked({ rows, cols, mine, region }: { rows: Side[]; cols: Side[]; mine: (Filled | null)[]; region?: Region }) {
   const [picks, setPicks] = useState<Picks[] | null>(null);
   useEffect(() => {
-    fetch("/api/ring/picks")
+    fetch(region ? `/api/ring/picks?region=${region}` : "/api/ring/picks")
       .then((r) => r.json())
       .then(setPicks)
       .catch(() => {});
-  }, []);
+  }, [region]);
   if (!picks) return null;
   return (
     <section>
@@ -317,9 +323,11 @@ function MostPicked({ rows, cols, mine }: { rows: Side[]; cols: Side[]; mine: (F
           </Row>
         ))}
       </div>
-      <p className="muted" style={{ fontSize: 15 }}>
-        Full answer key for every square posts tomorrow on <a href="/yesterday" style={{ color: "var(--gold)" }}>Yesterday&apos;s card</a>.
-      </p>
+      {!region && (
+        <p className="muted" style={{ fontSize: 15 }}>
+          Full answer key for every square posts tomorrow on <a href="/yesterday" style={{ color: "var(--gold)" }}>Yesterday&apos;s card</a>.
+        </p>
+      )}
     </section>
   );
 }

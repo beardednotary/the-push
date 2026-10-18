@@ -10,6 +10,9 @@ export const STAT_EVENTS = [
   "ring:start",
   "ring:finish",
   "ring:share",
+  "ringjp:start",
+  "ringjp:finish",
+  "ringjp:share",
   "remind:on",
 ] as const;
 export type StatEvent = (typeof STAT_EVENTS)[number];

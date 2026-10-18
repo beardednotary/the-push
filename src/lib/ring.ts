@@ -1,6 +1,9 @@
 // The Immaculate Ring: a 3x3 grid; each cell wants one wrestler who fits both its row and its column.
 import data from "../../data/generated/ring.json";
+import type { Region } from "./regions";
 import { hashString, mulberry32, shuffled } from "./rng";
+
+export { REGIONS, isRegion, type Region } from "./regions";
 
 export interface Criterion {
   id: string;
@@ -56,9 +59,49 @@ function fits(w: Wrestler, a: string, b: string) {
 
 const cache = new Map<string, Grid>();
 
-export function gridFor(day: string): Grid {
-  const hit = cache.get(day);
+// Region cards: a separate daily grid per scene, built only from that scene's belts and
+// tournaments plus life facts (MMA, amateur...). No US promotions, no eras (they count US
+// matches only) and no birthplace (too many Japanese stars have none on Wikidata).
+const SCENE_MIN = 4; // of the six sides, at least four are the scene's own belts and tournaments
+
+export function gridFor(day: string, region?: Region): Grid {
+  const key = region ? `${region}:${day}` : day;
+  const hit = cache.get(key);
   if (hit) return hit;
+  const grid = region ? buildRegion(day, region) : buildMain(day);
+  cache.set(key, grid);
+  return grid;
+}
+
+function buildRegion(day: string, region: Region): Grid {
+  const rand = mulberry32(hashString(`ring:${region}:${day}`));
+  const scene = CRITERIA.filter((c) => c.scene === region);
+  const ids = new Set(scene.map((c) => c.id));
+  // fairness counts everyone with one of the scene's belts or tournaments; US popularity means nothing here
+  const known = WRESTLERS.filter((w) => w.tags.some((t) => ids.has(t)));
+  const count = (id: string) => known.filter((w) => w.tags.includes(id)).length;
+  const usable = CRITERIA.filter((c) => (c.scene === region || (c.group === "life" && !c.id.startsWith("born"))) && count(c.id) >= 8);
+  for (let attempt = 0; attempt < 5000; attempt++) {
+    const chosen: Criterion[] = [];
+    for (let tries = 0; chosen.length < 6 && tries < 200; tries++) {
+      const c = weightedPick(usable, rand);
+      if (!chosen.some((x) => x.id === c.id || x.family === c.family)) chosen.push(c);
+    }
+    if (chosen.length < 6 || chosen.filter((c) => c.scene).length < SCENE_MIN) continue;
+    const [rows, cols] = [chosen.slice(0, 3), chosen.slice(3)];
+    // every square has at least one of the scene's own belts: never "Amateur x MMA"
+    if (!rows.every((c) => c.scene) && !cols.every((c) => c.scene)) continue;
+    const answerCounts = rows.flatMap((r) => cols.map((c) => known.filter((w) => fits(w, r.id, c.id)).length));
+    if (answerCounts.every((n) => n >= MIN_ANSWERS)) {
+      const g = { rows: shuffled(rows, rand), cols: shuffled(cols, rand), answerCounts: [] as number[] };
+      g.answerCounts = g.rows.flatMap((r) => g.cols.map((c) => known.filter((w) => fits(w, r.id, c.id)).length));
+      return g;
+    }
+  }
+  throw new Error(`no fair ${region} grid for ${day}`);
+}
+
+function buildMain(day: string): Grid {
   const rand = mulberry32(hashString(`ring:${day}`));
   const usable = CRITERIA.filter((c) => c.count >= 8 && !c.scene);
   for (let attempt = 0; attempt < 5000; attempt++) {
@@ -78,7 +121,6 @@ export function gridFor(day: string): Grid {
       grid.answerCounts = grid.rows.flatMap((r) =>
         grid.cols.map((c) => WELL_KNOWN.filter((w) => fits(w, r.id, c.id)).length),
       );
-      cache.set(day, grid);
       return grid;
     }
   }

@@ -14,6 +14,7 @@ import csv
 import io
 import json
 import pathlib
+import re
 import sys
 import urllib.request
 
@@ -45,6 +46,9 @@ def main():
             continue
         rows = list(csv.reader(io.StringIO(text)))
         got = [h.strip().lower() for h in rows[0]] if rows else []
+        if tab == "questions":
+            rows = question_rows(rows, got)
+            got = want
         if got[: len(want)] != want:
             sys.exit(f"{tab}: expected columns {want}, the sheet has {got}. Nothing was changed.")
         body = [r[: len(want)] for r in rows[1:] if any(c.strip() for c in r)]
@@ -54,6 +58,30 @@ def main():
             w.writerow(want)
             w.writerows(body)
         print(f"- {tab}: {len(body)} rows -> {out.relative_to(CUR.parent.parent)}")
+
+
+def question_rows(rows, got):
+    """The questions tab is laid out for people typing in it: prompt, answer, "3 wrong options"
+    in one cell (split on ; | / or new lines, else commas), "source URL", region, approved.
+    Columns are found by name, so their order doesn't matter. Without an approved column no
+    row goes live."""
+    def col(*names):
+        return next((i for i, h in enumerate(got) if any(n in h for n in names)), None)
+    ip, ia, iw, isrc, ir, iok, inote = col("prompt", "question"), col("answer"), col("wrong"), col("source"), col("region"), col("approved"), col("note")
+    if ip is None or ia is None or iw is None:
+        sys.exit(f"questions: need prompt, answer and wrong-option columns; the sheet has {got}. Nothing was changed.")
+    if iok is None:
+        print("- questions: no 'approved' column in the sheet yet, so no question goes live. Add one and put yes in it to approve a row.")
+    out = [HEADERS["questions"]]
+    for r in rows[1:]:
+        cell = lambda i: r[i].strip() if i is not None and i < len(r) else ""
+        wrong = [w.strip() for w in re.split(r"[;|/\n]", cell(iw)) if w.strip()]
+        if len(wrong) < 3 and "," in cell(iw):
+            wrong = [w.strip() for w in cell(iw).split(",") if w.strip()]
+        # anything but exactly three wrong options leaves a blank, which the import rejects
+        wrong = wrong if len(wrong) == 3 else ["", "", ""]
+        out.append([cell(ip), cell(ia), *wrong, cell(isrc), cell(ir), cell(iok), cell(inote)])
+    return out
 
 
 if __name__ == "__main__":
