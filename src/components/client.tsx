@@ -55,7 +55,7 @@ export function notTracked(): boolean {
  *  count toward the player's streak and rank, even on ?notrack devices. */
 export function track(event: string) {
   if (event.endsWith(":finish")) {
-    fetch("/api/player", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: playerId() }), keepalive: true })
+    fetch("/api/player", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: playerId(), ref: safeGet("push:ref") }), keepalive: true })
       .then(() => window.dispatchEvent(new Event("push:career")))
       .catch(() => {});
   }
@@ -67,12 +67,20 @@ export function track(event: string) {
 /** The post-game challenge: sends the result plus a link whose preview is the player's score card. */
 export function ShareButton({ text, path, game, teaser, dare }: { text: string; path: string; game: "five" | "ring" | `ring${Region}`; teaser: string; dare: string }) {
   const [copied, setCopied] = useState(false);
+  const [by, setBy] = useState<string | null>(null);
+  useEffect(() => {
+    // the sharer's code rides on the link, so a friend who plays makes them a Promoter
+    fetch("/api/ref", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: playerId() }) })
+      .then((r) => r.json())
+      .then((d) => setBy(d.code ?? null))
+      .catch(() => {});
+  }, []);
   async function share() {
     track(`${game}:share_tap`); // intent, even if they close the share sheet
     const streak = Number(safeGet("push:streak") ?? 0);
     // result, then the streak, then the dare
     const body = `${text}${streak >= 2 ? `\n🔥 ${streak}-day streak` : ""}\n${dare}`;
-    const url = `${location.origin}${path}`;
+    const url = `${location.origin}${path}${by ? `?by=${by}` : ""}`;
     if (navigator.share) {
       try {
         // url as its own field so messaging apps build the score-card preview
@@ -107,6 +115,7 @@ interface Row {
   reigns?: number;
   tier?: string;
   flair?: string | null; // hand-given, e.g. Road Agent
+  promoter?: string | null; // earned by bringing in new players
 }
 
 export function Leaderboard({ game, region, day, payload, format }: { game: "five" | "ring"; region?: string; day: string; payload: object; format: (score: number) => string }) {
@@ -174,7 +183,8 @@ export function Leaderboard({ game, region, day, payload, format }: { game: "fiv
               <span className="rk">{r.rank}</span>
               <span className="nm">
                 {r.champ && <Plate tone="gold">{r.champ.endsWith("weekly") ? "World Champ" : "Champ"}</Plate>}
-                {r.flair && <Plate tone="red">{r.flair}</Plate>} {r.name}
+                {r.flair && <Plate tone="red">{r.flair}</Plate>}
+                {r.promoter && <Plate tone="dark">{r.promoter}</Plate>} {r.name}
                 {(r.reigns ?? 0) > 1 && <span className="reigns"> {r.reigns}x</span>}
                 {r.tier && <small className="tier">{r.tier}</small>}
               </span>
@@ -202,4 +212,12 @@ export function NextMatch({ to }: { to: "five" | "ring" }) {
       </Link>
     </div>
   );
+}
+
+/** On a shared result page: remember who sent the link, so this device's first game credits them. */
+export function RememberRef({ by }: { by?: string }) {
+  useEffect(() => {
+    if (by && /^[0-9a-f]{8}$/.test(by) && !safeGet("push:ref")) safeSet("push:ref", by);
+  }, [by]);
+  return null;
 }

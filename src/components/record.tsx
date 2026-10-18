@@ -8,6 +8,8 @@ import { playerId } from "./client";
 interface Record {
   career: { games: number; streak: number; best: number; rank: string };
   signedIn: boolean;
+  recruits: number;
+  promoter: string | null;
   belts: { id: string; name: string; reigns: number; holding: boolean }[];
 }
 
@@ -21,6 +23,7 @@ const NEXT: [number, string][] = [
 
 export function YourRecord() {
   const [rec, setRec] = useState<Record | null>(null);
+  const [newFans, setNewFans] = useState(0);
 
   useEffect(() => {
     const load = () =>
@@ -30,6 +33,10 @@ export function YourRecord() {
           setRec(d);
           try {
             localStorage.setItem("push:streak", String(d.career?.streak ?? 0));
+            // announce fans brought in since this device last looked
+            const seen = Number(localStorage.getItem("push:recruits") ?? 0);
+            if ((d.recruits ?? 0) > seen) setNewFans(d.recruits - seen);
+            localStorage.setItem("push:recruits", String(d.recruits ?? 0));
           } catch {}
         })
         .catch(() => {});
@@ -61,6 +68,17 @@ export function YourRecord() {
           </small>
         </div>
       </div>
+      {newFans > 0 && (
+        <p className="fans">
+          <Plate tone="gold">{rec.promoter}</Plate> Your challenge brought in {newFans === 1 ? "a new fan" : `${newFans} new fans`}.
+        </p>
+      )}
+      {rec.recruits > 0 && newFans === 0 && (
+        <p className="muted small">
+          <b>{rec.promoter}</b> · {rec.recruits} {rec.recruits === 1 ? "fan" : "fans"} brought in by your challenges
+        </p>
+      )}
+      {rec.recruits === 0 && <p className="muted small">Challenge a friend: when they play their first card, you become a Promoter.</p>}
       {titles.length > 0 && (
         <ul className="honors">
           {titles.map((b) => (

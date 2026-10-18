@@ -7,6 +7,7 @@ import { careers } from "@/lib/career";
 import { cleanId, cleanName, store } from "@/lib/store";
 import { ensureCrowned, honors } from "@/lib/titles";
 import { flairs } from "@/lib/flair";
+import { promoterTitle, recruitCounts } from "@/lib/promoter";
 
 type Game = "five" | "ring";
 const GAMES: Game[] = ["five", "ring"];
@@ -19,7 +20,7 @@ async function board(game: Game, day: string, me?: string, region?: Region) {
   await ensureCrowned();
   const top = await store.top(boardKey(game, day, region), 20);
   const ids = top.map((t) => t.member);
-  const [names, h, c, f] = await Promise.all([store.names(ids), honors(), careers(ids), flairs()]);
+  const [names, h, c, f, rc] = await Promise.all([store.names(ids), honors(), careers(ids), flairs(), recruitCounts()]);
   return top.map((t, i) => {
     const mine = h[t.member];
     return {
@@ -32,6 +33,7 @@ async function board(game: Game, day: string, me?: string, region?: Region) {
       reigns: Object.entries(mine?.reigns ?? {}).filter(([b]) => b.startsWith(`${game}-`)).reduce((a, [, n]) => a + n, 0),
       tier: c[t.member]?.rank ?? "Jobber",
       flair: f[t.member] ?? null,
+      promoter: promoterTitle(rc[t.member] ?? 0),
     };
   });
 }

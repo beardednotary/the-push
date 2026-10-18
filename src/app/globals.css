@@ -314,6 +314,8 @@ button { font: inherit; color: inherit; }
 .record-grid small { color: var(--text-2); font-size: 13px; }
 .honors { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 4px; }
 .honors li { background: var(--plate-2); padding: 8px 12px; font-weight: 700; text-transform: uppercase; font-size: 14px; letter-spacing: 0.03em; }
+.fans { background: var(--plate-2); box-shadow: inset 4px 0 0 var(--gold); padding: 10px 14px; margin: 10px 0 0; font-weight: 700; }
+.fans .plate { margin-right: 6px; }
 .honors li.holding { box-shadow: inset 4px 0 0 var(--gold); }
 
 /* ---------- your record ---------- */

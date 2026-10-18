@@ -3,6 +3,7 @@ import { pageMeta } from "@/lib/meta";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Bug, Plate } from "@/components/Chrome";
+import { RememberRef } from "@/components/client";
 import { puzzleNumber, todayKey } from "@/lib/day";
 import { MARK_COLOR, headline, parseResult } from "@/lib/share";
 
@@ -19,8 +20,9 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   return pageMeta(`/r/${p.game}/${p.n}/${p.code}`, title, description, { robots: { index: false, follow: true } }, false);
 }
 
-export default async function SharedResultPage({ params }: { params: Promise<Params> }) {
+export default async function SharedResultPage({ params, searchParams }: { params: Promise<Params>; searchParams: Promise<{ by?: string }> }) {
   const p = await params;
+  const { by } = await searchParams;
   const r = parseResult(p.game, p.n, p.code);
   if (!r) notFound();
   const tonight = puzzleNumber(todayKey());
@@ -33,6 +35,7 @@ export default async function SharedResultPage({ params }: { params: Promise<Par
         <Plate tone="dark">Result</Plate>
       </Bug>
       <main className="wrap">
+        <RememberRef by={by} />
         <div className="final">
           <Plate tone="gold">
             {name} · No. {r.number}
