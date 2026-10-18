@@ -5,6 +5,7 @@ import { Bug, Plate } from "@/components/Chrome";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
 import { YourRecord } from "@/components/record";
+import { FinishMoment } from "@/components/FinishMoment";
 import { ringBoardLabel } from "@/lib/scoring";
 import { ringCode, sharePath } from "@/lib/share";
 import { REGIONS, type Region } from "@/lib/regions";
@@ -242,6 +243,14 @@ function Results({ day, number, cells, rows, cols, region }: { day: string; numb
   const brag = squares > 0 && rarest <= 20 ? `\nRarest pick: ${rarest}% 👀` : "";
   const title = region ? `Immaculate Ring ${REGIONS[region].name}` : "Immaculate Ring";
   const share = `THE PUSH · ${title} No. ${number}\n${grid}\n${squares}/9 · Rarity ${rarity}${brag}`;
+  const shareProps = {
+    game: region ? (`ring${region}` as const) : ("ring" as const),
+    text: share,
+    // the score-card preview only knows the main Ring, so region results link to the grid itself
+    path: region ? `/ring/${REGIONS[region].slug}` : sharePath("ring", number, ringCode(rarity, cells.map(Boolean))),
+    teaser: `Sends your grid (no names, no spoilers) and a link to tonight's ${title}.`,
+    dare: "Can you fill the grid?",
+  };
   return (
     <section>
       <div className="final">
@@ -249,13 +258,14 @@ function Results({ day, number, cells, rows, cols, region }: { day: string; numb
         <div className="num score">{squares}/9</div>
         <div className="sub">Rarity {rarity} · lower is rarer</div>
       </div>
-      <ShareButton
-        game={region ? `ring${region}` : "ring"}
-        text={share}
-        // the score-card preview only knows the main Ring, so region results link to the grid itself
-        path={region ? `/ring/${REGIONS[region].slug}` : sharePath("ring", number, ringCode(rarity, cells.map(Boolean)))}
-        teaser={`Sends your grid (no names, no spoilers) and a link to tonight's ${title}.`}
-        dare="Can you fill the grid?"
+      <ShareButton {...shareProps} />
+      <FinishMoment
+        storageKey={`push:moment:ring${region ?? ""}:${day}`}
+        label={`${title} · No. ${number}`}
+        score={squares}
+        of={9}
+        sub={squares === 9 ? `Immaculate · Rarity ${rarity}` : `Rarity ${rarity} · lower is rarer`}
+        share={shareProps}
       />
       <YourRecord />
       <div className="stack">

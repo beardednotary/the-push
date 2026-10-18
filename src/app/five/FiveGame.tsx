@@ -5,6 +5,7 @@ import { Bug, Plate } from "@/components/Chrome";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
 import { YourRecord } from "@/components/record";
+import { FinishMoment } from "@/components/FinishMoment";
 import { SECONDS_PER_QUESTION, pointsFor } from "@/lib/scoring";
 import { MARK_EMOJI, fiveCode, sharePath, type Mark } from "@/lib/share";
 
@@ -199,6 +200,13 @@ function Results({ day, number, questions, answers, untimed }: { day: string; nu
   const max = untimed ? 500 : 1000;
   const share = `THE PUSH · Daily Five No. ${number}${untimed ? " (untimed)" : ""}\n${marks.map((m) => MARK_EMOJI[m]).join("")}  ${total}/${max}`;
   const dare = total >= 100 ? `Think you can beat ${total}?` : "Your turn.";
+  const shareProps = {
+    game: "five" as const,
+    text: share,
+    path: sharePath("five", number, fiveCode(total, marks, untimed)),
+    teaser: `Sends your ${total} and a link to tonight's card. No spoilers.`,
+    dare,
+  };
   return (
     <>
       <Bug>
@@ -212,12 +220,14 @@ function Results({ day, number, questions, answers, untimed }: { day: string; nu
             Out of {max} · {right} of 5 right{untimed ? " · untimed" : ""}
           </div>
         </div>
-        <ShareButton
-          game="five"
-          text={share}
-          path={sharePath("five", number, fiveCode(total, marks, untimed))}
-          teaser={`Sends your ${total} and a link to tonight's card. No spoilers.`}
-          dare={dare}
+        <ShareButton {...shareProps} />
+        <FinishMoment
+          storageKey={`push:moment:five:${day}`}
+          label={`Daily Five · No. ${number}`}
+          score={total}
+          of={max}
+          sub={`${right} of 5 right${untimed ? " · untimed" : ""}`}
+          share={shareProps}
         />
         <ol className="recap">
           {questions.map((q, i) => {
