@@ -233,7 +233,10 @@ function Results({ day, number, cells, rows, cols }: { day: string; number: numb
   const squares = cells.filter(Boolean).length;
   const rarity = cells.reduce((s, c) => s + (c ? c.rarity : 100), 0);
   const grid = [0, 1, 2].map((r) => cells.slice(r * 3, r * 3 + 3).map((c) => (c ? "🟩" : "⬜")).join("")).join("\n");
-  const share = `THE PUSH · Immaculate Ring No. ${number}\n${grid}\n${squares}/9 · Rarity ${rarity}`;
+  // brag about the rarest pick without naming it (a name would give away an answer)
+  const rarest = Math.min(...cells.filter((c): c is Filled => !!c).map((c) => c.rarity));
+  const brag = squares > 0 && rarest <= 20 ? `\nRarest pick: ${rarest}% 👀` : "";
+  const share = `THE PUSH · Immaculate Ring No. ${number}\n${grid}\n${squares}/9 · Rarity ${rarity}${brag}`;
   return (
     <section>
       <div className="final">
@@ -241,9 +244,15 @@ function Results({ day, number, cells, rows, cols }: { day: string; number: numb
         <div className="num score">{squares}/9</div>
         <div className="sub">Rarity {rarity} · lower is rarer</div>
       </div>
+      <ShareButton
+        game="ring"
+        text={share}
+        path={sharePath("ring", number, ringCode(rarity, cells.map(Boolean)))}
+        teaser="Sends your grid (no names, no spoilers) and a link to tonight's Ring."
+        dare="Can you fill the grid?"
+      />
       <YourRecord />
       <div className="stack">
-        <ShareButton game="ring" text={share} path={sharePath("ring", number, ringCode(rarity, cells.map(Boolean)))} />
         <Leaderboard game="ring" day={day} payload={{ cells: cells.map((c) => c?.id ?? null) }} format={ringBoardLabel} />
       </div>
       <MostPicked rows={rows} cols={cols} mine={cells} />

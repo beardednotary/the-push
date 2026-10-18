@@ -198,6 +198,7 @@ function Results({ day, number, questions, answers, untimed }: { day: string; nu
   const marks = answers.map((a) => mark(a, untimed));
   const max = untimed ? 500 : 1000;
   const share = `THE PUSH · Daily Five No. ${number}${untimed ? " (untimed)" : ""}\n${marks.map((m) => MARK_EMOJI[m]).join("")}  ${total}/${max}`;
+  const dare = total >= 100 ? `Think you can beat ${total}?` : "Your turn.";
   return (
     <>
       <Bug>
@@ -211,6 +212,13 @@ function Results({ day, number, questions, answers, untimed }: { day: string; nu
             Out of {max} · {right} of 5 right{untimed ? " · untimed" : ""}
           </div>
         </div>
+        <ShareButton
+          game="five"
+          text={share}
+          path={sharePath("five", number, fiveCode(total, marks, untimed))}
+          teaser={`Sends your ${total} and a link to tonight's card. No spoilers.`}
+          dare={dare}
+        />
         <ol className="recap">
           {questions.map((q, i) => {
             const a = answers[i];
@@ -231,7 +239,6 @@ function Results({ day, number, questions, answers, untimed }: { day: string; nu
         </ol>
         <YourRecord />
         <div className="stack">
-          <ShareButton game="five" text={share} path={sharePath("five", number, fiveCode(total, marks, untimed))} />
           {untimed ? (
             <p className="muted">Untimed games aren&apos;t ranked. Ring the bell tomorrow to race the clock for the leaderboard.</p>
           ) : (

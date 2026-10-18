@@ -63,26 +63,36 @@ export function track(event: string) {
   fetch("/api/stat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(() => {});
 }
 
-export function ShareButton({ text, path, game }: { text: string; path: string; game: "five" | "ring" }) {
+/** The post-game challenge: sends the result plus a link whose preview is the player's score card. */
+export function ShareButton({ text, path, game, teaser, dare }: { text: string; path: string; game: "five" | "ring"; teaser: string; dare: string }) {
   const [copied, setCopied] = useState(false);
   async function share() {
-    track(`${game}:share`);
     const streak = Number(safeGet("push:streak") ?? 0);
-    const full = `${text}${streak >= 2 ? `\n🔥 ${streak}-day streak` : ""}\n${location.origin}${path}`;
+    // result, then the streak, then the dare
+    const body = `${text}${streak >= 2 ? `\n🔥 ${streak}-day streak` : ""}\n${dare}`;
+    const url = `${location.origin}${path}`;
     if (navigator.share) {
       try {
-        await navigator.share({ text: full });
+        // url as its own field so messaging apps build the score-card preview
+        await navigator.share({ text: body, url });
+        track(`${game}:share`);
         return;
-      } catch {}
+      } catch (e) {
+        if ((e as Error).name === "AbortError") return; // closed the share sheet
+      }
     }
-    await navigator.clipboard.writeText(full);
+    await navigator.clipboard.writeText(`${body}\n${url}`);
+    track(`${game}:share`);
     setCopied(true);
-    setTimeout(() => setCopied(false), 1800);
+    setTimeout(() => setCopied(false), 2200);
   }
   return (
-    <button className="cta full" onClick={share}>
-      <span>{copied ? "Copied to clipboard" : "Share your card"}</span>
-    </button>
+    <div className="challenge">
+      <button className="cta gold full" onClick={share}>
+        <span>{copied ? "Copied. Paste it anywhere" : "Challenge a friend"}</span>
+      </button>
+      <p className="muted small">{teaser}</p>
+    </div>
   );
 }
 
