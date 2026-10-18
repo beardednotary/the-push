@@ -3,6 +3,8 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth, signOut } from "@/auth";
 import { Bug, Plate } from "@/components/Chrome";
+import { FLAIR, playerCode } from "@/lib/flair";
+import { store } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Account · The Push", robots: { index: false } };
@@ -10,7 +12,9 @@ export const metadata: Metadata = { title: "Account · The Push", robots: { inde
 export default async function AccountPage() {
   const session = await auth();
   if (!session?.user) redirect("/signin");
-  const { name, email } = session.user;
+  const { name, email, id } = session.user;
+  const playerId = id ? (await store.hashGet("account:player"))[id] : undefined;
+  const flair = playerId ? FLAIR[(await store.hashGet("flair"))[playerId] ?? ""] : undefined;
 
   return (
     <>
@@ -28,6 +32,12 @@ export default async function AccountPage() {
         <p className="muted">
           Your scores, ring name and reminders now follow this account. Sign in the same way on any other device.
         </p>
+        {playerId && (
+          <p className="muted">
+            Player code: <b className="num" style={{ color: "var(--gold)" }}>{playerCode(playerId)}</b>
+            {flair ? <> · <Plate tone="red">{flair}</Plate></> : <> · Spot a wrong answer and get it fixed, and this code earns you the Road Agent badge.</>}
+          </p>
+        )}
         <div className="stack">
           <Link className="cta full" href="/">
             <span>Tonight&apos;s card</span>

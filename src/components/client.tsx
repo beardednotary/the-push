@@ -104,6 +104,7 @@ interface Row {
   champ?: string | null; // belt id currently held in this game
   reigns?: number;
   tier?: string;
+  flair?: string | null; // hand-given, e.g. Road Agent
 }
 
 export function Leaderboard({ game, region, day, payload, format }: { game: "five" | "ring"; region?: string; day: string; payload: object; format: (score: number) => string }) {
@@ -170,7 +171,8 @@ export function Leaderboard({ game, region, day, payload, format }: { game: "fiv
             <li key={r.rank} className={r.me ? "me" : ""}>
               <span className="rk">{r.rank}</span>
               <span className="nm">
-                {r.champ && <Plate tone="gold">{r.champ.endsWith("weekly") ? "World Champ" : "Champ"}</Plate>} {r.name}
+                {r.champ && <Plate tone="gold">{r.champ.endsWith("weekly") ? "World Champ" : "Champ"}</Plate>}
+                {r.flair && <Plate tone="red">{r.flair}</Plate>} {r.name}
                 {(r.reigns ?? 0) > 1 && <span className="reigns"> {r.reigns}x</span>}
                 {r.tier && <small className="tier">{r.tier}</small>}
               </span>

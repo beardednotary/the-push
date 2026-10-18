@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
+import { FLAIR, flairs, setFlair } from "@/lib/flair";
 import { auth } from "@/auth";
 import { isAdmin } from "@/lib/admin";
 import { Bug, Plate } from "@/components/Chrome";
@@ -13,7 +14,7 @@ export const metadata: Metadata = { title: "Stats · The Push", robots: { index:
 // Only for emails listed in ADMIN_EMAILS. Everyone else gets a 404.
 const pct = (a: number, b: number) => (b ? `${Math.round((100 * a) / b)}%` : "–");
 
-export default async function StatsPage() {
+export default async function StatsPage({ searchParams }: { searchParams: Promise<{ flair?: string }> }) {
   const session = await auth();
   if (!session?.user) notFound();
   if (!isAdmin(session.user.email)) {
@@ -35,7 +36,21 @@ export default async function StatsPage() {
 
   const today = todayKey();
   const days = Array.from({ length: 14 }, (_, i) => addDays(today, -i)).filter((d) => puzzleNumber(d) >= 1);
-  const [rows, subs] = await Promise.all([Promise.all(days.map(async (d) => ({ d, s: await readStats(d) }))), store.allSubs()]);
+  const [rows, subs, given, { flair: flairResult }] = await Promise.all([
+    Promise.all(days.map(async (d) => ({ d, s: await readStats(d) }))),
+    store.allSubs(),
+    flairs(),
+    searchParams,
+  ]);
+  const flairNames = await store.names(Object.keys(given));
+
+  async function grant(form: FormData) {
+    "use server";
+    const s = await auth();
+    if (!isAdmin(s?.user?.email)) notFound();
+    const id = await setFlair(String(form.get("code") ?? ""), "road-agent");
+    redirect(`/stats?flair=${id ? "given" : "nocode"}#flair`);
+  }
 
   return (
     <>
@@ -105,6 +120,37 @@ export default async function StatsPage() {
           Players = unique devices that finished a game. Returning = of those, how many first played on an earlier day. Counts
           began when each column was added; earlier days show zero.
         </p>
+
+        <section id="flair">
+          <div className="section-head">
+            <Plate tone="red">{FLAIR["road-agent"]}</Plate>
+            <Plate tone="dark">For fixed reports</Plate>
+          </div>
+          <p className="muted small">
+            The player signs in and sends you the player code from their account page. The badge shows next to their name on the
+            standings.
+          </p>
+          <form action={grant} className="post">
+            <input className="field" name="code" placeholder="Player code" maxLength={12} required />
+            <button className="cta ghost">
+              <span>Give</span>
+            </button>
+          </form>
+          {flairResult && (
+            <p className="muted">
+              {flairResult === "given" ? "Badge given." : "No signed-in player has that code."}
+            </p>
+          )}
+          {Object.keys(given).length > 0 && (
+            <ul className="muted">
+              {Object.entries(given).map(([id, f]) => (
+                <li key={id}>
+                  {flairNames[id] ?? "No ring name yet"} · {f}
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
       </main>
     </>
   );
