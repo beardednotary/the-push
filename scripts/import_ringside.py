@@ -42,7 +42,21 @@ SHOW_PATTERNS = {
 PROMO_UNTIL = {"WCW": "2001-03-27", "ECW": "2001-04-05"}
 # Fragments left by splitting "Ted DiBiase, Jr." style names; never real people.
 JUNK_NAMES = {"Jr.", "Jr", "Sr.", "Sr"}
-MIN_PROMO_MATCHES = 3
+MIN_PROMO_MATCHES = 1  # one match counts, like "played for" on Immaculate Grid
+# ...but a wrestler with only one or two matches for a promotion needs one of them on that
+# promotion's own TV or PPV, so a co-promoted indie show filed under it (the 1996 Ilio DiPaolo
+# Memorial under WCW) doesn't make someone a WCW wrestler. Three or more matches always count.
+SURE_PROMO_MATCHES = 3
+# Matched against the event name with the promotion prefix stripped ("WCW Nitro" -> "Nitro"),
+# since the archive prefixes everything it files under a promotion, indie shows included.
+BRANDED = {
+    "WWE": r"^(Raw|Monday Night Raw|SmackDown|Friday Night SmackDown|Main Event|Superstars|Wrestling Challenge|Prime Time|Heat|Sunday Night Heat|Jakked|Shotgun|Velocity|Tuesday Night Titans|Championship Wrestling|All.?Star Wrestling|Livewire|Saturday Night|Live|SuperShow|Tribute to the Troops|WrestleMania|Royal Rumble|SummerSlam|Survivor Series|In Your House)",
+    "NXT": r"^(NXT|TV\b|TakeOver|Stand & Deliver|Vengeance Day|Deadline|Level Up|Arrival|Heatwave|Gold Rush|Spring Breakin|Roadblock|New Year's Evil|No Mercy|Battleground|Halloween Havoc|Great American Bash)",
+    "AEW": r"^(Dynamite|Dark|Elevation|Collision|Rampage|All In|All Out|Double or Nothing|Revolution|Full Gear|Forbidden Door|Dynasty|Worlds End|WrestleDream|Grand Slam|Fight for the Fallen|Fyter Fest|Battle of the Belts|Beach Break|Holiday Bash|Winter is Coming|Fight for the Fallen|Road Rager|Quake by the Lake|Battle of the Belts)",
+    "TNA": r"^(Impact|iMPACT|Xplosion|Before the Impact|Xplosion|Bound for Glory|Slammiversary|Hard To Kill|Rebellion|Genesis|Sacrifice|Against All Odds|Victory Road|Lockdown|Destination X|Final Resolution|Turning Point|No Surrender|Hardcore Justice|Unbreakable|Hard Justice|Weekly PPV|One Night Only)",
+    "WCW": r"^(Nitro|Thunder|Saturday Night|Worldwide|Main Event|Pro\b|Power Hour|Clash of the Champions|Starrcade|Halloween Havoc|Slamboree|SuperBrawl|Bash at the Beach|Great American Bash|Fall Brawl|Uncensored|Spring Stampede|Road Wild|Souled Out|World War 3|Mayhem|Sin\b|New Blood|Greed|Capital Combat|Beach Blast|Chi-Town Rumble|WrestleWar)",
+    "ECW": r"^(Hardcore TV|Heat ?Wave|November to Remember|Guilty as Charged|Barely Legal|Living Dangerously|Wrestlepalooza|Hardcore Heaven|CyberSlam|Anarchy Rulz|Massacre on 34th|Holiday Hell|Born to be Wired|Ultimate Jeopardy|When Worlds Collide|Hostile City Showdown|The Night the Line Was Crossed|on Sci Fi|on TNN)",
+}
 MIN_POOL_MATCHES = 15
 
 TITLE_GROUPS = {
@@ -360,7 +374,8 @@ def main():
 
     # ---- per-wrestler tags from match history ------------------------------
     tags = collections.defaultdict(set)
-    promo_n, decade_n = collections.Counter(), collections.Counter()
+    promo_n, decade_n, branded_n = collections.Counter(), collections.Counter(), collections.Counter()
+    first_show = {}
     total_n, ppv_n = collections.Counter(), collections.Counter()
     by_event = collections.defaultdict(list)
     for m in matches.values():
@@ -370,6 +385,9 @@ def main():
         for wid in wids:
             if m["date"] < PROMO_UNTIL.get(m["promo"], "9999"):
                 promo_n[(wid, m["promo"])] += 1
+                if ev["event_type"] == "ppv" or re.search(BRANDED.get(m["promo"], r"^$"), strip_promo(ev["name"]), re.I):
+                    branded_n[(wid, m["promo"])] += 1
+                    first_show.setdefault((wid, m["promo"]), f"{ev['date'][:4]} {strip_promo(ev['name'])}")
             decade_n[(wid, m["date"][:3])] += 1
             total_n[wid] += 1
             if ev["event_type"] == "ppv":
@@ -386,9 +404,12 @@ def main():
     for ms in by_event.values():
         ms.sort(key=lambda m: m["order"])
 
+    one_offs = []
     for (wid, p), n in promo_n.items():
-        if n >= MIN_PROMO_MATCHES and p.lower() in CRITERION_IDS:
+        if n >= MIN_PROMO_MATCHES and (n >= SURE_PROMO_MATCHES or branded_n[(wid, p)]) and p.lower() in CRITERION_IDS:
             tags[wid].add(p.lower())
+            if n < SURE_PROMO_MATCHES and total_n_raw(wid, members, raw_count) >= MIN_POOL_MATCHES:
+                one_offs.append((wid, f"{display[wid]}: {p} ({first_show[(wid, p)]})"))
     for (wid, dec), n in decade_n.items():
         if n >= 3 and f"d{dec}0s" in CRITERION_IDS:
             tags[wid].add(f"d{dec}0s")
@@ -502,6 +523,12 @@ def main():
     pool.sort(key=lambda w: -w["pop"])
     names = collections.Counter(w["name"] for w in pool)
     report.append(f"- pool size {len(pool)}; duplicate display names: {[n for n, c in names.items() if c > 1][:30]}")
+
+    # one or two matches is where a same-name mix-up hides (the 1980s Cobra on a 2022 AEW Dark);
+    # remove a wrong one with a tags row: "Cobra,aew,remove"
+    in_pool = {w["id"] for w in pool}
+    shown = sorted(text for wid, text in one_offs if int(wid) in in_pool)
+    report.append(f"- REVIEW: promotion tags from only one or two matches ({len(shown)}): " + "; ".join(shown))
 
     write_split_candidates(members, display, matches, total_n, report)
 
