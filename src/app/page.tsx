@@ -1,13 +1,26 @@
 import Link from "next/link";
 import { Bug, Plate } from "@/components/Chrome";
+import { jsonLd } from "@/lib/archive";
 import { prettyDay, puzzleNumber, todayKey } from "@/lib/day";
+import { SITE_DESCRIPTION } from "@/lib/meta";
 
 export const dynamic = "force-dynamic";
+
+const SITE = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "The Push",
+  alternateName: "Play The Push",
+  url: "https://playthepush.com/",
+  description: SITE_DESCRIPTION,
+  publisher: { "@type": "Organization", name: "DahVio Studios", url: "https://dahvio.com" },
+};
 
 export default function Home() {
   const day = todayKey();
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: jsonLd(SITE) }} />
       <section className="hero">
         <picture>
           <source media="(min-width: 700px)" srcSet="/hero-wide.jpg" />
@@ -61,7 +74,10 @@ export default function Home() {
             <Plate tone="dark">Post-show</Plate>
           </div>
           <h2 className="chrome">Yesterday&apos;s card</h2>
-          <p>The answers, how everyone did, and the full Immaculate Ring answer key.</p>
+          <p>
+            The answers, how everyone did, and the full Immaculate Ring answer key. Older cards live in{" "}
+            <Link href="/archive" style={{ color: "var(--gold)" }}>the archive</Link>.
+          </p>
           <Link className="cta ghost" href="/yesterday">
             <span>See the replay</span>
           </Link>

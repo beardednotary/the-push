@@ -7,6 +7,7 @@ import { frozenFive, frozenRing } from "@/lib/cards";
 import { ringPicks } from "@/lib/picks";
 import { readStats } from "@/lib/stats";
 import { ringBoardLabel } from "@/lib/scoring";
+import { FiveAnswers, RingKey } from "@/components/Replay";
 import { store } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
@@ -15,8 +16,6 @@ export const metadata: Metadata = pageMeta(
   "Yesterday's card · The Push",
   "Yesterday's Daily Five answers, how everyone did, and the full Immaculate Ring answer key.",
 );
-
-const KEYS = ["A", "B", "C", "D"];
 
 async function champions(game: "five" | "ring", day: string) {
   const top = await store.top(`lb:${game}:${day}`, 3);
@@ -86,67 +85,18 @@ export default async function YesterdayPage() {
           <Plate tone="gold">Daily Five</Plate>
           <Plate tone="dark">Answers</Plate>
         </div>
-        <ol className="replay">
-          {questions.map((q, i) => {
-            const counts = q.options.map((_, o) => stats[`five:q${i}:o${o}`] ?? 0);
-            const timeouts = stats[`five:q${i}:timeout`] ?? 0;
-            const total = counts.reduce((a, b) => a + b, 0) + timeouts;
-            const pct = (n: number) => (total ? Math.round((100 * n) / total) : 0);
-            return (
-              <li key={q.id}>
-                <p className="q">{q.prompt}</p>
-                {q.options.map((o, oi) => (
-                  <div key={oi} className={`opt${oi === q.answer ? " right" : ""}`}>
-                    <i style={{ width: `${pct(counts[oi])}%` }} />
-                    <span>
-                      <b>{KEYS[oi]}</b> {o}
-                    </span>
-                    {total > 0 && <span className="pct">{pct(counts[oi])}%</span>}
-                  </div>
-                ))}
-                {total > 0 ? (
-                  <p className="muted small">
-                    {pct(counts[q.answer])}% got it right{timeouts ? ` · ${pct(timeouts)}% ran out of time` : ""}
-                  </p>
-                ) : (
-                  <p className="muted small">No answers recorded.</p>
-                )}
-              </li>
-            );
-          })}
-        </ol>
+        <FiveAnswers questions={questions} stats={stats} />
 
         <div className="section-head" style={{ marginTop: 30 }}>
           <Plate tone="gold">Immaculate Ring</Plate>
           <Plate tone="dark">Answer key</Plate>
         </div>
-        <div className="keylist">
-          {grid.rows.flatMap((r, ri) =>
-            grid.cols.map((c, ci) => {
-              const p = picks[ri * 3 + ci];
-              const topNames = new Set(p.top.map((t) => t.name));
-              const more = p.examples.filter((n) => !topNames.has(n)).slice(0, 4);
-              return (
-                <div key={`${ri}-${ci}`} className="key">
-                  <p className="caps">
-                    <span className="r">{r.label}</span> × <span className="c">{c.label}</span>
-                  </p>
-                  {p.top.length > 0 && (
-                    <p>
-                      <b>Most picked:</b> {p.top.map((t) => `${t.name} (${t.pct}%)`).join(", ")}
-                    </p>
-                  )}
-                  {more.length > 0 && (
-                    <p className="muted">
-                      <b>Also right:</b> {more.join(", ")}
-                    </p>
-                  )}
-                  <p className="muted small">{p.possible} wrestlers would have counted.</p>
-                </div>
-              );
-            }),
-          )}
-        </div>
+        <RingKey grid={grid} picks={picks} />
+        <p className="muted" style={{ fontSize: 15 }}>
+          Permanent pages for this card: <Link className="gold" href={`/ring/answers/${number}`}>Ring No. {number} answers</Link> ·{" "}
+          <Link className="gold" href={`/five/answers/${number}`}>Daily Five No. {number} answers</Link> ·{" "}
+          <Link className="gold" href="/archive">every past card</Link>
+        </p>
       </main>
     </>
   );

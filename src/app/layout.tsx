@@ -42,7 +42,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           Data: <a href="https://www.kaggle.com/datasets/theodorerubin/ringside-wrestling-archive">Ringside Wrestling Archive</a>,{" "}
           <a href="https://www.wikidata.org">Wikidata</a> and <a href="https://en.wikipedia.org/wiki/Category:Lists_of_professional_wrestling_champions">Wikipedia</a> championship lists.
           Not affiliated with any promotion. A <a href="https://dahvio.com">DahVio Studios</a> production.{" "}
-          <a href="https://discord.gg/zDWjFPGQm">Discord</a> <a href="/privacy">Privacy</a> <AccountLink />
+          <a href="/archive">Archive</a> <a href="https://discord.gg/zDWjFPGQm">Discord</a> <a href="/privacy">Privacy</a> <AccountLink />
         </footer>
         <Ticker />
         <Tracking />

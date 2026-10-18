@@ -346,3 +346,17 @@ button { font: inherit; color: inherit; }
 .challenge p { margin: 8px 0 0; text-align: center; }
 .cta.gold { background: var(--gold); color: var(--ink); }
 .cta.gold:hover { background: #fff; }
+
+/* ---------- archive ---------- */
+.key h3 { margin: 4px 0; line-height: 1.3; }
+a.gold, .muted a.gold { color: var(--gold); }
+.daynav { display: flex; justify-content: space-between; gap: 10px; margin: 26px 0 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; font-size: 14px; }
+.daynav a { color: var(--gold); }
+.archive-list { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 6px; }
+.archive-list li { display: grid; grid-template-columns: 64px 1fr; align-items: center; gap: 0 12px; background: var(--plate-2); padding: 10px 14px 10px 0; box-shadow: inset 4px 0 0 var(--gold); }
+.archive-list .no { grid-row: span 2; font-family: var(--font-display); font-size: 30px; color: var(--gold); text-align: center; line-height: 1; }
+.archive-list .when { font-weight: 800; text-transform: uppercase; letter-spacing: 0.03em; font-size: 15px; }
+.archive-list .links { display: flex; flex-wrap: wrap; gap: 4px 14px; font-size: 14px; }
+.archive-list .links a { color: var(--text-2); }
+.archive-list .links a:hover { color: var(--gold); }
+.archive-list .links b { color: var(--text); font-weight: 700; }
