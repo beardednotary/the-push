@@ -46,9 +46,9 @@ for (const region of Object.keys(REGIONS) as Region[]) {
       if (d < 3) console.log(region, day, "rows:", g.rows.map((c) => c.label).join(" | "), "cols:", g.cols.map((c) => c.label).join(" | "), g.answerCounts.join(","));
     } catch (e) {
       fails++;
-      console.log(region, day, String(e));
+      if (fails <= 3) console.log(region, day, String(e));
     }
   }
-  console.log(`region ${region} grid failures:`, fails, "| smallest cell:", smallest);
+  console.log(`region ${region}${REGIONS[region].live ? "" : " (not live)"} grid failures:`, fails, "| smallest cell:", smallest);
   console.log(`region ${region} criteria use:`, [...use].sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k}:${v}`).join(" "));
 }

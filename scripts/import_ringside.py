@@ -114,6 +114,7 @@ CRITERIA = [
     ("bornMX", "life", "born", "Born in Mexico", "Born in Mexico."),
     ("bornUK", "life", "born", "Born in the UK", "Born in the United Kingdom."),
     ("bornAbroad", "life", "born", "Born Outside the US", "Born anywhere other than the United States."),
+    ("family", "life", "family", "Wrestling Family", "Parent, child or sibling was also a pro wrestler."),
     # Japan and Mexico (Wikipedia champion and winner lists; scripts/fetch_titles.py)
     ("iwgpChamp", "title", "iwgp", "IWGP Heavyweight Champ", "Held NJPW's IWGP Heavyweight or IWGP World Heavyweight Championship."),
     ("never", "title", "never", "NEVER Openweight Champ", "Held NJPW's NEVER Openweight Championship."),
@@ -127,12 +128,20 @@ CRITERIA = [
     ("bosj", "accolade", "bosj", "Super Juniors Winner", "Won NJPW's Best of the Super Juniors tournament."),
     ("carnival", "accolade", "carnival", "Champion Carnival Winner", "Won All Japan's Champion Carnival tournament."),
     ("reyDeReyes", "accolade", "reyDeReyes", "Rey de Reyes Winner", "Won AAA's Rey de Reyes tournament."),
+    ("gaijin", "accolade", "gaijin", "Gaijin", "Non-Japanese wrestler who held a Japanese title or won a Japanese tournament."),
+    ("legacy", "accolade", "legacy", "Lucha Legacy", "Works a family or inherited lucha name: El Hijo de..., Jr., II, or a passed-down mask."),
 ]
 CRITERION_IDS = {c[0] for c in CRITERIA}
 # Criteria that belong to one scene. They stay out of the main daily grid until region
 # cards exist (see docs/regions.md); the main grid is built from criteria with no scene.
 SCENE = {"iwgpChamp": "jp", "never": "jp", "iwgpJr": "jp", "tripleCrown": "jp", "ghc": "jp", "stardomChamp": "jp",
-         "g1": "jp", "bosj": "jp", "carnival": "jp", "cmllChamp": "mx", "aaaMega": "mx", "reyDeReyes": "mx"}
+         "g1": "jp", "bosj": "jp", "carnival": "jp", "gaijin": "jp",
+         "cmllChamp": "mx", "aaaMega": "mx", "reyDeReyes": "mx", "legacy": "mx"}
+JP_BELTS = {k for k, v in SCENE.items() if v == "jp" and k != "gaijin"}
+MX_BELTS = {k for k, v in SCENE.items() if v == "mx" and k != "legacy"}
+# Lucha legacy names: El Hijo de / del, La Hija de, Jr., or a numeral (Rey Mysterio Jr., Dr. Wagner Jr., Black Warrior II).
+# Only checked on lucha wrestlers (a Mexican belt or born in Mexico), so Ted DiBiase Jr. doesn't count.
+LEGACY_NAME = r"(?i:^(El |La )?Hij[oa] del? )|\bJr\.?$|\b(II|III|IV|V)$"
 SCENE_JUNK = r"Wrestling|Lucha Libre|Stardom|Brothers|Vacant|unification|Consejo|Championship|,"
 TOURNAMENT_LABELS = {"g1": "G1 Climax", "bosj": "Best of the Super Juniors", "carnival": "Champion Carnival",
                      "reyDeReyes": "Rey de Reyes"}
@@ -466,12 +475,30 @@ def main():
         t = tags.get(root, set()) & CRITERION_IDS
         # scene titles and tournament wins let in Japanese and Mexican stars the archive barely covers
         titled = bool(t & (set(TITLE_GROUPS) | {"tag", "womens", "aewChamp"} | set(SCENE)))
+        if t & JP_BELTS and "nonJP" in tags.get(root, set()):
+            t.add("gaijin")
         if (total_n[root] < MIN_POOL_MATCHES and not titled) or re.search(r", | & ", display[root]) or display[root] in JUNK_NAMES:
             continue
         aka = sorted(a for a in aliases[root] if a and name_key(a) != name_key(display[root]))
         pool.append({"id": int(root), "name": display[root], "aka": aka[:8], "g": gender.get(root, ""),
                      "tags": sorted(t), "pop": ppv_n[root] * 3 + total_n[root]})
     pool += scene_people(unmatched, wd_taken, pool, report)
+    add_legacy(pool, report)
+    # the tags sheet again, now over everyone (scene people from Wikipedia included)
+    pool_by_key = collections.defaultdict(list)
+    for w in pool:
+        pool_by_key[name_key(w["name"])].append(w)
+    with open(CUR / "tags.csv", newline="", encoding="utf-8") as f:
+        for o in csv.DictReader(f):
+            hit = pool_by_key.get(name_key(o["wrestler"]), [])
+            if len(hit) == 1 and o["tag"] in CRITERION_IDS:
+                t = set(hit[0]["tags"])
+                (t.add if o["action"] == "add" else t.discard)(o["tag"])
+                hit[0]["tags"] = sorted(t)
+    fam = [w for w in pool if "family" in w["tags"]]
+    report.append(f"- REVIEW: Wrestling Family ({len(fam)}): " + "; ".join(w["name"] for w in fam[:400]))
+    gai = [w for w in pool if "gaijin" in w["tags"]]
+    report.append(f"- REVIEW: Gaijin ({len(gai)}): " + "; ".join(w["name"] for w in gai))
     pool.sort(key=lambda w: -w["pop"])
     names = collections.Counter(w["name"] for w in pool)
     report.append(f"- pool size {len(pool)}; duplicate display names: {[n for n, c in names.items() if c > 1][:30]}")
@@ -509,7 +536,7 @@ def main():
     print(f"pool {len(pool)} wrestlers, {len(questions)} questions -> {OUT}")
 
 
-WIKIDATA_FACTS = {"actor": "actor", "music": "music", "mma": "combat", "boxer": "combat", "amateur": "amateur",
+WIKIDATA_FACTS = {"actor": "actor", "music": "music", "mma": "combat", "boxer": "combat", "amateur": "amateur", "family": "family",
                   "olympian": "olympian", "nfl": "profootball", "cfl": "profootball", "college": "college", "strength": "strength"}
 BORN = {"CA": "bornCA", "JP": "bornJP", "MX": "bornMX", "GB": "bornUK"}
 
@@ -614,8 +641,11 @@ def scene_people(unmatched, taken, pool, report):
         aka = sorted({a for a in [rec["label"], *rec["aliases"]] if a and name_key(a) != name_key(name)})
         # stable ids: Wikidata's number, or a hash of the name, far above the archive's ids
         pid = 1_000_000_000 + int(q[1:]) if q.startswith("Q") else 3_000_000_000 + zlib.crc32(q.encode()) % 1_000_000_000
+        t = groups | wd_life_tags(rec)[0]
+        if groups & JP_BELTS and "nonJP" in t:
+            t.add("gaijin")
         out.append({"id": pid, "name": name, "aka": aka[:8],
-                    "g": "f" if "stardomChamp" in groups else "", "tags": sorted(groups | wd_life_tags(rec)[0]), "pop": 0})
+                    "g": "f" if "stardomChamp" in groups else "", "tags": sorted(t & CRITERION_IDS), "pop": 0})
     report.append(f"- scene people added from Wikipedia + Wikidata (not in the archive): {len(out)}, "
                   f"{sum(w['id'] >= 3_000_000_000 for w in out)} of them unknown to Wikidata: "
                   f"{sorted(w['name'] for w in out if w['id'] >= 3_000_000_000)}; "
@@ -623,9 +653,27 @@ def scene_people(unmatched, taken, pool, report):
     return out
 
 
+def add_legacy(pool, report):
+    """Lucha Legacy: a lucha wrestler (Mexican belt or born in Mexico) whose name or an
+    alias is a family or inherited name. Inherited masks the pattern misses (La Parka)
+    come from tags.csv rows."""
+    hits = []
+    for w in pool:
+        if not (set(w["tags"]) & MX_BELTS or "bornMX" in w["tags"]):
+            continue
+        if any(re.search(LEGACY_NAME, n.strip()) for n in [w["name"], *w["aka"]]):
+            w["tags"] = sorted({*w["tags"], "legacy"})
+            hits.append(w["name"])
+    report.append(f"- REVIEW: Lucha Legacy by name ({len(hits)}): " + "; ".join(sorted(hits)))
+
+
 def wd_life_tags(rec):
-    """Life-outside-the-ring tags for one Wikidata person, and whether birth came from citizenship."""
+    """Life-outside-the-ring tags for one Wikidata person, and whether birth came from citizenship.
+    Also "nonJP" (not a criterion): no Japanese citizenship, for the Gaijin category."""
     new = {WIKIDATA_FACTS[f] for f in rec["facts"] if f in WIKIDATA_FACTS}
+    citizen, birth = rec.get("citizen", []), rec.get("born_in")
+    if (citizen and "JP" not in citizen) or (not citizen and birth and birth != "JP"):
+        new.add("nonJP")
     born, from_citizenship = rec.get("born_in"), False
     if not born and len(rec.get("citizen", [])) == 1:
         born, from_citizenship = rec["citizen"][0], True  # no birthplace on Wikidata: a single citizenship stands in

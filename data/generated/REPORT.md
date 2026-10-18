@@ -14,10 +14,13 @@ Read this after every import; spot-check the lists against what you know.
 - matches after de-dup: 129886
 - gender: Counter({'m': 2772, 'f': 316}) among regulars
 - REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): ['Johnny Grunge ECW World Heavyweight Title 1994-03-26', 'Sabu ECW World Heavyweight Title 1995-02-04', 'Jr. WCW Cruiserweight Championship 1996-07-08', 'Jr. WCW Cruiserweight Championship 1998-01-15', 'Kane WWF World Heavyweight Title 1998-09-27', 'Kane WWF European Title 1999-02-15', 'Jr. WCW Cruiserweight Championship 1999-03-15', 'Jr. WCW Cruiserweight Championship 1999-04-26', 'Evan Karagias WCW Hardcore Title 2000-02-28', 'David Arquette WCW World Heavyweight Title 2000-04-25', 'Crowbar WCW Cruiserweight Championship 2000-05-15', 'Kane WWF World Heavyweight Title 2000-06-25', 'Chyna WWF Intercontinental Title 2000-08-27', 'Kevin Nash WCW Cruiserweight Championship 2000-10-02', 'Mr. McMahon ECW World Heavyweight Title 2007-04-29', 'Cody Rhodes WWE Championship 2009-04-26', "Layla WWE Women's Championship (original) 2010-05-11", 'Chris Jericho WWE United States Championship 2017-01-09', 'Dash Wilder WWE 24/7 Title 2019-08-12', 'Claudio Castagnoli WWE Intercontinental Championship 2020-03-08']
-- Wikidata: 1977 people matched, 11 skipped as ambiguous; tags added: {'(born from citizenship)': 65, 'profootball': 49, 'college': 66, 'actor': 266, 'strength': 33, 'olympian': 22, 'amateur': 220, 'bornJP': 133, 'bornAbroad': 644, 'combat': 67, 'bornMX': 98, 'music': 29, 'bornUK': 106, 'bornCA': 137}
+- Wikidata: 1977 people matched, 11 skipped as ambiguous; tags added: {'(born from citizenship)': 65, 'profootball': 49, 'college': 66, 'actor': 266, 'nonJP': 1779, 'family': 230, 'strength': 33, 'olympian': 22, 'amateur': 220, 'bornAbroad': 644, 'bornJP': 133, 'combat': 67, 'bornMX': 98, 'music': 29, 'bornUK': 106, 'bornCA': 137}
 - Title lists (Wikipedia): champions added that the archive was missing: {'wweChamp': 11, 'whc': 5, 'universal': 1, 'wcwChamp': 2, 'ecwChamp': 7, 'aewChamp': 11, 'ic': 7, 'us': 32, 'tv': 43, 'cruiser': 19, 'hardcore': 19, 'european': 7, 'nxtChamp': 5, 'twentyFourSeven': 5, 'tag': 237, 'womens': 7, 'iwgpChamp': 29, 'never': 19, 'iwgpJr': 27, 'tripleCrown': 14, 'ghc': 12, 'stardomChamp': 8, 'cmllChamp': 10, 'aaaMega': 11, 'g1': 17, 'bosj': 15, 'carnival': 13, 'reyDeReyes': 15}
 - Title lists: names not matched to one person (often tag teams or pre-1980 champions): wweChamp: 12; whc: 6; universal: 4; wcwChamp: 6; ecwChamp: 9; aewChamp: 1; ic: 9; us: 15; tv: 12; cruiser: 20; hardcore: 9; european: 4; nxtChamp: 3; twentyFourSeven: 10; tag: 215; womens: 16; iwgpChamp: 13; never: 11; iwgpJr: 19; tripleCrown: 25; ghc: 17; stardomChamp: 13; cmllChamp: 11; aaaMega: 7; g1: 4; bosj: 12; carnival: 18; reyDeReyes: 11
 - scene people added from Wikipedia + Wikidata (not in the archive): 91, 10 of them unknown to Wikidata: ['Boltin Oleg', 'El Hijo del Perro Aguayo', 'El Texano Jr.', 'Gran Guerrero', 'Konnan El Barbaro', 'La Parka Jr.', 'Maika', 'Saya Kamitani', 'Sho', 'Xtreme Tiger']; skipped (no single Wikidata match, or name taken): ['Brazo de Plata']
+- REVIEW: Lucha Legacy by name (15): Abismo Negro; Alberto Del Rio; Angel Garza; Dr. Wagner Jr.; El Hijo Del Vikingo; El Hijo del Dr. Wagner Jr.; El Hijo del Perro Aguayo; El Texano Jr.; La Parka Jr.; Lizmark Jr.; Penta; Rayo de Jalisco Jr.; Villano III; Villano IV; Villano V
+- REVIEW: Wrestling Family (181): Bron Breakker; Dragon Lee; Jey Uso; Jimmy Uso; Ludwig Kaiser; Natalya; Nikki Bella; Cody Rhodes; Jacob Fatu; Randy Orton; Roman Reigns; Solo Sikoa; Talla Tonga; Tama Tonga; The Rock; Brooks Jensen; Charlie Dempsey; Lexis King; Ariya Daivari; Austin Gunn; Billy Gunn; Colten Gunn; Dralistico; Dustin Rhodes; Hook; Jeff Jarrett; Katsuyori Shibata; Mark Briscoe; Matt Jackson; Nick Jackson; Rush; Joe Coffey; Mark Coffey; Jeff Hardy; Matt Hardy; Dolph Ziggler; Saraya; A.J. Styles; Carlito; Ryan Nemeth; Marko Stunt; Damon Kemp; Sting; Gable Steveson; Charlotte Flair; Humberto Carrillo; Shane McMahon; Carmella; Bray Wyatt; Terrell Hughes; Terrence Hughes; David Finlay; Bruno Sammartino; Boris Malenko; Chris Tolos; John Tolos; Bill Watts; Steve Stanlee; Angelo Savoldi; Chief Jay Strongbow; Jack Brisco; Blackjack Mulligan; Dory Funk; Stan Stasiak; Terry Funk; Gerald Brisco; Mil Mascaras; Butcher Vachon; The Executioner; Ric Flair; Dusty Rhodes; Peter Maivia; Tatsumi Fujinami; Ted DiBiase; Hulk Hogan; Sika; The Texas Tornado; Jay Youngblood; Ricky Steamboat; Mr. Perfect; Bob Orton Jr.; Jimmy Snuka; Eddie Gilbert; Rocky Johnson; David Sammartino; Barry Windham; Irwin R. Schyster; Bret Hart; Jim Neidhart; Doink the Clown; Lanny Poffo; Randy Savage; Jake Roberts; Jimmy Jack Funk; Haku; Jacques Rougeau; Raymond Rougeau; Smash; Sam Houston; Rockin' Robin; Mark Young; Owen Hart; Arn Anderson; Tully Blanchard; The Goon; Brian Pillman; Rick Steiner; Scott Steiner; Brad Armstrong; Mark Youngblood; Steve Armstrong; Vader; Buff Bagwell; Dean Malenko; Scott Hall; Shinya Hashimoto; Erik Watts; The Sandman; Jerry Lawler; Luna Vachon; Booker T; Stevie Ray; Grandmaster Sexay; Scott Armstrong; Kendall Windham; Hector Guerrero; Eddie Guerrero; Chris Candido; La Parka; Road Warrior Animal; Finlay; D-Von Dudley; Chavo Guerrero Jr.; Hector Garza; Perro Aguayo; Gran Hamada; Tiger Ali Singh; Silver King; Pantera; Road Dogg; Eric Bischoff; Shawn Stasiak; Bull Buchanan; Mr. McMahon; Violent J; David Flair; Kurt Angle; Stephanie McMahon; Rikishi; Charlie Haas; Russ Haas; William Regal; Umaga; Rosey; Rene Dupree; David Hart Smith; Chavo Classic; Slam Master J.; Deuce; Corey Graves; Curtis Axel; Ted DiBiase Jr.; Vickie Guerrero; Primo; Brie Bella; Manu; Alberto Del Rio; Epico; Richie Steamboat; John Laurinaitis; Camacho; Tamina Snuka; Jake Carter; Bo Dallas; Garett Bischoff; El Hijo del Dr. Wagner Jr.; Lacey Von Erich; Dr. Wagner Jr.; Yuma Aoyagi; Sam Adonis; Argenis
+- REVIEW: Gaijin (40): Dragon Lee; Finn Bálor; Tama Tonga; Brock Lesnar; Jay White; Jon Moxley; Kenny Omega; Ricochet; Rocky Romero; Will Ospreay; Toni Storm; Eddie Edwards; Karl Anderson; A.J. Styles; Robbie Eagles; Shane Thorne; Zack Sabre Jr.; Jeff Cobb; David Finlay; Stan Hansen; Owen Hart; Vader; Abdullah The Butcher; Chris Benoit; Sabu; Eddie Guerrero; Scott Norton; Juventud Guerrera; The Alpha Female; El Hijo del Dr. Wagner Jr.; Bea Priestley; Low Ki; Marty Scurll; Joe Doering; Callum Newman; Michael Elgin; Salman Hashimikov; Henare; Taiyō Kea; Bob Sapp
 - pool size 2031; duplicate display names: []
 - possible name splits to review: 103 (data/generated/merge_candidates.csv)
 - trivia questions generated: 870; skipped: {'rumble': 43, 'wmMain': 7, 'lineage-unconfirmed': 103, 'lineage-tv': 183, 'lineage': 10, 'classic-obscure': 184, 'classic': 9}
@@ -64,8 +67,10 @@ Born in Japan: 133 (15 well known); born in Mexico: 68 (15 well known).
 | bosj (jp) | 25 | 5 |
 | carnival (jp) | 29 | 1 |
 | reyDeReyes (mx) | 26 | 4 |
+| gaijin (jp) | 40 | 17 |
+| legacy (mx) | 15 | 4 |
 | any jp criterion | 159 | 24 |
-| any mx criterion | 50 | 15 |
+| any mx criterion | 57 | 17 |
 
 ## Criteria counts (pool)
 
@@ -116,6 +121,7 @@ Born in Japan: 133 (15 well known); born in Mexico: 68 (15 well known).
 - bornMX: 68
 - bornUK: 65
 - bornAbroad: 477
+- family: 181
 - iwgpChamp: 40
 - never: 27
 - iwgpJr: 43
@@ -128,6 +134,8 @@ Born in Japan: 133 (15 well known); born in Mexico: 68 (15 well known).
 - bosj: 25
 - carnival: 29
 - reyDeReyes: 26
+- gaijin: 40
+- legacy: 15
 
 ## Royal Rumble winners
 
@@ -276,28 +284,28 @@ Born in Japan: 133 (15 well known); born in Mexico: 68 (15 well known).
 - Big Show (m): actor, aew, cage, college, d1990s, d2000s, d2010s, d2020s, ecwChamp, hardcore, hiac, ic, ladder, nxt, tag, us, wcw, wcwChamp, whc, wwe, wweChamp
 - Kofi Kingston (m): bornAbroad, cage, d2000s, d2010s, d2020s, ic, ladder, music, nxt, tag, us, whc, wwe, wweChamp
 - The Miz (m): actor, cage, d2000s, d2010s, d2020s, ic, ladder, tag, us, wmMain, wwe, wweChamp
-- Randy Orton (m): actor, amateur, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
+- Randy Orton (m): actor, amateur, cage, d2000s, d2010s, d2020s, family, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
 - John Cena (m): actor, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, music, rumble, tag, us, whc, wmMain, wwe, wweChamp
-- Dolph Ziggler (m): aaaMega, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, nxtChamp, tag, tna, us, whc, wwe
+- Dolph Ziggler (m): aaaMega, cage, d2000s, d2010s, d2020s, family, hiac, ic, ladder, marathon, nxt, nxtChamp, tag, tna, us, whc, wwe
 - Chris Jericho (m): actor, aew, aewChamp, aewPpvMain, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecw, european, hardcore, hiac, ic, ladder, marathon, music, tag, tv, us, wcw, wcwChamp, whc, wmMain, wwe, wweChamp
 - Sheamus (m): actor, bornAbroad, cage, d2000s, d2010s, d2020s, hiac, ladder, nxt, rumble, tag, us, whc, wwe, wweChamp
 - Seth Rollins (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, nxtChamp, rumble, tag, universal, us, whc, wmMain, wwe, wweChamp
 - R-Truth (m): d2000s, d2010s, d2020s, hardcore, ladder, tag, tna, twentyFourSeven, us, wwe
-- Cody Rhodes (m): actor, aew, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, rumble, tag, tna, universal, wmMain, wwe, wweChamp
-- Jon Moxley (m): actor, aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, iwgpChamp, ladder, nxt, tag, us, wwe, wweChamp
+- Cody Rhodes (m): actor, aew, aewPpvMain, cage, d2000s, d2010s, d2020s, family, hiac, ic, ladder, marathon, nxt, rumble, tag, tna, universal, wmMain, wwe, wweChamp
+- Jon Moxley (m): actor, aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, gaijin, hiac, ic, iwgpChamp, ladder, nxt, tag, us, wwe, wweChamp
 - Claudio Castagnoli (m): aew, aewPpvMain, bornAbroad, cage, cmllChamp, d2010s, d2020s, ic, ladder, nxt, tag, us, wwe
-- Jey Uso (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, rumble, tag, whc, wmMain, wwe, wweChamp
-- Roman Reigns (m): actor, cage, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, profootball, rumble, tag, universal, us, whc, wmMain, wwe, wweChamp
-- Jimmy Uso (m): cage, d2010s, d2020s, nxt, tag, wmMain, wwe
-- Natalya (f): bornAbroad, bornCA, cage, d2000s, d2010s, d2020s, ladder, nxt, tag, womens, wwe
-- Dustin Rhodes (m): aew, aewPpvMain, cage, d1990s, d2000s, d2010s, d2020s, hardcore, ic, ladder, tag, tna, us, wcw, wwe
-- A.J. Styles (m): cage, d2000s, d2010s, d2020s, ic, iwgpChamp, ladder, marathon, tag, tna, us, wcw, whc, wmMain, wwe, wweChamp
+- Jey Uso (m): cage, d2010s, d2020s, family, hiac, ic, ladder, nxt, rumble, tag, whc, wmMain, wwe, wweChamp
+- Roman Reigns (m): actor, cage, d2010s, d2020s, family, hiac, ic, ladder, marathon, nxt, profootball, rumble, tag, universal, us, whc, wmMain, wwe, wweChamp
+- Jimmy Uso (m): cage, d2010s, d2020s, family, nxt, tag, wmMain, wwe
+- Natalya (f): bornAbroad, bornCA, cage, d2000s, d2010s, d2020s, family, ladder, nxt, tag, womens, wwe
+- Dustin Rhodes (m): aew, aewPpvMain, cage, d1990s, d2000s, d2010s, d2020s, family, hardcore, ic, ladder, tag, tna, us, wcw, wwe
+- A.J. Styles (m): cage, d2000s, d2010s, d2020s, family, gaijin, ic, iwgpChamp, ladder, marathon, tag, tna, us, wcw, whc, wmMain, wwe, wweChamp
 - Bubba Ray Dudley (m): cage, d1990s, d2000s, d2010s, ecw, hardcore, ladder, tag, tna, wwe
-- Matt Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecwChamp, european, hardcore, ladder, tag, tna, us, wwe
-- Jeff Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, european, hardcore, hiac, ic, ladder, marathon, music, tag, tna, us, whc, wwe, wweChamp
+- Matt Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecwChamp, european, family, hardcore, ladder, tag, tna, us, wwe
+- Jeff Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, european, family, hardcore, hiac, ic, ladder, marathon, music, tag, tna, us, whc, wwe, wweChamp
 - The Undertaker (m): cage, d1990s, d2000s, d2010s, hardcore, hiac, ladder, marathon, rumble, whc, wmMain, wwe, wweChamp
 - Jake Hager (m): aew, aewPpvMain, cage, college, combat, d2000s, d2010s, d2020s, ecwChamp, hiac, us, whc, wwe
-- D-Von Dudley (m): cage, d1990s, d2000s, d2010s, ecw, ladder, tag, tna, wwe
+- D-Von Dudley (m): cage, d1990s, d2000s, d2010s, ecw, family, ladder, tag, tna, wwe
 - Drew McIntyre (m): actor, bornAbroad, bornUK, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, nxtChamp, rumble, tag, tna, whc, wmMain, wwe, wweChamp
 - Christian Cage (m): actor, aew, aewPpvMain, bornAbroad, bornCA, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecwChamp, european, hardcore, ic, ladder, tag, tna, whc, wwe
 - Big E (m): cage, college, d2010s, d2020s, ic, ladder, nxt, nxtChamp, strength, tag, wwe, wweChamp
@@ -305,13 +313,13 @@ Born in Japan: 133 (15 well known); born in Mexico: 68 (15 well known).
 - Zack Ryder (m): actor, aew, cage, d2000s, d2010s, d2020s, ic, ladder, nxt, tv, us, wwe
 - Bryan Danielson (m): aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, tag, us, whc, wmMain, wwe, wweChamp
 - Triple H (m): actor, cage, d1990s, d2000s, d2010s, european, hiac, ic, ladder, rumble, tag, wcw, whc, wmMain, wwe, wweChamp
-- Curtis Axel (m): d2010s, ic, nxt, tag, wwe
-- Rey Mysterio (m): cage, cruiser, d1990s, d2000s, d2010s, d2020s, hiac, ic, ladder, rumble, tag, us, wcw, whc, wwe, wweChamp
-- Kurt Angle (m): amateur, cage, d1990s, d2000s, d2010s, european, hardcore, hiac, ic, ladder, marathon, music, olympian, tag, tna, us, wcwChamp, whc, wmMain, wwe, wweChamp
+- Curtis Axel (m): d2010s, family, ic, nxt, tag, wwe
+- Rey Mysterio (m): cage, cruiser, d1990s, d2000s, d2010s, d2020s, hiac, ic, ladder, legacy, rumble, tag, us, wcw, whc, wwe, wweChamp
+- Kurt Angle (m): amateur, cage, d1990s, d2000s, d2010s, european, family, hardcore, hiac, ic, ladder, marathon, music, olympian, tag, tna, us, wcwChamp, whc, wmMain, wwe, wweChamp
 - Heath Slater (m): d2010s, d2020s, nxt, tag, twentyFourSeven, wwe
-- Charlotte Flair (f): cage, d2010s, d2020s, hiac, ladder, nxt, rumble, tag, womens, wwe
+- Charlotte Flair (f): cage, d2010s, d2020s, family, hiac, ladder, nxt, rumble, tag, womens, wwe
 - Kevin Owens (m): bornAbroad, bornCA, cage, d2010s, d2020s, hiac, ic, ladder, nxt, nxtChamp, universal, us, wmMain, wwe
-- Bray Wyatt (m): actor, cage, college, d2010s, d2020s, hiac, ladder, nxt, tag, universal, whc, wwe, wweChamp
+- Bray Wyatt (m): actor, cage, college, d2010s, d2020s, family, hiac, ladder, nxt, tag, universal, whc, wwe, wweChamp
 
 ## Trivia counts
 

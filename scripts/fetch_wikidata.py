@@ -39,6 +39,8 @@ FACTS = {
     # college teams play in NCAA divisions or conferences (SEC, Big Ten, ...)
     "college": "?p wdt:P54 ?t . ?t wdt:P118 ?lg . ?lg rdfs:label ?ll . FILTER(LANG(?ll) = 'en' && (CONTAINS(?ll, 'NCAA') || CONTAINS(?ll, 'Conference')))",
     "olympian": "?p wdt:P1344 ?e . ?e rdfs:label ?el . FILTER(LANG(?el) = 'en' && CONTAINS(?el, 'Olympics'))",
+    # a parent, child or sibling who was also a pro wrestler
+    "family": "?p wdt:P22|wdt:P25|wdt:P40|wdt:P3373 ?r . ?r wdt:P106 wd:Q13474373 .",
 }
 
 

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Plate } from "./Chrome";
+import type { Region } from "@/lib/regions";
 
 function safeGet(key: string): string | null {
   try {
@@ -64,7 +65,7 @@ export function track(event: string) {
 }
 
 /** The post-game challenge: sends the result plus a link whose preview is the player's score card. */
-export function ShareButton({ text, path, game, teaser, dare }: { text: string; path: string; game: "five" | "ring" | "ringjp"; teaser: string; dare: string }) {
+export function ShareButton({ text, path, game, teaser, dare }: { text: string; path: string; game: "five" | "ring" | `ring${Region}`; teaser: string; dare: string }) {
   const [copied, setCopied] = useState(false);
   async function share() {
     const streak = Number(safeGet("push:streak") ?? 0);
