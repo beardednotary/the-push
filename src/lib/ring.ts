@@ -37,6 +37,7 @@ const WELL_KNOWN = WRESTLERS.filter((w) => w.pop >= 150);
 const MIN_ANSWERS = 3;
 // Broad buckets make lazy cells; let them in rarely.
 const WEIGHT: Record<string, number> = { promotion: 3, title: 4, accolade: 3, match: 2, era: 1, life: 2.5 };
+const MAX_TITLES = 2;
 const BROAD = new Set(["wwe", "d2010s", "d2020s", "cage", "bornAbroad"]);
 
 function weightedPick(pool: Criterion[], rand: () => number): Criterion {
@@ -64,7 +65,10 @@ export function gridFor(day: string): Grid {
     const chosen: Criterion[] = [];
     while (chosen.length < 6) {
       const c = weightedPick(usable, rand);
-      if (!chosen.some((x) => x.id === c.id || x.family === c.family)) chosen.push(c);
+      if (chosen.some((x) => x.id === c.id || x.family === c.family)) continue;
+      // keep the grid varied: at most two belts per card
+      if (c.group === "title" && chosen.filter((x) => x.group === "title").length >= MAX_TITLES) continue;
+      chosen.push(c);
     }
     const [rows, cols] = [chosen.slice(0, 3), chosen.slice(3)];
     if (rows.every((c) => c.group === "era") || cols.every((c) => c.group === "era")) continue;
