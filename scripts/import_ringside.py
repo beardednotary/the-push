@@ -177,6 +177,31 @@ def main():
         for other in ids[1:]:
             union(ids[0], other)
 
+    # Gimmick changes: Wikidata lists each wrestler's other ring names, so names that point
+    # to exactly one Wikidata person are the same person here too (Dean Douglas -> Shane
+    # Douglas, Faarooq -> Ron Simmons, The Blue Blazer -> Owen Hart).
+    wd_path = RAW.parent / "wikidata.json"
+    if wd_path.exists():
+        wd_by_key = collections.defaultdict(set)
+        for q, rec in json.loads(wd_path.read_text(encoding="utf-8")).items():
+            for n in [rec["label"], *rec["aliases"]]:
+                if n and len(name_key(n)) >= 4:
+                    wd_by_key[name_key(n)].add(q)
+        by_person = collections.defaultdict(list)
+        for k, ids in by_key.items():
+            qs = wd_by_key.get(k, set())
+            if len(qs) == 1:
+                by_person[next(iter(qs))].append(ids[0])
+        auto = []
+        for q, ids in by_person.items():
+            roots = {find(i) for i in ids}
+            if len(roots) > 1:
+                auto.append(sorted({clean_name(wrestlers[i]["ring_name"]) for i in ids}))
+                for other in ids[1:]:
+                    union(ids[0], other)
+        report.append(f"- REVIEW: {len(auto)} gimmick changes merged via Wikidata aliases: "
+                      + "; ".join(" = ".join(names) for names in sorted(auto)[:400]))
+
     alias_merges = 0
     for a in rows("wrestler_aliases"):
         owner, k = a["wrestler_id"], name_key(a["alias"])
