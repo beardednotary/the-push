@@ -13,6 +13,7 @@ Curation (the Google Sheet tabs, exported as CSV) lives in data/curation/:
     merges.csv  one person split across several dataset ids or ring names
     tags.csv    facts the dataset lacks (AEW titles, Hall of Fame, ...) or gets wrong
     questions.csv  community trivia; only rows with "approved" set are used
+    covers.csv  WWE SmackDown! / 2K cover stars (from Wikipedia's WWE 2K article; not a sheet tab)
 """
 import collections
 import csv
@@ -61,6 +62,59 @@ BRANDED = {
     "ECW": r"^(Hardcore TV|Heat ?Wave|November to Remember|Guilty as Charged|Barely Legal|Living Dangerously|Wrestlepalooza|Hardcore Heaven|CyberSlam|Anarchy Rulz|Massacre on 34th|Holiday Hell|Born to be Wired|Ultimate Jeopardy|When Worlds Collide|Hostile City Showdown|The Night the Line Was Crossed|on Sci Fi|on TNN)",
 }
 MIN_POOL_MATCHES = 15
+NXT_SINCE = "2012-06-01"  # NXT became WWE's developmental brand; "Never in NXT" looks at WWE careers from here on
+WELL_KNOWN_POP = 150  # the grid's answer pool (src/lib/ring.ts)
+# States, factions and the crossover splits only become criteria with this many well-known names
+MIN_WELL_KNOWN = 8
+US_STATES = {
+    "Alabama": "AL", "Alaska": "AK", "Arizona": "AZ", "Arkansas": "AR", "California": "CA", "Colorado": "CO",
+    "Connecticut": "CT", "Delaware": "DE", "Florida": "FL", "Georgia": "GA", "Hawaii": "HI", "Idaho": "ID",
+    "Illinois": "IL", "Indiana": "IN", "Iowa": "IA", "Kansas": "KS", "Kentucky": "KY", "Louisiana": "LA",
+    "Maine": "ME", "Maryland": "MD", "Massachusetts": "MA", "Michigan": "MI", "Minnesota": "MN", "Mississippi": "MS",
+    "Missouri": "MO", "Montana": "MT", "Nebraska": "NE", "Nevada": "NV", "New Hampshire": "NH", "New Jersey": "NJ",
+    "New Mexico": "NM", "New York": "NY", "North Carolina": "NC", "North Dakota": "ND", "Ohio": "OH", "Oklahoma": "OK",
+    "Oregon": "OR", "Pennsylvania": "PA", "Rhode Island": "RI", "South Carolina": "SC", "South Dakota": "SD",
+    "Tennessee": "TN", "Texas": "TX", "Utah": "UT", "Vermont": "VT", "Virginia": "VA", "Washington": "WA",
+    "West Virginia": "WV", "Wisconsin": "WI", "Wyoming": "WY",
+}
+# criterion id -> (label, as said in "Was a member of ...")
+FACTIONS = {
+    "nwo": ("nWo", "the nWo"),
+    "dx": ("D-Generation X", "D-Generation X"),
+    "horsemen": ("Four Horsemen", "the Four Horsemen"),
+    "evolution": ("Evolution", "Evolution"),
+    "shield": ("The Shield", "The Shield"),
+    "judgmentDay": ("Judgment Day", "The Judgment Day"),
+    "bulletClub": ("Bullet Club", "Bullet Club"),
+    "elite": ("The Elite", "The Elite"),
+    "innerCircle": ("Inner Circle", "the Inner Circle"),
+    "hartFoundation": ("Hart Foundation", "the Hart Foundation"),
+    "nexus": ("Nexus", "the Nexus"),
+    "wyatt": ("Wyatt Family", "the Wyatt Family"),
+    "bloodline": ("The Bloodline", "The Bloodline"),
+    "ministry": ("Ministry of Darkness", "the Ministry of Darkness"),
+    "undisputedEra": ("Undisputed Era", "the Undisputed Era"),
+    "lij": ("Los Ingobernables", "Los Ingobernables de Japón"),
+}
+# a team linked as one article on a member list
+FACTION_TEAMS = {"The Young Bucks": ["Matt Jackson", "Nick Jackson"]}
+# short forms of a real first name that still count as the real name (Randy Orton is Randal Orton)
+NICKNAMES = {
+    "randal": ("randy",), "randall": ("randy",), "randolph": ("randy",), "michael": ("mike", "mick"),
+    "matthew": ("matt",), "jeffrey": ("jeff",), "jeffery": ("jeff",), "christopher": ("chris",), "david": ("dave",),
+    "james": ("jim", "jimmy"), "robert": ("rob", "bob", "bobby"), "william": ("bill", "billy", "will"),
+    "thomas": ("tom", "tommy"), "joseph": ("joe", "joey"), "daniel": ("dan", "danny"), "theodore": ("ted",),
+    "nicholas": ("nick",), "richard": ("rick", "ricky", "dick"), "steven": ("steve",), "stephen": ("steve",),
+    "anthony": ("tony",), "ronald": ("ron", "ronnie"), "donald": ("don",), "samuel": ("sam", "sammy"),
+    "zachary": ("zack", "zach"), "alexander": ("alex",), "kenneth": ("ken", "kenny"), "lawrence": ("larry",),
+    "andrew": ("andy", "drew"), "gregory": ("greg",), "peter": ("pete",), "edward": ("ed", "eddie"),
+    "jonathan": ("jon",), "johnathan": ("jon",), "timothy": ("tim",), "terrance": ("terry",), "terrence": ("terry",),
+    "charles": ("charlie", "chuck"), "frederick": ("fred",), "douglas": ("doug",), "gerald": ("jerry",),
+    "jerome": ("jerry",), "raymond": ("ray",), "patrick": ("pat",), "rebecca": ("becky",), "jessica": ("jess",),
+    "katherine": ("kathy", "kate"), "elizabeth": ("liz", "beth"), "victoria": ("vicky",), "nicole": ("nikki",),
+}
+# one-word display names that aren't really a single ring name (initials, a first name only)
+NOT_SINGLE = {"AJ", "Billy", "Chuck", "Blake", "JBL", "MJF", "MVP", "TJP", "JTG", "DDP"}
 
 TITLE_GROUPS = {
     "wweChamp": {"WWWF World Heavyweight Title", "WWF World Heavyweight Title", "WWF Undisputed Title",
@@ -126,12 +180,27 @@ CRITERIA = [
     ("profootball", "life", "football", "Pro Football", "Played professional football in the NFL, CFL or AFL."),
     ("college", "life", "college", "College Athlete", "Played on an NCAA college team (football, basketball and so on)."),
     ("strength", "life", "strength", "Strength Athlete", "Competed as a bodybuilder, powerlifter, weightlifter or strongman."),
-    ("bornCA", "life", "born", "Born in Canada", "Born in Canada."),
-    ("bornJP", "life", "born", "Born in Japan", "Born in Japan."),
-    ("bornMX", "life", "born", "Born in Mexico", "Born in Mexico."),
-    ("bornUK", "life", "born", "Born in the UK", "Born in the United Kingdom."),
-    ("bornAbroad", "life", "born", "Born Outside the US", "Born anywhere other than the United States."),
+    # Where they're from. The born* ids predate the nationality wording; frozen daily cards
+    # in Redis store criterion ids, so they stay.
+    ("bornCA", "place", "born", "Canadian", "Born in Canada or holds Canadian citizenship."),
+    ("bornJP", "place", "born", "Japanese", "Born in Japan or holds Japanese citizenship."),
+    ("bornMX", "place", "born", "Mexican", "Born in Mexico or holds Mexican citizenship."),
+    ("bornUK", "place", "born", "British", "Born in the UK or holds British citizenship."),
+    ("bornAbroad", "place", "born", "Born Outside the US", "Born anywhere other than the United States."),
+    *[(f"state{code}", "place", "born", f"Born in {state}", f"Born in {state}.") for state, code in sorted(US_STATES.items())],
     ("family", "life", "family", "Wrestling Family", "Parent, child or sibling was also a pro wrestler."),
+    # Names
+    ("singleName", "name", "name", "Single Name", "Goes by one name, like Kane, Bayley or Sting. A leading \"The\" doesn't count."),
+    ("realName", "name", "name", "Uses Real Name", "Wrestles under their real first and last name, like Randy Orton or John Cena."),
+    # Careers that cross over
+    ("neverNxt", "promotion", "nxt", "Never in NXT", f"Wrestled on WWE's main roster in {NXT_SINCE[:4]} or later, but never in NXT."),
+    ("aewWwe", "promotion", "crossover", "AEW and WWE", "Wrestled for both AEW and the WWE main roster."),
+    ("wweToAew", "promotion", "crossover", "WWE, Then AEW", "Wrestled for WWE first, then later for AEW."),
+    ("aewToWwe", "promotion", "crossover", "AEW, Then WWE", "Wrestled for AEW first, then later for WWE."),
+    ("cover", "accolade", "cover", "2K Cover Star", "Was on the standard cover of a WWE SmackDown! or WWE 2K video game."),
+    # Factions (Wikipedia member lists; scripts/fetch_factions.py). Any version of the group counts.
+    *[(fid, "faction", "faction", label, f"Was a member of {phrase}, in any version of the group.")
+      for fid, (label, phrase) in FACTIONS.items()],
     # Japan and Mexico (Wikipedia champion and winner lists; scripts/fetch_titles.py)
     ("iwgpChamp", "title", "iwgp", "IWGP Heavyweight Champ", "Held NJPW's IWGP Heavyweight or IWGP World Heavyweight Championship."),
     ("never", "title", "never", "NEVER Openweight Champ", "Held NJPW's NEVER Openweight Championship."),
@@ -153,8 +222,8 @@ CRITERION_IDS = {c[0] for c in CRITERIA}
 # cards exist (see docs/regions.md); the main grid is built from criteria with no scene.
 SCENE = {"iwgpChamp": "jp", "never": "jp", "iwgpJr": "jp", "tripleCrown": "jp", "ghc": "jp", "stardomChamp": "jp",
          "g1": "jp", "bosj": "jp", "carnival": "jp", "gaijin": "jp",
-         "cmllChamp": "mx", "aaaMega": "mx", "reyDeReyes": "mx", "legacy": "mx"}
-JP_BELTS = {k for k, v in SCENE.items() if v == "jp" and k != "gaijin"}
+         "cmllChamp": "mx", "aaaMega": "mx", "reyDeReyes": "mx", "legacy": "mx", "lij": "jp"}
+JP_BELTS = {k for k, v in SCENE.items() if v == "jp" and k not in ("gaijin", "lij")}
 MX_BELTS = {k for k, v in SCENE.items() if v == "mx" and k != "legacy"}
 # Lucha legacy names: El Hijo de / del, La Hija de, Jr., or a numeral (Rey Mysterio Jr., Dr. Wagner Jr., Black Warrior II).
 # Only checked on lucha wrestlers (a Mexican belt or born in Mexico), so Ted DiBiase Jr. doesn't count.
@@ -379,7 +448,8 @@ def main():
     # ---- per-wrestler tags from match history ------------------------------
     tags = collections.defaultdict(set)
     promo_n, decade_n, branded_n = collections.Counter(), collections.Counter(), collections.Counter()
-    first_show = {}
+    first_show, first_date = {}, {}
+    wwe_since = set()  # main-roster WWE matches since NXT became WWE's developmental brand
     total_n, ppv_n = collections.Counter(), collections.Counter()
     by_event = collections.defaultdict(list)
     for m in matches.values():
@@ -389,6 +459,9 @@ def main():
         for wid in wids:
             if m["date"] < PROMO_UNTIL.get(m["promo"], "9999"):
                 promo_n[(wid, m["promo"])] += 1
+                first_date[(wid, m["promo"])] = min(first_date.get((wid, m["promo"]), m["date"]), m["date"])
+                if m["promo"] == "WWE" and m["date"] >= NXT_SINCE:
+                    wwe_since.add(wid)
                 if ev["event_type"] == "ppv" or re.search(BRANDED.get(m["promo"], r"^$"), strip_promo(ev["name"]), re.I):
                     branded_n[(wid, m["promo"])] += 1
                     first_show.setdefault((wid, m["promo"]), f"{ev['date'][:4]} {strip_promo(ev['name'])}")
@@ -479,6 +552,7 @@ def main():
     # ---- beyond the ring: Wikidata facts ------------------------------------
     wd_names, wd_taken = add_wikidata_tags(members, wrestlers, display, aliases, tags, report)
     unmatched = add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report)
+    add_name_lists(members, wrestlers, display, aliases, wd_names, tags, report)
 
     # ---- curation overrides -----------------------------------------------
     # (after Wikidata, so the tags sheet always has the final say)
@@ -503,6 +577,13 @@ def main():
         titled = bool(t & (set(TITLE_GROUPS) | {"tag", "womens", "aewChamp"} | set(SCENE)))
         if t & JP_BELTS and "nonJP" in tags.get(root, set()):
             t.add("gaijin")
+        if "wwe" in t and "nxt" not in t and root in wwe_since:
+            t.add("neverNxt")
+        if {"wwe", "aew"} <= t:
+            t.add("aewWwe")
+            w_first, a_first = first_date.get((root, "WWE")), first_date.get((root, "AEW"))
+            if w_first and a_first:
+                t.add("wweToAew" if w_first < a_first else "aewToWwe")
         if (total_n[root] < MIN_POOL_MATCHES and not titled) or re.search(r", | & ", display[root]) or display[root] in JUNK_NAMES:
             continue
         aka = sorted(a for a in aliases[root] if a and name_key(a) != name_key(display[root]))
@@ -510,6 +591,7 @@ def main():
                      "tags": sorted(t), "pop": ppv_n[root] * 3 + total_n[root]})
     pool += scene_people(unmatched, wd_taken, pool, report)
     add_legacy(pool, report)
+    add_single_names(pool, report)
     # the tags sheet again, now over everyone (scene people from Wikipedia included)
     pool_by_key = collections.defaultdict(list)
     for w in pool:
@@ -542,9 +624,20 @@ def main():
 
     write_split_candidates(members, display, matches, total_n, report)
 
+    # states, factions and the crossover splits only exist when enough well-known names fit
+    known = collections.Counter(t for w in pool if w["pop"] >= WELL_KNOWN_POP for t in w["tags"])
+    optional = {c[0] for c in CRITERIA if c[1] == "faction" or c[0].startswith("state") or c[0] in ("wweToAew", "aewToWwe")}
+    dropped = {i for i in optional if known[i] < MIN_WELL_KNOWN and SCENE.get(i) != "jp"}
+    if dropped & {"wweToAew", "aewToWwe"}:  # one side alone is just "AEW and WWE" again
+        dropped |= {"wweToAew", "aewToWwe"}
+    report.append(f"- dropped for fewer than {MIN_WELL_KNOWN} well-known names: "
+                  + ", ".join(f"{i} ({known[i]})" for i in sorted(dropped) if known[i] or not i.startswith("state")))
+    for w in pool:
+        w["tags"] = [t for t in w["tags"] if t not in dropped]
+    CHECKS[:] = [c for c in CHECKS if c[0] not in {FACTIONS[i][0] for i in dropped if i in FACTIONS}]
     counts = collections.Counter(t for w in pool for t in w["tags"])
     criteria = [{"id": c[0], "group": c[1], "family": c[2], "label": c[3], "detail": c[4], "count": counts[c[0]],
-                 **({"scene": SCENE[c[0]]} if c[0] in SCENE else {})} for c in CRITERIA]
+                 **({"scene": SCENE[c[0]]} if c[0] in SCENE else {})} for c in CRITERIA if c[0] not in dropped]
 
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "ring.json").write_text(json.dumps({"criteria": criteria, "wrestlers": pool}, separators=(",", ":"),
@@ -587,16 +680,7 @@ def add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report
         report.append("- Title lists: data/raw/titles_wiki.json missing (run scripts/fetch_titles.py)")
         return
     lists = json.loads(path.read_text(encoding="utf-8"))
-    by_key = collections.defaultdict(set)
-    for root, ids in members.items():
-        names = {display[root], *aliases[root], *wd_names.get(root, [])}
-        for i in ids:
-            names.add(wrestlers[i]["ring_name"])
-            if wrestlers[i].get("real_name"):
-                names.add(wrestlers[i]["real_name"])
-        for n in names:
-            if n and len(name_key(n)) >= 3:
-                by_key[name_key(n)].add(root)
+    by_key = names_index(members, wrestlers, display, aliases, wd_names)
     added, unmatched, unknown = collections.Counter(), collections.defaultdict(list), collections.defaultdict(list)
     for group, names in lists.items():
         if group not in CRITERION_IDS:
@@ -618,6 +702,80 @@ def add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report
     report.append(f"- Title lists: names not matched to one person (often tag teams or pre-1980 champions): "
                   + "; ".join(f"{g}: {len(v)}" for g, v in unmatched.items()))
     return unknown
+
+
+def names_index(members, wrestlers, display, aliases, wd_names):
+    """name key -> people: every ring name, alias, archive real name and Wikidata name."""
+    by_key = collections.defaultdict(set)
+    for root, ids in members.items():
+        names = {display[root], *aliases[root], *wd_names.get(root, [])}
+        for i in ids:
+            names.add(wrestlers[i]["ring_name"])
+            if wrestlers[i].get("real_name"):
+                names.add(wrestlers[i]["real_name"])
+        for n in names:
+            if n and len(name_key(n)) >= 3:
+                by_key[name_key(n)].add(root)
+    return by_key
+
+
+def add_name_lists(members, wrestlers, display, aliases, wd_names, tags, report):
+    """2K cover stars (data/curation/covers.csv) and faction members (data/raw/factions.json,
+    scripts/fetch_factions.py). A name must point to exactly one person."""
+    by_key = names_index(members, wrestlers, display, aliases, wd_names)
+
+    def one(n):
+        roots = by_key.get(name_key(n), set())
+        if not roots and '"' in n:  # '"Hangman" Adam Page' -> 'Adam Page'
+            roots = by_key.get(name_key(re.sub(r'"[^"]*"', "", n)), set())
+        if len(roots) > 1:  # "The Undertaker" is also an alias of Brian Lee: prefer the one billed by that name
+            roots = {r for r in roots if name_key(display[r]) == name_key(n)}
+        return next(iter(roots)) if len(roots) == 1 else None
+
+    missed = []
+    with open(CUR / "covers.csv", newline="", encoding="utf-8") as f:
+        for row in csv.DictReader(f):
+            root = one(row["wrestler"])
+            if root:
+                tags[root].add("cover")
+            else:
+                missed.append(row["wrestler"])
+    report.append(f"- 2K covers: not matched to one person: {missed}")
+
+    path = RAW.parent / "factions.json"
+    if not path.exists():
+        report.append("- Factions: data/raw/factions.json missing (run scripts/fetch_factions.py)")
+        return
+    for fid, fac in json.loads(path.read_text(encoding="utf-8")).items():
+        if fid not in CRITERION_IDS:
+            continue
+        hits, missed = set(), []
+        for article, _ in fac["members"]:
+            for name in FACTION_TEAMS.get(article, [article]):
+                root = one(name)  # never the shown name: "Big Titan" was Rick Bognar and someone else too
+                if root:
+                    hits.add(root)
+                else:
+                    missed.append(name)
+        for root in hits:
+            tags[root].add(fid)
+            CHECKS.append((FACTIONS[fid][0], [display[root]], f"Was a member of {FACTIONS[fid][1]}", f"Wikipedia: {fac['page']}"))
+        report.append(f"- Faction {fid}: {len(hits)} matched ({'; '.join(sorted(display[r] for r in hits))}); "
+                      f"not matched (managers, events, people outside the archive): {missed}")
+
+
+def add_single_names(pool, report):
+    """Single Name: the display name is one word once a leading "The" is dropped (Kane, The Undertaker)."""
+    hits = []
+    for w in pool:
+        bare = re.sub(r"^The ", "", w["name"])
+        if " " not in bare and re.search(r"[A-Za-z]{2}", bare) and not re.search(r"\d", bare) and w["name"] not in NOT_SINGLE:
+            w["tags"] = sorted({*w["tags"], "singleName"})
+            hits.append(w)
+    for w in hits:
+        CHECKS.append(("Single Name", [w["name"]], "Goes by one name", "Guessed from the display name"))
+    hits.sort(key=lambda w: -w["pop"])
+    report.append(f"- REVIEW: Single Name ({len(hits)}), best known first: " + "; ".join(w["name"] for w in hits[:300]))
 
 
 def scene_people(unmatched, taken, pool, report):
@@ -680,6 +838,8 @@ def scene_people(unmatched, taken, pool, report):
         # stable ids: Wikidata's number, or a hash of the name, far above the archive's ids
         pid = 1_000_000_000 + int(q[1:]) if q.startswith("Q") else 3_000_000_000 + zlib.crc32(q.encode()) % 1_000_000_000
         t = groups | wd_life_tags(rec)[0]
+        if real_name(name, rec):
+            t.add("realName")
         if groups & JP_BELTS and "nonJP" in t:
             t.add("gaijin")
         out.append({"id": pid, "name": name, "aka": aka[:8],
@@ -734,15 +894,38 @@ def wd_life_tags(rec):
     citizen, birth = rec.get("citizen", []), rec.get("born_in")
     if (citizen and "JP" not in citizen) or (not citizen and birth and birth != "JP"):
         new.add("nonJP")
+    # nationality: born in the country or a citizen of it
+    new |= {BORN[c] for c in {birth, *citizen} if c in BORN}
     born, from_citizenship = rec.get("born_in"), False
     if not born and len(rec.get("citizen", [])) == 1:
         born, from_citizenship = rec["citizen"][0], True  # no birthplace on Wikidata: a single citizenship stands in
-    if born:
-        if born in BORN:
-            new.add(BORN[born])
-        if born != "US":
-            new.add("bornAbroad")
+    if born and born != "US":
+        new.add("bornAbroad")
+    if rec.get("state") in US_STATES:
+        new.add(f"state{US_STATES[rec['state']]}")
     return new, from_citizenship
+
+
+def real_name(name, rec):
+    """The real full name's first and last name, if that's the ring name: "Bryan Danielson"
+    (Bryan Lloyd Danielson) and "Randy Orton" (Randal Keith Orton) count, "Jon Moxley"
+    (Jonathan David Good) doesn't. Full names are Wikidata's birth name (P1477) and aliases of
+    three or more words. Its given and family name fields aren't used: editors put ring names
+    there (Kofi Kingston's family name reads "Kingston")."""
+    words = name.split()
+    if len(words) < 2:
+        return None
+    first, last = name_key(words[0]), name_key(" ".join(words[1:]))
+    fulls = rec.get("real", []) + [a for a in rec.get("aliases", []) if '"' not in a and len(a.split()) >= 3]
+    for full in fulls:
+        parts = [p for p in full.replace(",", " ").split() if p.strip(".") not in ("Jr", "Sr", "II", "III", "IV")]
+        if len(parts) < 2 or (full not in rec.get("real", []) and name_key(" ".join(parts)) == name_key(name)):
+            continue  # too short, or an alias that is just the ring name ("Andre the Giant")
+        p_first, p_last = name_key(parts[0]), name_key(parts[-1])
+        # an alias can be a long ring name ("Bubba Ray Dudley"), so only the birth name may match whole
+        if (full in rec.get("real", []) and name_key(name) == name_key(full)) or (last == p_last and (first == p_first or first in NICKNAMES.get(p_first, ()))):
+            return f"full name {full}"
+    return None
 
 
 def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
@@ -799,6 +982,15 @@ def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
             continue
         new, from_citizenship = wd_life_tags(people[q])
         added["(born from citizenship)"] += from_citizenship
+        for code, tag in BORN.items():
+            if tag in new and people[q].get("born_in") != code:
+                label = next(c[3] for c in CRITERIA if c[0] == tag)
+                CHECKS.append(("Nationality", [display[root]], f"{label}, by citizenship",
+                               f"Wikidata citizenship {', '.join(people[q]['citizen'])}; born in {people[q].get('born_in') or 'unknown'}"))
+        why = real_name(display[root], people[q])
+        if why:
+            new.add("realName")
+            CHECKS.append(("Uses Real Name", [display[root]], "Wrestles under their real name", f"Wikidata {why}"))
         for t in new:
             tags[root].add(t)
             added[t] += 1

@@ -8,7 +8,8 @@ categories. Re-run occasionally; Wikidata keeps improving.
 
 Country: born_in is the country of the place of birth (P19); citizen lists the
 citizenships (P27). The import uses born_in, and falls back to a single citizenship
-when Wikidata has no birthplace.
+when Wikidata has no birthplace. state is the US state of the place of birth (P19 up
+the P131 chain). real is the birth name.
 """
 import csv
 import json
@@ -108,6 +109,20 @@ def main():
         rec = people[qid(b)]
         if b["code"]["value"] not in rec["citizen"]:
             rec["citizen"].append(b["code"]["value"])
+
+    # birth names (P1477), for "Uses Real Name". Given and family name (P735, P734) aren't
+    # fetched: editors fill them with ring names.
+    print("real names ...")
+    for rec in people.values():
+        rec.update(real=[], state="")
+    for b in query_batched("?p ?real", "?p wdt:P1477 ?real .", ids):
+        rec = people[qid(b)]
+        if b["real"]["value"] not in rec["real"]:
+            rec["real"].append(b["real"]["value"])
+    # US state of the birthplace: walk up P131 (located in) until a US state (Q35657)
+    print("birth states ...")
+    for b in query_batched("?p ?st", '?p wdt:P19 ?pl . ?pl wdt:P131* ?s . ?s wdt:P31 wd:Q35657 . ?s rdfs:label ?st FILTER(LANG(?st) = "en")', ids, size=150):
+        people[qid(b)]["state"] = b["st"]["value"]
 
     for fact, pattern in FACTS.items():
         rows = query_batched("?p", pattern, ids)

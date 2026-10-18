@@ -39,9 +39,11 @@ const BY_CRITERION = new Map(CRITERIA.map((c) => [c.id, c]));
 const WELL_KNOWN = WRESTLERS.filter((w) => w.pop >= 150);
 const MIN_ANSWERS = 3;
 // Broad buckets make lazy cells; let them in rarely.
-const WEIGHT: Record<string, number> = { promotion: 3, title: 4, accolade: 3, match: 2, era: 1, life: 2.5 };
+// place (nationality, birth state) and faction have many small criteria, so each weighs little.
+// Each shares one family, so a card has at most one faction and one place.
+const WEIGHT: Record<string, number> = { promotion: 3, title: 4, accolade: 3, match: 2, era: 1, life: 2.5, place: 1.2, name: 2.5, faction: 1.2 };
 const MAX_TITLES = 2;
-const BROAD = new Set(["wwe", "d2010s", "d2020s", "cage", "bornAbroad"]);
+const BROAD = new Set(["wwe", "d2010s", "d2020s", "cage", "bornAbroad", "neverNxt"]);
 
 function weightedPick(pool: Criterion[], rand: () => number): Criterion {
   const w = pool.map((c) => (WEIGHT[c.group] ?? 1) * (BROAD.has(c.id) ? 0.3 : 1));
