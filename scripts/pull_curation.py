@@ -5,7 +5,8 @@ and their links live in data/curation/sheet.json:
 
     {"merges": "https://docs.google.com/.../pub?gid=0&single=true&output=csv",
      "tags":   "https://docs.google.com/.../pub?gid=123&single=true&output=csv",
-     "wikidata": "...optional third tab..."}
+     "wikidata": "...optional third tab...",
+     "questions": "...community trivia tab..."}
 
     python scripts/pull_curation.py      # then: python scripts/import_ringside.py
 """
@@ -21,6 +22,8 @@ HEADERS = {
     "merges": ["keep", "merge", "display", "note"],
     "tags": ["wrestler", "tag", "action", "note"],
     "wikidata": ["wrestler", "qid", "note"],  # optional third tab: pins to Wikidata people
+    # community trivia; a row only reaches the game once "approved" is set (yes / y / x / true / 1)
+    "questions": ["prompt", "answer", "wrong1", "wrong2", "wrong3", "source", "region", "approved", "note"],
 }
 
 

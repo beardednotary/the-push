@@ -13,21 +13,66 @@ Read this after every import; spot-check the lists against what you know.
 - matches after de-dup: 129886
 - gender: Counter({'m': 2773, 'f': 316}) among regulars
 - REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): ['Johnny Grunge ECW World Heavyweight Title 1994-03-26', 'Sabu ECW World Heavyweight Title 1995-02-04', 'Jr. WCW Cruiserweight Championship 1996-07-08', 'Jr. WCW Cruiserweight Championship 1998-01-15', 'Kane WWF World Heavyweight Title 1998-09-27', 'Kane WWF European Title 1999-02-15', 'Jr. WCW Cruiserweight Championship 1999-03-15', 'Jr. WCW Cruiserweight Championship 1999-04-26', 'Evan Karagias WCW Hardcore Title 2000-02-28', 'David Arquette WCW World Heavyweight Title 2000-04-25', 'Crowbar WCW Cruiserweight Championship 2000-05-15', 'Kane WWF World Heavyweight Title 2000-06-25', 'Chyna WWF Intercontinental Title 2000-08-27', 'Kevin Nash WCW Cruiserweight Championship 2000-10-02', 'Mr. McMahon ECW World Heavyweight Title 2007-04-29', 'Cody Rhodes WWE Championship 2009-04-26', "Layla WWE Women's Championship (original) 2010-05-11", 'Chris Jericho WWE United States Championship 2017-01-09', 'Dash Wilder WWE 24/7 Title 2019-08-12', 'Claudio Castagnoli WWE Intercontinental Championship 2020-03-08']
-- Wikidata: 1977 people matched, 11 skipped as ambiguous; tags added: {'profootball': 49, 'college': 66, 'actor': 266, 'olympian': 22, 'strength': 33, 'amateur': 220, 'bornAbroad': 619, 'bornJP': 130, 'combat': 67, 'bornMX': 93, 'music': 29, 'bornUK': 103, 'bornCA': 135}
-- Title lists (Wikipedia): champions added that the archive was missing: {'wweChamp': 11, 'whc': 5, 'universal': 1, 'wcwChamp': 2, 'ecwChamp': 7, 'aewChamp': 11, 'ic': 7, 'us': 32, 'tv': 43, 'cruiser': 19, 'hardcore': 19, 'european': 7, 'nxtChamp': 5, 'twentyFourSeven': 5, 'tag': 237, 'womens': 7}
-- Title lists: names not matched to one person (often tag teams or pre-1980 champions): wweChamp: 12; whc: 6; universal: 4; wcwChamp: 6; ecwChamp: 9; aewChamp: 1; ic: 9; us: 15; tv: 12; cruiser: 20; hardcore: 9; european: 4; nxtChamp: 3; twentyFourSeven: 10; tag: 215; womens: 16
-- pool size 1894; duplicate display names: []
+- Wikidata: 1977 people matched, 13 skipped as ambiguous; tags added: {'college': 66, 'actor': 266, 'profootball': 49, 'olympian': 22, 'strength': 33, 'amateur': 220, 'bornAbroad': 644, 'bornJP': 133, 'combat': 67, 'bornMX': 98, 'music': 29, 'bornUK': 106, 'bornCA': 137, '(born from citizenship)': 65}
+- Title lists (Wikipedia): champions added that the archive was missing: {'wweChamp': 11, 'whc': 5, 'universal': 1, 'wcwChamp': 2, 'ecwChamp': 7, 'aewChamp': 11, 'ic': 7, 'us': 32, 'tv': 43, 'cruiser': 19, 'hardcore': 19, 'european': 7, 'nxtChamp': 5, 'twentyFourSeven': 5, 'tag': 237, 'womens': 7, 'iwgpChamp': 29, 'never': 19, 'iwgpJr': 27, 'tripleCrown': 14, 'ghc': 12, 'stardomChamp': 8, 'cmllChamp': 10, 'aaaMega': 11, 'g1': 17, 'bosj': 15, 'carnival': 14, 'reyDeReyes': 15}
+- Title lists: names not matched to one person (often tag teams or pre-1980 champions): wweChamp: 12; whc: 6; universal: 4; wcwChamp: 6; ecwChamp: 9; aewChamp: 1; ic: 9; us: 15; tv: 12; cruiser: 20; hardcore: 9; european: 4; nxtChamp: 3; twentyFourSeven: 10; tag: 215; womens: 16; iwgpChamp: 13; never: 11; iwgpJr: 19; tripleCrown: 25; ghc: 17; stardomChamp: 13; cmllChamp: 11; aaaMega: 7; g1: 4; bosj: 12; carnival: 18; reyDeReyes: 11
+- pool size 1941; duplicate display names: []
 - possible name splits to review: 103 (data/generated/merge_candidates.csv)
 - trivia questions generated: 870; skipped: {'rumble': 43, 'wmMain': 7, 'lineage-unconfirmed': 103, 'lineage-tv': 183, 'lineage': 10, 'classic-obscure': 184, 'classic': 9}
+- scene trivia (tournament winners): 140
+- community questions: 0 approved, 0 waiting for approval
+
+## International coverage
+
+The archive has six US promotions and no country column. These are events whose name (or city) places them in Japan or Mexico; most are 2025-26 shows the scrape filed under a US promotion, which the import drops (`kept` = events the import uses). The CMLL, NJPW and AAA cards look like real rosters (Mistico, Yota Tsuji, Psycho Clown); the Stardom ones are mostly AEW names. Match counts include the scrape's many repeats of each show.
+
+| scene | country | events | kept | matches | years | filed under |
+|---|---|---|---|---|---|---|
+| other Japan | Japan | 172 | 0 | 10134 | 2026-2026 | AEW 166, WWE 6 |
+| NJPW | Japan | 58 | 7 | 3954 | 2022-2026 | AEW 57, WWE 1 |
+| WWE shows held there | Japan | 45 | 45 | 364 | 1994-2024 | WWE 45 |
+| Stardom | Japan | 37 | 0 | 3096 | 2026-2026 | AEW 37 |
+| NOAH | Japan | 35 | 0 | 2898 | 2026-2026 | AEW 34, WWE 1 |
+| DDT | Japan | 30 | 0 | 2483 | 2026-2026 | AEW 28, WWE 2 |
+| AJPW | Japan | 17 | 0 | 1320 | 2026-2026 | AEW 16, WWE 1 |
+| AEW shows held there | Japan | 10 | 10 | 26 | 2021-2022 | AEW 10 |
+| NXT shows held there | Japan | 1 | 1 | 7 | 2016-2016 | NXT 1 |
+| Dragon Gate | Japan | 1 | 0 | 84 | 2026-2026 | AEW 1 |
+| CMLL | Mexico | 122 | 0 | 8134 | 2025-2026 | AEW 116, WWE 6 |
+| other Mexico | Mexico | 106 | 3 | 5848 | 1999-2026 | AEW 101, WWE 3, WCW 2 |
+| WWE shows held there | Mexico | 35 | 35 | 345 | 2004-2024 | WWE 35 |
+| AAA | Mexico | 34 | 0 | 1612 | 2026-2026 | AEW 34 |
+| TNA shows held there | Mexico | 1 | 1 | 6 | 2006-2006 | TNA 1 |
+| AEW shows held there | Mexico | 1 | 1 | 0 | 2025-2025 | AEW 1 |
+
+Pool: 1941 wrestlers, 642 well known (pop 150+, the grid's answer pool).
+Born in Japan: 72 (15 well known); born in Mexico: 55 (15 well known).
+
+| scene criterion | in pool | well known |
+|---|---|---|
+| iwgpChamp (jp) | 29 | 7 |
+| never (jp) | 19 | 3 |
+| iwgpJr (jp) | 27 | 8 |
+| tripleCrown (jp) | 14 | 0 |
+| ghc (jp) | 12 | 3 |
+| stardomChamp (jp) | 8 | 3 |
+| cmllChamp (mx) | 10 | 6 |
+| aaaMega (mx) | 11 | 8 |
+| g1 (jp) | 17 | 3 |
+| bosj (jp) | 15 | 5 |
+| carnival (jp) | 14 | 1 |
+| reyDeReyes (mx) | 15 | 4 |
+| any jp criterion | 89 | 24 |
+| any mx criterion | 30 | 15 |
 
 ## Criteria counts (pool)
 
-- wwe: 1284
+- wwe: 1292
 - nxt: 468
-- wcw: 322
-- ecw: 190
-- tna: 249
-- aew: 314
+- wcw: 324
+- ecw: 192
+- tna: 258
+- aew: 324
 - wweChamp: 62
 - whc: 35
 - universal: 9
@@ -48,27 +93,39 @@ Read this after every import; spot-check the lists against what you know.
 - wmMain: 41
 - aewPpvMain: 34
 - hiac: 49
-- cage: 396
-- ladder: 212
+- cage: 397
+- ladder: 213
 - marathon: 66
-- d1980s: 240
-- d1990s: 665
-- d2000s: 552
-- d2010s: 608
-- d2020s: 661
-- actor: 185
+- d1980s: 241
+- d1990s: 672
+- d2000s: 560
+- d2010s: 611
+- d2020s: 672
+- actor: 193
 - music: 21
-- combat: 45
-- amateur: 103
-- olympian: 10
+- combat: 47
+- amateur: 108
+- olympian: 12
 - profootball: 35
 - college: 50
 - strength: 21
 - bornCA: 85
-- bornJP: 46
-- bornMX: 45
-- bornUK: 62
-- bornAbroad: 353
+- bornJP: 72
+- bornMX: 55
+- bornUK: 64
+- bornAbroad: 399
+- iwgpChamp: 29
+- never: 19
+- iwgpJr: 27
+- tripleCrown: 14
+- ghc: 12
+- stardomChamp: 8
+- cmllChamp: 10
+- aaaMega: 11
+- g1: 17
+- bosj: 15
+- carnival: 14
+- reyDeReyes: 15
 
 ## Royal Rumble winners
 
@@ -219,20 +276,20 @@ Read this after every import; spot-check the lists against what you know.
 - The Miz (m): actor, cage, d2000s, d2010s, d2020s, ic, ladder, tag, us, wmMain, wwe, wweChamp
 - Randy Orton (m): actor, amateur, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, rumble, tag, us, whc, wmMain, wwe, wweChamp
 - John Cena (m): actor, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, music, rumble, tag, us, whc, wmMain, wwe, wweChamp
-- Dolph Ziggler (m): cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, nxtChamp, tag, tna, us, whc, wwe
+- Dolph Ziggler (m): aaaMega, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, nxtChamp, tag, tna, us, whc, wwe
 - Chris Jericho (m): actor, aew, aewChamp, aewPpvMain, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecw, european, hardcore, hiac, ic, ladder, marathon, music, tag, tv, us, wcw, wcwChamp, whc, wmMain, wwe, wweChamp
 - Sheamus (m): actor, bornAbroad, cage, d2000s, d2010s, d2020s, hiac, ladder, nxt, rumble, tag, us, whc, wwe, wweChamp
 - Seth Rollins (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, nxtChamp, rumble, tag, universal, us, whc, wmMain, wwe, wweChamp
 - R-Truth (m): d2000s, d2010s, d2020s, hardcore, ladder, tag, tna, twentyFourSeven, us, wwe
 - Cody Rhodes (m): actor, aew, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, rumble, tag, tna, universal, wmMain, wwe, wweChamp
-- Jon Moxley (m): actor, aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, ladder, nxt, tag, us, wwe, wweChamp
-- Claudio Castagnoli (m): aew, aewPpvMain, bornAbroad, cage, d2010s, d2020s, ic, ladder, nxt, tag, us, wwe
+- Jon Moxley (m): actor, aew, aewChamp, aewPpvMain, cage, d2000s, d2010s, d2020s, hiac, ic, iwgpChamp, ladder, nxt, tag, us, wwe, wweChamp
+- Claudio Castagnoli (m): aew, aewPpvMain, bornAbroad, cage, cmllChamp, d2010s, d2020s, ic, ladder, nxt, tag, us, wwe
 - Jey Uso (m): cage, d2010s, d2020s, hiac, ic, ladder, nxt, rumble, tag, whc, wmMain, wwe, wweChamp
 - Roman Reigns (m): actor, cage, d2010s, d2020s, hiac, ic, ladder, marathon, nxt, profootball, rumble, tag, universal, us, whc, wmMain, wwe, wweChamp
 - Jimmy Uso (m): cage, d2010s, d2020s, nxt, tag, wmMain, wwe
 - Natalya (f): bornAbroad, bornCA, cage, d2000s, d2010s, d2020s, ladder, nxt, tag, womens, wwe
 - Dustin Rhodes (m): aew, aewPpvMain, cage, d1990s, d2000s, d2010s, d2020s, hardcore, ic, ladder, tag, tna, us, wcw, wwe
-- A.J. Styles (m): cage, d2000s, d2010s, d2020s, ic, ladder, marathon, tag, tna, us, wcw, whc, wmMain, wwe, wweChamp
+- A.J. Styles (m): cage, d2000s, d2010s, d2020s, ic, iwgpChamp, ladder, marathon, tag, tna, us, wcw, whc, wmMain, wwe, wweChamp
 - Bubba Ray Dudley (m): cage, d1990s, d2000s, d2010s, ecw, hardcore, ladder, tag, tna, wwe
 - Matt Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, ecwChamp, european, hardcore, ladder, tag, tna, us, wwe
 - Jeff Hardy (m): aew, cage, cruiser, d1990s, d2000s, d2010s, d2020s, european, hardcore, hiac, ic, ladder, marathon, music, tag, tna, us, whc, wwe, wweChamp
@@ -262,6 +319,7 @@ Read this after every import; spot-check the lists against what you know.
 - lineage: 255
 - classic: 407
 - promotion: 91
+- tourney: 140
 
 ## Trivia sample
 
@@ -290,9 +348,6 @@ Read this after every import; spot-check the lists against what you know.
 - [classic] Who did A.J. Styles defeat at TNA Bound for Glory 2009? -> **Sting** (of ['Samoa Joe', 'Kurt Angle', 'Sting', 'Abyss'])
 - [classic] Who did Rob Van Dam defeat at TNA Hardcore Justice 2010? -> **Sabu** (of ['Kurt Angle', 'Christopher Daniels', 'Abyss', 'Sabu'])
 - [classic] Who did Roman Reigns defeat at Fastlane 2015? -> **Daniel Bryan** (of ['Randy Orton', 'Stardust', 'Daniel Bryan', 'Sheamus'])
-- [classic] Who did Bianca Belair defeat at WrestleMania Backlash? -> **Bayley** (of ['Alexa Bliss', 'Asuka', 'Bayley', 'Rhea Ripley'])
-- [classic] Who did Christian Cage defeat at TNA Destination X 2006? -> **Monty Brown** (of ['Monty Brown', 'Kurt Angle', 'A.J. Styles', 'Sting'])
-- [classic] Who did Diamond Dallas Page defeat at TNA Turning Point 2004? -> **Raven** (of ['Petey Williams', 'Chris Sabin', 'A.J. Styles', 'Raven'])
 - [lineage] Who did Kevin Owens beat for the United States Championship at Battleground 2017? -> **A.J. Styles** (of ['Chris Jericho', 'A.J. Styles', 'Dolph Ziggler', 'Roman Reigns'])
 - [lineage] Who did Yokozuna beat for the WWE Championship at WrestleMania IX? -> **Bret Hart** (of ['The Rock', 'Kane', 'Diesel', 'Bret Hart'])
 - [lineage] Who did Daniel Bryan beat for the Intercontinental Championship at WrestleMania 31? -> **King Barrett** (of ['Dolph Ziggler', 'King Barrett', 'Kofi Kingston', 'The Miz'])
@@ -311,6 +366,10 @@ Read this after every import; spot-check the lists against what you know.
 - [promotion] Which promotion ran SuperBrawl? -> **WCW** (of ['WWE', 'WCW', 'AEW', 'TNA'])
 - [promotion] Which promotion ran Anarchy Rulz? -> **ECW** (of ['WWE', 'AEW', 'ECW', 'TNA'])
 - [rumble] Who won the 2022 men's Royal Rumble? -> **Brock Lesnar** (of ['A.J. Styles', 'Drew McIntyre', 'Brock Lesnar', 'Randy Orton'])
+- [tourney] Who won the 2016 Champion Carnival? -> **Daisuke Sekimoto** (of ['Shuji Ishikawa', 'Naomichi Marufuji', 'Daisuke Sekimoto', 'Kento Miyahara'])
+- [tourney] Who won the 2014 Best of the Super Juniors? -> **Ricochet** (of ['Ricochet', 'Kota Ibushi', 'Will Ospreay', 'Prince Devitt'])
+- [tourney] Who won the 2015 Rey de Reyes? -> **El Texano Jr.** (of ['El Hijo del Perro Aguayo', 'El Texano Jr.', 'Rey Escorpión', 'Pentagón Jr.'])
+- [tourney] Who won the 2000 G1 Climax? -> **Kensuke Sasaki** (of ['Riki Choshu', 'Masahiro Chono', 'Yuji Nagata', 'Kensuke Sasaki'])
 - [wmCity] Which city hosted WrestleMania XIX? -> **Seattle** (of ['Boston', 'Seattle', 'Arlington', 'Atlantic City'])
 - [wmCity] Which city hosted WrestleMania XI? -> **Hartford** (of ['Hartford', 'Las Vegas', 'Atlanta', 'New Orleans'])
 - [wmCity] Which city hosted WrestleMania XV? -> **Philadelphia** (of ['Philadelphia', 'Miami', 'Tampa', 'Glendale'])
@@ -324,4 +383,3 @@ Read this after every import; spot-check the lists against what you know.
 - [wmMain] Who won the main event of WrestleMania 23? -> **John Cena** (of ['Cody Rhodes', 'Shawn Michaels', 'The Miz', 'John Cena'])
 - [wmMain] Who won the main event of WrestleMania VII? -> **Hulk Hogan** (of ['Stone Cold Steve Austin', 'Bret Hart', 'Sergeant Slaughter', 'Hulk Hogan'])
 - [wmMain] Who won the main event of WrestleMania IV? -> **Randy Savage** (of ['Shawn Michaels', 'Ted DiBiase', 'Jim Duggan', 'Randy Savage'])
-- [wmMain] Who won the main event of WrestleMania XXIV? -> **The Undertaker** (of ['Chris Jericho', 'The Undertaker', 'Kane', 'Edge'])

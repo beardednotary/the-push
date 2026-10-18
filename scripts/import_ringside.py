@@ -11,6 +11,7 @@ Outputs
 Curation (the Google Sheet tabs, exported as CSV) lives in data/curation/:
     merges.csv  one person split across several dataset ids or ring names
     tags.csv    facts the dataset lacks (AEW titles, Hall of Fame, ...) or gets wrong
+    questions.csv  community trivia; only rows with "approved" set are used
 """
 import collections
 import csv
@@ -112,8 +113,45 @@ CRITERIA = [
     ("bornMX", "life", "born", "Born in Mexico", "Born in Mexico."),
     ("bornUK", "life", "born", "Born in the UK", "Born in the United Kingdom."),
     ("bornAbroad", "life", "born", "Born Outside the US", "Born anywhere other than the United States."),
+    # Japan and Mexico (Wikipedia champion and winner lists; scripts/fetch_titles.py)
+    ("iwgpChamp", "title", "iwgp", "IWGP Heavyweight Champ", "Held NJPW's IWGP Heavyweight or IWGP World Heavyweight Championship."),
+    ("never", "title", "never", "NEVER Openweight Champ", "Held NJPW's NEVER Openweight Championship."),
+    ("iwgpJr", "title", "iwgpJr", "IWGP Junior Champ", "Held NJPW's IWGP Junior Heavyweight Championship."),
+    ("tripleCrown", "title", "ajpw", "Triple Crown Champion", "Held All Japan's Triple Crown Heavyweight Championship."),
+    ("ghc", "title", "noah", "GHC Heavyweight Champ", "Held NOAH's GHC Heavyweight Championship."),
+    ("stardomChamp", "title", "stardom", "World of Stardom Champ", "Held Stardom's World of Stardom Championship."),
+    ("cmllChamp", "title", "cmll", "CMLL Heavyweight Champ", "Held the CMLL World Heavyweight Championship."),
+    ("aaaMega", "title", "aaa", "AAA Mega Champion", "Held AAA's Mega Championship."),
+    ("g1", "accolade", "g1", "G1 Climax Winner", "Won NJPW's G1 Climax tournament (1991-)."),
+    ("bosj", "accolade", "bosj", "Super Juniors Winner", "Won NJPW's Best of the Super Juniors tournament."),
+    ("carnival", "accolade", "carnival", "Champion Carnival Winner", "Won All Japan's Champion Carnival tournament."),
+    ("reyDeReyes", "accolade", "reyDeReyes", "Rey de Reyes Winner", "Won AAA's Rey de Reyes tournament."),
 ]
 CRITERION_IDS = {c[0] for c in CRITERIA}
+# Criteria that belong to one scene. They stay out of the main daily grid until region
+# cards exist (see docs/regions.md); the main grid is built from criteria with no scene.
+SCENE = {"iwgpChamp": "jp", "never": "jp", "iwgpJr": "jp", "tripleCrown": "jp", "ghc": "jp", "stardomChamp": "jp",
+         "g1": "jp", "bosj": "jp", "carnival": "jp", "cmllChamp": "mx", "aaaMega": "mx", "reyDeReyes": "mx"}
+TOURNAMENT_LABELS = {"g1": "G1 Climax", "bosj": "Best of the Super Juniors", "carnival": "Champion Carnival",
+                     "reyDeReyes": "Rey de Reyes"}
+# The archive only has six US promotions, but its 2025-06+ scrape filed some Japanese and
+# Mexican shows under them (dropped by TRUST_UNTIL). The report counts them by event name.
+INTL_SCENES = [
+    ("NJPW", "Japan", r"\bNJPW\b|New Japan"),
+    ("AJPW", "Japan", r"\bAJPW\b|All Japan"),
+    ("NOAH", "Japan", r"\bNOAH\b"),
+    ("Stardom", "Japan", r"Stardom"),
+    ("Dragon Gate", "Japan", r"Dragon Gate"),
+    ("DDT", "Japan", r"\bDDT\b"),
+    ("other Japan", "Japan", r"Osaka Pro|Michinoku|ZERO1|Big Japan|\bBJW\b|Tokyo Joshi|\bTJPW\b|Marigold|Sendai Girls|Ice Ribbon|Gatoh Move|Kaientai|Dradition"),
+    ("CMLL", "Mexico", r"\bCMLL\b"),
+    ("AAA", "Mexico", r"\bAAA\b|Triplema(n|)ia"),
+    ("other Mexico", "Mexico", r"Lucha|\bIWRG\b|The Crash|Naucalpan"),
+]
+ABROAD_CITIES = {
+    "Japan": r"Tokyo|Osaka|Nagoya|Yokohama|Sapporo|Fukuoka|Kobe|Sendai|Hiroshima|Saitama|Chiba|Kyoto|Niigata|Shizuoka",
+    "Mexico": r"Mexico City|Ciudad de M|Monterrey|Guadalajara|Tijuana|Puebla|Ju[aá]rez|Le[oó]n|Acapulco|Cancun|Toluca|Naucalpan",
+}
 
 
 def rows(name):
@@ -424,7 +462,8 @@ def main():
     pool = []
     for root in members:
         t = tags.get(root, set()) & CRITERION_IDS
-        titled = bool(t & (set(TITLE_GROUPS) | {"tag", "womens", "aewChamp"}))
+        # scene titles and tournament wins let in Japanese and Mexican stars the archive barely covers
+        titled = bool(t & (set(TITLE_GROUPS) | {"tag", "womens", "aewChamp"} | set(SCENE)))
         if (total_n[root] < MIN_POOL_MATCHES and not titled) or re.search(r", | & ", display[root]) or display[root] in JUNK_NAMES:
             continue
         aka = sorted(a for a in aliases[root] if a and name_key(a) != name_key(display[root]))
@@ -437,8 +476,8 @@ def main():
     write_split_candidates(members, display, matches, total_n, report)
 
     counts = collections.Counter(t for w in pool for t in w["tags"])
-    criteria = [{"id": c[0], "group": c[1], "family": c[2], "label": c[3], "detail": c[4], "count": counts[c[0]]}
-                for c in CRITERIA]
+    criteria = [{"id": c[0], "group": c[1], "family": c[2], "label": c[3], "detail": c[4], "count": counts[c[0]],
+                 **({"scene": SCENE[c[0]]} if c[0] in SCENE else {})} for c in CRITERIA]
 
     OUT.mkdir(parents=True, exist_ok=True)
     (OUT / "ring.json").write_text(json.dumps({"criteria": criteria, "wrestlers": pool}, separators=(",", ":"),
@@ -446,11 +485,14 @@ def main():
 
     name_at = era_namer(era_names, display, wrestlers)
     questions = build_trivia(events, by_event, matches, reigns, title_group, name_at, gender, ppv_n, report)
+    questions += build_scene_trivia(report)
+    questions += community_questions({q["id"] for q in questions}, report)
     (OUT / "trivia.json").write_text(json.dumps(questions, indent=1, ensure_ascii=False), encoding="utf-8")
 
     # ---- report -------------------------------------------------------------
     lines = ["# Import report", "", "Read this after every import; spot-check the lists against what you know.", ""]
     lines += report
+    lines += intl_coverage(promos, events, pool, criteria)
     lines += ["", "## Criteria counts (pool)", ""] + [f"- {c['id']}: {c['count']}" for c in criteria]
     lines += ["", "## Royal Rumble winners", ""] + [f"- {d} {n} ({g})" for d, n, g in sorted(set(rumble_wins))]
     lines += ["", "## WrestleMania final matches", ""] + [f"- {d} {e}: {' / '.join(p)}" for d, e, p in sorted(wm_mains)]
@@ -562,6 +604,9 @@ def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
         rec = people[q]
         new = {WIKIDATA_FACTS[f] for f in rec["facts"] if f in WIKIDATA_FACTS}
         born = rec.get("born_in")
+        if not born and len(rec.get("citizen", [])) == 1:
+            born = rec["citizen"][0]  # no birthplace on Wikidata: a single citizenship stands in
+            added["(born from citizenship)"] += 1
         if born:
             if born in BORN:
                 new.add(BORN[born])
@@ -582,6 +627,130 @@ def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
     report.append(f"- Wikidata: {sum(1 for q in matched.values() if q)} people matched, {conflicts} skipped as ambiguous; tags added: {dict(added)}")
     # real names and aliases from Wikidata, so title lists that use "Dwayne Johnson" still find The Rock
     return {root: [people[q]["label"], *people[q]["aliases"]] for root, q in matched.items() if q}
+
+
+def intl_coverage(promos, kept_events, pool, criteria):
+    """Report lines: how much Japanese and Mexican wrestling the data has."""
+    by_event = collections.Counter()
+    with open(RAW / "matches.csv", newline="", encoding="utf-8") as f:
+        for m in csv.DictReader(f):
+            by_event[m["event_id"]] += 1
+    scenes = collections.defaultdict(lambda: {"events": 0, "kept": 0, "matches": 0, "years": set(), "filed": collections.Counter()})
+    for e in rows("events"):
+        hit = next(((s, c) for s, c, pat in INTL_SCENES if re.search(pat, e["name"])), None)
+        if not hit:
+            country = next((c for c, pat in ABROAD_CITIES.items() if re.search(pat, e["city"] or "")), None)
+            hit = (f"{promos[e['promotion_id']]} shows held there", country) if country else None
+        if not hit:
+            continue
+        s = scenes[hit]
+        s["events"] += 1
+        s["kept"] += e["id"] in kept_events
+        s["matches"] += by_event[e["id"]]
+        s["years"].add(e["date"][:4])
+        s["filed"][promos[e["promotion_id"]]] += 1
+    lines = ["", "## International coverage", "",
+             "The archive has six US promotions and no country column. These are events whose name (or city) "
+             "places them in Japan or Mexico; most are 2025-26 shows the scrape filed under a US promotion, "
+             "which the import drops (`kept` = events the import uses). The CMLL, NJPW and AAA cards look like "
+             "real rosters (Mistico, Yota Tsuji, Psycho Clown); the Stardom ones are mostly AEW names. "
+             "Match counts include the scrape's many repeats of each show.", "",
+             "| scene | country | events | kept | matches | years | filed under |", "|---|---|---|---|---|---|---|"]
+    for (scene, country), s in sorted(scenes.items(), key=lambda kv: (kv[0][1], -kv[1]["events"])):
+        yrs = f"{min(s['years'])}-{max(s['years'])}" if s["years"] else ""
+        filed = ", ".join(f"{p} {n}" for p, n in s["filed"].most_common())
+        lines.append(f"| {scene} | {country} | {s['events']} | {s['kept']} | {s['matches']} | {yrs} | {filed} |")
+    born = collections.Counter(t for w in pool for t in w["tags"] if t in ("bornJP", "bornMX"))
+    famous = [w for w in pool if w["pop"] >= 150]
+    lines += ["", f"Pool: {len(pool)} wrestlers, {len(famous)} well known (pop 150+, the grid's answer pool).",
+              f"Born in Japan: {born['bornJP']} ({sum('bornJP' in w['tags'] for w in famous)} well known); "
+              f"born in Mexico: {born['bornMX']} ({sum('bornMX' in w['tags'] for w in famous)} well known).", "",
+              "| scene criterion | in pool | well known |", "|---|---|---|"]
+    for c in criteria:
+        if c.get("scene"):
+            lines.append(f"| {c['id']} ({c['scene']}) | {c['count']} | {sum(c['id'] in w['tags'] for w in famous)} |")
+    for scene in sorted(set(SCENE.values())):
+        ids = {k for k, v in SCENE.items() if v == scene}
+        anyone = [w for w in pool if ids & set(w["tags"])]
+        lines.append(f"| any {scene} criterion | {len(anyone)} | {sum(w['pop'] >= 150 for w in anyone)} |")
+    return lines
+
+
+REGIONS = {"world": "", "us": "us", "jp": "jp", "mx": "mx"}
+APPROVED = {"yes", "y", "x", "true", "1"}
+
+
+def community_questions(taken, report):
+    """Approved rows of the questions tab. Each row's options are shuffled from its own
+    prompt, so adding or approving rows never reshuffles the others."""
+    path = CUR / "questions.csv"
+    if not path.exists():
+        return []
+    qs, problems, waiting = [], [], 0
+    with open(path, newline="", encoding="utf-8") as f:
+        for i, row in enumerate(csv.DictReader(f), start=2):
+            row = {k: (v or "").strip() for k, v in row.items() if k}
+            if row.get("approved", "").lower() not in APPROVED:
+                waiting += 1
+                continue
+            opts = [row.get(k, "") for k in ("answer", "wrong1", "wrong2", "wrong3")]
+            region = row.get("region", "").lower() or "world"
+            qid = "community:" + re.sub(r"[^a-z0-9]+", "-", row.get("prompt", "").lower()).strip("-")[:60]
+            why = ("missing prompt or an option" if not row.get("prompt") or not all(opts)
+                   else "options repeat" if len({o.lower() for o in opts}) < 4
+                   else "source must be a link" if not re.match(r"https?://", row.get("source", ""))
+                   else f"region must be one of {sorted(REGIONS)}" if region not in REGIONS
+                   else "same prompt as another question" if qid in taken else "")
+            if why:
+                problems.append(f"row {i}: {why}")
+                continue
+            taken.add(qid)
+            shuffled_opts = opts[:]
+            random.Random(row["prompt"]).shuffle(shuffled_opts)
+            q = {"id": qid, "type": "community", "prompt": row["prompt"], "options": shuffled_opts,
+                 "answer": shuffled_opts.index(opts[0]), "source": row["source"]}
+            if REGIONS[region]:
+                q["scene"] = REGIONS[region]
+            qs.append(q)
+    report.append(f"- community questions: {len(qs)} approved, {waiting} waiting for approval"
+                  + (f"; NOT USED: {'; '.join(problems)}" if problems else ""))
+    return qs
+
+
+def build_scene_trivia(report):
+    """Tournament winners by year (Wikipedia; scripts/fetch_titles.py). Kept apart from
+    build_trivia so the main bank's shuffles don't change. Each question has a scene."""
+    path = RAW.parent / "titles_wiki.json"
+    years = json.loads(path.read_text(encoding="utf-8")).get("years", {}) if path.exists() else {}
+    rng = random.Random(1991)
+    qs = []
+    for group, rows_ in years.items():
+        label = TOURNAMENT_LABELS.get(group)
+        if not label:
+            continue
+        by_year = collections.defaultdict(set)
+        for y, shown, link in rows_:
+            by_year[y].add((shown, link))
+        for y, names in sorted(by_year.items()):
+            if len(names) != 1:
+                continue  # two winners in one year (split blocks, tag finals): skip
+            answer, person = next(iter(names))
+            # nearest other winners, one name per person (Kushida and Yujiro Kushida are one)
+            near = {}
+            for yy, ns in sorted(by_year.items(), key=lambda kv: abs(kv[0] - y)):
+                for shown, link in sorted(ns):
+                    if yy != y and abs(yy - y) <= 10 and link != person and shown != answer:
+                        near.setdefault(link, shown)
+            pick = list(near.values())[:6]
+            rng.shuffle(pick)
+            opts = [answer] + pick[:3]
+            if len(opts) < 4 or re.search(r", | & ", answer):
+                continue
+            rng.shuffle(opts)
+            qs.append({"id": f"tourney:{group}:{y}", "type": "tourney", "scene": SCENE[group],
+                       "prompt": f"Who won the {y} {label}?", "options": opts, "answer": opts.index(answer)})
+    report.append(f"- scene trivia (tournament winners): {len(qs)}")
+    return qs
 
 
 def write_split_candidates(members, display, matches, total_n, report):

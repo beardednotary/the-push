@@ -10438,5 +10438,1825 @@
    "AEW"
   ],
   "answer": 3
+ },
+ {
+  "id": "tourney:g1:1991",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1991 G1 Climax?",
+  "options": [
+   "Keiji Muto",
+   "Tatsumi Fujinami",
+   "Masahiro Chono",
+   "Manabu Nakanishi"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:g1:1992",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1992 G1 Climax?",
+  "options": [
+   "Tatsumi Fujinami",
+   "Masahiro Chono",
+   "Keiji Muto",
+   "Shinya Hashimoto"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:1993",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1993 G1 Climax?",
+  "options": [
+   "Riki Choshu",
+   "Tatsumi Fujinami",
+   "Manabu Nakanishi",
+   "Keiji Muto"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:1994",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1994 G1 Climax?",
+  "options": [
+   "Riki Choshu",
+   "Masahiro Chono",
+   "Keiji Muto",
+   "Tatsumi Fujinami"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:1995",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1995 G1 Climax?",
+  "options": [
+   "Keiji Muto",
+   "Kensuke Sasaki",
+   "Riki Choshu",
+   "Shinya Hashimoto"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:g1:1996",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1996 G1 Climax?",
+  "options": [
+   "Tatsumi Fujinami",
+   "Manabu Nakanishi",
+   "Keiji Muto",
+   "Riki Choshu"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:g1:1997",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1997 G1 Climax?",
+  "options": [
+   "Keiji Muto",
+   "Kensuke Sasaki",
+   "Masahiro Chono",
+   "Riki Choshu"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:1998",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1998 G1 Climax?",
+  "options": [
+   "Yuji Nagata",
+   "Shinya Hashimoto",
+   "Riki Choshu",
+   "Manabu Nakanishi"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:1999",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1999 G1 Climax?",
+  "options": [
+   "Manabu Nakanishi",
+   "Kensuke Sasaki",
+   "Shinya Hashimoto",
+   "Masahiro Chono"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:g1:2000",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2000 G1 Climax?",
+  "options": [
+   "Riki Choshu",
+   "Masahiro Chono",
+   "Yuji Nagata",
+   "Kensuke Sasaki"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:g1:2001",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2001 G1 Climax?",
+  "options": [
+   "Yuji Nagata",
+   "Shinya Hashimoto",
+   "Manabu Nakanishi",
+   "Kensuke Sasaki"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:g1:2002",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2002 G1 Climax?",
+  "options": [
+   "Manabu Nakanishi",
+   "Masahiro Chono",
+   "Kensuke Sasaki",
+   "Hiroshi Tanahashi"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:2003",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2003 G1 Climax?",
+  "options": [
+   "Hiroshi Tanahashi",
+   "Manabu Nakanishi",
+   "Hiroyoshi Tenzan",
+   "Kensuke Sasaki"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:g1:2004",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2004 G1 Climax?",
+  "options": [
+   "Manabu Nakanishi",
+   "Hiroyoshi Tenzan",
+   "Hiroshi Tanahashi",
+   "Yuji Nagata"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:2005",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2005 G1 Climax?",
+  "options": [
+   "Hiroyoshi Tenzan",
+   "Yuji Nagata",
+   "Hirooki Goto",
+   "Masahiro Chono"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:g1:2006",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2006 G1 Climax?",
+  "options": [
+   "Hiroshi Tanahashi",
+   "Hirooki Goto",
+   "Hiroyoshi Tenzan",
+   "Yuji Nagata"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:g1:2007",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2007 G1 Climax?",
+  "options": [
+   "Shinsuke Nakamura",
+   "Hirooki Goto",
+   "Hiroshi Tanahashi",
+   "Hiroyoshi Tenzan"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:g1:2008",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2008 G1 Climax?",
+  "options": [
+   "Hiroyoshi Tenzan",
+   "Hirooki Goto",
+   "Shinsuke Nakamura",
+   "Hiroshi Tanahashi"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:2009",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2009 G1 Climax?",
+  "options": [
+   "Satoshi Kojima",
+   "Shinsuke Nakamura",
+   "Hiroshi Tanahashi",
+   "Togi Makabe"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:g1:2010",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2010 G1 Climax?",
+  "options": [
+   "Tetsuya Naito",
+   "Satoshi Kojima",
+   "Togi Makabe",
+   "Kazuchika Okada"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:2011",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2011 G1 Climax?",
+  "options": [
+   "Satoshi Kojima",
+   "Shinsuke Nakamura",
+   "Hiroshi Tanahashi",
+   "Kazuchika Okada"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:2012",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2012 G1 Climax?",
+  "options": [
+   "Hirooki Goto",
+   "Tetsuya Naito",
+   "Kazuchika Okada",
+   "Togi Makabe"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:g1:2013",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2013 G1 Climax?",
+  "options": [
+   "Togi Makabe",
+   "Satoshi Kojima",
+   "Hiroshi Tanahashi",
+   "Tetsuya Naito"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:g1:2014",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2014 G1 Climax?",
+  "options": [
+   "Tetsuya Naito",
+   "Kazuchika Okada",
+   "Hiroshi Tanahashi",
+   "Satoshi Kojima"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:2015",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2015 G1 Climax?",
+  "options": [
+   "Hiroshi Tanahashi",
+   "Satoshi Kojima",
+   "Kenny Omega",
+   "Shinsuke Nakamura"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:g1:2016",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2016 G1 Climax?",
+  "options": [
+   "Shinsuke Nakamura",
+   "Kazuchika Okada",
+   "Kenny Omega",
+   "Tetsuya Naito"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:g1:2017",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2017 G1 Climax?",
+  "options": [
+   "Satoshi Kojima",
+   "Tetsuya Naito",
+   "Kazuchika Okada",
+   "Kota Ibushi"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:2018",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2018 G1 Climax?",
+  "options": [
+   "Hiroshi Tanahashi",
+   "Shinsuke Nakamura",
+   "Tetsuya Naito",
+   "Kota Ibushi"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:g1:2019",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2019 G1 Climax?",
+  "options": [
+   "Kota Ibushi",
+   "Konosuke Takeshita",
+   "Zack Sabre Jr.",
+   "Tetsuya Naito"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:g1:2020",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2020 G1 Climax?",
+  "options": [
+   "Zack Sabre Jr.",
+   "Hiroshi Tanahashi",
+   "Kota Ibushi",
+   "Konosuke Takeshita"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:g1:2021",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2021 G1 Climax?",
+  "options": [
+   "Kazuchika Okada",
+   "Tetsuya Naito",
+   "Konosuke Takeshita",
+   "Hiroshi Tanahashi"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:g1:2022",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2022 G1 Climax?",
+  "options": [
+   "Kazuchika Okada",
+   "Konosuke Takeshita",
+   "Zack Sabre Jr.",
+   "Hiroshi Tanahashi"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:g1:2023",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2023 G1 Climax?",
+  "options": [
+   "Zack Sabre Jr.",
+   "Kota Ibushi",
+   "Tetsuya Naito",
+   "Kazuchika Okada"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:g1:2024",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2024 G1 Climax?",
+  "options": [
+   "Hiroshi Tanahashi",
+   "Zack Sabre Jr.",
+   "Konosuke Takeshita",
+   "Kota Ibushi"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:2025",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2025 G1 Climax?",
+  "options": [
+   "Kota Ibushi",
+   "Konosuke Takeshita",
+   "Zack Sabre Jr.",
+   "Ryohei Oiwa"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:g1:2026",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2026 G1 Climax?",
+  "options": [
+   "Zack Sabre Jr.",
+   "Hiroshi Tanahashi",
+   "Ryohei Oiwa",
+   "Kota Ibushi"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:1988",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1988 Best of the Super Juniors?",
+  "options": [
+   "Koji Kanemoto",
+   "Pegasus Kid",
+   "Shiro Koshinaka",
+   "Jushin Thunder Liger"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:1990",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1990 Best of the Super Juniors?",
+  "options": [
+   "Jushin Thunder Liger",
+   "Pegasus Kid",
+   "Shiro Koshinaka",
+   "Norio Honaga"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:bosj:1991",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1991 Best of the Super Juniors?",
+  "options": [
+   "Black Tiger II",
+   "El Samurai",
+   "Norio Honaga",
+   "Shiro Koshinaka"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:1992",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1992 Best of the Super Juniors?",
+  "options": [
+   "Pegasus Kid",
+   "El Samurai",
+   "Shiro Koshinaka",
+   "Jushin Thunder Liger"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:1993",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1993 Best of the Super Juniors?",
+  "options": [
+   "Norio Honaga",
+   "El Samurai",
+   "Pegasus Kid",
+   "Jushin Thunder Liger"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:1994",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1994 Best of the Super Juniors?",
+  "options": [
+   "Jushin Thunder Liger",
+   "Norio Honaga",
+   "Pegasus Kid",
+   "El Samurai"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:bosj:1995",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1995 Best of the Super Juniors?",
+  "options": [
+   "Koji Kanemoto",
+   "Norio Honaga",
+   "Jushin Thunder Liger",
+   "Wild Pegasus"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:1996",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1996 Best of the Super Juniors?",
+  "options": [
+   "Tatsuhito Takaiwa",
+   "Kendo Kashin",
+   "Black Tiger II",
+   "Wild Pegasus"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:1997",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1997 Best of the Super Juniors?",
+  "options": [
+   "El Samurai",
+   "Black Tiger II",
+   "Jushin Thunder Liger",
+   "Tatsuhito Takaiwa"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:bosj:1998",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1998 Best of the Super Juniors?",
+  "options": [
+   "Koji Kanemoto",
+   "Jushin Thunder Liger",
+   "Wild Pegasus",
+   "Black Tiger II"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:bosj:1999",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1999 Best of the Super Juniors?",
+  "options": [
+   "Black Tiger II",
+   "Koji Kanemoto",
+   "Wild Pegasus",
+   "Kendo Kashin"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:2000",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2000 Best of the Super Juniors?",
+  "options": [
+   "Jushin Thunder Liger",
+   "Koji Kanemoto",
+   "Tatsuhito Takaiwa",
+   "Black Tiger II"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:2001",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2001 Best of the Super Juniors?",
+  "options": [
+   "Tatsuhito Takaiwa",
+   "Kendo Kashin",
+   "Jushin Thunder Liger",
+   "El Samurai"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:2002",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2002 Best of the Super Juniors?",
+  "options": [
+   "Masahito Kakihara",
+   "Koji Kanemoto",
+   "Kendo Kashin",
+   "Jushin Thunder Liger"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:bosj:2003",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2003 Best of the Super Juniors?",
+  "options": [
+   "Masahito Kakihara",
+   "Jushin Thunder Liger",
+   "Tiger Mask IV",
+   "Kendo Kashin"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:bosj:2004",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2004 Best of the Super Juniors?",
+  "options": [
+   "Minoru",
+   "Milano Collection A.T.",
+   "Tatsuhito Takaiwa",
+   "Tiger Mask IV"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:2005",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2005 Best of the Super Juniors?",
+  "options": [
+   "Milano Collection A.T.",
+   "Minoru",
+   "Wataru Inoue",
+   "Tiger Mask IV"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:2006",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2006 Best of the Super Juniors?",
+  "options": [
+   "Wataru Inoue",
+   "Milano Collection A.T.",
+   "Koji Kanemoto",
+   "Minoru"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:2007",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2007 Best of the Super Juniors?",
+  "options": [
+   "Milano Collection A.T.",
+   "Minoru",
+   "Koji Kanemoto",
+   "Tiger Mask IV"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:bosj:2008",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2008 Best of the Super Juniors?",
+  "options": [
+   "Koji Kanemoto",
+   "Prince Devitt",
+   "Wataru Inoue",
+   "Tiger Mask IV"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:2009",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2009 Best of the Super Juniors?",
+  "options": [
+   "Minoru",
+   "Wataru Inoue",
+   "Koji Kanemoto",
+   "Ryusuke Taguchi"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:2010",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2010 Best of the Super Juniors?",
+  "options": [
+   "Ryusuke Taguchi",
+   "Prince Devitt",
+   "Wataru Inoue",
+   "Koji Kanemoto"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:bosj:2011",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2011 Best of the Super Juniors?",
+  "options": [
+   "Prince Devitt",
+   "Ricochet",
+   "Wataru Inoue",
+   "Kota Ibushi"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:2012",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2012 Best of the Super Juniors?",
+  "options": [
+   "Ryusuke Taguchi",
+   "Ricochet",
+   "Koji Kanemoto",
+   "Kushida"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:bosj:2013",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2013 Best of the Super Juniors?",
+  "options": [
+   "Ricochet",
+   "Kushida",
+   "Ryusuke Taguchi",
+   "Prince Devitt"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:2014",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2014 Best of the Super Juniors?",
+  "options": [
+   "Ricochet",
+   "Kota Ibushi",
+   "Will Ospreay",
+   "Prince Devitt"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:bosj:2015",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2015 Best of the Super Juniors?",
+  "options": [
+   "Will Ospreay",
+   "Kushida",
+   "Prince Devitt",
+   "Hiromu Takahashi"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:bosj:2016",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2016 Best of the Super Juniors?",
+  "options": [
+   "Will Ospreay",
+   "Kota Ibushi",
+   "Ricochet",
+   "Ryusuke Taguchi"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:bosj:2017",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2017 Best of the Super Juniors?",
+  "options": [
+   "Hiromu Takahashi",
+   "Ricochet",
+   "Kota Ibushi",
+   "Kushida"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:2018",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2018 Best of the Super Juniors?",
+  "options": [
+   "Hiromu Takahashi",
+   "Master Wato",
+   "Will Ospreay",
+   "Ryusuke Taguchi"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:bosj:2019",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2019 Best of the Super Juniors?",
+  "options": [
+   "Prince Devitt",
+   "Master Wato",
+   "El Desperado",
+   "Will Ospreay"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:2020",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2020 Best of the Super Juniors?",
+  "options": [
+   "Ricochet",
+   "El Desperado",
+   "Hiromu Takahashi",
+   "Master Wato"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:2021",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2021 Best of the Super Juniors?",
+  "options": [
+   "Yoh",
+   "Hiromu Takahashi",
+   "Kosei Fujita",
+   "El Desperado"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:bosj:2022",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2022 Best of the Super Juniors?",
+  "options": [
+   "Master Wato",
+   "Kosei Fujita",
+   "Kushida",
+   "Hiromu Takahashi"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:bosj:2023",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2023 Best of the Super Juniors?",
+  "options": [
+   "El Desperado",
+   "Master Wato",
+   "Kushida",
+   "Kosei Fujita"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:bosj:2024",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2024 Best of the Super Juniors?",
+  "options": [
+   "Master Wato",
+   "Kushida",
+   "El Desperado",
+   "Kosei Fujita"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:2025",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2025 Best of the Super Juniors?",
+  "options": [
+   "Master Wato",
+   "Hiromu Takahashi",
+   "Kosei Fujita",
+   "El Desperado"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:bosj:2026",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2026 Best of the Super Juniors?",
+  "options": [
+   "Hiromu Takahashi",
+   "Kosei Fujita",
+   "Will Ospreay",
+   "Yoh"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:carnival:1982",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1982 Champion Carnival?",
+  "options": [
+   "Abdullah the Butcher",
+   "Stan Hansen",
+   "Giant Baba",
+   "Jumbo Tsuruta"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:1991",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1991 Champion Carnival?",
+  "options": [
+   "Toshiaki Kawada",
+   "Vader",
+   "Akira Taue",
+   "Jumbo Tsuruta"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:carnival:1992",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1992 Champion Carnival?",
+  "options": [
+   "Mitsuharu Misawa",
+   "Stan Hansen",
+   "Toshiaki Kawada",
+   "Kenta Kobashi"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:carnival:1993",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1993 Champion Carnival?",
+  "options": [
+   "Stan Hansen",
+   "Kenta Kobashi",
+   "Akira Taue",
+   "Toshiaki Kawada"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:carnival:1994",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1994 Champion Carnival?",
+  "options": [
+   "Toshiaki Kawada",
+   "Mitsuharu Misawa",
+   "Jumbo Tsuruta",
+   "Akira Taue"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:carnival:1995",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1995 Champion Carnival?",
+  "options": [
+   "Toshiaki Kawada",
+   "Jumbo Tsuruta",
+   "Akira Taue",
+   "Mitsuharu Misawa"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:carnival:1996",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1996 Champion Carnival?",
+  "options": [
+   "Toshiaki Kawada",
+   "Vader",
+   "Akira Taue",
+   "Mitsuharu Misawa"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:1997",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1997 Champion Carnival?",
+  "options": [
+   "Vader",
+   "Akira Taue",
+   "Toshiaki Kawada",
+   "Genichiro Tenryu"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:1998",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1998 Champion Carnival?",
+  "options": [
+   "Genichiro Tenryu",
+   "Mitsuharu Misawa",
+   "Keiji Muto",
+   "Toshiaki Kawada"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:carnival:1999",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 1999 Champion Carnival?",
+  "options": [
+   "Vader",
+   "Akira Taue",
+   "Genichiro Tenryu",
+   "Mitsuharu Misawa"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:carnival:2000",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2000 Champion Carnival?",
+  "options": [
+   "Keiji Muto",
+   "Mitsuharu Misawa",
+   "Kenta Kobashi",
+   "Vader"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:2001",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2001 Champion Carnival?",
+  "options": [
+   "Keiji Muto",
+   "Mitsuharu Misawa",
+   "Vader",
+   "Genichiro Tenryu"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:carnival:2002",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2002 Champion Carnival?",
+  "options": [
+   "Kensuke Sasaki",
+   "Kenta Kobashi",
+   "Keiji Muto",
+   "Mitsuharu Misawa"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:2003",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2003 Champion Carnival?",
+  "options": [
+   "Satoshi Kojima",
+   "Taiyō Kea",
+   "Genichiro Tenryu",
+   "Kensuke Sasaki"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:carnival:2004",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2004 Champion Carnival?",
+  "options": [
+   "Taiyō Kea",
+   "Kenta Kobashi",
+   "Kensuke Sasaki",
+   "Keiji Muto"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:carnival:2005",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2005 Champion Carnival?",
+  "options": [
+   "Minoru Suzuki",
+   "Suwama",
+   "Genichiro Tenryu",
+   "Kensuke Sasaki"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:carnival:2006",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2006 Champion Carnival?",
+  "options": [
+   "Satoshi Kojima",
+   "Taiyō Kea",
+   "Keiji Muto",
+   "Suwama"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:carnival:2007",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2007 Champion Carnival?",
+  "options": [
+   "Suwama",
+   "Keiji Muto",
+   "Minoru Suzuki",
+   "Satoshi Kojima"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:carnival:2008",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2008 Champion Carnival?",
+  "options": [
+   "Keiji Muto",
+   "Suwama",
+   "Kensuke Sasaki",
+   "Yuji Nagata"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:carnival:2009",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2009 Champion Carnival?",
+  "options": [
+   "Yuji Nagata",
+   "Keiji Muto",
+   "Minoru Suzuki",
+   "Taiyō Kea"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:2010",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2010 Champion Carnival?",
+  "options": [
+   "Yuji Nagata",
+   "Minoru Suzuki",
+   "Takao Omori",
+   "Suwama"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:carnival:2011",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2011 Champion Carnival?",
+  "options": [
+   "Minoru Suzuki",
+   "Taiyō Kea",
+   "Suwama",
+   "Yuji Nagata"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:carnival:2012",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2012 Champion Carnival?",
+  "options": [
+   "Suwama",
+   "Takao Omori",
+   "Jun Akiyama",
+   "Taiyō Kea"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:carnival:2013",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2013 Champion Carnival?",
+  "options": [
+   "Minoru Suzuki",
+   "Daisuke Sekimoto",
+   "Yuji Nagata",
+   "Jun Akiyama"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:carnival:2014",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2014 Champion Carnival?",
+  "options": [
+   "Shuji Ishikawa",
+   "Jun Akiyama",
+   "Takao Omori",
+   "Akebono"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:2015",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2015 Champion Carnival?",
+  "options": [
+   "Akebono",
+   "Shuji Ishikawa",
+   "Naomichi Marufuji",
+   "Takao Omori"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:carnival:2016",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2016 Champion Carnival?",
+  "options": [
+   "Shuji Ishikawa",
+   "Naomichi Marufuji",
+   "Daisuke Sekimoto",
+   "Kento Miyahara"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:2017",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2017 Champion Carnival?",
+  "options": [
+   "Naomichi Marufuji",
+   "Shuji Ishikawa",
+   "Zeus",
+   "Kento Miyahara"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:carnival:2018",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2018 Champion Carnival?",
+  "options": [
+   "Akebono",
+   "Naomichi Marufuji",
+   "Kento Miyahara",
+   "Zeus"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:carnival:2019",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2019 Champion Carnival?",
+  "options": [
+   "Kento Miyahara",
+   "Zeus",
+   "Shuji Ishikawa",
+   "Daisuke Sekimoto"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:carnival:2020",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2020 Champion Carnival?",
+  "options": [
+   "Shotaro Ashino",
+   "Kento Miyahara",
+   "Zeus",
+   "Shuji Ishikawa"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:2021",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2021 Champion Carnival?",
+  "options": [
+   "Jake Lee",
+   "Yuma Aoyagi",
+   "Zeus",
+   "Naomichi Marufuji"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:carnival:2022",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2022 Champion Carnival?",
+  "options": [
+   "Naomichi Marufuji",
+   "Rei Saito",
+   "Yuma Aoyagi",
+   "Kento Miyahara"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:2023",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2023 Champion Carnival?",
+  "options": [
+   "Kento Miyahara",
+   "Shotaro Ashino",
+   "Rei Saito",
+   "Zeus"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:carnival:2024",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2024 Champion Carnival?",
+  "options": [
+   "Hideki Suzuki",
+   "Zeus",
+   "Kento Miyahara",
+   "Rei Saito"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:carnival:2025",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2025 Champion Carnival?",
+  "options": [
+   "Rei Saito",
+   "Hideki Suzuki",
+   "Yuma Aoyagi",
+   "Zeus"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:carnival:2026",
+  "type": "tourney",
+  "scene": "jp",
+  "prompt": "Who won the 2026 Champion Carnival?",
+  "options": [
+   "Zeus",
+   "Rei Saito",
+   "Hideki Suzuki",
+   "Jake Lee"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:reyDeReyes:1997",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 1997 Rey de Reyes?",
+  "options": [
+   "Jeff Jarrett",
+   "La Parka Jr.",
+   "Latin Lover",
+   "Cibernético"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:reyDeReyes:1998",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 1998 Rey de Reyes?",
+  "options": [
+   "Latin Lover",
+   "Octagón",
+   "El Canek",
+   "Cibernético"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:1999",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 1999 Rey de Reyes?",
+  "options": [
+   "Jeff Jarrett",
+   "La Parka Jr.",
+   "Cibernético",
+   "Abismo Negro"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:reyDeReyes:2000",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2000 Rey de Reyes?",
+  "options": [
+   "La Parka Jr.",
+   "Abismo Negro",
+   "Cibernético",
+   "Jeff Jarrett"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2001",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2001 Rey de Reyes?",
+  "options": [
+   "La Parka Jr.",
+   "Jeff Jarrett",
+   "Latin Lover",
+   "Abismo Negro"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:reyDeReyes:2002",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2002 Rey de Reyes?",
+  "options": [
+   "El Canek",
+   "Cibernético",
+   "Octagón",
+   "Jeff Jarrett"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:reyDeReyes:2003",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2003 Rey de Reyes?",
+  "options": [
+   "Abismo Negro",
+   "Cibernético",
+   "La Parka Jr.",
+   "El Canek"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:reyDeReyes:2004",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2004 Rey de Reyes?",
+  "options": [
+   "La Parka Jr.",
+   "El Canek",
+   "Jeff Jarrett",
+   "Cibernético"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:reyDeReyes:2005",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2005 Rey de Reyes?",
+  "options": [
+   "La Parka Jr.",
+   "Vampiro",
+   "El Zorro",
+   "El Canek"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:reyDeReyes:2006",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2006 Rey de Reyes?",
+  "options": [
+   "Vampiro",
+   "Chessman",
+   "Electroshock",
+   "La Parka Jr."
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:reyDeReyes:2007",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2007 Rey de Reyes?",
+  "options": [
+   "Xtreme Tiger",
+   "La Parka Jr.",
+   "Jeff Jarrett",
+   "Vampiro"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2008",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2008 Rey de Reyes?",
+  "options": [
+   "Vampiro",
+   "El Zorro",
+   "Jeff Jarrett",
+   "Xtreme Tiger"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2009",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2009 Rey de Reyes?",
+  "options": [
+   "El Hijo del Perro Aguayo",
+   "Electroshock",
+   "La Parka Jr.",
+   "Xtreme Tiger"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2010",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2010 Rey de Reyes?",
+  "options": [
+   "Chessman",
+   "El Zorro",
+   "El Mesías",
+   "Xtreme Tiger"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:reyDeReyes:2011",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2011 Rey de Reyes?",
+  "options": [
+   "Electroshock",
+   "Chessman",
+   "Xtreme Tiger",
+   "El Hijo del Perro Aguayo"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:reyDeReyes:2012",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2012 Rey de Reyes?",
+  "options": [
+   "El Mesías",
+   "El Hijo del Perro Aguayo",
+   "La Parka Jr.",
+   "El Texano Jr."
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2013",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2013 Rey de Reyes?",
+  "options": [
+   "Pentagón Jr.",
+   "El Mesías",
+   "La Parka Jr.",
+   "Chessman"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2014",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2014 Rey de Reyes?",
+  "options": [
+   "Argenis",
+   "La Parka Jr.",
+   "El Hijo del Perro Aguayo",
+   "Pentagón Jr."
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2015",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2015 Rey de Reyes?",
+  "options": [
+   "El Hijo del Perro Aguayo",
+   "El Texano Jr.",
+   "Rey Escorpión",
+   "Pentagón Jr."
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2016",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2016 Rey de Reyes?",
+  "options": [
+   "El Mesías",
+   "Pentagón Jr.",
+   "Rey Escorpión",
+   "La Parka Jr."
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2017",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2017 Rey de Reyes?",
+  "options": [
+   "Pentagón Jr.",
+   "La Parka Jr.",
+   "Aero Star",
+   "Argenis"
+  ],
+  "answer": 3
+ },
+ {
+  "id": "tourney:reyDeReyes:2018",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2018 Rey de Reyes?",
+  "options": [
+   "La Parka Jr.",
+   "Pentagón Jr.",
+   "Rey Escorpión",
+   "Laredo Kid"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:reyDeReyes:2019",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2019 Rey de Reyes?",
+  "options": [
+   "Aero Star",
+   "Pentagón Jr.",
+   "Argenis",
+   "Laredo Kid"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:reyDeReyes:2021",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2021 Rey de Reyes?",
+  "options": [
+   "Argenis",
+   "Laredo Kid",
+   "Sam Adonis",
+   "Aero Star"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2022",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2022 Rey de Reyes?",
+  "options": [
+   "Rey Escorpión",
+   "Psycho Clown",
+   "Niño Hamburguesa",
+   "Sam Adonis"
+  ],
+  "answer": 1
+ },
+ {
+  "id": "tourney:reyDeReyes:2023",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2023 Rey de Reyes?",
+  "options": [
+   "Sam Adonis",
+   "Aero Star",
+   "Niño Hamburguesa",
+   "El Grande Americano"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:reyDeReyes:2024",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2024 Rey de Reyes?",
+  "options": [
+   "El Hijo del Vikingo",
+   "Niño Hamburguesa",
+   "Psycho Clown",
+   "Aero Star"
+  ],
+  "answer": 0
+ },
+ {
+  "id": "tourney:reyDeReyes:2025",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2025 Rey de Reyes?",
+  "options": [
+   "Laredo Kid",
+   "Psycho Clown",
+   "Niño Hamburguesa",
+   "Aero Star"
+  ],
+  "answer": 2
+ },
+ {
+  "id": "tourney:reyDeReyes:2026",
+  "type": "tourney",
+  "scene": "mx",
+  "prompt": "Who won the 2026 Rey de Reyes?",
+  "options": [
+   "El Hijo del Vikingo",
+   "Psycho Clown",
+   "Laredo Kid",
+   "El Grande Americano"
+  ],
+  "answer": 3
  }
 ]

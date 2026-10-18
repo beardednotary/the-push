@@ -22,7 +22,7 @@ Without Upstash credentials the leaderboards live in memory, which is fine for l
 pip install kagglehub
 python scripts/fetch_ringside.py      # downloads ~360 MB into data/raw/ (git-ignored)
 python scripts/fetch_wikidata.py      # life outside the ring (acting, sports, birthplace) into data/raw/ (git-ignored)
-python scripts/fetch_titles.py        # Wikipedia champion lists; fills gaps in the archive's title histories
+python scripts/fetch_titles.py        # Wikipedia champion and tournament-winner lists (US, Japan, Mexico)
 python scripts/import_ringside.py     # writes data/generated/{ring,trivia}.json + REPORT.md
 npx tsx scripts/check-puzzles.ts      # simulates a year of daily puzzles
 ```
@@ -35,6 +35,7 @@ What the import does with the archive:
 - Fixes gender (the source marks most women male) from women's titles and singles opponents.
 - Derives grid criteria: promotions, title groups, Rumble wins, WrestleMania and AEW PPV main events, Hell in a Cell, cage, ladder, 30-minute matches and decades.
 - Generates trivia: Rumble winners, WrestleMania main events and cities, title changes (each one confirmed by its title match), classic PPV matches, and "which promotion ran this PPV".
+- Japan and Mexico: IWGP, NEVER, IWGP Junior, Triple Crown, GHC, World of Stardom, CMLL and AAA Mega champions, plus G1 Climax, Best of the Super Juniors, Champion Carnival and Rey de Reyes winners (Wikipedia). These criteria carry a `scene` (`jp` / `mx`) and stay out of the main grid; tournament-winner trivia (type `tourney`) stays out of the Daily Five. Both wait for region cards (`docs/regions.md`). The report's "International coverage" section shows how thin the archive is outside the US.
 
 ### Curation (the Google Sheet)
 
@@ -51,6 +52,7 @@ git add -A && git commit -m "Update curation" && git push   # Vercel redeploys
 |---|---|
 | `merges.csv` | one person under several names/ids (Daniel Bryan → Bryan Danielson), plus display names |
 | `tags.csv` | facts the dataset lacks or gets wrong: `wrestler,tag,action(add/remove),note` |
+| `questions.csv` | community trivia: `prompt,answer,wrong1,wrong2,wrong3,source,region,approved,note`. `region` is `world`, `us`, `jp` or `mx`. A row is used only once `approved` is `yes` (or `y`, `x`, `true`, `1`); the report lists rows it rejected and why. |
 
 The archive has no AEW, NJPW or ROH title histories, so `tags.csv` supplies AEW World Champions.
 
@@ -80,7 +82,7 @@ Each import also writes `data/generated/merge_candidates.csv`: likely renames no
 
 ## Known gaps
 
-- No NJPW or ROH events. No Hall of Fame, nWo membership or Money in the Bank winners (MITB can't be derived reliably from the cards); these need `tags.csv` rows before they can be grid criteria.
+- No NJPW, AJPW, NOAH, Stardom, CMLL, AAA or ROH events. The 2025-06+ scrape has 2025-26 shows named after them, filed under AEW; the CMLL, NJPW and AAA cards look like real rosters, the Stardom ones are AEW names, and the import drops them all with the other off-brand shows. Japanese and Mexican stars only reach the pool through the Wikipedia title lists, and only if the archive knows them. No Hall of Fame, nWo membership or Money in the Bank winners (MITB can't be derived reliably from the cards); these need `tags.csv` rows before they can be grid criteria.
 - AEW cards are thin between late 2024 and early 2026 in the source.
 - Daily Five times are measured in the browser. The server re-scores every submission from the raw answers, but a determined cheater could fake times.
 - **Licensing:** the archive is CC0, but its own notes say the bulk was scraped from Cagematch.net "for non-commercial use". Facts (who won what) aren't copyrightable; match ratings are only used to *choose* classic matches and are never shown. Get a proper read on this before turning ads on.

@@ -5,6 +5,10 @@
 One SPARQL query per fact so none of them time out. The import script matches these
 people to the archive by ring name, alias or real name, and turns facts into Ring
 categories. Re-run occasionally; Wikidata keeps improving.
+
+Country: born_in is the country of the place of birth (P19); citizen lists the
+citizenships (P27). The import uses born_in, and falls back to a single citizenship
+when Wikidata has no birthplace.
 """
 import csv
 import json
@@ -78,7 +82,7 @@ def main():
         OPTIONAL {{ ?p skos:altLabel ?alt FILTER(LANG(?alt) = "en") }}
         OPTIONAL {{ ?p wdt:P1477 ?real }}
     }} GROUP BY ?p ?label ?real"""):
-        rec = people.setdefault(qid(b), {"label": "", "aliases": [], "facts": [], "born_in": ""})
+        rec = people.setdefault(qid(b), {"label": "", "aliases": [], "facts": [], "born_in": "", "citizen": []})
         rec["label"] = b.get("label", {}).get("value", "") or rec["label"]
         names = set(rec["aliases"]) | set(filter(None, b.get("alts", {}).get("value", "").split("|")))
         if b.get("real"):
@@ -90,13 +94,18 @@ def main():
         values = " ".join(f"wd:{q}" for q in pinned)
         for b in query(f"""SELECT ?p ?label WHERE {{ VALUES ?p {{ {values} }}
             OPTIONAL {{ ?p rdfs:label ?label FILTER(LANG(?label) = "en") }} }}"""):
-            people.setdefault(qid(b), {"label": b.get("label", {}).get("value", ""), "aliases": [], "facts": [], "born_in": ""})
+            people.setdefault(qid(b), {"label": b.get("label", {}).get("value", ""), "aliases": [], "facts": [], "born_in": "", "citizen": []})
         print(f"  plus {len(pinned)} pinned in data/curation/wikidata.csv")
 
     ids = sorted(people)
     print("birthplaces ...")
     for b in query_batched("?p ?code", "?p wdt:P19 ?pl . ?pl wdt:P17 ?c . ?c wdt:P297 ?code .", ids):
         people[qid(b)]["born_in"] = b["code"]["value"]
+    print("citizenships ...")
+    for b in query_batched("?p ?code", "?p wdt:P27 ?c . ?c wdt:P297 ?code .", ids):
+        rec = people[qid(b)]
+        if b["code"]["value"] not in rec["citizen"]:
+            rec["citizen"].append(b["code"]["value"])
 
     for fact, pattern in FACTS.items():
         rows = query_batched("?p", pattern, ids)

@@ -9,6 +9,7 @@ export interface Criterion {
   label: string;
   detail: string;
   count: number;
+  scene?: string; // "jp" / "mx": a Japan or Mexico criterion, kept out of the main grid for now
 }
 export interface Wrestler {
   id: number;
@@ -58,7 +59,7 @@ export function gridFor(day: string): Grid {
   const hit = cache.get(day);
   if (hit) return hit;
   const rand = mulberry32(hashString(`ring:${day}`));
-  const usable = CRITERIA.filter((c) => c.count >= 8);
+  const usable = CRITERIA.filter((c) => c.count >= 8 && !c.scene);
   for (let attempt = 0; attempt < 5000; attempt++) {
     const chosen: Criterion[] = [];
     while (chosen.length < 6) {

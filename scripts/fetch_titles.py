@@ -6,6 +6,9 @@ The archive's title_reigns table has gaps (it has ~22 WCW Television Champions o
 well over a hundred), which made the Ring reject correct answers. The import adds a
 title tag to anyone named in the Champion column of these lists. Only that column is
 read, so opponents mentioned in notes never count.
+
+Japanese and Mexican titles and tournaments (G1 Climax and so on) come from here too,
+since the archive has no NJPW, AJPW, NOAH, Stardom, CMLL or AAA title histories.
 """
 import json
 import pathlib
@@ -39,6 +42,25 @@ PAGES = {
             "List of AEW World Tag Team Champions", "List of WWE Women's Tag Team Champions"],
     "womens": ["List of WWE Women's Champions (1956–2010)", "List of WWE Women's Champions", "List of WWE Divas Champions",
                "List of WWE Raw Women's Champions", "List of NXT Women's Champions", "List of Women's World Champions (WWE)"],
+    # Japan and Mexico
+    "iwgpChamp": ["IWGP Heavyweight Championship"],  # includes the 2021- IWGP World Heavyweight title
+    "never": ["List of NEVER Openweight Champions"],
+    "iwgpJr": ["IWGP Junior Heavyweight Championship"],
+    "tripleCrown": ["Triple Crown Heavyweight Championship"],
+    "ghc": ["GHC Heavyweight Championship"],
+    "stardomChamp": ["World of Stardom Championship"],
+    "cmllChamp": ["List of CMLL World Heavyweight Champions"],
+    "aaaMega": ["AAA Mega Championship"],
+}
+
+# Tournaments: criterion id -> (page whose winners table has Year and Winner columns, first year).
+# The first year drops the predecessor tournaments some pages list (the G1 table starts
+# with the 1974 World League). Winner names become a criterion; the years feed trivia.
+TOURNAMENTS = {
+    "g1": ("G1 Climax", 1991),
+    "bosj": ("Best of the Super Juniors", 1988),
+    "carnival": ("Champion Carnival", 1973),
+    "reyDeReyes": ("Rey de Reyes", 1997),
 }
 
 
@@ -114,7 +136,7 @@ def grid(rows):
     return out
 
 
-def champions(page):
+def tables(page):
     url = "https://en.wikipedia.org/api/rest_v1/page/html/" + urllib.parse.quote(page.replace(" ", "_"), safe="")
     req = urllib.request.Request(url, headers={"User-Agent": UA})
     try:
@@ -125,6 +147,46 @@ def champions(page):
         return None
     p = Tables()
     p.feed(html)
+    return p
+
+
+def person(cell):
+    """(name shown in the cell, the article it links to): the shown name is the ring name
+    used that year (Prince Devitt); the article is what matches the person (Finn Bálor)."""
+    shown = re.sub(r"\s*\(\d+\)\s*$", "", re.sub(r"\s+", " ", cell["text"])).strip()
+    link = re.sub(r"\s*\(.*?\)$", "", cell["links"][0]) if cell["links"] else shown
+    return shown, link
+
+
+def winners(page):
+    """[(year, shown name, linked name)] from every table with Year and Winner columns (some pages split them by era)."""
+    p = tables(page)
+    if p is None:
+        return None
+    out = set()
+    for table in filter(None, p.tables):
+        g = grid(table)
+        header = next((r for r in g if r and all(c["th"] for c in r)), None)
+        if not header:
+            continue
+        heads = [c["text"].strip().lower() for c in header]
+        if "year" not in heads or "winner" not in heads:
+            continue
+        yi, wi = heads.index("year"), heads.index("winner")
+        for r in g:
+            if r is header or len(r) <= max(yi, wi) or r[wi]["th"]:
+                continue
+            year = re.search(r"\b(19|20)\d\d\b", r[yi]["text"])
+            shown, link = person(r[wi])
+            if year and re.search(r"[A-Za-z]", shown) and not re.search(r"vacat|cancel|not held", shown, re.I):
+                out.add((int(year.group()), shown, link))
+    return sorted(out)
+
+
+def champions(page):
+    p = tables(page)
+    if p is None:
+        return None
     names = set()
     for table in filter(None, p.tables):
         g = grid(table)
@@ -157,6 +219,15 @@ def main():
                 names |= set(got)
             time.sleep(0.5)
         out[group] = sorted(names)
+    # "years" isn't a criterion id, so the import's title-list pass skips it
+    out["years"] = {}
+    for group, (page, since) in TOURNAMENTS.items():
+        got = [w for w in winners(page) or [] if w[0] >= since]
+        if got:
+            print(f"  {group:16} {len(got):4}  {page}")
+            out["years"][group] = got
+            out[group] = sorted({n for _, shown, link in got for n in (shown, link)})
+        time.sleep(0.5)
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     print(f"wrote {OUT}")
