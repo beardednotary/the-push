@@ -39,7 +39,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${display.variable} ${ui.variable}`}>
         {children}
         <footer className="footer">
-          Data: <a href="https://www.kaggle.com/datasets/theodorerubin/ringside-wrestling-archive">Ringside Wrestling Archive</a>,{" "}
+          Match results from <a href="https://www.cagematch.net">CAGEMATCH</a>, used with permission, via the{" "}
+          <a href="https://www.kaggle.com/datasets/theodorerubin/ringside-wrestling-archive">Ringside Wrestling Archive</a>. Also{" "}
           <a href="https://www.wikidata.org">Wikidata</a> and <a href="https://en.wikipedia.org/wiki/Category:Lists_of_professional_wrestling_champions">Wikipedia</a> championship lists.
           Not affiliated with any promotion. A <a href="https://dahvio.com">DahVio Studios</a> production.{" "}
           <a href="/archive">Archive</a> <a href="https://discord.gg/hQNuKJva8W">Discord</a> <a href="/privacy">Privacy</a> <AccountLink />
