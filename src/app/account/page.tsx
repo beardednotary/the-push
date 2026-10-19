@@ -4,6 +4,7 @@ import { redirect } from "next/navigation";
 import { auth, signOut } from "@/auth";
 import { Bug, Plate } from "@/components/Chrome";
 import { FLAIR, playerCode } from "@/lib/flair";
+import { YourLeagues } from "@/components/league";
 import { store } from "@/lib/store";
 
 export const dynamic = "force-dynamic";
@@ -38,6 +39,7 @@ export default async function AccountPage() {
             {flair ? <> · <Plate tone="red">{flair}</Plate></> : <> · Spot a wrong answer and get it fixed, and this code earns you the Road Agent badge.</>}
           </p>
         )}
+        <YourLeagues />
         <div className="stack">
           <Link className="cta full" href="/">
             <span>Tonight&apos;s card</span>
