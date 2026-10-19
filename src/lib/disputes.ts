@@ -6,6 +6,7 @@ import { ringCard } from "./cards";
 import { addDays, todayKey } from "./day";
 import { criterion, getWrestler, isRegion, missing, type Overrides, type Region } from "./ring";
 import { countStat } from "./stats";
+import { grantFlair } from "./flair";
 import { store } from "./store";
 
 const LOG = "disputes"; // every dispute, JSON, oldest first
@@ -23,6 +24,7 @@ export interface Dispute {
   criterion: string; // the one the wrestler lacks
   region?: Region;
   at: number;
+  player?: string; // who sent it; an accept makes them a Road Agent
 }
 
 export async function ringOverrides(): Promise<Overrides> {
@@ -45,7 +47,7 @@ export async function addDispute(input: { day: unknown; cell: unknown; wrestlerI
   if (!(await store.addOnce(`disputes:seen:${today}`, `${input.playerId}:${day}:${cell}:${wrestlerId}`))) return false;
   const [row, col] = [grid.rows[Math.floor(cell / 3)].id, grid.cols[cell % 3].id];
   for (const c of lacks) {
-    const d: Dispute = { day, cell, wrestlerId, row, col, criterion: c.id, region, at: Date.now() };
+    const d: Dispute = { day, cell, wrestlerId, row, col, criterion: c.id, region, at: Date.now(), player: input.playerId };
     await store.listPush(LOG, JSON.stringify(d));
     await store.hashBump(COUNTS, `${wrestlerId}:${c.id}`);
   }
@@ -61,6 +63,7 @@ export interface DisputeGroup {
   count: number;
   days: string[];
   status?: string;
+  players: number; // distinct players who sent it
   csv: string; // the tags.csv row that makes an accept permanent
 }
 
@@ -69,10 +72,12 @@ const csvCell = (s: string) => (/[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` 
 export async function disputeGroups(): Promise<DisputeGroup[]> {
   const [log, counts, done] = await Promise.all([store.list(LOG), store.hashGet(COUNTS), store.hashGet(DONE)]);
   const days = new Map<string, Set<string>>();
+  const players = new Map<string, Set<string>>();
   for (const raw of log) {
     const d = JSON.parse(raw) as Dispute;
     const key = `${d.wrestlerId}:${d.criterion}`;
     (days.get(key) ?? days.set(key, new Set()).get(key)!).add(d.day);
+    if (d.player) (players.get(key) ?? players.set(key, new Set()).get(key)!).add(d.player);
   }
   return Object.entries(counts)
     .map(([key, n]) => {
@@ -88,6 +93,7 @@ export async function disputeGroups(): Promise<DisputeGroup[]> {
         count: Number(n) || 0,
         days: [...(days.get(key) ?? [])].sort().reverse(),
         status: done[key],
+        players: players.get(key)?.size ?? 0,
         csv: [w?.name ?? id, crit, "add", `Player dispute: ${label}`].map(csvCell).join(","),
       };
     })
@@ -98,5 +104,14 @@ export async function settleDispute(key: string, verdict: "accepted" | "rejected
   const [id, crit] = key.split(":");
   if (!getWrestler(Number(id)) || !criterion(crit)) return;
   await store.hashSet(DONE, { [key]: verdict });
-  if (verdict === "accepted") await store.hashSet(OVERRIDES, { [key]: todayKey() });
+  if (verdict !== "accepted") return 0;
+  await store.hashSet(OVERRIDES, { [key]: todayKey() });
+  // everyone who flagged it was right: they're Road Agents now
+  const reporters = new Set<string>();
+  for (const raw of await store.list(LOG)) {
+    const d = JSON.parse(raw) as Dispute;
+    if (`${d.wrestlerId}:${d.criterion}` === key && d.player) reporters.add(d.player);
+  }
+  for (const p of reporters) await grantFlair(p, "road-agent");
+  return reporters.size;
 }

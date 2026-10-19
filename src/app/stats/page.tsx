@@ -173,12 +173,15 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                         <b>{g.wrestler}</b>
                       </td>
                       <td>{g.label}</td>
-                      <td>{g.count}</td>
+                      <td>
+                        {g.count}
+                        {g.players > 0 && <span className="muted"> · {g.players} {g.players === 1 ? "player" : "players"}</span>}
+                      </td>
                       <td className="muted">{g.days.map((d) => d.slice(5)).join(", ")}</td>
                       <td>
                         {g.status === "accepted" ? (
                           <>
-                            Accepted. tags.csv row: <code>{g.csv}</code>
+                            Accepted{g.players > 0 ? `; ${g.players} Road Agent${g.players === 1 ? "" : "s"} made` : ""}. tags.csv row: <code>{g.csv}</code>
                           </>
                         ) : g.status === "rejected" ? (
                           <span className="muted">Rejected</span>
@@ -208,7 +211,7 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
             <Plate tone="dark">For fixed reports</Plate>
           </div>
           <p className="muted small">
-            The player signs in and sends you the player code from their account page. The badge shows next to their name on the
+            Accepting a dispute makes everyone who sent it a Road Agent automatically. For other help, the player signs in and sends you the player code from their account page. The badge shows next to their name on the
             standings.
           </p>
           <form action={grant} className="post">

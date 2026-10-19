@@ -24,3 +24,8 @@ export async function setFlair(code: string, flair: string): Promise<string | nu
   await store.hashSet(KEY, { [String(playerId)]: flair });
   return String(playerId);
 }
+
+/** Give flair straight to a player ID (accepted disputes); never replaces flair they already have. */
+export async function grantFlair(playerId: string, flair: string) {
+  if (!(await store.hashGet(KEY))[playerId]) await store.hashSet(KEY, { [playerId]: flair });
+}
