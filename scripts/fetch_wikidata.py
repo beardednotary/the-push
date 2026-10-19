@@ -10,16 +10,30 @@ Country: born_in is the country of the place of birth (P19); citizen lists the
 citizenships (P27). The import uses born_in, and falls back to a single citizenship
 when Wikidata has no birthplace. state is the US state of the place of birth (P19 up
 the P131 chain). real is the birth name.
+
+employers lists the English labels of employer (P108) and member of sports team (P54);
+sex is "m" or "f" (P21). The import's --no-cagematch mode uses them for promotion
+membership and gender, where the archive isn't available. To add just these to an
+existing file without fetching everything again:
+
+    python scripts/fetch_wikidata.py --extra
+
+--cards fetches the same record for people on Wikipedia's PPV cards (data/raw/ppv_results.json)
+who aren't in wikidata.json, into wikidata_cards.json, for --no-cagematch only:
+
+    python scripts/fetch_wikidata.py --cards
 """
 import csv
 import json
 import pathlib
+import sys
 import time
 import urllib.parse
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 OUT = ROOT / "data/raw/wikidata.json"
+CARDS = ROOT / "data/raw/wikidata_cards.json"
 PINNED = ROOT / "data/curation/wikidata.csv"  # people we always fetch, even if not tagged as wrestlers
 ENDPOINT = "https://query.wikidata.org/sparql"
 UA = "ThePushDataBot/1.0 (https://playthepush.com; ray@dahvio.com)"
@@ -76,7 +90,33 @@ def qid(binding, var="p"):
     return binding[var]["value"].rsplit("/", 1)[1]
 
 
+def add_extra(people):
+    """Employers / sports teams (labels) and sex, for the import's --no-cagematch mode."""
+    ids = sorted(people)
+    for rec in people.values():
+        rec.update(employers=[], sex="")
+    print("employers and teams ...")
+    for b in query_batched("?p ?ol", '?p wdt:P108|wdt:P54 ?o . ?o rdfs:label ?ol FILTER(LANG(?ol) = "en")', ids, size=200):
+        rec = people[qid(b)]
+        if b["ol"]["value"] not in rec["employers"]:
+            rec["employers"].append(b["ol"]["value"])
+    print("sex ...")
+    for b in query_batched("?p ?s", "?p wdt:P21 ?s .", ids):
+        s = b["s"]["value"].rsplit("/", 1)[1]
+        people[qid(b)]["sex"] = {"Q6581097": "m", "Q6581072": "f", "Q2449503": "m", "Q1052281": "f"}.get(s, "")
+    print(f"  {sum(1 for r in people.values() if r['employers'])} with an employer or team, "
+          f"{sum(1 for r in people.values() if r['sex'])} with sex")
+
+
 def main():
+    if "--extra" in sys.argv:
+        people = json.loads(OUT.read_text(encoding="utf-8"))
+        add_extra(people)
+        OUT.write_text(json.dumps(people, ensure_ascii=False, indent=0), encoding="utf-8")
+        print(f"wrote {OUT}")
+        return
+    if "--cards" in sys.argv:
+        return cards()
     people = {}
     print("names ...")
     for b in query(f"""SELECT ?p ?label ?real (GROUP_CONCAT(DISTINCT ?alt; separator="|") AS ?alts) WHERE {{
@@ -99,7 +139,34 @@ def main():
             OPTIONAL {{ ?p rdfs:label ?label FILTER(LANG(?label) = "en") }} }}"""):
             people.setdefault(qid(b), {"label": b.get("label", {}).get("value", ""), "aliases": [], "facts": [], "born_in": "", "citizen": []})
         print(f"  plus {len(pinned)} pinned in data/curation/wikidata.csv")
+    fill_details(people)
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(json.dumps(people, ensure_ascii=False, indent=0), encoding="utf-8")
+    print(f"wrote {OUT}")
 
+
+def cards():
+    """People on Wikipedia's PPV cards whom Wikidata doesn't list as pro wrestlers (The Rock,
+    Big Show, Mr. T). Only the import's --no-cagematch mode reads this file, so the live
+    build's name matching against wikidata.json doesn't change."""
+    known = json.loads(OUT.read_text(encoding="utf-8"))
+    ppv = json.loads((ROOT / "data/raw/ppv_results.json").read_text(encoding="utf-8"))
+    ids = [q for q in ppv["humans"] if q not in known]
+    people = {}
+    print(f"names for {len(ids)} card people ...")
+    for b in query_batched("?p ?label ?real ?alt", """OPTIONAL { ?p rdfs:label ?label FILTER(LANG(?label) = "en") }
+        OPTIONAL { ?p skos:altLabel ?alt FILTER(LANG(?alt) = "en") } OPTIONAL { ?p wdt:P1477 ?real }""", ids, size=100):
+        rec = people.setdefault(qid(b), {"label": "", "aliases": [], "facts": [], "born_in": "", "citizen": []})
+        rec["label"] = b.get("label", {}).get("value", "") or rec["label"]
+        for k in ("alt", "real"):
+            if b.get(k) and b[k]["value"] not in rec["aliases"]:
+                rec["aliases"].append(b[k]["value"])
+    fill_details(people)
+    CARDS.write_text(json.dumps(people, ensure_ascii=False, indent=0), encoding="utf-8")
+    print(f"wrote {CARDS}")
+
+
+def fill_details(people):
     ids = sorted(people)
     print("birthplaces ...")
     for b in query_batched("?p ?code", "?p wdt:P19 ?pl . ?pl wdt:P17 ?c . ?c wdt:P297 ?code .", ids):
@@ -133,10 +200,7 @@ def main():
                 hits += 1
         print(f"{fact:>10}: {hits}")
         time.sleep(1)
-
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(people, ensure_ascii=False, indent=0), encoding="utf-8")
-    print(f"wrote {OUT}")
+    add_extra(people)
 
 
 if __name__ == "__main__":

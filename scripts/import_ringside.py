@@ -14,6 +14,13 @@ Curation (the Google Sheet tabs, exported as CSV) lives in data/curation/:
     tags.csv    facts the dataset lacks (AEW titles, Hall of Fame, ...) or gets wrong
     questions.csv  community trivia; only rows with "approved" set are used
     covers.csv  WWE SmackDown! / 2K cover stars (from Wikipedia's WWE 2K article; not a sheet tab)
+
+Stipulations (ladder, cage, Hell in a Cell) also come from Wikipedia's PPV results
+(scripts/fetch_ppv_results.py), since the archive files some of those matches as plain ones.
+
+    python scripts/import_ringside.py --no-cagematch
+builds the same files from Wikipedia, Wikidata and curation only, without the archive
+(scripts/import_open.py; writes to data/generated/no-cagematch/). See docs/data-independence.md.
 """
 import collections
 import csv
@@ -26,7 +33,8 @@ import sys
 import zlib
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-RAW = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "data/raw/ringside"
+ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
+RAW = pathlib.Path(ARGS[0]) if ARGS else ROOT / "data/raw/ringside"
 OUT = ROOT / "data/generated"
 CUR = ROOT / "data/curation"
 # (check, wrestler names, claim, evidence): what the import guessed rather than read, for fact_check.csv
@@ -469,13 +477,8 @@ def main():
             total_n[wid] += 1
             if ev["event_type"] == "ppv":
                 ppv_n[wid] += 1
-        kind = f"{m['type']} {m['stip']}"
-        if "hell in a cell" in kind or "hell_in_a_cell" in kind:
-            tags_add(tags, wids, "hiac")
-        elif "cage" in kind:
-            tags_add(tags, wids, "cage")
-        if "ladder" in kind or "tlc" in kind or "tables, ladders" in kind:
-            tags_add(tags, wids, "ladder")
+        for t in stip_tags(f"{m['type']} {m['stip']}"):
+            tags_add(tags, wids, t)
         if len(wids) == 2 and m["type"] == "singles" and m["dur"] >= 1800:
             tags_add(tags, wids, "marathon")
     for ms in by_event.values():
@@ -550,9 +553,10 @@ def main():
     report.append(f"- REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): {rejected}")
 
     # ---- beyond the ring: Wikidata facts ------------------------------------
-    wd_names, wd_taken = add_wikidata_tags(members, wrestlers, display, aliases, tags, report)
+    wd_names, wd_taken, wd_matched = add_wikidata_tags(members, wrestlers, display, aliases, tags, report)
     unmatched = add_title_lists(members, wrestlers, display, aliases, wd_names, tags, report)
     add_name_lists(members, wrestlers, display, aliases, wd_names, tags, report)
+    add_ppv_stipulations(members, wrestlers, display, aliases, wd_names, wd_matched, tags, report)
 
     # ---- curation overrides -----------------------------------------------
     # (after Wikidata, so the tags sheet always has the final say)
@@ -764,6 +768,81 @@ def add_name_lists(members, wrestlers, display, aliases, wd_names, tags, report)
                       f"not matched (managers, events, people outside the archive): {missed}")
 
 
+def stip_tags(kind):
+    """Match-type tags from a match type or stipulation text (archive or Wikipedia)."""
+    kind = kind.lower()
+    out = set()
+    if "hell in a cell" in kind or "hell_in_a_cell" in kind:
+        out.add("hiac")
+    elif "cage" in kind or "six sides of steel" in kind or "lethal lockdown" in kind:
+        out.add("cage")
+    if "ladder" in kind or "tlc" in kind or "tables, ladders" in kind:
+        out.add("ladder")
+    return out
+
+
+def ppv_person_finder(qid_to_root, by_key, display, teams):
+    """article (+ name shown on the card) -> our people. The Wikidata id decides when we have
+    it; otherwise a name must point to exactly one person. A team with no member list on the
+    card is expanded from Wikidata's members (P527), or split into its names ("Paul London and
+    Brian Kendrick"). Returns [(root, by_name)]."""
+    def by_name(n):
+        roots = by_key.get(name_key(n), set())
+        if len(roots) > 1:
+            roots = {r for r in roots if name_key(display[r]) == name_key(n)}
+        return next(iter(roots)) if len(roots) == 1 else None
+
+    def find(article, shown, qid):
+        if qid in qid_to_root:
+            return [(qid_to_root[qid], False)]
+        if qid in teams:
+            return [(qid_to_root[m], False) for m in teams[qid] if m in qid_to_root]
+        bare = re.sub(r"\s*\(.*?\)$", "", article)
+        for n in (shown, bare, re.sub(r'"[^"]*"\s*', "", shown or "")):  # 'Seth "Freakin" Rollins'
+            r = by_name(n) if n else None
+            if r is not None:
+                return [(r, True)]
+        parts = FACTION_TEAMS.get(bare) or re.split(r"\s+(?:and|&)\s+", bare)
+        if len(parts) > 1:
+            return [(r, True) for r in map(by_name, parts) if r is not None]
+        return []
+    return find
+
+
+def add_ppv_stipulations(members, wrestlers, display, aliases, wd_names, wd_matched, tags, report):
+    """Ladder, cage and Hell in a Cell from Wikipedia's PPV results (scripts/fetch_ppv_results.py).
+    The archive files some of these as plain matches (Armageddon 2006's tag title ladder match)."""
+    path = RAW.parent / "ppv_results.json"
+    if not path.exists():
+        report.append("- PPV stipulations: data/raw/ppv_results.json missing (run scripts/fetch_ppv_results.py)")
+        return
+    data = json.loads(path.read_text(encoding="utf-8"))
+    find = ppv_person_finder({q: r for r, q in wd_matched.items()}, names_index(members, wrestlers, display, aliases, wd_names), display, data.get("teams", {}))
+    added, unknown, examples = collections.Counter(), collections.Counter(), collections.defaultdict(list)
+    for e in data["events"]:
+        for m in e["matches"]:
+            kinds = stip_tags(m["stip"])
+            if not kinds:
+                continue
+            for art in m["winners"] + m["losers"]:
+                hits = find(art, m["names"].get(art, ""), data["qids"].get(art))
+                if not hits:
+                    unknown[art] += 1
+                for root, via_name in hits:
+                    for t in kinds - tags[root]:
+                        tags[root].add(t)
+                        added[t] += 1
+                        examples[t].append(f"{display[root]} ({e['event']}, {e['date'][:4]})")
+                        if via_name:
+                            label = next(c[3] for c in CRITERIA if c[0] == t)
+                            CHECKS.append((label, [display[root]], f"Wrestled in a {m['stip']}", f"Wikipedia: {e['page']}; matched by name"))
+    report.append(f"- PPV stipulations (Wikipedia): tags added that the archive was missing: {dict(added)}")
+    for t, ex in sorted(examples.items()):
+        report.append(f"- REVIEW: {t} added from Wikipedia PPV results ({len(ex)}): " + "; ".join(ex[:300]))
+    report.append(f"- PPV stipulations: participants not matched to one person: {len(unknown)} "
+                  f"(most often seen: {[a for a, _ in unknown.most_common(15)]})")
+
+
 def add_single_names(pool, report):
     """Single Name: the display name is one word once a leading "The" is dropped (Kane, The Undertaker)."""
     hits = []
@@ -935,7 +1014,7 @@ def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
     path = RAW.parent / "wikidata.json"
     if not path.exists():
         report.append("- Wikidata: data/raw/wikidata.json missing (run scripts/fetch_wikidata.py); no beyond-the-ring tags")
-        return {}, set()
+        return {}, set(), {}
     people = json.loads(path.read_text(encoding="utf-8"))
     wd_by_key = collections.defaultdict(set)
     for q, rec in people.items():
@@ -1006,7 +1085,7 @@ def add_wikidata_tags(members, wrestlers, display, aliases, tags, report):
     report.append(f"- Wikidata: {sum(1 for q in matched.values() if q)} people matched, {conflicts} skipped as ambiguous; tags added: {dict(added)}")
     # real names and aliases from Wikidata, so title lists that use "Dwayne Johnson" still find The Rock
     names = {root: [people[q]["label"], *people[q]["aliases"]] for root, q in matched.items() if q}
-    return names, {q for q in matched.values() if q}
+    return names, {q for q in matched.values() if q}, {root: q for root, q in matched.items() if q}
 
 
 def intl_coverage(promos, kept_events, pool, criteria):
@@ -1380,4 +1459,8 @@ def build_trivia(events, by_event, matches, reigns, title_group, name_at, gender
 
 
 if __name__ == "__main__":
-    main()
+    if "--no-cagematch" in sys.argv:
+        import import_open
+        import_open.main()
+    else:
+        main()
