@@ -185,7 +185,7 @@ CRITERIA = [
     ("combat", "life", "combat", "MMA or Boxing", "Has fought as an MMA fighter or boxer."),
     ("amateur", "life", "amateur", "Amateur Wrestler", "Competed in amateur (scholastic, collegiate or Olympic-style) wrestling."),
     ("olympian", "life", "olympian", "Olympian", "Competed at the Olympic Games, in any sport."),
-    ("profootball", "life", "football", "Pro Football", "Played professional football in the NFL, CFL or AFL."),
+    ("profootball", "life", "football", "Pro Football", "Signed with an NFL, CFL or AFL team, even if cut before the season."),
     ("college", "life", "college", "College Athlete", "Played on an NCAA college team (football, basketball and so on)."),
     ("strength", "life", "strength", "Strength Athlete", "Competed as a bodybuilder, powerlifter, weightlifter or strongman."),
     # Where they're from. The born* ids predate the nationality wording; frozen daily cards

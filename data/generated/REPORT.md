@@ -14,7 +14,7 @@ Read this after every import; spot-check the lists against what you know.
 - matches after de-dup: 129886
 - gender: Counter({'m': 2772, 'f': 316}) among regulars
 - REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): ['Johnny Grunge ECW World Heavyweight Title 1994-03-26', 'Sabu ECW World Heavyweight Title 1995-02-04', 'Jr. WCW Cruiserweight Championship 1996-07-08', 'Jr. WCW Cruiserweight Championship 1998-01-15', 'Kane WWF World Heavyweight Title 1998-09-27', 'Kane WWF European Title 1999-02-15', 'Jr. WCW Cruiserweight Championship 1999-03-15', 'Jr. WCW Cruiserweight Championship 1999-04-26', 'Evan Karagias WCW Hardcore Title 2000-02-28', 'David Arquette WCW World Heavyweight Title 2000-04-25', 'Crowbar WCW Cruiserweight Championship 2000-05-15', 'Kane WWF World Heavyweight Title 2000-06-25', 'Chyna WWF Intercontinental Title 2000-08-27', 'Kevin Nash WCW Cruiserweight Championship 2000-10-02', 'Mr. McMahon ECW World Heavyweight Title 2007-04-29', 'Cody Rhodes WWE Championship 2009-04-26', "Layla WWE Women's Championship (original) 2010-05-11", 'Chris Jericho WWE United States Championship 2017-01-09', 'Dash Wilder WWE 24/7 Title 2019-08-12', 'Claudio Castagnoli WWE Intercontinental Championship 2020-03-08']
-- Wikidata: 1977 people matched, 10 skipped as ambiguous; tags added: {'(born from citizenship)': 65, 'college': 66, 'bornCA': 150, 'family': 230, 'profootball': 49, 'actor': 266, 'stateCA': 105, 'nonJP': 1779, 'stateTX': 73, 'strength': 33, 'olympian': 22, 'stateMN': 49, 'amateur': 220, 'bornJP': 136, 'bornAbroad': 644, 'stateGA': 56, 'stateOH': 56, 'combat': 67, 'stateIL': 34, 'bornMX': 100, 'stateNC': 53, 'stateWV': 5, 'music': 29, 'stateMD': 22, 'realName': 170, 'bornUK': 107, 'stateTN': 39, 'stateNJ': 63, 'stateFL': 90, 'stateUT': 6, 'stateMI': 38, 'stateMA': 37, 'stateNY': 125, 'stateSC': 12, 'stateIA': 9, 'stateSD': 2, 'stateAL': 10, 'stateAZ': 10, 'stateKY': 13, 'stateWI': 10, 'stateNV': 6, 'statePA': 65, 'stateVA': 22, 'stateCT': 16, 'stateKS': 6, 'stateWA': 21, 'stateDE': 4, 'stateMO': 16, 'stateIN': 19, 'stateOK': 13, 'stateNH': 3, 'stateCO': 8, 'stateAR': 6, 'stateHI': 18, 'stateLA': 17, 'stateNE': 6, 'stateND': 2, 'stateRI': 8, 'stateNM': 1, 'stateOR': 6, 'stateMS': 6, 'stateMT': 1, 'stateAK': 1, 'stateME': 3, 'stateID': 1}
+- Wikidata: 1977 people matched, 12 skipped as ambiguous; tags added: {'(born from citizenship)': 65, 'actor': 266, 'family': 230, 'bornCA': 150, 'college': 66, 'stateCA': 105, 'nonJP': 1779, 'profootball': 49, 'strength': 33, 'olympian': 22, 'stateTX': 73, 'amateur': 220, 'stateMN': 49, 'bornAbroad': 644, 'bornJP': 136, 'stateGA': 56, 'stateOH': 56, 'stateIL': 34, 'combat': 67, 'bornMX': 100, 'stateNC': 53, 'stateWV': 5, 'music': 29, 'stateMD': 22, 'realName': 170, 'bornUK': 107, 'stateTN': 39, 'stateNJ': 63, 'stateFL': 90, 'stateUT': 6, 'stateMI': 38, 'stateMA': 37, 'stateNY': 125, 'stateSC': 12, 'stateIA': 9, 'stateSD': 2, 'stateAL': 10, 'stateAZ': 10, 'stateKY': 13, 'stateWI': 10, 'stateNV': 6, 'statePA': 65, 'stateVA': 22, 'stateCT': 16, 'stateKS': 6, 'stateWA': 21, 'stateDE': 4, 'stateMO': 16, 'stateIN': 19, 'stateOK': 13, 'stateNH': 3, 'stateCO': 8, 'stateAR': 6, 'stateHI': 18, 'stateLA': 17, 'stateNE': 6, 'stateND': 2, 'stateRI': 8, 'stateNM': 1, 'stateOR': 6, 'stateMS': 6, 'stateMT': 1, 'stateAK': 1, 'stateME': 3, 'stateID': 1}
 - Title lists (Wikipedia): champions added that the archive was missing: {'wweChamp': 11, 'whc': 5, 'universal': 1, 'wcwChamp': 2, 'ecwChamp': 7, 'aewChamp': 11, 'ic': 7, 'us': 32, 'tv': 43, 'cruiser': 19, 'hardcore': 19, 'european': 7, 'nxtChamp': 5, 'twentyFourSeven': 5, 'tag': 237, 'womens': 7, 'iwgpChamp': 29, 'never': 19, 'iwgpJr': 27, 'tripleCrown': 14, 'ghc': 12, 'stardomChamp': 8, 'cmllChamp': 10, 'aaaMega': 11, 'g1': 17, 'bosj': 15, 'carnival': 13, 'reyDeReyes': 15}
 - Title lists: names not matched to one person (often tag teams or pre-1980 champions): wweChamp: 12; whc: 6; universal: 4; wcwChamp: 6; ecwChamp: 9; aewChamp: 1; ic: 9; us: 15; tv: 12; cruiser: 20; hardcore: 9; european: 4; nxtChamp: 3; twentyFourSeven: 10; tag: 215; womens: 16; iwgpChamp: 13; never: 11; iwgpJr: 19; tripleCrown: 25; ghc: 17; stardomChamp: 13; cmllChamp: 11; aaaMega: 7; g1: 4; bosj: 12; carnival: 18; reyDeReyes: 11
 - 2K covers: not matched to one person: []
@@ -104,7 +104,7 @@ Born in Japan: 136 (15 well known); born in Mexico: 69 (15 well known).
 - wcw: 374
 - ecw: 204
 - tna: 335
-- aew: 362
+- aew: 363
 - wweChamp: 62
 - whc: 35
 - universal: 9
@@ -138,7 +138,7 @@ Born in Japan: 136 (15 well known); born in Mexico: 69 (15 well known).
 - combat: 62
 - amateur: 121
 - olympian: 16
-- profootball: 35
+- profootball: 36
 - college: 51
 - strength: 21
 - bornCA: 93
@@ -164,7 +164,7 @@ Born in Japan: 136 (15 well known); born in Mexico: 69 (15 well known).
 - singleName: 353
 - realName: 121
 - neverNxt: 149
-- aewWwe: 131
+- aewWwe: 132
 - cover: 31
 - nwo: 43
 - dx: 11
@@ -334,7 +334,7 @@ Born in Japan: 136 (15 well known); born in Mexico: 69 (15 well known).
 
 - Kane (m): actor, bornAbroad, cage, d1990s, d2000s, d2010s, ecwChamp, european, hardcore, hiac, ic, ladder, nxt, singleName, tag, twentyFourSeven, wcw, whc, wwe, wweChamp
 - Big Show (m): actor, aew, aewWwe, cage, college, cover, d1990s, d2000s, d2010s, d2020s, ecwChamp, hardcore, hiac, ic, ladder, nwo, nxt, tag, us, wcw, wcwChamp, whc, wwe, wweChamp
-- Kofi Kingston (m): bornAbroad, cage, d2000s, d2010s, d2020s, ic, ladder, music, nxt, tag, us, whc, wwe, wweChamp
+- Kofi Kingston (m): aew, aewWwe, bornAbroad, cage, d2000s, d2010s, d2020s, ic, ladder, music, nxt, tag, us, whc, wwe, wweChamp
 - The Miz (m): actor, cage, cover, d2000s, d2010s, d2020s, ic, ladder, nxt, singleName, stateOH, tag, us, wmMain, wwe, wweChamp
 - Randy Orton (m): actor, amateur, cage, cover, d2000s, d2010s, d2020s, family, hiac, ic, ladder, marathon, nxt, realName, rumble, stateTN, tag, us, whc, wmMain, wwe, wweChamp
 - John Cena (m): actor, cage, cover, d2000s, d2010s, d2020s, hiac, ic, ladder, marathon, music, neverNxt, nexus, realName, rumble, stateMA, tag, us, whc, wmMain, wwe, wweChamp
