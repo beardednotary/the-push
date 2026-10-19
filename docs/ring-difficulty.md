@@ -74,9 +74,9 @@ The frozen cards are not what today's generator makes for those days. The data h
 - Squares with plenty of stars and a well-known category on both sides (IC x Tag Team, NXT x AEW, Ladder x AEW) are filled by nearly everyone who plays.
 - Only 7 squares of data, from about 50 players, so this is a direction, not a fit. Star count alone doesn't predict it: TV x Hardcore had 9 stars and was filled least.
 
-## What changed in the builder (`src/lib/ring.ts`, from 2026-10-20)
+## What changed in the builder (`src/lib/ring.ts`, from 2026-10-21)
 
-Days before 2026-10-20 still use the old builder (`buildMainV1`), so past cards that were never frozen don't change. Frozen cards come from Redis as before. From 10-20, `buildMainV2` keeps every old rule (two belts at most, one faction and one place per card, no all-era line, 3 well-known per square). It adds:
+Days before 2026-10-21 still use the old builder (`buildMainV1`), so past cards that were never frozen don't change, and neither does a card the nightly fact-check (14:00 UTC, the next day's grid) has already posted. Frozen cards come from Redis as before. From 10-21, `buildMainV2` keeps every old rule (two belts at most, one faction and one place per card, no all-era line, 3 well-known per square). It adds:
 
 1. **Every square needs at least 2 stars** (pop >= 500), not just 3 well-known names.
 2. **At most 3 hard squares** (fewer than 5 stars): about one tough row or column, never a whole tough grid.
@@ -86,24 +86,24 @@ Days before 2026-10-20 still use the old builder (`buildMainV1`), so past cards 
 
 ## Effect
 
-Next 14 days (2026-10-20 to 11-02), `scripts/ring-difficulty.ts`:
+Next 14 days from the cutover (2026-10-21 to 11-03), `scripts/ring-difficulty.ts`:
 
 | | Before | After |
 |---|---|---|
 | Median well-known answers per square | 13 | 17 |
-| Median star answers per square | 10 | 13 |
-| Squares with under 3 stars | 11 of 126 | 3 of 126 |
+| Median star answers per square | 10.5 | 13 |
+| Squares with under 3 stars | 12 of 126 | 4 of 126 |
 
-A full year from 10-20:
+A full year from 10-21:
 
 | | Before | After |
 |---|---|---|
 | Median well-known per square | 12 | 17 |
 | Median stars per square | 9 | 12 |
-| Squares with under 3 stars | 264 of 3285 | 81 of 3285 (none under 2) |
+| Squares with under 3 stars | 268 of 3285 | 81 of 3285 (none under 2) |
 | Grid failures (`check-puzzles`) | 0 | 0 |
 | Categories used | 73 | 65 |
-| Place / faction slots | 142 / 54 | 90 / 33 |
+| Place / faction slots | 142 / 54 | 91 / 33 |
 
 The cost is variety. Small states and factions, with 5 to 7 stars each, can't fill three squares with 2+ stars, so they show up rarely now. That is the trade Ray asked for. Loosening `MIN_STARS` or the star bar brings them back.
 
@@ -115,4 +115,4 @@ Examples of grids the old builder would have served, compared with the new build
   **After:** Ladder / Rumble Winner / Musician x Uses Real Name / WCW World Champion / NXT.
 - **10-30 before:** Uses Real Name / WCW World Champion / nWo x Rumble Winner / Actor / Cruiser. nWo x Cruiser had 2 stars, and the grid had no wide row.
   **After:** European Champion / Never in NXT / AEW x Wrestling Family / ECW / Uses Real Name.
-- 10-20 and 10-25 already met the new rules and came out the same.
+- 10-20 (still the old builder, already fact-checked) and 10-25 meet the new rules anyway and come out the same either way.

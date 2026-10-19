@@ -116,8 +116,9 @@ function buildRegion(day: string, region: Region): Grid {
 }
 
 // From this day on, grids are built easier (see docs/ring-difficulty.md). Earlier days keep
-// the old builder so any card that was never frozen still comes out the same.
-const EASIER_FROM = "2026-10-20";
+// the old builder so any card that was never frozen, or that the nightly fact-check (14:00 UTC,
+// tomorrow's grid) already posted, still comes out the same.
+const EASIER_FROM = "2026-10-21";
 // Stars: names most players know. Every square needs some of them, not just well-known names.
 const STARS = WRESTLERS.filter((w) => w.pop >= 500);
 const MIN_STARS = 2;
