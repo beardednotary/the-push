@@ -5,6 +5,7 @@ import { Bug, Plate } from "@/components/Chrome";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
 import { YourRecord } from "@/components/record";
+import { LeagueLink } from "@/components/league";
 import { FinishMoment } from "@/components/FinishMoment";
 import { ringBoardLabel } from "@/lib/scoring";
 import { ringCode, sharePath } from "@/lib/share";
@@ -259,6 +260,7 @@ function Results({ day, number, cells, rows, cols, region }: { day: string; numb
         <div className="sub">Rarity {rarity} · lower is rarer</div>
       </div>
       <ShareButton {...shareProps} />
+      {!region && <LeagueLink />}
       <FinishMoment
         storageKey={`push:moment:ring${region ?? ""}:${day}`}
         label={`${title} · No. ${number}`}

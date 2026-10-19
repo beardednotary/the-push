@@ -83,6 +83,8 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                 <th>finished</th>
                 <th>shared</th>
                 <th>Reminders on</th>
+                <th>Leagues started</th>
+                <th>joins</th>
               </tr>
             </thead>
             <tbody>
@@ -114,6 +116,8 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                       {s["ring:share"] ?? 0} <span className="muted">of {s["ring:share_tap"] ?? 0} taps</span>
                     </td>
                     <td>{s["remind:on"] ?? 0}</td>
+                    <td>{s["league:create"] ?? 0}</td>
+                    <td>{s["league:join"] ?? 0}</td>
                   </tr>
                 );
               })}
@@ -123,7 +127,7 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
         <p className="muted small">
           Players = unique devices that finished a game. Returning = of those, how many first played on an earlier day. Counts
           began when each column was added; earlier days show zero. Taps = pressed Challenge a friend; shared = actually sent
-          or copied it.
+          or copied it. Leagues started = new friend leagues; joins = players joining someone else&apos;s league.
         </p>
 
         <section id="flair">

@@ -17,6 +17,8 @@ export const STAT_EVENTS = [
   "ringjp:share",
   "ringjp:share_tap",
   "remind:on",
+  "league:create", // counted on the server when a friend league starts
+  "league:join", // a player joined someone else's league (the owner's own join isn't counted)
 ] as const;
 export type StatEvent = (typeof STAT_EVENTS)[number];
 

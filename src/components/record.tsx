@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Plate } from "./Chrome";
 import { playerId } from "./client";
+import { YourLeagues } from "./league";
 
 interface Record {
   career: { games: number; streak: number; best: number; rank: string };
@@ -89,6 +90,7 @@ export function YourRecord() {
           ))}
         </ul>
       )}
+      <YourLeagues />
       {!rec.signedIn && (
         <p className="muted small">
           Titles go to signed-in players. <Link href="/signin" style={{ color: "var(--gold)" }}>Sign in</Link> to fight for the

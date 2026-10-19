@@ -5,6 +5,7 @@ import { Bug, Plate } from "@/components/Chrome";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
 import { YourRecord } from "@/components/record";
+import { LeagueLink } from "@/components/league";
 import { FinishMoment } from "@/components/FinishMoment";
 import { SECONDS_PER_QUESTION, pointsFor } from "@/lib/scoring";
 import { MARK_EMOJI, fiveCode, sharePath, type Mark } from "@/lib/share";
@@ -221,6 +222,7 @@ function Results({ day, number, questions, answers, untimed }: { day: string; nu
           </div>
         </div>
         <ShareButton {...shareProps} />
+        {!untimed && <LeagueLink />}
         <FinishMoment
           storageKey={`push:moment:five:${day}`}
           label={`Daily Five · No. ${number}`}

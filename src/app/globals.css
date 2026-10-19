@@ -386,3 +386,21 @@ a.gold, .muted a.gold { color: var(--gold); }
 .remind-line { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; margin: 16px 0 0;
   padding-top: 14px; border-top: 1px solid var(--steel); color: var(--text); font-weight: 700; font-size: 16px; }
 .remind-line .cta { min-height: 40px; font-size: 16px; }
+
+/* ---------- friend leagues ---------- */
+.league-name { font-size: clamp(44px, 12vw, 80px); margin: 14px 0 18px; overflow-wrap: anywhere; }
+.league-belts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.league-belts .num { font-size: clamp(26px, 7vw, 36px); overflow-wrap: anywhere; }
+.league-belts .num.vacant { color: var(--text-2); }
+.league-belts .small { font-size: 13px; }
+.remind.join { box-shadow: inset 5px 0 0 var(--gold); margin-bottom: 8px; }
+.roster { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.roster li { background: var(--plate-2); color: var(--text-2); padding: 5px 12px; font-weight: 700; text-transform: uppercase; font-size: 13px; letter-spacing: 0.03em; }
+.roster li.in { background: var(--plate); color: var(--text); box-shadow: inset 3px 0 0 var(--green); }
+.roster li.me { box-shadow: inset 0 0 0 1px var(--gold); }
+.roster li.in.me { box-shadow: inset 3px 0 0 var(--green), inset 0 0 0 1px var(--gold); }
+.leagues a { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; text-decoration: none; }
+.leagues a:hover span { color: var(--gold); }
+.leagues small { color: var(--text-2); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 13px; }
+.league-link { text-align: center; margin: 4px 0 0; }
+.league-link a { color: var(--gold); }
