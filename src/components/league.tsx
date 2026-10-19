@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { Plate } from "./Chrome";
 import { notTracked, playerId } from "./client";
+import { signInHref } from "@/lib/redirect";
 import { ringBoardLabel } from "@/lib/scoring";
 
 function local(key: string): string {
@@ -178,7 +179,51 @@ export function LeagueRoom({ code }: { code: string }) {
         </ul>
         <p className="muted small">Lit up = played tonight.</p>
       </section>
+      {room.member && <LeaveLeague room={room} onLeft={load} />}
     </>
+  );
+}
+
+function LeaveLeague({ room, onLeft }: { room: Room; onLeft: () => void }) {
+  const [asking, setAsking] = useState(false);
+  const [busy, setBusy] = useState(false);
+  async function leave() {
+    setBusy(true);
+    await fetch(`/api/league/${room.code}`, {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ playerId: playerId() }),
+    }).catch(() => {});
+    setBusy(false);
+    setAsking(false);
+    window.dispatchEvent(new Event("push:leagues"));
+    onLeft();
+  }
+  if (!asking)
+    return (
+      <p className="muted small leave">
+        <button className="linkish" onClick={() => setAsking(true)}>
+          Leave league
+        </button>
+      </p>
+    );
+  return (
+    <div className="remind leave-ask">
+      <Plate tone="red">Leave {room.name}?</Plate>
+      <p>
+        Your scores stay on the main standings and any league belt you won stays in its history.
+        {room.owner && room.size > 1 ? " You started this league, so it passes to whoever's been in it longest." : ""} You can
+        rejoin with the invite link.
+      </p>
+      <div className="leave-row">
+        <button className="cta" onClick={leave} disabled={busy}>
+          <span>Leave</span>
+        </button>
+        <button className="cta ghost" onClick={() => setAsking(false)}>
+          <span>Stay</span>
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -299,7 +344,7 @@ export function StartLeague() {
         <p className="miss">
           {error}{" "}
           {needSignIn && (
-            <Link href="/signin" style={{ color: "var(--gold)" }}>
+            <Link href={signInHref("/league/new")} style={{ color: "var(--gold)" }}>
               Sign in
             </Link>
           )}

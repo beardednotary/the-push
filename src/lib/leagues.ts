@@ -17,6 +17,7 @@ const ALPHABET = "abcdefghjkmnpqrstuvwxyz23456789"; // no 0/o, 1/l/i
 const k = {
   league: (code: string) => `league:${code}`,
   members: (code: string) => `league:${code}:members`,
+  joined: (code: string) => `league:${code}:joined`, // playerId -> when they joined (ms)
   mine: (playerId: string) => `player:${playerId}:leagues`,
   crowned: (code: string) => `league:${code}:crown`, // game -> last day crowned
   lineage: (code: string, game: Game) => `league:${code}:lineage:${game}`,
@@ -45,6 +46,7 @@ export const members = (code: string) => store.setMembers(k.members(code));
 export const isMember = (code: string, playerId: string) => store.setHas(k.members(code), playerId);
 
 export type JoinResult = "joined" | "already" | "full" | "too-many" | "missing";
+export type LeaveResult = "left" | "not-member" | "missing";
 
 /** A player's leagues, newest first. */
 export async function leaguesOf(playerId: string): Promise<(League & { size: number })[]> {
@@ -65,7 +67,25 @@ export async function joinLeague(code: string, playerId: string): Promise<JoinRe
   if ((await store.setMembers(k.mine(playerId))).length >= MAX_LEAGUES) return "too-many";
   await store.setAdd(k.members(code), playerId);
   await store.setAdd(k.mine(playerId), code);
+  await store.hashSet(k.joined(code), { [playerId]: Date.now() });
   return "joined";
+}
+
+/** Leave a league. An owner who leaves hands it to the longest-standing member left; the
+ *  last one out leaves it standing but empty. Belt history is untouched. */
+export async function leaveLeague(code: string, playerId: string): Promise<LeaveResult> {
+  const league = await getLeague(code);
+  if (!league) return "missing";
+  if (!(await isMember(code, playerId))) return "not-member";
+  await store.setRemove(k.members(code), playerId);
+  await store.setRemove(k.mine(playerId), code);
+  if (league.owner === playerId) {
+    const [left, joined] = await Promise.all([members(code), store.hashGet(k.joined(code))]);
+    const when = (id: string) => Number(joined[id] ?? Infinity);
+    const next = left.sort((a, b) => when(a) - when(b) || a.localeCompare(b))[0] ?? "";
+    await store.hashSet(k.league(code), { owner: next });
+  }
+  return "left";
 }
 
 /** Start a league owned by `owner`, who joins it. null if they're already in the maximum. */

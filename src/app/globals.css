@@ -404,3 +404,8 @@ a.gold, .muted a.gold { color: var(--gold); }
 .leagues small { color: var(--text-2); font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 13px; }
 .league-link { text-align: center; margin: 4px 0 0; }
 .league-link a { color: var(--gold); }
+.leave { margin-top: 30px; text-align: center; }
+.leave .linkish { color: var(--text-2); }
+.leave .linkish:hover { color: var(--red); }
+.leave-ask { margin-top: 30px; }
+.leave-row { display: flex; gap: 10px; }

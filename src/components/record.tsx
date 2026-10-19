@@ -1,10 +1,12 @@
 "use client";
 // "Your record" on the results screens: Iron Man streak, rank, and belts.
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Plate } from "./Chrome";
 import { playerId } from "./client";
 import { YourLeagues } from "./league";
+import { signInHref } from "@/lib/redirect";
 
 interface Record {
   career: { games: number; streak: number; best: number; rank: string };
@@ -25,6 +27,7 @@ const NEXT: [number, string][] = [
 export function YourRecord() {
   const [rec, setRec] = useState<Record | null>(null);
   const [newFans, setNewFans] = useState(0);
+  const here = usePathname();
 
   useEffect(() => {
     const load = () =>
@@ -93,7 +96,7 @@ export function YourRecord() {
       <YourLeagues />
       {!rec.signedIn && (
         <p className="muted small">
-          Titles go to signed-in players. <Link href="/signin" style={{ color: "var(--gold)" }}>Sign in</Link> to fight for the
+          Titles go to signed-in players. <Link href={signInHref(here)} style={{ color: "var(--gold)" }}>Sign in</Link> to fight for the
           belts. <Link href="/titles" style={{ color: "var(--gold)" }}>See the champions</Link>
         </p>
       )}

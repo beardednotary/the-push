@@ -37,6 +37,7 @@ export interface Store {
   setAdd(key: string, member: string): Promise<void>;
   setHas(key: string, member: string): Promise<boolean>;
   setMembers(key: string): Promise<string[]>;
+  setRemove(key: string, member: string): Promise<void>;
   /** Every member and score of a leaderboard. */
   all(board: string): Promise<{ member: string; score: number }[]>;
   /** Append-only lists (title lineages). */
@@ -136,6 +137,9 @@ function upstash(): Store | null {
     },
     async setMembers(key) {
       return (await r.smembers(key)).map(String);
+    },
+    async setRemove(key, member) {
+      await r.srem(key, member);
     },
     async all(board) {
       const flat = await r.zrange<(string | number)[]>(board, 0, -1, { rev: true, withScores: true });
@@ -250,6 +254,9 @@ function memory(): Store {
     },
     async setMembers(key) {
       return [...(s.sets.get(key) ?? [])];
+    },
+    async setRemove(key, member) {
+      s.sets.get(key)?.delete(member);
     },
     async all(k) {
       return sorted(k).map(([member, score]) => ({ member, score }));

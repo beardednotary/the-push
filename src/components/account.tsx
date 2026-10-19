@@ -3,9 +3,11 @@
 // link and the post-game nudge. Signing in makes this device adopt the account's
 // player ID, so scores and reminders follow the account across devices.
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Plate } from "./Chrome";
 import { playerId } from "./client";
+import { signInHref } from "@/lib/redirect";
 
 interface Me {
   enabled: boolean;
@@ -42,12 +44,14 @@ function useMe() {
 
 export function AccountLink() {
   const me = useMe();
+  const here = usePathname();
   if (!me?.enabled) return null;
-  return me.user ? <Link href="/account">Account</Link> : <Link href="/signin">Sign in</Link>;
+  return me.user ? <Link href="/account">Account</Link> : <Link href={signInHref(here)}>Sign in</Link>;
 }
 
 export function SignInNudge() {
   const me = useMe();
+  const here = usePathname();
   if (!me?.enabled || me.user) return null;
   return (
     <div className="remind">
@@ -56,7 +60,7 @@ export function SignInNudge() {
         <b>Keep your scores and ring name on every device.</b> Sign in with Google, Discord or email. Playing stays free
         either way.
       </p>
-      <Link className="cta ghost" href="/signin">
+      <Link className="cta ghost" href={signInHref(here)}>
         <span>Sign in</span>
       </Link>
     </div>

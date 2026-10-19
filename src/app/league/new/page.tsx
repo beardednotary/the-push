@@ -4,6 +4,7 @@ import { auth, signInEnabled } from "@/auth";
 import { Bug, Plate } from "@/components/Chrome";
 import { StartLeague } from "@/components/league";
 import { MAX_LEAGUES, MAX_MEMBERS } from "@/lib/leagues";
+import { signInHref } from "@/lib/redirect";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Start a league · The Push", robots: { index: false } };
@@ -42,7 +43,7 @@ export default async function NewLeaguePage() {
             <p>
               <b>Starting a league takes an account</b>, so it stays yours on every device. Your friends can join without one.
             </p>
-            <Link className="cta ghost" href="/signin">
+            <Link className="cta ghost" href={signInHref("/league/new")}>
               <span>Sign in</span>
             </Link>
           </div>

@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { careers } from "@/lib/career";
 import { todayKey } from "@/lib/day";
 import { flairs } from "@/lib/flair";
-import { cleanCode, ensureLeagueCrowned, getLeague, joinLeague, leagueBoard, leagueChamp, LEAGUE_GAMES, MAX_LEAGUES, MAX_MEMBERS, members } from "@/lib/leagues";
+import { cleanCode, ensureLeagueCrowned, getLeague, joinLeague, leaveLeague, leagueBoard, leagueChamp, LEAGUE_GAMES, MAX_LEAGUES, MAX_MEMBERS, members } from "@/lib/leagues";
 import { promoterTitle, recruitCounts } from "@/lib/promoter";
 import { countStat } from "@/lib/stats";
 import { cleanId, cleanName, store } from "@/lib/store";
@@ -86,4 +86,15 @@ export async function POST(req: Request, { params }: { params: Promise<{ code: s
     "too-many": `You're already in ${MAX_LEAGUES} leagues, the most anyone can join.`,
   }[result as string];
   return NextResponse.json({ result, error }, { status: error ? (result === "missing" ? 404 : 409) : 200 });
+}
+
+// DELETE {playerId}: leave the league. The owner's crown passes to the longest-standing member.
+export async function DELETE(req: Request, { params }: { params: Promise<{ code: string }> }) {
+  const code = cleanCode((await params).code);
+  const body = await req.json().catch(() => ({}));
+  const id = cleanId(body.playerId);
+  if (!code || !id) return NextResponse.json({ error: "bad request" }, { status: 400 });
+  const result = await leaveLeague(code, id);
+  if (result === "missing") return NextResponse.json({ result, error: "No league at that link." }, { status: 404 });
+  return NextResponse.json({ result });
 }

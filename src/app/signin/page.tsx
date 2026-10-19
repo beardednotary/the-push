@@ -3,13 +3,16 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 import { auth, signIn, signInEnabled, signInOptions } from "@/auth";
 import { Bug, Plate } from "@/components/Chrome";
+import { safeNext } from "@/lib/redirect";
 
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = { title: "Sign in · The Push", robots: { index: false } };
 
-export default async function SignInPage({ searchParams }: { searchParams: Promise<{ sent?: string; error?: string }> }) {
-  const { sent, error } = await searchParams;
-  if ((await auth())?.user) redirect("/account");
+export default async function SignInPage({ searchParams }: { searchParams: Promise<{ sent?: string; error?: string; callbackUrl?: string }> }) {
+  const { sent, error, callbackUrl } = await searchParams;
+  // where to land afterwards: a same-site path only (see safeNext), else the account page
+  const next = safeNext(callbackUrl);
+  if ((await auth())?.user) redirect(next);
 
   return (
     <>
@@ -38,12 +41,12 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
 
         <div className="stack" style={{ marginTop: 26 }}>
           {signInOptions.google && (
-            <form action={async () => { "use server"; await signIn("google", { redirectTo: "/account" }); }}>
+            <form action={async () => { "use server"; await signIn("google", { redirectTo: next }); }}>
               <button className="cta full"><span>Continue with Google</span></button>
             </form>
           )}
           {signInOptions.discord && (
-            <form action={async () => { "use server"; await signIn("discord", { redirectTo: "/account" }); }}>
+            <form action={async () => { "use server"; await signIn("discord", { redirectTo: next }); }}>
               <button className="cta full"><span>Continue with Discord</span></button>
             </form>
           )}
@@ -52,7 +55,7 @@ export default async function SignInPage({ searchParams }: { searchParams: Promi
               className="post"
               action={async (formData: FormData) => {
                 "use server";
-                await signIn("resend", { email: String(formData.get("email") ?? ""), redirectTo: "/account" });
+                await signIn("resend", { email: String(formData.get("email") ?? ""), redirectTo: next });
               }}
             >
               <input className="field" type="email" name="email" placeholder="you@example.com" required autoComplete="email" />
