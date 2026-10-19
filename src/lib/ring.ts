@@ -115,7 +115,57 @@ function buildRegion(day: string, region: Region): Grid {
   throw new Error(`no fair ${region} grid for ${day}`);
 }
 
+// From this day on, grids are built easier (see docs/ring-difficulty.md). Earlier days keep
+// the old builder so any card that was never frozen still comes out the same.
+const EASIER_FROM = "2026-10-20";
+// Stars: names most players know. Every square needs some of them, not just well-known names.
+const STARS = WRESTLERS.filter((w) => w.pop >= 500);
+const MIN_STARS = 2;
+// A square with fewer stars than this is hard. At most three a grid: about one tough row or column.
+const HARD_STARS = 5;
+const MAX_HARD = 3;
+const starCount = new Map(CRITERIA.map((c) => [c.id, STARS.filter((w) => w.tags.includes(c.id)).length]));
+// Players leave these blank even when plenty of stars fit (docs/ring-difficulty.md): one per grid at most.
+const OBSCURE = new Set(["tv", "cruiser", "profootball"]);
+const isNarrow = (c: Criterion) => OBSCURE.has(c.id) || (starCount.get(c.id) ?? 0) < 12; // e.g. a birth state, a faction
+const isWide = (c: Criterion) => (starCount.get(c.id) ?? 0) >= 40; // e.g. WCW, Actor, IC Champion
+
 function buildMain(day: string): Grid {
+  return day < EASIER_FROM ? buildMainV1(day) : buildMainV2(day);
+}
+
+function buildMainV2(day: string): Grid {
+  const rand = mulberry32(hashString(`ring:${day}`));
+  const usable = CRITERIA.filter((c) => c.count >= 8 && !c.scene);
+  const cells = (rows: Criterion[], cols: Criterion[], pool: Wrestler[]) =>
+    rows.flatMap((r) => cols.map((c) => pool.filter((w) => fits(w, r.id, c.id)).length));
+  for (let attempt = 0; attempt < 5000; attempt++) {
+    const chosen: Criterion[] = [];
+    while (chosen.length < 6) {
+      const c = weightedPick(usable, rand);
+      if (chosen.some((x) => x.id === c.id || x.family === c.family)) continue;
+      // keep the grid varied: at most two belts per card
+      if (c.group === "title" && chosen.filter((x) => x.group === "title").length >= MAX_TITLES) continue;
+      chosen.push(c);
+    }
+    const [rows, cols] = [chosen.slice(0, 3), chosen.slice(3)];
+    if (rows.every((c) => c.group === "era") || cols.every((c) => c.group === "era")) continue;
+    if (chosen.filter((c) => OBSCURE.has(c.id)).length > 1) continue;
+    // every row meets every column, so narrow categories may sit on one side only
+    if (rows.some(isNarrow) && cols.some(isNarrow)) continue;
+    // one row and one column everybody can fill from memory
+    if (!rows.some(isWide) || !cols.some(isWide)) continue;
+    const stars = cells(rows, cols, STARS);
+    if (stars.some((n) => n < MIN_STARS) || stars.filter((n) => n < HARD_STARS).length > MAX_HARD) continue;
+    if (cells(rows, cols, WELL_KNOWN).some((n) => n < MIN_ANSWERS)) continue;
+    const g = { rows: shuffled(rows, rand), cols: shuffled(cols, rand), answerCounts: [] as number[] };
+    g.answerCounts = cells(g.rows, g.cols, WELL_KNOWN);
+    return g;
+  }
+  throw new Error(`no fair grid for ${day}`);
+}
+
+function buildMainV1(day: string): Grid {
   const rand = mulberry32(hashString(`ring:${day}`));
   const usable = CRITERIA.filter((c) => c.count >= 8 && !c.scene);
   for (let attempt = 0; attempt < 5000; attempt++) {
