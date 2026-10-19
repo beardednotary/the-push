@@ -20,6 +20,7 @@ export const STAT_EVENTS = [
   "league:create", // counted on the server when a friend league starts
   "league:join", // a player joined someone else's league (the owner's own join isn't counted)
 ] as const;
+// Also counted, but only by the server (not postable here): "ring:dispute", a player disputing a rejected Ring guess.
 export type StatEvent = (typeof STAT_EVENTS)[number];
 
 export const statsKey = (day: string) => `stats:${day}`;

@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { Leaderboard, NextMatch, ShareButton, track, useSaved } from "@/components/client";
+import { Leaderboard, NextMatch, ShareButton, playerId, track, useSaved } from "@/components/client";
 import { Bug, Plate } from "@/components/Chrome";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
@@ -139,6 +139,13 @@ export default function RingGame({ day, number, rows, cols, region }: { day: str
             record(open, r.correct ? { id: hit.id, name: r.name, rarity: r.rarity } : null);
             return r.correct as boolean;
           }}
+          onDispute={(hit) =>
+            fetch("/api/ring/dispute", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ day, cell: open, wrestlerId: hit.id, region, playerId: playerId() }),
+            }).catch(() => {})
+          }
         />
       )}
     </main>
@@ -156,16 +163,20 @@ function Picker({
   guesses,
   onClose,
   onGuess,
+  onDispute,
 }: {
   sides: [Side, Side];
   used: number[];
   guesses: number;
   onClose: () => void;
   onGuess: (hit: Hit) => Promise<boolean>;
+  onDispute: (hit: Hit) => void;
 }) {
   const [q, setQ] = useState("");
   const [hits, setHits] = useState<Hit[]>([]);
   const [miss, setMiss] = useState("");
+  const [missed, setMissed] = useState<Hit | null>(null); // the rejected pick, for "tell us"
+  const [told, setTold] = useState(false);
   const [busy, setBusy] = useState(false);
   const input = useRef<HTMLInputElement>(null);
 
@@ -205,12 +216,29 @@ function Picker({
           onChange={(e) => {
             setQ(e.target.value);
             setMiss("");
+            setMissed(null);
           }}
           onKeyDown={(e) => e.key === "Escape" && onClose()}
         />
         <div className="miss" aria-live="polite">
           {miss}
         </div>
+        {missed && (
+          <p className="dispute">
+            {told ? (
+              "Thanks. We'll check it."
+            ) : (
+              <button
+                onClick={() => {
+                  onDispute(missed);
+                  setTold(true);
+                }}
+              >
+                Think that&apos;s wrong? Tell us.
+              </button>
+            )}
+          </p>
+        )}
         <ul className="results">
           {hits.map((h) => (
             <li key={h.id}>
@@ -220,7 +248,11 @@ function Picker({
                   setBusy(true);
                   const ok = await onGuess(h);
                   setBusy(false);
-                  if (!ok) setMiss(`${h.name} doesn't fit. ${guesses - 1} guesses left.`);
+                  if (!ok) {
+                    setMiss(`${h.name} doesn't fit. ${guesses - 1} guesses left.`);
+                    setMissed(h);
+                    setTold(false);
+                  }
                 }}
               >
                 {h.name}

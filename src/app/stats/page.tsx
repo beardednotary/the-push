@@ -5,6 +5,7 @@ import { auth } from "@/auth";
 import { isAdmin } from "@/lib/admin";
 import { Bug, Plate } from "@/components/Chrome";
 import { addDays, puzzleNumber, todayKey } from "@/lib/day";
+import { disputeGroups, settleDispute } from "@/lib/disputes";
 import { readStats } from "@/lib/stats";
 import { store } from "@/lib/store";
 
@@ -36,10 +37,11 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
 
   const today = todayKey();
   const days = Array.from({ length: 14 }, (_, i) => addDays(today, -i)).filter((d) => puzzleNumber(d) >= 1);
-  const [rows, subs, given, { flair: flairResult }] = await Promise.all([
+  const [rows, subs, given, disputes, { flair: flairResult }] = await Promise.all([
     Promise.all(days.map(async (d) => ({ d, s: await readStats(d) }))),
     store.allSubs(),
     flairs(),
+    disputeGroups(),
     searchParams,
   ]);
   const flairNames = await store.names(Object.keys(given));
@@ -50,6 +52,15 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
     if (!isAdmin(s?.user?.email)) notFound();
     const id = await setFlair(String(form.get("code") ?? ""), "road-agent");
     redirect(`/stats?flair=${id ? "given" : "nocode"}#flair`);
+  }
+
+  async function settle(form: FormData) {
+    "use server";
+    const s = await auth();
+    if (!isAdmin(s?.user?.email)) notFound();
+    const verdict = form.get("verdict") === "accepted" ? "accepted" : "rejected";
+    await settleDispute(String(form.get("key") ?? ""), verdict);
+    redirect("/stats#disputes");
   }
 
   return (
@@ -85,6 +96,7 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                 <th>Reminders on</th>
                 <th>Leagues started</th>
                 <th>joins</th>
+                <th>Disputes</th>
               </tr>
             </thead>
             <tbody>
@@ -118,6 +130,7 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                     <td>{s["remind:on"] ?? 0}</td>
                     <td>{s["league:create"] ?? 0}</td>
                     <td>{s["league:join"] ?? 0}</td>
+                    <td>{s["ring:dispute"] ?? 0}</td>
                   </tr>
                 );
               })}
@@ -127,8 +140,67 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
         <p className="muted small">
           Players = unique devices that finished a game. Returning = of those, how many first played on an earlier day. Counts
           began when each column was added; earlier days show zero. Taps = pressed Challenge a friend; shared = actually sent
-          or copied it. Leagues started = new friend leagues; joins = players joining someone else&apos;s league.
+          or copied it. Leagues started = new friend leagues; joins = players joining someone else&apos;s league. Disputes =
+          rejected Ring guesses players said were right.
         </p>
+
+        <section id="disputes">
+          <div className="section-head">
+            <Plate tone="red">Disputes</Plate>
+            <Plate tone="dark">Rejected guesses</Plate>
+          </div>
+          <p className="muted small">
+            Accept makes the answer count right away. Then paste its row into the tags sheet so the next data build keeps it.
+          </p>
+          {disputes.length === 0 ? (
+            <p className="muted">None yet.</p>
+          ) : (
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Wrestler</th>
+                    <th>Should count for</th>
+                    <th>Disputes</th>
+                    <th>Days</th>
+                    <th />
+                  </tr>
+                </thead>
+                <tbody>
+                  {disputes.map((g) => (
+                    <tr key={g.key}>
+                      <td>
+                        <b>{g.wrestler}</b>
+                      </td>
+                      <td>{g.label}</td>
+                      <td>{g.count}</td>
+                      <td className="muted">{g.days.map((d) => d.slice(5)).join(", ")}</td>
+                      <td>
+                        {g.status === "accepted" ? (
+                          <>
+                            Accepted. tags.csv row: <code>{g.csv}</code>
+                          </>
+                        ) : g.status === "rejected" ? (
+                          <span className="muted">Rejected</span>
+                        ) : (
+                          <form action={settle} style={{ display: "flex", gap: 8 }}>
+                            <input type="hidden" name="key" value={g.key} />
+                            <button className="cta ghost" name="verdict" value="accepted">
+                              <span>Accept</span>
+                            </button>
+                            <button className="cta ghost" name="verdict" value="rejected">
+                              <span>Reject</span>
+                            </button>
+                          </form>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </section>
 
         <section id="flair">
           <div className="section-head">

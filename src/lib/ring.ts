@@ -55,8 +55,22 @@ function weightedPick(pool: Criterion[], rand: () => number): Criterion {
   return pool[pool.length - 1];
 }
 
-function fits(w: Wrestler, a: string, b: string) {
-  return w.tags.includes(a) && w.tags.includes(b);
+/** Tags added live from accepted player disputes ("wrestlerId:criterionId"), until the data catches up. */
+export type Overrides = ReadonlySet<string>;
+
+function has(w: Wrestler, tag: string, extra?: Overrides) {
+  return w.tags.includes(tag) || Boolean(extra?.has(`${w.id}:${tag}`));
+}
+
+function fits(w: Wrestler, a: string, b: string, extra?: Overrides) {
+  return has(w, a, extra) && has(w, b, extra);
+}
+
+/** The criteria of a cell this wrestler lacks (what a dispute is about). */
+export function missing(grid: Grid, cell: number, wrestlerId: number, extra?: Overrides): Criterion[] {
+  const w = BY_ID.get(wrestlerId);
+  if (!w || cell < 0 || cell > 8) return [];
+  return cellCriteria(grid, cell).filter((c) => !has(w, c.id, extra));
 }
 
 const cache = new Map<string, Grid>();
@@ -141,15 +155,21 @@ export function cellCriteria(grid: Grid, cell: number): [Criterion, Criterion] {
   return [grid.rows[Math.floor(cell / 3)], grid.cols[cell % 3]];
 }
 
-export function checkGuess(grid: Grid, cell: number, wrestlerId: number): { correct: boolean; wrestler?: Wrestler } {
+export function checkGuess(grid: Grid, cell: number, wrestlerId: number, extra?: Overrides): { correct: boolean; wrestler?: Wrestler } {
   const w = BY_ID.get(wrestlerId);
   if (!w || cell < 0 || cell > 8) return { correct: false };
   const [r, c] = cellCriteria(grid, cell);
-  return { correct: fits(w, r.id, c.id), wrestler: w };
+  return { correct: fits(w, r.id, c.id, extra), wrestler: w };
 }
 
 export function getWrestler(id: number) {
   return BY_ID.get(id);
+}
+
+/** Look a wrestler up by name or alias, folded (for the fact-check sheets). */
+export function wrestlerByName(name: string): Wrestler | undefined {
+  const k = fold(name).trim();
+  return SEARCH.find(({ keys }) => keys.includes(k))?.w;
 }
 
 export function criterion(id: string) {
@@ -184,7 +204,7 @@ export function searchWrestlers(q: string, limit = 8): { id: number; name: strin
 }
 
 /** Every wrestler who fits a cell, best known first. */
-export function cellAnswers(grid: Grid, cell: number): Wrestler[] {
+export function cellAnswers(grid: Grid, cell: number, extra?: Overrides): Wrestler[] {
   const [r, c] = cellCriteria(grid, cell);
-  return WRESTLERS.filter((w) => fits(w, r.id, c.id)); // WRESTLERS is already sorted by popularity
+  return WRESTLERS.filter((w) => fits(w, r.id, c.id, extra)); // WRESTLERS is already sorted by popularity
 }

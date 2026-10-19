@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { todayKey } from "@/lib/day";
 import { picksKey, ringCard } from "@/lib/cards";
+import { ringOverrides } from "@/lib/disputes";
 import { checkGuess, isRegion } from "@/lib/ring";
 import { store } from "@/lib/store";
 
@@ -10,7 +11,7 @@ export async function POST(req: Request) {
   const region = isRegion(r) ? r : undefined;
   const day = todayKey();
   const c = Number(cell);
-  const { correct, wrestler } = checkGuess(await ringCard(day, region), c, Number(wrestlerId));
+  const { correct, wrestler } = checkGuess(await ringCard(day, region), c, Number(wrestlerId), await ringOverrides());
   if (!wrestler) return NextResponse.json({ error: "unknown wrestler" }, { status: 400 });
   if (!correct) return NextResponse.json({ correct: false, name: wrestler.name });
   const hash = picksKey(day, region);

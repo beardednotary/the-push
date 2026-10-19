@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { todayKey } from "@/lib/day";
 import { scoreFive, type FiveAnswer } from "@/lib/five";
 import { fiveCard, picksKey, ringCard } from "@/lib/cards";
+import { ringOverrides } from "@/lib/disputes";
 import { checkGuess, isRegion, type Region } from "@/lib/ring";
 import { careers } from "@/lib/career";
 import { cleanId, cleanName, store } from "@/lib/store";
@@ -64,13 +65,13 @@ export async function POST(req: Request, { params }: { params: Promise<{ game: s
     score = scoreFive(await fiveCard(day), answers.map((a) => ({ choice: a?.choice ?? null, ms: Math.max(300, Number(a?.ms) || 0) }))).score;
   } else {
     const cells: (number | null)[] = Array.isArray(body.cells) ? body.cells.slice(0, 9) : [];
-    const grid = await ringCard(day, region);
+    const [grid, extra] = await Promise.all([ringCard(day, region), ringOverrides()]);
     const used = new Set<number>();
     let correct = 0;
     let rarity = 0;
     for (let c = 0; c < 9; c++) {
       const id = cells[c];
-      const ok = id != null && !used.has(id) && checkGuess(grid, c, id).correct;
+      const ok = id != null && !used.has(id) && checkGuess(grid, c, id, extra).correct;
       if (!ok) {
         rarity += 100;
         continue;
