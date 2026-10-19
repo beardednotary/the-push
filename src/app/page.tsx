@@ -71,6 +71,17 @@ export default function Home() {
         </section>
         <section className="segment">
           <div className="meta">
+            <Plate tone="dark">Stable wars</Plate>
+            <Plate tone="red">New</Plate>
+          </div>
+          <h2 className="chrome">Friend leagues</h2>
+          <p>Start a league and drop the link in your group chat. Your crew gets its own nightly standings and its own belt.</p>
+          <Link className="cta" href="/league">
+            <span>Start a league</span>
+          </Link>
+        </section>
+        <section className="segment">
+          <div className="meta">
             <Plate tone="dark">Post-show</Plate>
           </div>
           <h2 className="chrome">Yesterday&apos;s card</h2>
