@@ -3,6 +3,7 @@
 // spotlight before the results page, with the challenge button front and center.
 import { useEffect, useState } from "react";
 import { ShareButton } from "./client";
+import { RemindMe } from "./RemindMe";
 
 interface Props {
   storageKey: string; // one announcement per game per night
@@ -65,6 +66,7 @@ export function FinishMoment({ storageKey, label, score, of, sub, share }: Props
         </div>
         <div className="moment-sub">{sub}</div>
         <ShareButton {...share} />
+        <RemindMe compact />
         <button className="moment-skip" onClick={() => setOpen(false)}>
           See full results
         </button>

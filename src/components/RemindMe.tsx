@@ -26,8 +26,9 @@ async function post(body: object) {
   await fetch("/api/push", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
 }
 
-export function RemindMe() {
+export function RemindMe({ compact = false }: { compact?: boolean }) {
   const [state, setState] = useState<State>("loading");
+  const [justTurnedOn, setJustTurnedOn] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -53,6 +54,7 @@ export function RemindMe() {
       await post({ action: "subscribe", subscription: sub.toJSON(), playerId: playerId() });
       await post({ action: "played", playerId: playerId() });
       track("remind:on");
+      setJustTurnedOn(true);
       setState("on");
     } catch {
       setState("error");
@@ -71,6 +73,20 @@ export function RemindMe() {
   }
 
   if (state === "loading" || state === "hidden") return null;
+
+  // the one-line version under the finish moment: only an offer, never the setup or settings
+  if (compact) {
+    if (state === "on" && justTurnedOn) return <p className="remind-line">You&apos;re on tomorrow&apos;s card.</p>;
+    if (state !== "off" && state !== "working" && state !== "error") return null;
+    return (
+      <div className="remind-line">
+        <span>Will you be in the title picture tomorrow?</span>
+        <button className="cta ghost" onClick={turnOn} disabled={state === "working"}>
+          <span>{state === "working" ? "One sec" : "Remind me"}</span>
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="remind">
