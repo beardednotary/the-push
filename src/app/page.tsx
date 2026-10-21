@@ -71,8 +71,18 @@ export default function Home() {
         </section>
         <section className="segment">
           <div className="meta">
-            <Plate tone="dark">Stable wars</Plate>
+            <Plate tone="dark">Dark match</Plate>
             <Plate tone="red">New</Plate>
+          </div>
+          <h2 className="chrome">Wrestling Wordle</h2>
+          <p>One mystery wrestler, eight guesses. Every guess shows promotions, era, world titles and more. Fewer guesses ranks higher.</p>
+          <Link className="cta" href="/wordle">
+            <span>Ring the bell</span>
+          </Link>
+        </section>
+        <section className="segment">
+          <div className="meta">
+            <Plate tone="dark">Stable wars</Plate>
           </div>
           <h2 className="chrome">Friend leagues</h2>
           <p>Start a league and drop the link in your group chat. Your crew gets its own nightly standings and its own belt.</p>

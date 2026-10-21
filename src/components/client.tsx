@@ -65,7 +65,7 @@ export function track(event: string) {
 }
 
 /** The post-game challenge: sends the result plus a link whose preview is the player's score card. */
-export function ShareButton({ text, path, game, teaser, dare }: { text: string; path: string; game: "five" | "ring" | `ring${Region}`; teaser: string; dare: string }) {
+export function ShareButton({ text, path, game, teaser, dare }: { text: string; path: string; game: "five" | "ring" | "wordle" | `ring${Region}`; teaser: string; dare: string }) {
   const [copied, setCopied] = useState(false);
   const [by, setBy] = useState<string | null>(null);
   useEffect(() => {
@@ -118,7 +118,7 @@ interface Row {
   promoter?: string | null; // earned by bringing in new players
 }
 
-export function Leaderboard({ game, region, day, payload, format }: { game: "five" | "ring"; region?: string; day: string; payload: object; format: (score: number) => string }) {
+export function Leaderboard({ game, region, day, payload, format }: { game: "five" | "ring" | "wordle"; region?: string; day: string; payload: object; format: (score: number) => string }) {
   const board = region ? `${game}:${region}` : game;
   const [name, setName] = useState("");
   const [rows, setRows] = useState<Row[] | null>(null);
@@ -168,7 +168,7 @@ export function Leaderboard({ game, region, day, payload, format }: { game: "fiv
       )}
       {rows && rows.length === 0 && <p className="muted">Nobody on the board yet. Be first.</p>}
       <p className="muted small">
-        {region ? (
+        {region || game === "wordle" ? (
           <>This board is just for bragging rights: no belt is on the line.</>
         ) : (
           <>
@@ -197,11 +197,13 @@ export function Leaderboard({ game, region, day, payload, format }: { game: "fiv
   );
 }
 
-export function NextMatch({ to }: { to: "five" | "ring" }) {
+export function NextMatch({ to }: { to: "five" | "ring" | "wordle" }) {
   const copy =
     to === "ring"
       ? { slot: "Main event", title: "Immaculate Ring", body: "Nine squares, nine guesses. Name a wrestler who fits both sides." }
-      : { slot: "Opening contest", title: "Daily Five", body: "Five questions, fifteen seconds each. Fast and right scores big." };
+      : to === "wordle"
+        ? { slot: "Dark match", title: "Wrestling Wordle", body: "One mystery wrestler, eight guesses. Every guess shows how close you are." }
+        : { slot: "Opening contest", title: "Daily Five", body: "Five questions, fifteen seconds each. Fast and right scores big." };
   return (
     <div className="upnext">
       <Plate tone="gold">Up next · {copy.slot}</Plate>

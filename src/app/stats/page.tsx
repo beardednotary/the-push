@@ -93,6 +93,9 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                 <th>Ring started</th>
                 <th>finished</th>
                 <th>shared</th>
+                <th>Wordle started</th>
+                <th>finished</th>
+                <th>shared</th>
                 <th>Reminders on</th>
                 <th>Leagues started</th>
                 <th>joins</th>
@@ -103,6 +106,7 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
               {rows.map(({ d, s }) => {
                 const five = (s["five:start"] ?? 0) + (s["five:start_untimed"] ?? 0);
                 const ring = s["ring:start"] ?? 0;
+                const wordle = s["wordle:start"] ?? 0;
                 return (
                   <tr key={d}>
                     <td>
@@ -126,6 +130,13 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                     </td>
                     <td>
                       {s["ring:share"] ?? 0} <span className="muted">of {s["ring:share_tap"] ?? 0} taps</span>
+                    </td>
+                    <td>{wordle}</td>
+                    <td>
+                      {s["wordle:finish"] ?? 0} <span className="muted">{pct(s["wordle:finish"] ?? 0, wordle)}</span>
+                    </td>
+                    <td>
+                      {s["wordle:share"] ?? 0} <span className="muted">of {s["wordle:share_tap"] ?? 0} taps</span>
                     </td>
                     <td>{s["remind:on"] ?? 0}</td>
                     <td>{s["league:create"] ?? 0}</td>

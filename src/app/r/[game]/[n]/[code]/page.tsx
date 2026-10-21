@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { Bug, Plate } from "@/components/Chrome";
 import { RememberRef } from "@/components/client";
 import { puzzleNumber, todayKey } from "@/lib/day";
-import { MARK_COLOR, headline, parseResult } from "@/lib/share";
+import { HIT_COLOR, MARK_COLOR, headline, parseResult } from "@/lib/share";
 
 export const dynamic = "force-dynamic";
 
@@ -26,8 +26,8 @@ export default async function SharedResultPage({ params, searchParams }: { param
   const r = parseResult(p.game, p.n, p.code);
   if (!r) notFound();
   const tonight = puzzleNumber(todayKey());
-  const name = r.game === "five" ? "Daily Five" : "Immaculate Ring";
-  const other = r.game === "five" ? { href: "/ring", name: "Immaculate Ring" } : { href: "/five", name: "Daily Five" };
+  const name = r.game === "five" ? "Daily Five" : r.game === "wordle" ? "Wrestling Wordle" : "Immaculate Ring";
+  const other = r.game === "ring" ? { href: "/five", name: "Daily Five" } : { href: "/ring", name: "Immaculate Ring" };
 
   return (
     <>
@@ -50,6 +50,22 @@ export default async function SharedResultPage({ params, searchParams }: { param
                 ))}
               </div>
             </>
+          ) : r.game === "wordle" ? (
+            <div className="ring-result">
+              <div className="wd-mini" aria-label="Clue colors, guess by guess">
+                {r.rows.map((row, i) => (
+                  <div key={i}>
+                    {row.map((h, j) => (
+                      <i key={j} style={{ background: HIT_COLOR[h] }} />
+                    ))}
+                  </div>
+                ))}
+              </div>
+              <div>
+                <div className="num score">{r.solvedIn ? `${r.solvedIn}/8` : "X/8"}</div>
+                <div className="sub">{r.solvedIn ? `Named the mystery wrestler in ${r.solvedIn}` : "Ran out of guesses"}</div>
+              </div>
+            </div>
           ) : (
             <div className="ring-result">
               <div className="minigrid" aria-label="Squares filled">
@@ -70,7 +86,9 @@ export default async function SharedResultPage({ params, searchParams }: { param
           <h1 className="chrome">Can you beat it?</h1>
           <p>
             {r.number === tonight
-              ? `Same card, same questions. Tonight's ${name} is still live.`
+              ? r.game === "wordle"
+                ? `Same mystery wrestler. Tonight's ${name} is still live.`
+                : `Same card, same questions. Tonight's ${name} is still live.`
               : `That was card No. ${r.number}. Tonight's card is No. ${tonight}.`}
           </p>
           <Link className="cta" href={`/${r.game}`}>

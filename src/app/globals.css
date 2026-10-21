@@ -412,3 +412,35 @@ a.gold, .muted a.gold { color: var(--gold); }
 .leave .linkish:hover { color: var(--red); }
 .leave-ask { margin-top: 30px; }
 .leave-row { display: flex; gap: 10px; }
+
+/* ---------- wrestling wordle (the Scoreboard clue row) ---------- */
+.wd-top { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin: 22px 0 14px; }
+.wd-top .chrome { font-size: clamp(40px, 11vw, 60px); }
+.wd-search { margin-bottom: 18px; }
+.wd-search .results { max-height: 50dvh; }
+.wd-board { margin: 6px 0 18px; }
+.wd-cols { display: grid; grid-template-columns: minmax(0, 1.7fr) repeat(5, minmax(0, 1fr)); gap: 4px; }
+.wd-heads { margin-bottom: 6px; }
+.wd-heads span { text-transform: uppercase; letter-spacing: 0.05em; font-weight: 800; font-size: 10.5px; line-height: 1.1; color: var(--text-2); text-align: center; align-self: end; }
+.wd-guess { margin-bottom: 10px; animation: wipe 320ms ease-out both; }
+.wd-who { font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; font-size: 15px; margin: 0 0 4px; display: flex; gap: 8px; align-items: baseline; }
+.wd-who i { font-style: normal; font-family: var(--font-display); color: var(--text-2); font-size: 17px; letter-spacing: 0.02em; }
+.wd-t {
+  min-height: 52px; display: grid; place-items: center; text-align: center; padding: 4px 2px; min-width: 0;
+  background: linear-gradient(180deg, #1c2130, #0f1219); border: 1px solid #262b38;
+  font-family: var(--font-display); font-weight: 600; font-size: 21px; line-height: 0.9; text-transform: uppercase; overflow-wrap: anywhere;
+}
+.wd-t.long { font-size: 15px; line-height: 0.95; }
+.wd-t.g { border-color: var(--green); box-shadow: inset 0 -5px 0 var(--green); color: #fff; }
+.wd-t.y { border-color: var(--gold); box-shadow: inset 0 -5px 0 var(--gold); color: #fff; }
+.wd-t.n { color: var(--text-2); box-shadow: inset 0 -5px 0 #2a3040; }
+.wd-arrow { display: block; font-style: normal; font-size: 14px; line-height: 1; margin-top: 2px; color: var(--gold); }
+.wd-lights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; width: 100%; padding: 0 3px 3px; }
+.wd-lights u { text-decoration: none; font-family: var(--font-ui), sans-serif; font-weight: 800; font-size: 10.5px; letter-spacing: 0.02em; padding: 2px 0; line-height: 1.1; }
+.wd-lights .on { background: var(--green); color: var(--ink); }
+.wd-lights .off { background: #2a3040; color: var(--text-2); }
+.wd-lights .no { color: #3a4152; }
+.wd-answer .wd-who { color: var(--gold); }
+.wd-mini { display: grid; gap: 3px; }
+.wd-mini div { display: flex; gap: 3px; }
+.wd-mini i { width: 22px; height: 22px; display: block; }

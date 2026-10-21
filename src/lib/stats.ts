@@ -16,6 +16,10 @@ export const STAT_EVENTS = [
   "ringjp:finish",
   "ringjp:share",
   "ringjp:share_tap",
+  "wordle:start",
+  "wordle:finish",
+  "wordle:share",
+  "wordle:share_tap",
   "remind:on",
   "league:create", // counted on the server when a friend league starts
   "league:join", // a player joined someone else's league (the owner's own join isn't counted)

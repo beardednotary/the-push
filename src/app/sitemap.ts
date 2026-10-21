@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { pastDays } from "@/lib/archive";
+import { hadWordle } from "@/lib/wordle";
 
 const BASE = "https://playthepush.com";
 
@@ -14,12 +15,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     return [
       { url: `${BASE}/ring/answers/${n}`, lastModified, changeFrequency: "monthly" as const, priority: 0.6 },
       { url: `${BASE}/five/answers/${n}`, lastModified, changeFrequency: "monthly" as const, priority: 0.5 },
+      ...(hadWordle(day) ? [{ url: `${BASE}/wordle/answers/${n}`, lastModified, changeFrequency: "monthly" as const, priority: 0.5 }] : []),
     ];
   });
   return [
     { url: `${BASE}/`, lastModified: now, changeFrequency: "daily", priority: 1 },
     { url: `${BASE}/five`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${BASE}/ring`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
+    { url: `${BASE}/wordle`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${BASE}/ring/japan`, lastModified: now, changeFrequency: "daily", priority: 0.8 },
     { url: `${BASE}/titles`, lastModified: now, changeFrequency: "daily", priority: 0.6 },
     { url: `${BASE}/yesterday`, lastModified: now, changeFrequency: "daily", priority: 0.7 },

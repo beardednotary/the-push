@@ -112,10 +112,10 @@ export function RingKey({ grid, picks }: { grid: Grid; picks: CellPicks[] }) {
 }
 
 /** Older / archive / newer, between a game's answer pages. `last` is the newest past card. */
-export function DayNav({ game, n, last }: { game: "ring" | "five"; n: number; last: number }) {
+export function DayNav({ game, n, last, first = 1 }: { game: "ring" | "five" | "wordle"; n: number; last: number; first?: number }) {
   return (
     <nav className="daynav" aria-label="More cards">
-      {n > 1 ? <Link href={`/${game}/answers/${n - 1}`}>← No. {n - 1}</Link> : <span />}
+      {n > first ? <Link href={`/${game}/answers/${n - 1}`}>← No. {n - 1}</Link> : <span />}
       <Link href="/archive">Every card</Link>
       {n < last ? <Link href={`/${game}/answers/${n + 1}`}>No. {n + 1} →</Link> : <Link href={`/${game}`}>Tonight →</Link>}
     </nav>

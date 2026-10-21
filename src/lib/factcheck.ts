@@ -11,6 +11,7 @@ import { ringOverrides } from "./disputes";
 import { REGIONS, type Region } from "./regions";
 import { cellAnswers, cellCriteria, criterion, wrestlerByName, type Criterion, type Grid, type Overrides } from "./ring";
 import { store } from "./store";
+import { PROMOS, profileLines, wordleAnswer } from "./wordle";
 
 const LIMIT = 2000; // Discord's message limit
 
@@ -135,7 +136,26 @@ export async function factCheckPosts(today = todayKey()): Promise<string[]> {
     }
     if (msg) posts.push(msg);
   }
+  posts.push(await wordlePost(day, extra));
   return posts;
+}
+
+const WORDLE_TAGS = [...PROMOS, "d1980s", "d1990s", "d2000s", "d2010s", "d2020s", "wweChamp", "whc", "universal", "wcwChamp", "ecwChamp", "aewChamp", "rumble", "wmMain", "nwo", "dx", "horsemen", "judgmentDay", "bulletClub", "elite", "nexus", "ministry"];
+
+/** Tomorrow's Wrestling Wordle answer and every clue value players will see for it. */
+async function wordlePost(day: string, extra: Overrides): Promise<string> {
+  try {
+    const w = await wordleAnswer(day);
+    const lines = [`🕵️ **Tomorrow's Wrestling Wordle, No. ${puzzleNumber(day)}** (${day}): **${w.name}** · check each clue`, ...profileLines(w)];
+    // clue values that rest on a guess or a hand-added tag
+    for (const tag of WORDLE_TAGS) {
+      const g = w.tags.includes(tag) ? guesses().get(`${w.id}:${tag}`) : extra.has(`${w.id}:${tag}`) ? { kind: "accepted dispute", detail: "" } : undefined;
+      if (g) lines.push(`⚠️ ${bare(criterion(tag)?.label ?? tag)}: ${g.kind}${g.detail ? ` (${g.detail})` : ""}`);
+    }
+    return lines.join("\n").slice(0, LIMIT);
+  } catch (e) {
+    return `**Wrestling Wordle, No. ${puzzleNumber(day)}**: couldn't pick it (${String(e)})`;
+  }
 }
 
 /** Post once per day; force re-sends (manual tests). */

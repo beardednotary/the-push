@@ -6,6 +6,7 @@ import { addDays, puzzleNumber, todayKey } from "./day";
 import { ringPicks } from "./picks";
 import { store } from "./store";
 import { BELTS, ensureCrowned, results, weekStart } from "./titles";
+import { hadWordle, pastWordle } from "./wordle";
 
 const SITE = "https://playthepush.com";
 
@@ -26,7 +27,7 @@ async function champions(yesterday: string): Promise<string[]> {
 
 export async function dailyPost(today = todayKey()): Promise<string> {
   const yesterday = addDays(today, -1);
-  const lines = [`🔔 **Card No. ${puzzleNumber(today)} is live** · ${SITE}`];
+  const lines = [`🔔 **Card No. ${puzzleNumber(today)} is live** · ${SITE}`, `🕵️ Dark match: guess tonight's mystery wrestler in Wrestling Wordle · <${SITE}/wordle>`];
   const champs = await champions(yesterday);
   if (champs.length) lines.push("", `**Last night's champions** (No. ${puzzleNumber(yesterday)})`, ...champs);
 
@@ -39,6 +40,10 @@ export async function dailyPost(today = todayKey()): Promise<string> {
     lines.push("", `**Yesterday's Ring: most picked**`);
     for (const { p, row, col } of squares) lines.push(`${row} × ${col}: ${p.top[0].name} (${p.top[0].pct}%) · ${p.possible} possible`);
     lines.push(`Full answer key: <${SITE}/yesterday>`);
+  }
+  if (hadWordle(yesterday)) {
+    const n = puzzleNumber(yesterday);
+    lines.push("", `**Yesterday's Wordle** (No. ${n}): it was **${(await pastWordle(yesterday)).name}** · <${SITE}/wordle/answers/${n}>`);
   }
   return lines.join("\n");
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Bug, Plate } from "@/components/Chrome";
 import { datedDay, jsonLd, pastDays } from "@/lib/archive";
 import { pageMeta } from "@/lib/meta";
+import { hadWordle } from "@/lib/wordle";
 
 // a new card joins the archive at midnight Eastern
 export const dynamic = "force-dynamic";
@@ -20,10 +21,13 @@ export default function ArchivePage() {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: "The Push answer archive",
-    itemListElement: days.flatMap((d, i) => [
-      { "@type": "ListItem", position: 2 * i + 1, name: `Immaculate Ring No. ${d.n} answers`, url: `${BASE}/ring/answers/${d.n}` },
-      { "@type": "ListItem", position: 2 * i + 2, name: `Daily Five No. ${d.n} answers`, url: `${BASE}/five/answers/${d.n}` },
-    ]),
+    itemListElement: days
+      .flatMap((d) => [
+        { name: `Immaculate Ring No. ${d.n} answers`, url: `${BASE}/ring/answers/${d.n}` },
+        { name: `Daily Five No. ${d.n} answers`, url: `${BASE}/five/answers/${d.n}` },
+        ...(hadWordle(d.day) ? [{ name: `Wrestling Wordle No. ${d.n} answer`, url: `${BASE}/wordle/answers/${d.n}` }] : []),
+      ])
+      .map((item, i) => ({ "@type": "ListItem", position: i + 1, ...item })),
   };
 
   return (
@@ -64,6 +68,11 @@ export default function ArchivePage() {
                   <Link href={`/five/answers/${d.n}`}>
                     <b>Daily Five</b> No. {d.n} answers
                   </Link>
+                  {hadWordle(d.day) && (
+                    <Link href={`/wordle/answers/${d.n}`}>
+                      <b>Wrestling Wordle</b> No. {d.n} answer
+                    </Link>
+                  )}
                 </span>
               </li>
             ))}

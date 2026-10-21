@@ -9,9 +9,10 @@ import { cleanId, cleanName, store } from "@/lib/store";
 import { ensureCrowned, honors } from "@/lib/titles";
 import { flairs } from "@/lib/flair";
 import { promoterTitle, recruitCounts } from "@/lib/promoter";
+import { replay, wordleAnswer, wordleScore } from "@/lib/wordle";
 
-type Game = "five" | "ring";
-const GAMES: Game[] = ["five", "ring"];
+type Game = "five" | "ring" | "wordle";
+const GAMES: Game[] = ["five", "ring", "wordle"];
 
 // Region Ring boards (lb:ring:jp:DAY) sit beside the main one. The belts only read the
 // main boards, so region scores never count toward a title.
@@ -63,6 +64,11 @@ export async function POST(req: Request, { params }: { params: Promise<{ game: s
     const answers: FiveAnswer[] = Array.isArray(body.answers) ? body.answers.slice(0, 5) : [];
     // a human can't read and tap in under a third of a second
     score = scoreFive(await fiveCard(day), answers.map((a) => ({ choice: a?.choice ?? null, ms: Math.max(300, Number(a?.ms) || 0) }))).score;
+  } else if (game === "wordle") {
+    const guesses: number[] = Array.isArray(body.guesses) ? body.guesses.slice(0, 9).map(Number) : [];
+    const { solvedIn, over, valid } = replay(guesses, await wordleAnswer(day));
+    if (!valid || !over) return NextResponse.json({ error: "game not over" }, { status: 400 });
+    score = wordleScore(solvedIn);
   } else {
     const cells: (number | null)[] = Array.isArray(body.cells) ? body.cells.slice(0, 9) : [];
     const [grid, extra] = await Promise.all([ringCard(day, region), ringOverrides()]);
