@@ -25,14 +25,14 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   return pageMeta(
     `/wordle/answers/${n}`,
     `Wrestling Wordle No. ${n} answer: ${answer.name} · The Push`,
-    `The answer to Wrestling Wordle No. ${n} (${datedDay(day)}) was ${answer.name}. See the clues: promotions, era, world titles, Rumble and Mania, faction.`,
+    `The answer to Wrestling Wordle No. ${n} (${datedDay(day)}) was ${answer.name}. See the clues: promotions, era, world titles, Rumble and main events, faction.`,
   );
 }
 
 export default async function WordleAnswerPage({ params }: { params: Promise<Params> }) {
   const { n, day, answer } = await load((await params).n);
   const last = puzzleNumber(todayKey()) - 1;
-  const facts = profileLines(answer);
+  const facts = profileLines(answer, day);
   const faq = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
@@ -71,7 +71,7 @@ export default async function WordleAnswerPage({ params }: { params: Promise<Par
         </div>
         <div className="wd-board wd-answer">
           <ClueHeads />
-          <ClueRow row={clueRow(answer, answer)} label="The answer" />
+          <ClueRow row={clueRow(answer, answer, day)} label="The answer" />
         </div>
         <ul className="rules">
           {facts.map((f) => (

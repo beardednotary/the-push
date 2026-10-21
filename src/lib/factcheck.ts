@@ -140,13 +140,13 @@ export async function factCheckPosts(today = todayKey()): Promise<string[]> {
   return posts;
 }
 
-const WORDLE_TAGS = [...PROMOS, "d1980s", "d1990s", "d2000s", "d2010s", "d2020s", "wweChamp", "whc", "universal", "wcwChamp", "ecwChamp", "aewChamp", "rumble", "wmMain", "nwo", "dx", "horsemen", "judgmentDay", "bulletClub", "elite", "nexus", "ministry"];
+const WORDLE_TAGS = [...PROMOS, "d1980s", "d1990s", "d2000s", "d2010s", "d2020s", "wweChamp", "whc", "universal", "wcwChamp", "ecwChamp", "aewChamp", "rumble", "wmMain", "aewPpvMain", "nwo", "dx", "horsemen", "judgmentDay", "bulletClub", "elite", "nexus", "ministry"];
 
 /** Tomorrow's Wrestling Wordle answer and every clue value players will see for it. */
 async function wordlePost(day: string, extra: Overrides): Promise<string> {
   try {
     const w = await wordleAnswer(day);
-    const lines = [`🕵️ **Tomorrow's Wrestling Wordle, No. ${puzzleNumber(day)}** (${day}): **${w.name}** · check each clue`, ...profileLines(w)];
+    const lines = [`🕵️ **Tomorrow's Wrestling Wordle, No. ${puzzleNumber(day)}** (${day}): **${w.name}** · check each clue`, ...profileLines(w, day)];
     // clue values that rest on a guess or a hand-added tag
     for (const tag of WORDLE_TAGS) {
       const g = w.tags.includes(tag) ? guesses().get(`${w.id}:${tag}`) : extra.has(`${w.id}:${tag}`) ? { kind: "accepted dispute", detail: "" } : undefined;

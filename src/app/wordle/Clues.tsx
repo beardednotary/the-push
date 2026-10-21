@@ -4,7 +4,7 @@ import type { Hit, Row } from "@/lib/wordle";
 
 export const GUESSES = 8;
 const PROMOS = ["WWE", "NXT", "WCW", "ECW", "TNA", "AEW"];
-const HEADS = ["Promotions", "Era", "M/F", "World titles", "Rumble / Mania", "Faction"];
+const HEADS = ["Promotions", "Era", "M/F", "World titles", "Rumble / Main event", "Faction"];
 
 /** Leaderboard score (fewer guesses is higher) as "3/8", or "X/8" for a miss. */
 export const boardLabel = (score: number) => (score ? `${GUESSES + 1 - score}/${GUESSES}` : `X/${GUESSES}`);

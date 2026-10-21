@@ -31,18 +31,21 @@ export interface Profile {
   era: number; // index into ERA_LABEL: the first decade they wrestled in our data; -1 unknown
   gender: "M" | "F";
   world: number; // how many of the six world titles (WWE, World Heavyweight, Universal, WCW, ECW, AEW)
-  big: { rr: boolean; wm: boolean }; // Royal Rumble winner, WrestleMania main event
+  big: { rr: boolean; wm: boolean; aew: boolean }; // Royal Rumble winner, WrestleMania main event, AEW PPV main event
   factions: string[]; // labels
 }
 
-export function profile(w: Wrestler): Profile {
+// AEW PPV main events joined the column on this night; earlier nights keep the clues players saw.
+const AEW_MAIN_FROM = "2026-10-22";
+
+export function profile(w: Wrestler, day = todayKey()): Profile {
   const t = new Set(w.tags);
   return {
     promos: PROMOS.filter((p) => t.has(p)),
     era: ERAS.findIndex((e) => t.has(e)),
     gender: w.g === "f" ? "F" : "M",
     world: WORLD.filter((x) => t.has(x)).length,
-    big: { rr: t.has("rumble"), wm: t.has("wmMain") },
+    big: { rr: t.has("rumble"), wm: t.has("wmMain"), aew: day >= AEW_MAIN_FROM && t.has("aewPpvMain") },
     factions: FACTIONS.filter(([id]) => t.has(id)).map(([, label]) => label),
   };
 }
@@ -67,7 +70,8 @@ export interface Row {
 }
 
 export const eraLabel = (i: number) => ERA_LABEL[i] ?? "?";
-export const bigLabel = ({ rr, wm }: Profile["big"]) => (rr && wm ? "RR+WM" : rr ? "RR" : wm ? "WM" : "—");
+const bigList = (b: Profile["big"]) => [b.rr && "RR", b.wm && "WM", b.aew && "AEW"].filter(Boolean) as string[];
+export const bigLabel = (b: Profile["big"]) => bigList(b).join(" ") || "—";
 
 function overlap(a: string[], b: string[]): Hit {
   if (a.length === b.length && a.every((x) => b.includes(x))) return "g";
@@ -79,11 +83,11 @@ function compare(a: number, b: number): Pick<Clue, "hit" | "arrow"> {
 }
 
 /** A guess compared with the answer. */
-export function clueRow(guess: Wrestler, answer: Wrestler): Row {
-  const g = profile(guess);
-  const a = profile(answer);
-  const bigG = [g.big.rr && "rr", g.big.wm && "wm"].filter(Boolean) as string[];
-  const bigA = [a.big.rr && "rr", a.big.wm && "wm"].filter(Boolean) as string[];
+export function clueRow(guess: Wrestler, answer: Wrestler, day = todayKey()): Row {
+  const g = profile(guess, day);
+  const a = profile(answer, day);
+  const bigG = bigList(g.big);
+  const bigA = bigList(a.big);
   const shared = g.factions.find((f) => a.factions.includes(f));
   return {
     id: guess.id,
@@ -165,14 +169,14 @@ export function replay(guesses: number[], answer: Wrestler): { solvedIn: number;
 export const wordleScore = (solvedIn: number) => (solvedIn ? WORDLE_GUESSES + 1 - solvedIn : 0);
 
 /** The clue values for the fact-checkers, one line each. */
-export function profileLines(w: Wrestler): string[] {
-  const p = profile(w);
+export function profileLines(w: Wrestler, day = todayKey()): string[] {
+  const p = profile(w, day);
   return [
     `Promotions: ${p.promos.map((x) => PROMO_LABEL[x]).join(", ") || "none"}`,
     `Era (first decade wrestled): ${eraLabel(p.era)}`,
     `Gender: ${p.gender}`,
     `World titles (WWE, World Heavyweight, Universal, WCW, ECW, AEW): ${p.world}${p.world ? ` (${WORLD.filter((x) => w.tags.includes(x)).join(", ")})` : ""}`,
-    `Rumble winner: ${p.big.rr ? "yes" : "no"} · WrestleMania main event: ${p.big.wm ? "yes" : "no"}`,
+    `Rumble winner: ${p.big.rr ? "yes" : "no"} · WrestleMania main event: ${p.big.wm ? "yes" : "no"} · AEW PPV main event: ${p.big.aew ? "yes" : "no"}`,
     `Factions: ${p.factions.join(", ") || "none"}`,
   ];
 }

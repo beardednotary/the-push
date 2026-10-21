@@ -8,13 +8,14 @@ import { clueRow, replay, wordleAnswer } from "@/lib/wordle";
 export async function POST(req: Request) {
   const body = await req.json().catch(() => ({}));
   const guesses: number[] = Array.isArray(body.guesses) ? body.guesses.slice(0, 9).map(Number) : [];
-  const answer = await wordleAnswer(todayKey());
+  const day = todayKey();
+  const answer = await wordleAnswer(day);
   const { solvedIn, over, valid } = replay(guesses, answer);
   const last = getWrestler(guesses[guesses.length - 1]);
   if (!valid || !last) return NextResponse.json({ error: "bad guesses" }, { status: 400 });
   return NextResponse.json({
-    row: clueRow(last, answer),
+    row: clueRow(last, answer, day),
     solved: solvedIn > 0,
-    answer: over ? clueRow(answer, answer) : undefined,
+    answer: over ? clueRow(answer, answer, day) : undefined,
   });
 }

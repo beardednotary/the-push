@@ -67,9 +67,9 @@ export default function WordleGame({ day, number }: { day: string; number: numbe
         {!over && (
           <ul className="rules">
             <li><b>Name the mystery wrestler</b> in eight guesses. A new one every night.</li>
-            <li><b>Green</b> is a match. <b>Gold</b> is close: some of the same promotions, or one of the two big wins.</li>
+            <li><b>Green</b> is a match. <b>Gold</b> is close: some of the same promotions, or some of the same big wins.</li>
             <li><b>▲ Later / ▼ Earlier</b> on Era: the answer started in a later or earlier decade. <b>▲ More / ▼ Fewer</b> on World titles: the answer has more or fewer.</li>
-            <li><b>Promotions</b> light up green where the answer worked too. <b>RR</b> won the Royal Rumble, <b>WM</b> main-evented WrestleMania.</li>
+            <li><b>Promotions</b> light up green where the answer worked too. <b>RR</b> won the Royal Rumble, <b>WM</b> main-evented WrestleMania, <b>AEW</b> main-evented an AEW pay-per-view.</li>
             <li><b>World titles</b> counts WWE, World Heavyweight, Universal, WCW, ECW and AEW world titles held.</li>
           </ul>
         )}
