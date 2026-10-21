@@ -22,12 +22,21 @@ export function ClueHeads() {
   );
 }
 
-function Tile({ hit, text, arrow }: { hit: Hit; text: string; arrow?: "up" | "down" }) {
+// what the arrow means for the answer, spelled out under it
+const HINT = { era: ["Later", "Earlier"], world: ["More", "Fewer"] } as const;
+
+function Tile({ hit, text, arrow, hint }: { hit: Hit; text: string; arrow?: "up" | "down"; hint?: keyof typeof HINT }) {
+  const word = arrow && hint ? HINT[hint][arrow === "up" ? 0 : 1] : null;
   return (
     <div className={`wd-t ${hit}${text.length > 5 ? " long" : ""}`}>
       <span>
         {text}
-        {arrow && <i className="wd-arrow" aria-label={arrow === "up" ? "higher" : "lower"}>{arrow === "up" ? "▲" : "▼"}</i>}
+        {arrow && (
+          <i className="wd-arrow" aria-label={`answer: ${word ?? (arrow === "up" ? "higher" : "lower")}`}>
+            {arrow === "up" ? "▲" : "▼"}
+            {word && <small>{word}</small>}
+          </i>
+        )}
       </span>
     </div>
   );
@@ -49,9 +58,9 @@ export function ClueRow({ row, n, label }: { row: Row; n?: number; label?: strin
             ))}
           </div>
         </div>
-        <Tile {...row.era} />
+        <Tile {...row.era} hint="era" />
         <Tile {...row.gender} />
-        <Tile {...row.world} />
+        <Tile {...row.world} hint="world" />
         <Tile {...row.big} />
         <Tile {...row.faction} />
       </div>
