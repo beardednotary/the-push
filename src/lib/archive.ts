@@ -37,6 +37,21 @@ export async function pastRing(day: string): Promise<Grid> {
   return (await frozenRing(day)) ?? gridFor(day);
 }
 
+let history: { today: string; cards: Promise<(PastDay & { grid: Grid })[]> } | null = null;
+
+/** Every past Ring grid, newest first; read once per night per server instance. */
+export function ringHistory(today = todayKey()): Promise<(PastDay & { grid: Grid })[]> {
+  if (history?.today !== today) {
+    const cards = Promise.all(pastDays(today).map(async (d) => ({ ...d, grid: await pastRing(d.day) })));
+    history = { today, cards };
+    // a failed read shouldn't stick for the rest of the night
+    cards.catch(() => {
+      if (history?.cards === cards) history = null;
+    });
+  }
+  return history.cards;
+}
+
 export async function pastFive(day: string): Promise<Question[]> {
   return (await frozenFive(day)) ?? questionsFor(day);
 }

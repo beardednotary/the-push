@@ -366,6 +366,17 @@ a.gold, .muted a.gold { color: var(--gold); }
 .archive-list .links a:hover { color: var(--gold); }
 .archive-list .links b { color: var(--text); font-weight: 700; }
 
+/* ---------- grid guide ---------- */
+.names { list-style: none; padding: 0; margin: 12px 0; columns: 2 200px; column-gap: 8px; }
+.names li { break-inside: avoid; margin-bottom: 6px; padding: 7px 12px; background: var(--plate-2); box-shadow: inset 4px 0 0 var(--steel); font-weight: 700; }
+.names .aka { display: block; font-weight: 500; font-size: 13px; color: var(--text-2); }
+.pairlist { list-style: none; padding: 0; margin: 12px 0; display: grid; gap: 6px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr)); }
+.pairlist a { display: flex; justify-content: space-between; align-items: center; gap: 10px; padding: 9px 12px; background: var(--plate-2);
+  box-shadow: inset 4px 0 0 var(--steel); color: var(--text); text-decoration: none; font-weight: 700; }
+.pairlist a:hover { box-shadow: inset 4px 0 0 var(--gold); color: var(--gold); }
+.pairlist .num { color: var(--gold); font-size: 22px; }
+.pairlist .muted { font-weight: 500; font-size: 14px; }
+
 /* Finish moment: the ring announcer's spotlight on the final score */
 .moment { position: fixed; inset: 0; z-index: 60; display: flex; align-items: center; justify-content: center; padding: 16px;
   background: rgba(7, 8, 11, 0.97); animation: moment-in 0.35s ease-out; }

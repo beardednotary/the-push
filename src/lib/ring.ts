@@ -254,6 +254,16 @@ export function searchWrestlers(q: string, limit = 8): { id: number; name: strin
   return scored.slice(0, limit).map(({ w, via }) => (via ? { id: w.id, name: w.name, aka: via } : { id: w.id, name: w.name }));
 }
 
+/** Every criterion, in the import's order (promotions, titles, accolades...). */
+export function allCriteria(): readonly Criterion[] {
+  return CRITERIA;
+}
+
+/** Every wrestler with all of these criteria, best known first. */
+export function wrestlersWith(ids: string[], extra?: Overrides): Wrestler[] {
+  return WRESTLERS.filter((w) => ids.every((id) => has(w, id, extra)));
+}
+
 /** Every wrestler who fits a cell, best known first. */
 export function cellAnswers(grid: Grid, cell: number, extra?: Overrides): Wrestler[] {
   const [r, c] = cellCriteria(grid, cell);

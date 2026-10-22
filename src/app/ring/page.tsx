@@ -5,7 +5,7 @@ import { ringCard } from "@/lib/cards";
 import RingGame from "./RingGame";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = pageMeta("/ring", "Immaculate Ring · The Push", "Nine squares, nine guesses: name a wrestler who fits the row and the column. New grid every night.");
+export const metadata: Metadata = pageMeta("/ring", "Immaculate Ring: the daily wrestling grid game · The Push", "A daily wrestling grid: name a wrestler who fits each row and column. Nine squares, nine guesses, rarer picks score higher. New grid every night.");
 
 export default async function RingPage() {
   const day = todayKey();

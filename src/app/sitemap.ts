@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { pastDays } from "@/lib/archive";
+import { MIN_INDEXED, allPairs, categoryHref, pairHref } from "@/lib/grid";
+import { allCriteria } from "@/lib/ring";
 import { hadWordle } from "@/lib/wordle";
 
 const BASE = "https://playthepush.com";
@@ -18,6 +20,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       ...(hadWordle(day) ? [{ url: `${BASE}/wordle/answers/${n}`, lastModified, changeFrequency: "monthly" as const, priority: 0.5 }] : []),
     ];
   });
+  // the grid guide only changes when the data is re-imported
+  const guide = [
+    ...allCriteria().map((c) => ({ url: `${BASE}${categoryHref(c)}`, changeFrequency: "monthly" as const, priority: 0.5 })),
+    ...allPairs()
+      .filter((p) => p.count >= MIN_INDEXED)
+      .map((p) => ({ url: `${BASE}${pairHref(p.a, p.b)}`, changeFrequency: "monthly" as const, priority: 0.4 })),
+  ];
   return [
     { url: `${BASE}/`, lastModified: now, changeFrequency: "daily", priority: 1 },
     { url: `${BASE}/five`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
@@ -27,7 +36,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE}/titles`, lastModified: now, changeFrequency: "daily", priority: 0.6 },
     { url: `${BASE}/yesterday`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
     { url: `${BASE}/archive`, lastModified: now, changeFrequency: "daily", priority: 0.7 },
+    { url: `${BASE}/grid`, changeFrequency: "weekly", priority: 0.7 },
     ...archive,
+    ...guide,
     { url: `${BASE}/privacy`, changeFrequency: "yearly", priority: 0.2 },
   ];
 }

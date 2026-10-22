@@ -13,7 +13,7 @@ import { store } from "@/lib/store";
 export const dynamic = "force-dynamic";
 export const metadata: Metadata = pageMeta(
   "/yesterday",
-  "Yesterday's card · The Push",
+  "Yesterday's wrestling grid and trivia answers · The Push",
   "Yesterday's Daily Five answers, how everyone did, and the full Immaculate Ring answer key.",
 );
 

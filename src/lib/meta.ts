@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const SITE_DESCRIPTION =
-  "Daily wrestling trivia: five questions, fifteen seconds each, and the Immaculate Ring. New card every night.";
+  "Free daily wrestling games: a wrestling grid, Wrestling Wordle and a five-question trivia quiz. New card every night.";
 
 const BANNER = {
   url: "/opengraph-image.jpg",

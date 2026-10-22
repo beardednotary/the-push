@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Fragment } from "react";
 import type { Question } from "@/lib/five";
+import { pairHref } from "@/lib/grid";
 import type { CellPicks } from "@/lib/picks";
 import type { Grid } from "@/lib/ring";
 
@@ -102,7 +103,12 @@ export function RingKey({ grid, picks }: { grid: Grid; picks: CellPicks[] }) {
                   <b>{p.top.length ? "Also right" : "Right answers"}:</b> {more.join(", ")}
                 </p>
               )}
-              <p className="muted small">{p.possible} wrestlers would have counted.</p>
+              <p className="muted small">
+                {p.possible} wrestlers would have counted.{" "}
+                <Link className="gold" href={pairHref(r, c)}>
+                  See them all
+                </Link>
+              </p>
             </div>
           );
         }),

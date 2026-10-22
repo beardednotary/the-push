@@ -6,7 +6,7 @@ import { publicQuestions } from "@/lib/five";
 import FiveGame from "./FiveGame";
 
 export const dynamic = "force-dynamic";
-export const metadata: Metadata = pageMeta("/five", "Daily Five · The Push", "Five wrestling questions, fifteen seconds each. A new card every night.");
+export const metadata: Metadata = pageMeta("/five", "Daily Five: the daily wrestling trivia quiz · The Push", "Five wrestling trivia questions, fifteen seconds each. A new quiz every night, with a leaderboard.");
 
 export default async function FivePage() {
   const day = todayKey();
