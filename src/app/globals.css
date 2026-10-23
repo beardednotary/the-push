@@ -376,6 +376,8 @@ button.opt { cursor: pointer; }
 button.opt:hover { box-shadow: inset 4px 0 0 var(--gold); color: var(--gold); }
 .poll .opt i { position: absolute; left: 0; top: 0; bottom: 0; background: #232a3a; }
 .poll .opt span { position: relative; }
+.poll .opt.other { color: var(--text-2); font-weight: 500; }
+.poll .post { margin: 0; }
 .poll .opt.mine { box-shadow: inset 4px 0 0 var(--gold); }
 .poll .opt.mine i { background: rgba(255, 212, 0, 0.18); }
 .poll .pct { font-family: var(--font-display); font-size: 20px; }

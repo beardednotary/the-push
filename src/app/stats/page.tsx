@@ -6,6 +6,7 @@ import { isAdmin } from "@/lib/admin";
 import { Bug, Plate } from "@/components/Chrome";
 import { addDays, puzzleNumber, todayKey } from "@/lib/day";
 import { disputeGroups, settleDispute } from "@/lib/disputes";
+import { pollFor, writeIns } from "@/lib/polls";
 import { readStats } from "@/lib/stats";
 import { store } from "@/lib/store";
 
@@ -45,6 +46,8 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
     searchParams,
   ]);
   const flairNames = await store.names(Object.keys(given));
+  // the last week's write-in answers, for this page only (players see one Write-ins bar)
+  const written = (await Promise.all(days.slice(0, 7).map(async (d) => ({ d, poll: await pollFor(d), answers: await writeIns(d) })))).filter((x) => x.poll && x.answers.length);
 
   async function grant(form: FormData) {
     "use server";
@@ -213,6 +216,26 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                 </tbody>
               </table>
             </div>
+          )}
+        </section>
+
+        <section id="writeins">
+          <div className="section-head">
+            <Plate tone="gold">Poll write-ins</Plate>
+            <Plate tone="dark">Last 7 nights</Plate>
+          </div>
+          <p className="muted small">What players typed under Something else, most votes first. Only you see these; a popular one makes a good option for a future poll.</p>
+          {written.length === 0 ? (
+            <p className="muted">None yet.</p>
+          ) : (
+            written.map(({ d, poll, answers }) => (
+              <div key={d} className="key" style={{ marginBottom: 8 }}>
+                <h3 className="caps">
+                  No. {poll!.n} · {poll!.question}
+                </h3>
+                <p>{answers.map((a) => `${a.text}${a.votes > 1 ? ` (${a.votes})` : ""}`).join(" · ")}</p>
+              </div>
+            ))
           )}
         </section>
 

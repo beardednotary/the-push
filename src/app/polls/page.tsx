@@ -28,7 +28,7 @@ export default async function PollsPage() {
           </h1>
         </div>
         <p className="muted">One question a night, one vote each. Tonight&apos;s poll is on the home page and after every game.</p>
-        <Link className="cta" href="/">
+        <Link className="cta" href="/poll">
           <span>Vote tonight</span>
         </Link>
 
@@ -44,13 +44,15 @@ export default async function PollsPage() {
                     No. {poll.n} · {datedDay(poll.day)} · {total} vote{total === 1 ? "" : "s"}
                   </p>
                   <h2 className="q">{poll.question}</h2>
-                  {poll.options.map((o, i) => (
-                    <div key={i} className={`opt${total && counts[i] === top ? " right" : ""}`}>
-                      <i style={{ width: `${pct(counts[i])}%` }} />
-                      <span>{o}</span>
-                      {total > 0 && <span className="pct">{pct(counts[i])}%</span>}
-                    </div>
-                  ))}
+                  {[...poll.options, "Write-ins"].map((o, i) =>
+                    i < poll.options.length || counts[i] ? (
+                      <div key={i} className={`opt${total && counts[i] === top ? " right" : ""}`}>
+                        <i style={{ width: `${pct(counts[i])}%` }} />
+                        <span>{o}</span>
+                        {total > 0 && <span className="pct">{pct(counts[i])}%</span>}
+                      </div>
+                    ) : null,
+                  )}
                 </li>
               );
             })}

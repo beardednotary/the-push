@@ -11,10 +11,10 @@ export async function GET() {
   return NextResponse.json({ poll, counts: poll ? await pollCounts(poll) : [] });
 }
 
-// POST {playerId, option}: one vote per player per night.
+// POST {playerId, option, text?}: one vote per player per night; option = options.length is a write-in.
 export async function POST(req: Request) {
-  const { playerId, option } = await req.json().catch(() => ({}));
+  const { playerId, option, text } = await req.json().catch(() => ({}));
   const id = cleanId(playerId);
   if (!id) return NextResponse.json({ error: "no player" }, { status: 400 });
-  return NextResponse.json(await vote(id, Number(option)));
+  return NextResponse.json(await vote(id, Number(option), text));
 }
