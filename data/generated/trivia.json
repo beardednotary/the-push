@@ -4260,37 +4260,25 @@
   "answer": 3
  },
  {
-  "id": "lineage:76:2024-04-07",
-  "type": "lineage",
-  "prompt": "Who did Drew McIntyre beat for the WWE Championship at WrestleMania XL?",
-  "options": [
-   "Jey Uso",
-   "CM Punk",
-   "Seth Rollins",
-   "Damian Priest"
-  ],
-  "answer": 2
- },
- {
   "id": "lineage:82:2017-03-05",
   "type": "lineage",
   "prompt": "Who did Goldberg beat for the Universal Championship at Fastlane 2017?",
   "options": [
+   "Seth Rollins",
    "Kevin Owens",
-   "Bray Wyatt",
    "Brock Lesnar",
-   "Braun Strowman"
+   "Finn Bálor"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "lineage:82:2017-04-02",
   "type": "lineage",
   "prompt": "Who did Brock Lesnar beat for the Universal Championship at WrestleMania 33?",
   "options": [
-   "Seth Rollins",
+   "Finn Bálor",
    "Braun Strowman",
-   "Kevin Owens",
+   "Roman Reigns",
    "Goldberg"
   ],
   "answer": 3
@@ -4300,33 +4288,33 @@
   "type": "lineage",
   "prompt": "Who did Roman Reigns beat for the Universal Championship at SummerSlam 2018?",
   "options": [
+   "Kevin Owens",
    "Brock Lesnar",
    "Bray Wyatt",
-   "Kevin Owens",
-   "Goldberg"
+   "Seth Rollins"
   ],
-  "answer": 0
+  "answer": 1
  },
  {
   "id": "lineage:82:2019-04-07",
   "type": "lineage",
   "prompt": "Who did Seth Rollins beat for the Universal Championship at WrestleMania 35?",
   "options": [
-   "Finn Bálor",
-   "Brock Lesnar",
-   "The Fiend",
-   "Braun Strowman"
+   "Kevin Owens",
+   "Braun Strowman",
+   "Goldberg",
+   "Brock Lesnar"
   ],
-  "answer": 1
+  "answer": 3
  },
  {
   "id": "lineage:82:2019-07-14",
   "type": "lineage",
   "prompt": "Who did Brock Lesnar beat for the Universal Championship at Extreme Rules 2019?",
   "options": [
+   "Goldberg",
    "The Fiend",
-   "Finn Bálor",
-   "Kevin Owens",
+   "Roman Reigns",
    "Seth Rollins"
   ],
   "answer": 3
@@ -4336,12 +4324,12 @@
   "type": "lineage",
   "prompt": "Who did Seth Rollins beat for the Universal Championship at SummerSlam 2019?",
   "options": [
-   "Brock Lesnar",
    "The Fiend",
-   "Braun Strowman",
-   "Roman Reigns"
+   "Finn Bálor",
+   "Goldberg",
+   "Brock Lesnar"
   ],
-  "answer": 0
+  "answer": 3
  },
  {
   "id": "lineage:82:2019-10-31",
@@ -4349,9 +4337,9 @@
   "prompt": "Who did The Fiend beat for the Universal Championship at Crown Jewel 2019?",
   "options": [
    "Seth Rollins",
-   "Roman Reigns",
-   "Kevin Owens",
-   "Goldberg"
+   "Brock Lesnar",
+   "Braun Strowman",
+   "Roman Reigns"
   ],
   "answer": 0
  },
@@ -4360,44 +4348,44 @@
   "type": "lineage",
   "prompt": "Who did Goldberg beat for the Universal Championship at Super Showdown 2020?",
   "options": [
-   "Braun Strowman",
-   "Brock Lesnar",
    "The Fiend",
-   "Seth Rollins"
+   "Roman Reigns",
+   "Seth Rollins",
+   "Braun Strowman"
   ],
-  "answer": 2
+  "answer": 0
  },
  {
   "id": "lineage:82:2020-03-25",
   "type": "lineage",
   "prompt": "Who did Braun Strowman beat for the Universal Championship at WrestleMania 36?",
   "options": [
-   "Brock Lesnar",
    "Finn Bálor",
-   "Seth Rollins",
-   "Goldberg"
+   "The Fiend",
+   "Goldberg",
+   "Seth Rollins"
   ],
-  "answer": 3
+  "answer": 2
  },
  {
   "id": "lineage:82:2020-08-23",
   "type": "lineage",
   "prompt": "Who did The Fiend beat for the Universal Championship at SummerSlam 2020?",
   "options": [
-   "Roman Reigns",
+   "Finn Bálor",
+   "Goldberg",
    "Seth Rollins",
-   "Braun Strowman",
-   "Brock Lesnar"
+   "Braun Strowman"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "lineage:82:2020-08-30",
   "type": "lineage",
   "prompt": "Who did Roman Reigns beat for the Universal Championship at Payback 2020?",
   "options": [
-   "Braun Strowman",
-   "Brock Lesnar",
+   "Seth Rollins",
+   "Kevin Owens",
    "The Fiend",
    "Finn Bálor"
   ],
@@ -4408,36 +4396,36 @@
   "type": "lineage",
   "prompt": "Who did John Cena beat for the World Heavyweight Championship at Royal Rumble 2017?",
   "options": [
-   "Randy Orton",
-   "A.J. Styles",
    "Jinder Mahal",
-   "Bray Wyatt"
+   "Bray Wyatt",
+   "A.J. Styles",
+   "Daniel Bryan"
   ],
-  "answer": 1
+  "answer": 2
  },
  {
   "id": "lineage:85:2017-02-12",
   "type": "lineage",
   "prompt": "Who did Bray Wyatt beat for the World Heavyweight Championship at Elimination Chamber 2017?",
   "options": [
-   "Kofi Kingston",
    "Randy Orton",
+   "John Cena",
    "Jinder Mahal",
-   "John Cena"
+   "A.J. Styles"
   ],
-  "answer": 3
+  "answer": 1
  },
  {
   "id": "lineage:85:2017-04-02",
   "type": "lineage",
   "prompt": "Who did Randy Orton beat for the World Heavyweight Championship at WrestleMania 33?",
   "options": [
+   "Kofi Kingston",
    "John Cena",
    "Jinder Mahal",
-   "Bray Wyatt",
-   "Daniel Bryan"
+   "Bray Wyatt"
   ],
-  "answer": 2
+  "answer": 3
  },
  {
   "id": "lineage:85:2017-05-21",
@@ -4445,7 +4433,7 @@
   "prompt": "Who did Jinder Mahal beat for the World Heavyweight Championship at Backlash 2017?",
   "options": [
    "John Cena",
-   "Kofi Kingston",
+   "Daniel Bryan",
    "Randy Orton",
    "Bray Wyatt"
   ],
@@ -4457,21 +4445,33 @@
   "prompt": "Who did Kofi Kingston beat for the World Heavyweight Championship at WrestleMania 35?",
   "options": [
    "John Cena",
-   "Daniel Bryan",
    "Randy Orton",
-   "A.J. Styles"
+   "Daniel Bryan",
+   "The Fiend"
   ],
-  "answer": 1
+  "answer": 2
+ },
+ {
+  "id": "lineage:76:2024-04-07",
+  "type": "lineage",
+  "prompt": "Who did Drew McIntyre beat for the World Heavyweight Championship at WrestleMania XL?",
+  "options": [
+   "CM Punk",
+   "Jey Uso",
+   "Gunther",
+   "Seth Rollins"
+  ],
+  "answer": 3
  },
  {
   "id": "classic:116202",
   "type": "classic",
   "prompt": "Who did Cody defeat at AEW Double Or Nothing 2019?",
   "options": [
-   "Cesaro",
+   "Kofi Kingston",
    "Dustin Rhodes",
    "Roman Reigns",
-   "Seth Rollins"
+   "Cesaro"
   ],
   "answer": 1
  },

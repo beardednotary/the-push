@@ -124,6 +124,7 @@ NICKNAMES = {
 # one-word display names that aren't really a single ring name (initials, a first name only)
 NOT_SINGLE = {"AJ", "Billy", "Chuck", "Blake", "JBL", "MJF", "MVP", "TJP", "JTG", "DDP"}
 
+WHC_REVIVED = "2023-01-01"  # WWE's World Heavyweight Championship came back in 2023 (first champion: Seth Rollins)
 TITLE_GROUPS = {
     "wweChamp": {"WWWF World Heavyweight Title", "WWF World Heavyweight Title", "WWF Undisputed Title",
                  "WWE Championship", "WWE World Heavyweight Championship", "Undisputed WWE Championship"},
@@ -544,6 +545,11 @@ def main():
     for r in rows("title_reigns"):
         r["wrestler_id"] = cid(r["wrestler_id"])
         g = title_group.get(r["title_id"])
+        # the archive files WWE's 2023- World Heavyweight Championship under the name the WWE
+        # Championship used in 2014-16 ("WWE World Heavyweight Championship"): split it by date
+        if g == "wweChamp" and titles[r["title_id"]]["name"] == "WWE World Heavyweight Championship" and r["won_date"] >= WHC_REVIVED:
+            g = "whc"
+        r["group"] = g
         won = wins_on.get((r["won_date"], r["wrestler_id"]), [])
         if g and g != "tag" and won and all(has_partner(m, r["wrestler_id"]) for m in won):
             rejected.append(f"{display[r['wrestler_id']]} {titles[r['title_id']]['name']} {r['won_date']}")
@@ -1395,9 +1401,8 @@ def build_trivia(events, by_event, matches, reigns, title_group, name_at, gender
             title_matches[m["date"]].append(m)
     by_title = collections.defaultdict(list)
     for r in reigns:
-        by_title[r["title_id"]].append(r)
-    for tid, rs in by_title.items():
-        g = title_group.get(tid)
+        by_title[(r["title_id"], r["group"])].append(r)  # one belt's lineage (see WHC_REVIVED)
+    for (tid, g), rs in by_title.items():
         if g not in TRIVIA_TITLE_LABELS:
             continue
         rs.sort(key=lambda r: r["won_date"])
