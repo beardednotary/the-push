@@ -9,6 +9,12 @@ and their links live in data/curation/sheet.json:
      "questions": "...community trivia tab..."}
 
     python scripts/pull_curation.py      # then: python scripts/import_ringside.py
+
+The tags and merges tabs add to the local files instead of replacing them, so a sheet that
+is behind the repo (or a stale published copy) can't quietly undo fixes. A sheet row replaces
+the local row for the same wrestler/tag/action (or keep/merge) unless its note is blank; local
+rows the sheet lacks are kept and listed. To undo a tag, add the opposite row (remove for add)
+rather than deleting it.
 """
 import csv
 import io
@@ -26,6 +32,31 @@ HEADERS = {
     # community trivia; a row only reaches the game once "approved" is set (yes / y / x / true / 1)
     "questions": ["prompt", "answer", "wrong1", "wrong2", "wrong3", "source", "region", "approved", "note"],
 }
+
+
+# tabs whose rows add to the local file, and how many leading columns identify a row
+ADDITIVE = {"tags": 3, "merges": 2}
+
+
+def merge_local(tab, body):
+    """The local file's rows, updated and extended by the sheet's (see the docstring)."""
+    n = ADDITIVE[tab]
+    key = lambda r: tuple(c.strip().lower() for c in r[:n])
+    with open(CUR / f"{tab}.csv", newline="", encoding="utf-8") as f:
+        local = [r for r in list(csv.reader(f))[1:] if any(c.strip() for c in r)]
+    out = {key(r): r for r in local}
+    for r in body:
+        k = key(r)
+        if k in out and not r[-1].strip():
+            continue  # same row, blank note: keep the local note
+        out[k] = r
+    sheet = {key(r) for r in body}
+    missing = [r for r in local if key(r) not in sheet]
+    if missing:
+        print(f"- {tab}: {len(missing)} row(s) are only in the repo; add them to the sheet so it matches:")
+        for r in missing:
+            print("    " + ",".join(r))
+    return list(out.values())
 
 
 def main():
@@ -52,6 +83,9 @@ def main():
         if got[: len(want)] != want:
             sys.exit(f"{tab}: expected columns {want}, the sheet has {got}. Nothing was changed.")
         body = [r[: len(want)] for r in rows[1:] if any(c.strip() for c in r)]
+        body = [r + [""] * (len(want) - len(r)) for r in body if [c.strip().lower() for c in r] != want]  # pasted header rows
+        if tab in ADDITIVE and (CUR / f"{tab}.csv").exists():
+            body = merge_local(tab, body)
         out = CUR / f"{tab}.csv"
         with open(out, "w", newline="", encoding="utf-8") as f:
             w = csv.writer(f, lineterminator="\n")
