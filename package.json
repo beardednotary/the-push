@@ -12,6 +12,7 @@
     "data": "npm run data:pull && npm run data:import && npm run data:check"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "0.137.0",
     "@auth/upstash-redis-adapter": "2.11.3",
     "@upstash/redis": "^1.35.4",
     "@vercel/analytics": "2.0.1",

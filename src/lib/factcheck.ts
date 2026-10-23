@@ -6,6 +6,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { ringCard } from "./cards";
+import { claudeFindings, type Finding } from "./claudecheck";
 import { addDays, puzzleNumber, todayKey } from "./day";
 import { ringOverrides } from "./disputes";
 import { REGIONS, type Region } from "./regions";
@@ -79,6 +80,29 @@ function guesses(): Map<string, Guess> {
   return guessed;
 }
 
+/** Does this answer fit the criterion only through a guess or a hand-added tag? (Claude checks these first.) */
+export function isGuess(wrestlerId: number, criterionId: string): boolean {
+  return guesses().has(`${wrestlerId}:${criterionId}`);
+}
+
+/** Claude's findings for a grid, worst first, as lines for the post. */
+function claudeLines(grid: Grid, found: Finding[] | { error: string } | null): string[] {
+  if (!found) return [];
+  if (!Array.isArray(found)) return [`🤖 Claude's check failed tonight (${found.error.slice(0, 200)}); the squares below are unchecked.`];
+  if (!found.length) return ["🤖 Claude checked every square and found nothing to flag."];
+  const order = (f: Finding) => (f.confidence === "high" ? 0 : 1) + (f.problem === "wrong" ? 0 : 2);
+  return [
+    `🤖 **Claude flagged ${found.length}** (it can be wrong too: check the source before changing anything)`,
+    ...[...found].sort((a, b) => order(a) - order(b)).map((f) => {
+      const cell = f.square - 1;
+      const [r, c] = cell >= 0 && cell < 9 ? cellCriteria(grid, cell) : [];
+      const where = r && c ? `${bare(r.label)} × ${bare(c.label)}` : `square ${f.square}`;
+      const what = f.problem === "wrong" ? `❌ **${f.wrestler}** counts but shouldn't (${f.rule})` : `➕ **${f.wrestler}** should count`;
+      return `${what} · ${where}${f.confidence === "medium" ? " · not sure" : ""}: ${f.explanation} <${f.source}>`;
+    }),
+  ];
+}
+
 const MAX_NAMES = 6;
 
 function square(grid: Grid, cell: number, extra: Overrides, known: number): string[] {
@@ -123,8 +147,10 @@ export async function factCheckPosts(today = todayKey()): Promise<string[]> {
       posts.push(`**${title}, No. ${puzzleNumber(day)}**: couldn't build it (${String(e)})`);
       continue;
     }
+    const flags = claudeLines(grid, await claudeFindings(day, region ?? "main"));
     const blocks = [
       `🔎 **Tomorrow's ${title}, No. ${puzzleNumber(day)}** (${day}) · flag anything wrong here before it goes live`,
+      ...flags, // one block per flag, so a long night splits across messages instead of being cut off
       ...Array.from({ length: 9 }, (_, i) => square(grid, i, extra, grid.answerCounts[i] ?? 0).join("\n")),
     ];
     // pack whole squares into messages under Discord's limit
