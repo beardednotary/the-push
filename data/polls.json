@@ -1,0 +1,22 @@
+[
+  { "question": "Best movie about pro wrestling?", "options": ["The Wrestler", "The Iron Claw", "Beyond the Mat", "Fighting with My Family", "No Holds Barred"] },
+  { "question": "Greatest WrestleMania match ever?", "options": ["Steamboat vs. Savage (III)", "Hart vs. Michaels (XII)", "Undertaker vs. Michaels (25)", "Austin vs. Rock (X-Seven)", "Rhodes vs. Reigns (XL)"] },
+  { "question": "Best finisher of all time?", "options": ["Stone Cold Stunner", "RKO", "Tombstone Piledriver", "Sweet Chin Music", "Pedigree"] },
+  { "question": "Greatest faction ever?", "options": ["nWo", "Four Horsemen", "Evolution", "The Bloodline", "The Shield"] },
+  { "question": "Best talker on the mic, ever?", "options": ["The Rock", "Ric Flair", "Dusty Rhodes", "CM Punk", "Roddy Piper"] },
+  { "question": "Best era to be a wrestling fan?", "options": ["Golden Era (80s)", "Monday Night Wars", "Ruthless Aggression", "PG Era", "Right now"] },
+  { "question": "Best gimmick match ever invented?", "options": ["Royal Rumble", "Hell in a Cell", "Money in the Bank", "Elimination Chamber", "WarGames"] },
+  { "question": "Best in-ring worker of all time?", "options": ["Bret Hart", "Shawn Michaels", "Kurt Angle", "Ric Flair", "Kenny Omega"] },
+  { "question": "Best heel turn ever?", "options": ["Hogan joins the nWo (1996)", "Rollins breaks up The Shield (2014)", "Austin sides with McMahon (2001)", "Michaels superkicks Jannetty (1992)", "Andre turns on Hogan (1987)"] },
+  { "question": "Best manager of all time?", "options": ["Bobby Heenan", "Paul Heyman", "Jimmy Hart", "Jim Cornette", "Miss Elizabeth"] },
+  { "question": "Best play-by-play voice?", "options": ["Jim Ross", "Gorilla Monsoon", "Joey Styles", "Mike Tenay", "Michael Cole"] },
+  { "question": "Best tag team ever?", "options": ["The Hart Foundation", "The Dudley Boyz", "The Hardy Boyz", "The Usos", "The Young Bucks"] },
+  { "question": "Biggest show of the year?", "options": ["WrestleMania", "Royal Rumble", "SummerSlam", "Wrestle Kingdom", "AEW All In"] },
+  { "question": "Best wrestling video game?", "options": ["WWF No Mercy", "SmackDown! Here Comes the Pain", "SmackDown vs. Raw 2007", "Fire Pro Wrestling", "WWE 2K24"] },
+  { "question": "Best women's wrestler of all time?", "options": ["Trish Stratus", "Lita", "Charlotte Flair", "Becky Lynch", "Asuka"] },
+  { "question": "Best promotion to watch outside WWE?", "options": ["AEW", "New Japan", "TNA", "Stardom", "CMLL"] },
+  { "question": "Best entrance music?", "options": ["Stone Cold Steve Austin", "The Undertaker", "Randy Orton", "John Cena", "CM Punk"] },
+  { "question": "Greatest Royal Rumble winner?", "options": ["Stone Cold Steve Austin", "Shawn Michaels", "John Cena", "Rey Mysterio", "Cody Rhodes"] },
+  { "question": "WrestleMania: one night or two?", "options": ["One night", "Two nights"] },
+  { "question": "Best stipulation for a blood feud?", "options": ["Hell in a Cell", "Last Man Standing", "I Quit", "Steel Cage", "Street Fight"] }
+]

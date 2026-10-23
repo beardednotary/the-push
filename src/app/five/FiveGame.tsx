@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Leaderboard, NextMatch, ShareButton, notTracked, track, useSaved } from "@/components/client";
 import { Bug, Plate } from "@/components/Chrome";
+import { Poll } from "@/components/Poll";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
 import { YourRecord } from "@/components/record";
@@ -257,6 +258,7 @@ function Results({ day, number, questions, answers, untimed }: { day: string; nu
             <Leaderboard game="five" day={day} payload={{ answers: answers.map(({ choice, ms }) => ({ choice, ms })) }} format={(s) => String(s)} />
           )}
         </div>
+        <Poll />
         <RemindMe />
         <SignInNudge />
         <NextMatch to="ring" />

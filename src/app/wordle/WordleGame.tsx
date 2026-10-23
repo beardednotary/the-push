@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Leaderboard, NextMatch, ShareButton, track, useSaved } from "@/components/client";
 import { Bug, Plate } from "@/components/Chrome";
+import { Poll } from "@/components/Poll";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
 import { YourRecord } from "@/components/record";
@@ -179,6 +180,7 @@ function Results({ day, number, rows, answer }: { day: string; number: number; r
       <div className="stack">
         <Leaderboard game="wordle" day={day} payload={{ guesses: rows.map((r) => r.id) }} format={boardLabel} />
       </div>
+      <Poll />
       <RemindMe />
       <SignInNudge />
       <NextMatch to="ring" />

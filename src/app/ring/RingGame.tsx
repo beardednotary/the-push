@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Leaderboard, NextMatch, ShareButton, playerId, track, useSaved } from "@/components/client";
 import { Bug, Plate } from "@/components/Chrome";
+import { Poll } from "@/components/Poll";
 import { RemindMe } from "@/components/RemindMe";
 import { SignInNudge } from "@/components/account";
 import { YourRecord } from "@/components/record";
@@ -306,6 +307,7 @@ function Results({ day, number, cells, rows, cols, region }: { day: string; numb
         <Leaderboard game="ring" region={region} day={day} payload={{ cells: cells.map((c) => c?.id ?? null), region }} format={ringBoardLabel} />
       </div>
       <MostPicked rows={rows} cols={cols} mine={cells} region={region} />
+      <Poll />
       <RemindMe />
       <SignInNudge />
       <NextMatch to="five" />

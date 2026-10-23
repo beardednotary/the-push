@@ -366,6 +366,20 @@ a.gold, .muted a.gold { color: var(--gold); }
 .archive-list .links a:hover { color: var(--gold); }
 .archive-list .links b { color: var(--text); font-weight: 700; }
 
+/* ---------- poll of the night ---------- */
+.poll { margin: 30px 0; }
+.poll .q { font-weight: 700; font-size: 20px; margin: 6px 0 10px; }
+.poll .opts { display: grid; gap: 6px; }
+.poll .opt { position: relative; display: flex; justify-content: space-between; align-items: center; width: 100%; padding: 10px 14px; background: var(--plate-2);
+  overflow: hidden; border: 0; color: var(--text); font: inherit; font-size: 16px; font-weight: 700; text-align: left; box-shadow: inset 4px 0 0 var(--steel); }
+button.opt { cursor: pointer; }
+button.opt:hover { box-shadow: inset 4px 0 0 var(--gold); color: var(--gold); }
+.poll .opt i { position: absolute; left: 0; top: 0; bottom: 0; background: #232a3a; }
+.poll .opt span { position: relative; }
+.poll .opt.mine { box-shadow: inset 4px 0 0 var(--gold); }
+.poll .opt.mine i { background: rgba(255, 212, 0, 0.18); }
+.poll .pct { font-family: var(--font-display); font-size: 20px; }
+
 /* ---------- grid guide ---------- */
 .names { list-style: none; padding: 0; margin: 12px 0; columns: 2 200px; column-gap: 8px; }
 .names li { break-inside: avoid; margin-bottom: 6px; padding: 7px 12px; background: var(--plate-2); box-shadow: inset 4px 0 0 var(--steel); font-weight: 700; }

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Bug, Plate } from "@/components/Chrome";
+import { Poll } from "@/components/Poll";
 import { jsonLd } from "@/lib/archive";
 import { prettyDay, puzzleNumber, todayKey } from "@/lib/day";
 import { SITE_DESCRIPTION } from "@/lib/meta";
@@ -80,6 +81,7 @@ export default function Home() {
             <span>Ring the bell</span>
           </Link>
         </section>
+        <Poll />
         <section className="segment">
           <div className="meta">
             <Plate tone="dark">Stable wars</Plate>
