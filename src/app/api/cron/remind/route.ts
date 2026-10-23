@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { postDaily } from "@/lib/discord";
 import { postFactCheck } from "@/lib/factcheck";
+import { submitLastNight } from "@/lib/indexnow";
 import { sendReminders } from "@/lib/push";
 
 export const dynamic = "force-dynamic";
@@ -17,5 +18,7 @@ export async function GET(req: Request) {
   const discord = await postDaily().catch((e) => ({ posted: false, reason: String(e) }));
   // and tomorrow's grids go to the fact-checkers' private channel
   const factcheck = await postFactCheck().catch((e) => ({ posted: false, reason: String(e) }));
-  return NextResponse.json({ ...(await sendReminders({ force })), discord, factcheck });
+  // and last night's answer pages go to Bing through IndexNow
+  const indexnow = await submitLastNight().catch((e) => ({ submitted: false, reason: String(e) }));
+  return NextResponse.json({ ...(await sendReminders({ force })), discord, factcheck, indexnow });
 }
