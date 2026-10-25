@@ -99,6 +99,8 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                 <th>Wordle started</th>
                 <th>finished</th>
                 <th>shared</th>
+                <th>Story images</th>
+                <th>Share arrivals</th>
                 <th>Reminders on</th>
                 <th>Leagues started</th>
                 <th>joins</th>
@@ -110,6 +112,9 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                 const five = (s["five:start"] ?? 0) + (s["five:start_untimed"] ?? 0);
                 const ring = s["ring:start"] ?? 0;
                 const wordle = s["wordle:start"] ?? 0;
+                const stories = ["five", "ring", "wordle"].reduce((n, g) => n + (s[`${g}:story`] ?? 0), 0);
+                const storyTaps = ["five", "ring", "wordle"].reduce((n, g) => n + (s[`${g}:story_tap`] ?? 0), 0);
+                const arrivals = ["five", "ring", "ringjp", "wordle", "poll"].map((g) => [g, s[`${g}:arrive`] ?? 0] as const).filter(([, n]) => n);
                 return (
                   <tr key={d}>
                     <td>
@@ -141,6 +146,13 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                     <td>
                       {s["wordle:share"] ?? 0} <span className="muted">of {s["wordle:share_tap"] ?? 0} taps</span>
                     </td>
+                    <td>
+                      {stories} <span className="muted">of {storyTaps} taps</span>
+                    </td>
+                    <td>
+                      {arrivals.reduce((n, [, c]) => n + c, 0)}{" "}
+                      {arrivals.length > 0 && <span className="muted">{arrivals.map(([g, c]) => `${g} ${c}`).join(" · ")}</span>}
+                    </td>
                     <td>{s["remind:on"] ?? 0}</td>
                     <td>{s["league:create"] ?? 0}</td>
                     <td>{s["league:join"] ?? 0}</td>
@@ -154,7 +166,8 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
         <p className="muted small">
           Players = unique devices that finished a game. Returning = of those, how many first played on an earlier day. Counts
           began when each column was added; earlier days show zero. Taps = pressed Challenge a friend; shared = actually sent
-          or copied it. Leagues started = new friend leagues; joins = players joining someone else&apos;s league. Disputes =
+          or copied it. Story images = shared the 9:16 result image (phones only). Share arrivals = visits that came in
+          through a shared link, by the game or poll that sent it. Leagues started = new friend leagues; joins = players joining someone else&apos;s league. Disputes =
           rejected Ring guesses players said were right.
         </p>
 

@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Plate } from "./Chrome";
-import { playerId, useSaved } from "./client";
+import { playerId, shareUrl, useSaved } from "./client";
 import type { Poll as PollData } from "@/lib/polls";
 
 const WRITE_IN_MAX = 40; // matches lib/polls
@@ -51,7 +51,7 @@ export function Poll() {
     if (!poll || mine === null) return;
     const picked = mine === writeIn ? "I wrote in my own answer." : `I picked ${poll.options[mine]} (${pct(counts[mine] ?? 0)}% agree).`;
     const body = `🗳️ Poll of the night, No. ${poll.n}: ${poll.question}\n${picked}\nWhat's yours?`;
-    const url = `${location.origin}/poll`;
+    const url = shareUrl("/poll", "poll");
     if (navigator.share) {
       try {
         await navigator.share({ text: body, url });

@@ -20,6 +20,18 @@ export const STAT_EVENTS = [
   "wordle:finish",
   "wordle:share",
   "wordle:share_tap",
+  "five:story", // shared the 9:16 story image
+  "five:story_tap",
+  "ring:story",
+  "ring:story_tap",
+  "wordle:story",
+  "wordle:story_tap",
+  // someone opened a shared link (utm_source=share), by the game or poll that sent it
+  "five:arrive",
+  "ring:arrive",
+  "ringjp:arrive",
+  "wordle:arrive",
+  "poll:arrive",
   "remind:on",
   "league:create", // counted on the server when a friend league starts
   "league:join", // a player joined someone else's league (the owner's own join isn't counted)

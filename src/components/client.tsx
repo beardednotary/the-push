@@ -64,10 +64,40 @@ export function track(event: string) {
   fetch("/api/stat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(() => {});
 }
 
-/** The post-game challenge: sends the result plus a link whose preview is the player's score card. */
+/** A shared link, tagged so /stats can count who arrives through shares, per game. */
+export function shareUrl(path: string, medium: string, by?: string | null) {
+  const q = new URLSearchParams({ ...(by ? { by } : {}), utm_source: "share", utm_medium: medium });
+  return `${location.origin}${path}?${q}`;
+}
+
+/** Where share arrivals are counted: the game (or poll) that sent the link. */
+export const SHARE_MEDIUMS = ["five", "ring", "ringjp", "wordle", "poll"] as const;
+
+/** The post-game challenge: sends the result plus a link whose preview is the player's score card,
+ *  and on phones that can share images, the result as a 9:16 story image with the address on it. */
 export function ShareButton({ text, path, game, teaser, dare }: { text: string; path: string; game: "five" | "ring" | "wordle" | `ring${Region}`; teaser: string; dare: string }) {
   const [copied, setCopied] = useState(false);
   const [by, setBy] = useState<string | null>(null);
+  const [story, setStory] = useState<File | null>(null);
+  useEffect(() => {
+    // fetched ahead: iOS only lets a page open the share sheet straight from a tap, not after a download
+    if (!path.startsWith("/r/") || typeof navigator.canShare !== "function") return;
+    fetch(`${path}/story`)
+      .then((r) => (r.ok ? r.blob() : Promise.reject()))
+      .then((b) => {
+        const f = new File([b], "the-push.png", { type: "image/png" });
+        if (navigator.canShare({ files: [f] })) setStory(f);
+      })
+      .catch(() => {});
+  }, [path]);
+  async function shareStory() {
+    if (!story) return;
+    track(`${game}:story_tap`);
+    try {
+      await navigator.share({ files: [story] });
+      track(`${game}:story`);
+    } catch {} // closed the share sheet
+  }
   useEffect(() => {
     // the sharer's code rides on the link, so a friend who plays makes them a Promoter
     fetch("/api/ref", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id: playerId() }) })
@@ -80,7 +110,7 @@ export function ShareButton({ text, path, game, teaser, dare }: { text: string; 
     const streak = Number(safeGet("push:streak") ?? 0);
     // result, then the streak, then the dare
     const body = `${text}${streak >= 2 ? `\n🔥 ${streak}-day streak` : ""}\n${dare}`;
-    const url = `${location.origin}${path}${by ? `?by=${by}` : ""}`;
+    const url = shareUrl(path, game, by);
     if (navigator.share) {
       try {
         // url as its own field so messaging apps build the score-card preview
@@ -101,6 +131,11 @@ export function ShareButton({ text, path, game, teaser, dare }: { text: string; 
       <button className="cta gold full" onClick={share}>
         <span>{copied ? "Copied. Paste it anywhere" : "Challenge a friend"}</span>
       </button>
+      {story && (
+        <button className="cta ghost full" style={{ marginTop: 10 }} onClick={shareStory}>
+          <span>Share to your story</span>
+        </button>
+      )}
       <p className="muted small">{teaser}</p>
     </div>
   );
