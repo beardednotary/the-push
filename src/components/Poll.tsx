@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Plate } from "./Chrome";
-import { playerId, shareUrl, useSaved } from "./client";
+import { playerId, shareUrl, track, useSaved } from "./client";
 import type { Poll as PollData } from "@/lib/polls";
 
 const WRITE_IN_MAX = 40; // matches lib/polls
@@ -36,6 +36,7 @@ export function Poll() {
 
   async function pick(option: number, typed?: string) {
     setMine(option);
+    track("poll:vote");
     setCounts((c) => Array.from({ length: writeIn + 1 }, (_, i) => (c[i] ?? 0) + (i === option ? 1 : 0))); // show it at once; the server's count follows
     const r = await fetch("/api/poll", {
       method: "POST",

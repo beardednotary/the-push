@@ -5,17 +5,24 @@ import { useEffect, useState } from "react";
 import { Plate } from "./Chrome";
 import type { Region } from "@/lib/regions";
 
-function safeGet(key: string): string | null {
+export function safeGet(key: string): string | null {
   try {
     return localStorage.getItem(key);
   } catch {
     return null;
   }
 }
-function safeSet(key: string, value: string) {
+export function safeSet(key: string, value: string) {
   try {
     localStorage.setItem(key, value);
   } catch {}
+}
+
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+    dataLayer?: unknown[];
+  }
 }
 
 export function playerId(): string {
@@ -60,6 +67,7 @@ export function track(event: string) {
       .catch(() => {});
   }
   if (notTracked()) return;
+  window.gtag?.("event", event.replace(":", "_")); // ring:finish -> ring_finish, when Google Analytics is on
   const body = event.endsWith(":finish") ? { event, playerId: playerId() } : { event };
   fetch("/api/stat", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body), keepalive: true }).catch(() => {});
 }

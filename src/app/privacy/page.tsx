@@ -1,10 +1,11 @@
+import { AnalyticsChoice } from "@/components/AnalyticsChoice";
 import type { Metadata } from "next";
 import { pageMeta } from "@/lib/meta";
 import { Bug, Plate } from "@/components/Chrome";
 
 export const metadata: Metadata = pageMeta("/privacy", "Privacy · The Push");
 
-const UPDATED = "October 17, 2026";
+const UPDATED = "October 25, 2026";
 const CONTACT = "ray@dahvio.com";
 
 export default function PrivacyPage() {
@@ -24,7 +25,8 @@ export default function PrivacyPage() {
         <p>
           The Push (playthepush.com) is a free daily wrestling trivia game made by DahVio Studios. This page explains what we
           collect, why, and what you can do about it. Short version: you can play without an account, we don&apos;t sell
-          anything about you, and there are no ad trackers or tracking cookies.
+          anything about you, and there are no ad trackers. We use Google Analytics to see how people find and use the site;
+          in the EEA, the UK and Switzerland it only runs if you allow it, and anyone can turn it off below.
         </p>
 
         <h2>What we collect</h2>
@@ -57,6 +59,17 @@ export default function PrivacyPage() {
             types. It uses no cookies and doesn&apos;t identify you or follow you across other sites.
           </li>
           <li>
+            <b>Google Analytics.</b> It tells us how visitors find the site (including which shared links they came from),
+            which pages and games they use, and events such as finishing a game, sharing a result or voting in the poll. It
+            sets cookies with a random ID and receives your IP address, browser and device details; Google keeps this data for
+            14 months. We don&apos;t use it for advertising and don&apos;t link it to your account. In the EEA, the UK and
+            Switzerland it doesn&apos;t load until you tap Allow; elsewhere it runs unless you turn it off below.
+          </li>
+          <li>
+            <b>Your country, for one day.</b> A small cookie notes the country our host detects for your visit, only so the
+            site knows whether to ask about Google Analytics. It isn&apos;t used for anything else.
+          </li>
+          <li>
             <b>Server logs.</b> Our hosting provider records standard request information such as IP address and browser type to
             keep the site running and secure.
           </li>
@@ -65,12 +78,13 @@ export default function PrivacyPage() {
         <h2>What we don&apos;t do</h2>
         <ul>
           <li>We don&apos;t sell or rent your information.</li>
-          <li>We don&apos;t use advertising trackers or cookie-based analytics. If that ever changes, this page will be updated first and we&apos;ll ask for consent where the law requires it.</li>
+          <li>We don&apos;t use advertising trackers, and we don&apos;t use Google Analytics data for ads.</li>
         </ul>
 
         <h2>Who helps us run the site</h2>
         <ul>
           <li><b>Vercel</b> hosts the site and provides the cookie-free visit statistics.</li>
+          <li><b>Google</b> provides Google Analytics, where it&apos;s allowed.</li>
           <li><b>Upstash</b> stores leaderboards, reminder subscriptions and accounts.</li>
           <li><b>Apple, Google, Mozilla and Microsoft</b> deliver push notifications to your device, if you turn reminders on.</li>
           <li><b>Google and Discord</b> handle sign-in, if you choose them, and <b>Resend</b> sends sign-in emails.</li>
@@ -78,6 +92,10 @@ export default function PrivacyPage() {
 
         <h2>Your choices</h2>
         <ul>
+          <li>
+            Turn Google Analytics on or off for this browser:
+            <AnalyticsChoice />
+          </li>
           <li>Turn reminders off any time from a results screen, or in your browser or phone settings.</li>
           <li>Clear this site&apos;s data in your browser to reset your player ID and saved progress.</li>
           <li>
