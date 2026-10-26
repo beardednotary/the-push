@@ -212,6 +212,8 @@ button { font: inherit; color: inherit; }
 
 .footer { padding: 30px 16px 26px; text-align: center; font-size: 13px; color: var(--text-2); letter-spacing: 0.04em; }
 .footer a { color: var(--text-2); }
+.ph-badge { display: block; width: 250px; height: 54px; margin: 0 auto 18px; }
+.ph-badge img { display: block; }
 
 /* ---------- shared result page ---------- */
 .marks { display: flex; gap: 8px; margin-top: 18px; }

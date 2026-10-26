@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { AccountLink } from "@/components/account";
 import { Ticker } from "@/components/Chrome";
+import { LaunchBadge } from "@/components/LaunchBadge";
 import { Tracking } from "@/components/Tracking";
 import { SITE_DESCRIPTION, pageMeta } from "@/lib/meta";
 import "./globals.css";
@@ -39,6 +40,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body className={`${display.variable} ${ui.variable}`}>
         {children}
         <footer className="footer">
+          <LaunchBadge />
           Match results from <a href="https://www.cagematch.net">CAGEMATCH</a>, used with permission, via the{" "}
           <a href="https://www.kaggle.com/datasets/theodorerubin/ringside-wrestling-archive">Ringside Wrestling Archive</a>. Also{" "}
           <a href="https://www.wikidata.org">Wikidata</a> and <a href="https://en.wikipedia.org/wiki/Category:Lists_of_professional_wrestling_champions">Wikipedia</a> championship lists.
