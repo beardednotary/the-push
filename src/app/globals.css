@@ -477,6 +477,7 @@ button.opt:hover { box-shadow: inset 4px 0 0 var(--gold); color: var(--gold); }
 .wd-lights .off { background: #2a3040; color: var(--text-2); }
 .wd-lights .no { color: #3a4152; }
 .wd-answer .wd-who { color: var(--gold); }
+.wd-twin { margin: 6px 0 0; padding: 8px 12px; background: var(--plate-2); box-shadow: inset 4px 0 0 var(--gold); font-size: 15px; font-weight: 700; }
 .wd-mini { display: grid; gap: 3px; }
 .wd-mini div { display: flex; gap: 3px; }
 .wd-mini i { width: 22px; height: 22px; display: block; }

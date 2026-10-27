@@ -67,6 +67,9 @@ export interface Row {
   world: Clue;
   big: Clue;
   faction: Clue;
+  /** Set when every clue matches but the guess isn't the answer: how many well-known wrestlers
+   *  besides the answer have exactly these clues. */
+  twins?: number;
 }
 
 export const eraLabel = (i: number) => ERA_LABEL[i] ?? "?";
@@ -106,6 +109,33 @@ export function clueRow(guess: Wrestler, answer: Wrestler, day = todayKey()): Ro
   };
 }
 
+// ---------- lookalikes ----------
+// Wrestlers with identical clue values are indistinguishable: guessing any of them shows all
+// green. Answers with many well-known lookalikes (Test on 10-27 had 20) can't be solved by
+// reasoning, so from FAIR_FROM on, an answer may share its clues with at most MAX_TWINS of them.
+
+const KNOWN = 150; // the Ring's bar for a name most players know
+const MAX_TWINS = 3;
+const FAIR_FROM = "2026-10-28";
+
+const profileKey = (w: Wrestler, day: string) => JSON.stringify(profile(w, day));
+const knownCounts = new Map<string, Map<string, number>>(); // day -> profile -> well-known wrestlers with it
+
+/** How many well-known wrestlers other than w share every one of w's clue values. */
+export function twins(w: Wrestler, day = todayKey()): number {
+  let counts = knownCounts.get(day);
+  if (!counts) {
+    counts = new Map();
+    for (const x of data.wrestlers as Wrestler[]) {
+      if (x.pop < KNOWN) continue;
+      const k = profileKey(x, day);
+      counts.set(k, (counts.get(k) ?? 0) + 1);
+    }
+    knownCounts.set(day, counts);
+  }
+  return (counts.get(profileKey(w, day)) ?? 0) - (w.pop >= KNOWN ? 1 : 0);
+}
+
 // ---------- the nightly pick ----------
 
 const planned = new Map<string, number>();
@@ -122,8 +152,9 @@ export function plannedAnswer(day: string, avoid: ReadonlySet<number> = new Set(
     recent.add(plannedAnswer(d));
   }
   const rand = mulberry32(hashString(`wordle:${day}`));
-  const open = POOL.filter((w) => !recent.has(w.id));
-  const id = (open.length ? open : POOL)[Math.floor(rand() * (open.length || POOL.length))].id;
+  const pool = day >= FAIR_FROM ? POOL.filter((w) => twins(w, day) <= MAX_TWINS) : POOL; // earlier nights keep their picks
+  const open = pool.filter((w) => !recent.has(w.id));
+  const id = (open.length ? open : pool)[Math.floor(rand() * (open.length || pool.length))].id;
   if (!avoid.size) planned.set(day, id);
   return id;
 }

@@ -64,6 +64,12 @@ export function ClueRow({ row, n, label }: { row: Row; n?: number; label?: strin
         <Tile {...row.big} />
         <Tile {...row.faction} />
       </div>
+      {row.twins !== undefined && (
+        <p className="wd-twin">
+          Every clue matches, but it&apos;s not {row.name}.{" "}
+          {row.twins > 1 ? `${row.twins} well-known wrestlers have exactly these clues. Keep guessing.` : "Someone else has exactly these clues. Keep guessing."}
+        </p>
+      )}
     </div>
   );
 }
