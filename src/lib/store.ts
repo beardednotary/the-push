@@ -121,7 +121,8 @@ function upstash(): Store | null {
     },
     async hashGet(key) {
       const all = await r.hgetall<Record<string, unknown>>(key);
-      return Object.fromEntries(Object.entries(all ?? {}).map(([k, v]) => [k, String(v)]));
+      // the client parses JSON values on the way out; put them back, or an object reads as "[object Object]"
+      return Object.fromEntries(Object.entries(all ?? {}).map(([k, v]) => [k, typeof v === "string" ? v : JSON.stringify(v)]));
     },
     async hashSet(key, fields) {
       await r.hset(key, fields);
