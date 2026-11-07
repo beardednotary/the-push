@@ -55,10 +55,12 @@ function weightedPick(pool: Criterion[], rand: () => number): Criterion {
   return pool[pool.length - 1];
 }
 
-/** Tags added live from accepted player disputes ("wrestlerId:criterionId"), until the data catches up. */
+/** Live fixes until the data catches up: "wrestlerId:criterionId" adds a tag (an accepted
+ *  dispute or fact-check flag), "-wrestlerId:criterionId" takes one away (a flagged wrong tag). */
 export type Overrides = ReadonlySet<string>;
 
 function has(w: Wrestler, tag: string, extra?: Overrides) {
+  if (extra?.has(`-${w.id}:${tag}`)) return false;
   return w.tags.includes(tag) || Boolean(extra?.has(`${w.id}:${tag}`));
 }
 

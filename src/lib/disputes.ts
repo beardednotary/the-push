@@ -7,12 +7,14 @@ import { addDays, todayKey } from "./day";
 import { criterion, getWrestler, isRegion, missing, type Overrides, type Region } from "./ring";
 import { countStat } from "./stats";
 import { grantFlair } from "./flair";
+import { appendTagRows } from "./sheet";
 import { store } from "./store";
 
 const LOG = "disputes"; // every dispute, JSON, oldest first
 const COUNTS = "disputes:count"; // "wrestlerId:criterionId" -> how many
 const DONE = "disputes:done"; // "wrestlerId:criterionId" -> accepted | rejected
-const OVERRIDES = "ring:overrides"; // "wrestlerId:criterionId" -> day accepted
+const OVERRIDES = "ring:overrides"; // "wrestlerId:criterionId" -> day accepted ("-..." takes a tag away)
+const SHEET = "disputes:sheet"; // "wrestlerId:criterionId" -> "added" or why the sheet didn't take it
 const PER_PLAYER_PER_DAY = 10;
 
 export interface Dispute {
@@ -29,6 +31,11 @@ export interface Dispute {
 
 export async function ringOverrides(): Promise<Overrides> {
   return new Set(Object.keys(await store.hashGet(OVERRIDES)));
+}
+
+/** Make a fix live now: add a tag ("id:crit") or take one away ("-id:crit"). */
+export async function addOverride(key: string) {
+  await store.hashSet(OVERRIDES, { [key]: todayKey() });
 }
 
 /** Record a dispute; false when it doesn't hold up (not a miss, unknown, over the limit, already sent). */
@@ -63,6 +70,7 @@ export interface DisputeGroup {
   count: number;
   days: string[];
   status?: string;
+  sheet?: string; // "added" once the accepted row is in the curation sheet
   players: number; // distinct players who sent it
   csv: string; // the tags.csv row that makes an accept permanent
 }
@@ -70,7 +78,7 @@ export interface DisputeGroup {
 const csvCell = (s: string) => (/[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s);
 
 export async function disputeGroups(): Promise<DisputeGroup[]> {
-  const [log, counts, done] = await Promise.all([store.list(LOG), store.hashGet(COUNTS), store.hashGet(DONE)]);
+  const [log, counts, done, sheet] = await Promise.all([store.list(LOG), store.hashGet(COUNTS), store.hashGet(DONE), store.hashGet(SHEET)]);
   const days = new Map<string, Set<string>>();
   const players = new Map<string, Set<string>>();
   for (const raw of log) {
@@ -93,6 +101,7 @@ export async function disputeGroups(): Promise<DisputeGroup[]> {
         count: Number(n) || 0,
         days: [...(days.get(key) ?? [])].sort().reverse(),
         status: done[key],
+        sheet: sheet[key],
         players: players.get(key)?.size ?? 0,
         csv: [w?.name ?? id, crit, "add", `Player dispute: ${label}`].map(csvCell).join(","),
       };
@@ -106,6 +115,10 @@ export async function settleDispute(key: string, verdict: "accepted" | "rejected
   await store.hashSet(DONE, { [key]: verdict });
   if (verdict !== "accepted") return 0;
   await store.hashSet(OVERRIDES, { [key]: todayKey() });
+  // and into the curation sheet, so the next data build keeps it
+  const label = criterion(crit)!.label.replace(/­/g, "");
+  const sheet = await appendTagRows([[getWrestler(Number(id))!.name, crit, "add", `Player dispute: ${label}`]]);
+  await store.hashSet(SHEET, { [key]: sheet.ok ? "added" : sheet.error ?? "failed" });
   // everyone who flagged it was right: they're Road Agents now
   const reporters = new Set<string>();
   for (const raw of await store.list(LOG)) {

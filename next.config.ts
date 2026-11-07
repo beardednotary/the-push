@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/r/**": ["./src/share-assets/**"],
     "/api/cron/**": ["./data/generated/fact_check.csv", "./data/curation/tags.csv"],
+    // the review list reads Claude's flags (and the guessed tags behind them) and backfills the sheet
+    "/stats": ["./data/generated/fact_check.csv", "./data/curation/tags.csv"],
   },
 };
 

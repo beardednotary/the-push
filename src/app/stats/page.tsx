@@ -6,6 +6,8 @@ import { isAdmin } from "@/lib/admin";
 import { Bug, Plate } from "@/components/Chrome";
 import { addDays, puzzleNumber, todayKey } from "@/lib/day";
 import { disputeGroups, settleDispute } from "@/lib/disputes";
+import { acceptFix, dismissFix, reviewFixes, syncRepoTags } from "@/lib/fixes";
+import { sheetHookOn } from "@/lib/sheet";
 import { pollFor, writeIns } from "@/lib/polls";
 import { readStats } from "@/lib/stats";
 import { store } from "@/lib/store";
@@ -16,7 +18,7 @@ export const metadata: Metadata = { title: "Stats · The Push", robots: { index:
 // Only for emails listed in ADMIN_EMAILS. Everyone else gets a 404.
 const pct = (a: number, b: number) => (b ? `${Math.round((100 * a) / b)}%` : "–");
 
-export default async function StatsPage({ searchParams }: { searchParams: Promise<{ flair?: string }> }) {
+export default async function StatsPage({ searchParams }: { searchParams: Promise<{ flair?: string; fix?: string }> }) {
   const session = await auth();
   if (!session?.user) notFound();
   if (!isAdmin(session.user.email)) {
@@ -38,11 +40,12 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
 
   const today = todayKey();
   const days = Array.from({ length: 14 }, (_, i) => addDays(today, -i)).filter((d) => puzzleNumber(d) >= 1);
-  const [rows, subs, given, disputes, { flair: flairResult }] = await Promise.all([
+  const [rows, subs, given, disputes, fixes, { flair: flairResult, fix: fixResult }] = await Promise.all([
     Promise.all(days.map(async (d) => ({ d, s: await readStats(d) }))),
     store.allSubs(),
     flairs(),
     disputeGroups(),
+    reviewFixes(),
     searchParams,
   ]);
   const flairNames = await store.names(Object.keys(given));
@@ -55,6 +58,22 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
     if (!isAdmin(s?.user?.email)) notFound();
     const id = await setFlair(String(form.get("code") ?? ""), "road-agent");
     redirect(`/stats?flair=${id ? "given" : "nocode"}#flair`);
+  }
+
+  async function reviewFix(form: FormData) {
+    "use server";
+    const s = await auth();
+    if (!isAdmin(s?.user?.email)) notFound();
+    const key = String(form.get("key") ?? "");
+    const msg = form.get("verdict") === "accept" ? await acceptFix(key) : (await dismissFix(key), "Dismissed");
+    redirect(`/stats?fix=${encodeURIComponent(msg)}#fixes`);
+  }
+
+  async function syncSheet() {
+    "use server";
+    const s = await auth();
+    if (!isAdmin(s?.user?.email)) notFound();
+    redirect(`/stats?fix=${encodeURIComponent(await syncRepoTags())}#fixes`);
   }
 
   async function settle(form: FormData) {
@@ -216,7 +235,14 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                       <td>
                         {g.status === "accepted" ? (
                           <>
-                            Accepted{g.players > 0 ? `; ${g.players} Road Agent${g.players === 1 ? "" : "s"} made` : ""}. tags.csv row: <code>{g.csv}</code>
+                            Accepted{g.players > 0 ? `; ${g.players} Road Agent${g.players === 1 ? "" : "s"} made` : ""}.{" "}
+                            {g.sheet === "added" ? (
+                              "In the sheet."
+                            ) : (
+                              <>
+                                Add to the sheet: <code>{g.csv}</code>
+                              </>
+                            )}
                           </>
                         ) : g.status === "rejected" ? (
                           <span className="muted">Rejected</span>
@@ -258,6 +284,79 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
               </div>
             ))
           )}
+        </section>
+
+        <section id="fixes">
+          <div className="section-head">
+            <Plate tone="red">Fixes to review</Plate>
+            <Plate tone="dark">Claude&apos;s flags</Plate>
+          </div>
+          <p className="muted small">
+            From the nightly fact-check, tomorrow&apos;s card and the week before. Accept makes the fix live now and writes the row to the
+            curation sheet&apos;s tags tab, so the next data build keeps it. Sheet sync is{" "}
+            <b>{sheetHookOn() ? "on" : "off (set SHEET_HOOK_URL and SHEET_HOOK_SECRET)"}</b>.
+          </p>
+          {fixResult && <p className="muted">{fixResult}</p>}
+          {fixes.length === 0 ? (
+            <p className="muted">Nothing flagged.</p>
+          ) : (
+            <div className="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Card</th>
+                    <th>Flag</th>
+                    <th>Change</th>
+                    <th />
+                  </tr>
+                </thead>
+                <tbody>
+                  {fixes.map((f) => (
+                    <tr key={f.key}>
+                      <td className="muted">
+                        {f.day.slice(5)} {f.grid === "main" ? "Ring" : f.grid === "jp" ? "Japan" : "Wordle"}
+                      </td>
+                      <td>
+                        <b>{f.finding.wrestler}</b> · {f.finding.rule}
+                        {f.finding.confidence === "medium" && <span className="muted"> · not sure</span>}
+                        <br />
+                        <span className="muted small">
+                          {f.finding.explanation}{" "}
+                          <a className="gold" href={f.finding.source} target="_blank" rel="noopener noreferrer">
+                            Source
+                          </a>
+                        </span>
+                      </td>
+                      <td className="muted small">{f.rows.length ? f.rows.map((r) => `${r[2]} ${r[1]}`).join(", ") : f.why}</td>
+                      <td>
+                        {f.status ? (
+                          <span className="muted">{f.status[0].toUpperCase() + f.status.slice(1)}</span>
+                        ) : (
+                          <form action={reviewFix} style={{ display: "flex", gap: 8 }}>
+                            <input type="hidden" name="key" value={f.key} />
+                            {f.rows.length > 0 && (
+                              <button className="cta ghost" name="verdict" value="accept">
+                                <span>Accept</span>
+                              </button>
+                            )}
+                            <button className="cta ghost" name="verdict" value="dismiss">
+                              <span>Dismiss</span>
+                            </button>
+                          </form>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+          <form action={syncSheet} className="post" style={{ marginTop: 12 }}>
+            <button className="cta ghost" disabled={!sheetHookOn()}>
+              <span>Send the repo&apos;s tags to the sheet</span>
+            </button>
+          </form>
+          <p className="muted small">Adds any row of the repo&apos;s tags file the sheet doesn&apos;t have yet (like the Wikidata sweep&apos;s fixes). Rows already there are skipped.</p>
         </section>
 
         <section id="flair">
