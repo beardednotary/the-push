@@ -51,7 +51,8 @@ async function send(messages: Message[]): Promise<{ sent: number; failed: number
   return { sent, failed };
 }
 
-const postal = () => process.env.EMAIL_POSTAL_ADDRESS?.trim();
+// the sender's postal address, which CAN-SPAM asks for in every reminder
+const postal = () => process.env.EMAIL_POSTAL_ADDRESS?.trim() || "PO Box 3506, Seal Beach, CA 90740";
 
 function layout(body: string, footer: string): string {
   return `<!doctype html><html><body style="margin:0;padding:24px;background:#f4f4f6;font-family:Arial,Helvetica,sans-serif;color:#111">
