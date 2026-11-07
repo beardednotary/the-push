@@ -89,7 +89,7 @@ export function isGuess(wrestlerId: number, criterionId: string): boolean {
 function claudeLines(grid: Grid | null, found: Finding[] | { error: string } | null): string[] {
   if (!found) return [];
   if (!Array.isArray(found)) return [`🤖 Claude's check failed tonight (${found.error.slice(0, 200)}); the squares below are unchecked.`];
-  if (!found.length) return ["🤖 Claude checked every square and found nothing to flag."];
+  if (!found.length) return [`🤖 Claude checked every ${grid ? "square" : "clue"} and found nothing to flag.`];
   const order = (f: Finding) => (f.confidence === "high" ? 0 : 1) + (f.problem === "wrong" ? 0 : 2);
   return [
     `🤖 **Claude flagged ${found.length}** (it can be wrong too: check the source before changing anything)`,
