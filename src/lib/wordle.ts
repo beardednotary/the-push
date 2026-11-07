@@ -16,8 +16,8 @@ export const PROMOS = ["wwe", "nxt", "wcw", "ecw", "tna", "aew"] as const;
 export const PROMO_LABEL: Record<string, string> = { wwe: "WWE", nxt: "NXT", wcw: "WCW", ecw: "ECW", tna: "TNA", aew: "AEW" };
 const ERAS = ["d1980s", "d1990s", "d2000s", "d2010s", "d2020s"];
 const ERA_LABEL = ["'80s", "'90s", "'00s", "'10s", "'20s"];
-const WORLD = ["wweChamp", "whc", "universal", "wcwChamp", "ecwChamp", "aewChamp"];
-const FACTIONS: [string, string][] = [
+export const WORLD = ["wweChamp", "whc", "universal", "wcwChamp", "ecwChamp", "aewChamp"];
+export const FACTIONS: [string, string][] = [
   ["nwo", "nWo"], ["dx", "DX"], ["horsemen", "Horsemen"], ["judgmentDay", "Judgment Day"],
   ["bulletClub", "Bullet Club"], ["elite", "The Elite"], ["nexus", "Nexus"], ["ministry", "Ministry"],
 ];

@@ -1,7 +1,7 @@
 // Claude reads tomorrow's grids before the volunteers do: every square's rules and the answers
 // the data counts, with web search for anything recent. It flags answers that don't fit
 // (Jey Uso as a WWE Champion) and well-known wrestlers the data is missing (Terry Funk as a
-// musician). The findings wait in Redis for the fact-check post (factcheck.ts), which leads
+// musician). It also checks tomorrow's Wrestling Wordle answer, clue by clue. The findings wait in Redis for the fact-check post (factcheck.ts), which leads
 // with them. Run by /api/cron/claude-check half an hour before that post; needs
 // ANTHROPIC_API_KEY. Claude only flags: nothing here changes the data.
 import Anthropic from "@anthropic-ai/sdk";
@@ -9,15 +9,16 @@ import { ringCard } from "./cards";
 import { addDays, todayKey } from "./day";
 import { ringOverrides } from "./disputes";
 import { REGIONS, type Region } from "./regions";
-import { cellAnswers, cellCriteria, type Grid, type Overrides } from "./ring";
+import { cellAnswers, cellCriteria, criterion, type Grid, type Overrides, type Wrestler } from "./ring";
 import { store } from "./store";
+import { FACTIONS, PROMOS, WORLD, profileLines, wordleAnswer } from "./wordle";
 
 const MODEL = "claude-opus-5-5";
 const MAX_LISTED = 80; // answers shown per square; past this the list is cut and "missing" isn't asked
 const KEY = (day: string) => `factcheck:claude:${day}`;
 
 export interface Finding {
-  square: number; // 1-9, row by row
+  square: number; // 1-9, row by row; 0 for a Wordle clue
   wrestler: string;
   problem: "wrong" | "missing";
   rule: string;
@@ -73,9 +74,9 @@ function gridPrompt(day: string, grid: Grid, extra: Overrides, guessed: (wrestle
     const all = cellAnswers(grid, cell, extra);
     const shown = all.slice(0, MAX_LISTED).map((w) => (guessed(w.id, r.id) || guessed(w.id, c.id) ? `${w.name}*` : w.name));
     lines.push(
-      `Square ${cell + 1}: ${r.label.replace(/­/g, "")} × ${c.label.replace(/­/g, "")}`,
-      `- ${r.label.replace(/­/g, "")}: ${r.detail}`,
-      `- ${c.label.replace(/­/g, "")}: ${c.detail}`,
+      `Square ${cell + 1}: ${r.label.replace(/\u00ad/g, "")} × ${c.label.replace(/\u00ad/g, "")}`,
+      `- ${r.label.replace(/\u00ad/g, "")}: ${r.detail}`,
+      `- ${c.label.replace(/\u00ad/g, "")}: ${c.detail}`,
       all.length > MAX_LISTED
         ? `Accepted (${all.length}, best known first; the ${MAX_LISTED} best known shown, so don't report missing names here): ${shown.join(", ")}`
         : `Accepted (all ${all.length}, best known first): ${shown.join(", ") || "none"}`,
@@ -85,8 +86,33 @@ function gridPrompt(day: string, grid: Grid, extra: Overrides, guessed: (wrestle
   return lines.join("\n");
 }
 
-/** One grid's check: a manual loop for web search's pause_turn and the closing report call. */
-async function checkGrid(client: Anthropic, prompt: string): Promise<Finding[]> {
+const WORDLE_SYSTEM = `You fact-check tomorrow's answer in Wrestling Wordle, a daily guess-the-wrestler game on The Push. Players guess wrestlers and compare six clue values with the answer's, so a wrong value for the answer misleads every player all night. You get each column's exact rule and the answer's values.
+
+Check every value against its rule, read literally. Wrestling history moves fast and your training data may be out of date: use web search for anything from the last two years and any fact you aren't sure of. Report only values you can show are wrong, each with a source URL you actually saw; an empty report is a fine result.
+
+When done, call report_findings once. For each finding use square 0, problem "wrong", the answer's name as wrestler, and the column name as rule.`;
+
+const rule = (id: string) => `${criterion(id)?.label.replace(/\u00ad/g, "") ?? id}: ${criterion(id)?.detail ?? ""}`;
+
+function wordlePrompt(day: string, w: Wrestler): string {
+  return [
+    `Today is ${todayKey()}. This answer goes live on ${day}: ${w.name}${w.aka.length ? ` (also ${w.aka.join(", ")})` : ""}.`,
+    "",
+    "Columns and their rules:",
+    `- Promotions: which of these six the answer counts for. ${PROMOS.map(rule).join(" ")}`,
+    "- Era: the first decade (1980s to 2020s) in which they have 3+ recorded matches in WWE, WCW, ECW, TNA, AEW or NXT.",
+    "- Gender: M or F.",
+    `- World titles: how many of these six they have held. ${WORLD.map(rule).join(" ")}`,
+    `- Rumble winner, WrestleMania main event, AEW PPV main event. ${["rumble", "wmMain", "aewPpvMain"].map(rule).join(" ")}`,
+    `- Factions: membership, in any version, of: ${FACTIONS.map(([, label]) => label).join(", ")}.`,
+    "",
+    "The values players will see:",
+    ...profileLines(w, day),
+  ].join("\n");
+}
+
+/** One check (a grid, or the Wordle answer): a manual loop for web search's pause_turn and the closing report call. */
+async function checkGrid(client: Anthropic, prompt: string, system = SYSTEM): Promise<Finding[]> {
   const messages: Anthropic.Beta.BetaMessageParam[] = [{ role: "user", content: prompt }];
   for (let turn = 0; turn < 6; turn++) {
     const res = await client.beta.messages.create({
@@ -96,7 +122,7 @@ async function checkGrid(client: Anthropic, prompt: string): Promise<Finding[]> 
       fallbacks: "default", // a safety decline re-runs on another model instead of failing the night
       thinking: { type: "adaptive" },
       output_config: { effort: "high" },
-      system: SYSTEM,
+      system,
       tools: [{ type: "web_search_20260209", name: "web_search", max_uses: 12 }, REPORT],
       messages,
     });
@@ -118,8 +144,20 @@ export async function checkTomorrow(guessed: (wrestlerId: number, criterionId: s
   const extra = await ringOverrides();
   const regions: (Region | undefined)[] = [undefined, ...(Object.keys(REGIONS) as Region[]).filter((r) => REGIONS[r].live)];
   const out: Record<string, { findings?: number; error?: string }> = {};
-  await Promise.all(
-    regions.map(async (region) => {
+  const wordle = (async () => {
+    try {
+      const w = await wordleAnswer(day); // tomorrow's isn't frozen yet: this is the plan players will get
+      const findings = await checkGrid(client, wordlePrompt(day, w), WORDLE_SYSTEM);
+      await store.hashSet(KEY(day), { wordle: JSON.stringify(findings) });
+      out.wordle = { findings: findings.length };
+    } catch (e) {
+      await store.hashSet(KEY(day), { wordle: JSON.stringify({ error: String(e) }) });
+      out.wordle = { error: String(e) };
+    }
+  })();
+  await Promise.all([
+    wordle,
+    ...regions.map(async (region) => {
       const name = region ?? "main";
       try {
         const grid = await ringCard(day, region);
@@ -131,7 +169,7 @@ export async function checkTomorrow(guessed: (wrestlerId: number, criterionId: s
         out[name] = { error: String(e) };
       }
     }),
-  );
+  ]);
   return out;
 }
 

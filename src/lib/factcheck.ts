@@ -12,7 +12,7 @@ import { ringOverrides } from "./disputes";
 import { REGIONS, type Region } from "./regions";
 import { cellAnswers, cellCriteria, criterion, wrestlerByName, type Criterion, type Grid, type Overrides } from "./ring";
 import { store } from "./store";
-import { PROMOS, profileLines, wordleAnswer } from "./wordle";
+import { PROMOS, profileLines, twins, wordleAnswer } from "./wordle";
 
 const LIMIT = 2000; // Discord's message limit
 
@@ -86,7 +86,7 @@ export function isGuess(wrestlerId: number, criterionId: string): boolean {
 }
 
 /** Claude's findings for a grid, worst first, as lines for the post. */
-function claudeLines(grid: Grid, found: Finding[] | { error: string } | null): string[] {
+function claudeLines(grid: Grid | null, found: Finding[] | { error: string } | null): string[] {
   if (!found) return [];
   if (!Array.isArray(found)) return [`🤖 Claude's check failed tonight (${found.error.slice(0, 200)}); the squares below are unchecked.`];
   if (!found.length) return ["🤖 Claude checked every square and found nothing to flag."];
@@ -95,9 +95,13 @@ function claudeLines(grid: Grid, found: Finding[] | { error: string } | null): s
     `🤖 **Claude flagged ${found.length}** (it can be wrong too: check the source before changing anything)`,
     ...[...found].sort((a, b) => order(a) - order(b)).map((f) => {
       const cell = f.square - 1;
-      const [r, c] = cell >= 0 && cell < 9 ? cellCriteria(grid, cell) : [];
-      const where = r && c ? `${bare(r.label)} × ${bare(c.label)}` : `square ${f.square}`;
-      const what = f.problem === "wrong" ? `❌ **${f.wrestler}** counts but shouldn't (${f.rule})` : `➕ **${f.wrestler}** should count`;
+      const [r, c] = grid && cell >= 0 && cell < 9 ? cellCriteria(grid, cell) : [];
+      const where = !grid ? "Wordle" : r && c ? `${bare(r.label)} × ${bare(c.label)}` : `square ${f.square}`;
+      const what = !grid
+        ? `❌ **${f.rule}** clue looks wrong`
+        : f.problem === "wrong"
+          ? `❌ **${f.wrestler}** counts but shouldn't (${f.rule})`
+          : `➕ **${f.wrestler}** should count`;
       return `${what} · ${where}${f.confidence === "medium" ? " · not sure" : ""}: ${f.explanation} <${f.source}>`;
     }),
   ];
@@ -172,7 +176,13 @@ const WORDLE_TAGS = [...PROMOS, "d1980s", "d1990s", "d2000s", "d2010s", "d2020s"
 async function wordlePost(day: string, extra: Overrides): Promise<string> {
   try {
     const w = await wordleAnswer(day);
-    const lines = [`🕵️ **Tomorrow's Wrestling Wordle, No. ${puzzleNumber(day)}** (${day}): **${w.name}** · check each clue`, ...profileLines(w, day)];
+    const lookalikes = twins(w, day);
+    const lines = [
+      `🕵️ **Tomorrow's Wrestling Wordle, No. ${puzzleNumber(day)}** (${day}): **${w.name}** · check each clue`,
+      ...claudeLines(null, await claudeFindings(day, "wordle")),
+      ...profileLines(w, day),
+      `Lookalikes: ${lookalikes} well-known wrestler${lookalikes === 1 ? "" : "s"} share every clue${lookalikes ? " (guessing one shows all green)" : ""}`,
+    ];
     // clue values that rest on a guess or a hand-added tag
     for (const tag of WORDLE_TAGS) {
       const g = w.tags.includes(tag) ? guesses().get(`${w.id}:${tag}`) : extra.has(`${w.id}:${tag}`) ? { kind: "accepted dispute", detail: "" } : undefined;
