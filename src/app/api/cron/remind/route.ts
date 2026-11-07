@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { postDaily } from "@/lib/discord";
 import { postFactCheck } from "@/lib/factcheck";
+import { sendEmailReminders } from "@/lib/emailRemind";
 import { submitLastNight } from "@/lib/indexnow";
 import { sendReminders } from "@/lib/push";
 
@@ -20,5 +21,7 @@ export async function GET(req: Request) {
   const factcheck = await postFactCheck().catch((e) => ({ posted: false, reason: String(e) }));
   // and last night's answer pages go to Bing through IndexNow
   const indexnow = await submitLastNight().catch((e) => ({ submitted: false, reason: String(e) }));
-  return NextResponse.json({ ...(await sendReminders({ force })), discord, factcheck, indexnow });
+  // and the morning email, for players who chose that over notifications
+  const email = await sendEmailReminders({ force }).catch((e) => ({ error: String(e) }));
+  return NextResponse.json({ ...(await sendReminders({ force })), discord, factcheck, indexnow, email });
 }

@@ -310,7 +310,7 @@ function Results({ day, number, cells, rows, cols, region }: { day: string; numb
       <Poll />
       <RemindMe />
       <SignInNudge />
-      <NextMatch to="five" />
+      <NextMatch day={day} from={region ? "ringjp" : "ring"} />
     </section>
   );
 }

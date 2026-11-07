@@ -33,6 +33,7 @@ export interface Store {
   /** Permanent records (player careers, title counts): no expiry. */
   hashGet(key: string): Promise<Record<string, string>>;
   hashSet(key: string, fields: Record<string, string | number>): Promise<void>;
+  hashDel(key: string, field: string): Promise<void>;
   hashBump(key: string, field: string, by?: number): Promise<number>;
   setAdd(key: string, member: string): Promise<void>;
   setHas(key: string, member: string): Promise<boolean>;
@@ -126,6 +127,9 @@ function upstash(): Store | null {
     },
     async hashSet(key, fields) {
       await r.hset(key, fields);
+    },
+    async hashDel(key, field) {
+      await r.hdel(key, field);
     },
     async hashBump(key, field, by = 1) {
       return r.hincrby(key, field, by);
@@ -241,6 +245,9 @@ function memory(): Store {
     },
     async hashSet(key, fields) {
       for (const [f, v] of Object.entries(fields)) hmap(key).set(f, String(v));
+    },
+    async hashDel(key, field) {
+      hmap(key).delete(field);
     },
     async hashBump(key, field, by = 1) {
       const n = Number(hmap(key).get(field) ?? 0) + by;

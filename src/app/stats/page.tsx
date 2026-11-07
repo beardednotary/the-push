@@ -153,7 +153,15 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
                       {arrivals.reduce((n, [, c]) => n + c, 0)}{" "}
                       {arrivals.length > 0 && <span className="muted">{arrivals.map(([g, c]) => `${g} ${c}`).join(" · ")}</span>}
                     </td>
-                    <td>{s["remind:on"] ?? 0}</td>
+                    <td>
+                      {s["remind:on"] ?? 0}
+                      {(s["remind:email_signup"] ?? 0) + (s["remind:email"] ?? 0) > 0 && (
+                        <span className="muted">
+                          {" "}
+                          · email {s["remind:email"] ?? 0} of {s["remind:email_signup"] ?? 0}
+                        </span>
+                      )}
+                    </td>
                     <td>{s["league:create"] ?? 0}</td>
                     <td>{s["league:join"] ?? 0}</td>
                     <td>{s["ring:dispute"] ?? 0}</td>
@@ -166,7 +174,7 @@ export default async function StatsPage({ searchParams }: { searchParams: Promis
         <p className="muted small">
           Players = unique devices that finished a game. Returning = of those, how many first played on an earlier day. Counts
           began when each column was added; earlier days show zero. Taps = pressed Challenge a friend; shared = actually sent
-          or copied it. Story images = shared the 9:16 result image (phones only). Share arrivals = visits that came in
+          or copied it. Reminders on = turned on notifications; email = confirmed the email reminder, of those who asked. Story images = shared the 9:16 result image (phones only). Share arrivals = visits that came in
           through a shared link, by the game or poll that sent it. Leagues started = new friend leagues; joins = players joining someone else&apos;s league. Disputes =
           rejected Ring guesses players said were right.
         </p>

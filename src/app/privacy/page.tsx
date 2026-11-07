@@ -5,7 +5,7 @@ import { Bug, Plate } from "@/components/Chrome";
 
 export const metadata: Metadata = pageMeta("/privacy", "Privacy · The Push");
 
-const UPDATED = "October 25, 2026";
+const UPDATED = "November 7, 2026";
 const CONTACT = "ray@dahvio.com";
 
 export default function PrivacyPage() {
@@ -50,6 +50,11 @@ export default function PrivacyPage() {
             three days) so we don&apos;t remind you about a card you already finished.
           </li>
           <li>
+            <b>Your email address, if you ask for reminder emails.</b> We store it with your player ID, send one
+            confirmation email, and after you confirm, one email each morning the new card is live (skipped on days you&apos;ve
+            already played). Every email has an unsubscribe link; unsubscribing deletes your address.
+          </li>
+          <li>
             <b>Your account, if you sign in.</b> Signing in is optional. If you use Google or Discord we receive your name, email
             address and profile picture from them; if you use an email link we receive your email address. We use these only to
             run your account and keep your scores and settings together across devices.
@@ -87,7 +92,7 @@ export default function PrivacyPage() {
           <li><b>Google</b> provides Google Analytics, where it&apos;s allowed.</li>
           <li><b>Upstash</b> stores leaderboards, reminder subscriptions and accounts.</li>
           <li><b>Apple, Google, Mozilla and Microsoft</b> deliver push notifications to your device, if you turn reminders on.</li>
-          <li><b>Google and Discord</b> handle sign-in, if you choose them, and <b>Resend</b> sends sign-in emails.</li>
+          <li><b>Google and Discord</b> handle sign-in, if you choose them, and <b>Resend</b> sends sign-in and reminder emails.</li>
         </ul>
 
         <h2>Your choices</h2>

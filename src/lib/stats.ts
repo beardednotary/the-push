@@ -34,6 +34,7 @@ export const STAT_EVENTS = [
   "poll:arrive",
   "poll:vote",
   "remind:on",
+  "remind:email_signup", // asked for the email reminder (confirmations are counted on the server as "remind:email")
   "league:create", // counted on the server when a friend league starts
   "league:join", // a player joined someone else's league (the owner's own join isn't counted)
 ] as const;

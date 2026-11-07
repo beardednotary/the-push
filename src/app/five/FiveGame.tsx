@@ -261,7 +261,7 @@ function Results({ day, number, questions, answers, untimed }: { day: string; nu
         <Poll />
         <RemindMe />
         <SignInNudge />
-        <NextMatch to="ring" />
+        <NextMatch day={day} from="five" />
       </main>
     </>
   );

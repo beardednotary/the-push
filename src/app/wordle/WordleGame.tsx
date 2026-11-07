@@ -183,7 +183,7 @@ function Results({ day, number, rows, answer }: { day: string; number: number; r
       <Poll />
       <RemindMe />
       <SignInNudge />
-      <NextMatch to="ring" />
+      <NextMatch day={day} from="wordle" />
     </section>
   );
 }

@@ -1,8 +1,66 @@
 "use client";
-// "Remind me tomorrow": daily web push, offered only after a finished game.
+// "Remind me tomorrow": daily web push, offered only after a finished game, and a morning
+// email for browsers that can't take notifications (most iPhones) or players who'd rather.
 import { useEffect, useState } from "react";
 import { Plate } from "./Chrome";
-import { playerId, track } from "./client";
+import { playerId, safeGet, safeSet, track } from "./client";
+
+const EMAIL_KEY = "push:email"; // "pending" (confirmation sent) | "on" (confirmed)
+
+/** On the confirm/unsubscribe page: remember this browser's email reminder state. */
+export function EmailFlag({ value }: { value: "on" | null }) {
+  useEffect(() => {
+    if (value) safeSet(EMAIL_KEY, value);
+    else
+      try {
+        localStorage.removeItem(EMAIL_KEY);
+      } catch {}
+  }, [value]);
+  return null;
+}
+
+/** The email sign-up: one field, then "check your inbox". */
+function EmailForm({ compact = false, lead }: { compact?: boolean; lead?: React.ReactNode }) {
+  const [email, setEmail] = useState("");
+  const [state, setState] = useState<string | null>(null); // the saved flag, then the latest reply
+  const [busy, setBusy] = useState(false);
+  useEffect(() => setState(safeGet(EMAIL_KEY)), []);
+
+  async function submit(e: React.FormEvent) {
+    e.preventDefault();
+    setBusy(true);
+    const r = await fetch("/api/remind/email", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, playerId: playerId() }),
+    })
+      .then((r) => r.json())
+      .catch(() => ({ status: "error" }));
+    setBusy(false);
+    if (r.status === "sent") {
+      safeSet(EMAIL_KEY, "pending");
+      track("remind:email_signup");
+    }
+    if (r.status === "already") safeSet(EMAIL_KEY, "on");
+    setState(r.status === "sent" ? "pending" : r.status === "already" ? "on" : r.status);
+  }
+
+  if (state === "pending") return <p className={compact ? "remind-line" : undefined}>Check your inbox and tap the link to confirm.</p>;
+  if (state === "on") return compact ? null : <p>You&apos;ll get an email each morning the card is live. Every email has an unsubscribe link.</p>;
+  return (
+    <>
+      {lead}
+      <form className={compact ? "remind-line" : "post"} onSubmit={submit}>
+        <input className="field" type="email" placeholder="Your email" value={email} maxLength={254} onChange={(e) => setEmail(e.target.value)} required />
+        <button className="cta ghost" disabled={busy}>
+          <span>{busy ? "One sec" : "Email me"}</span>
+        </button>
+      </form>
+      {state === "invalid" && <p className="muted">That doesn&apos;t look like an email address.</p>}
+      {(state === "limited" || state === "off" || state === "error") && <p className="muted">That didn&apos;t go through. Try again later.</p>}
+    </>
+  );
+}
 
 type State = "loading" | "hidden" | "ios-install" | "denied" | "off" | "on" | "working" | "error";
 
@@ -29,6 +87,7 @@ async function post(body: object) {
 export function RemindMe({ compact = false }: { compact?: boolean }) {
   const [state, setState] = useState<State>("loading");
   const [justTurnedOn, setJustTurnedOn] = useState(false);
+  const [emailInstead, setEmailInstead] = useState(false);
 
   useEffect(() => {
     (async () => {
@@ -72,11 +131,13 @@ export function RemindMe({ compact = false }: { compact?: boolean }) {
     setState("off");
   }
 
-  if (state === "loading" || state === "hidden") return null;
+  if (state === "loading") return null;
+  const noPush = state === "hidden" || state === "ios-install" || state === "denied";
 
   // the one-line version under the finish moment: only an offer, never the setup or settings
   if (compact) {
     if (state === "on" && justTurnedOn) return <p className="remind-line">You&apos;re on tomorrow&apos;s card.</p>;
+    if (noPush) return <EmailForm compact lead={<p className="remind-line">Want tomorrow&apos;s card in your inbox?</p>} />;
     if (state !== "off" && state !== "working" && state !== "error") return null;
     return (
       <div className="remind-line">
@@ -91,13 +152,15 @@ export function RemindMe({ compact = false }: { compact?: boolean }) {
   return (
     <div className="remind">
       <Plate tone="red">Reminder</Plate>
-      {state === "ios-install" && (
-        <>
-          <p>
-            <b>Get a nudge when tomorrow&apos;s card drops.</b> On iPhone, add The Push to your Home Screen first: tap{" "}
-            <b>Share</b>, then <b>Add to Home Screen</b>. Open it from there and finish a game to turn reminders on.
-          </p>
-        </>
+      {noPush && (
+        <EmailForm
+          lead={
+            <p>
+              <b>Get tomorrow&apos;s card by email.</b> One email each morning, skipped on days you&apos;ve already played.
+              {state === "ios-install" && <> Prefer notifications? Add The Push to your Home Screen (Share, then Add to Home Screen) and turn them on from there.</>}
+            </p>
+          }
+        />
       )}
       {(state === "off" || state === "working" || state === "error") && (
         <>
@@ -108,6 +171,15 @@ export function RemindMe({ compact = false }: { compact?: boolean }) {
             <span>{state === "working" ? "One sec" : "Remind me tomorrow"}</span>
           </button>
           {state === "error" && <p className="muted">That didn&apos;t work. Try again in a moment.</p>}
+          {emailInstead ? (
+            <EmailForm />
+          ) : (
+            <p className="muted">
+              <button className="linkish" onClick={() => setEmailInstead(true)}>
+                Rather have an email?
+              </button>
+            </p>
+          )}
         </>
       )}
       {state === "on" && (
@@ -118,7 +190,7 @@ export function RemindMe({ compact = false }: { compact?: boolean }) {
           </button>
         </p>
       )}
-      {state === "denied" && <p className="muted">Notifications are blocked for this site. You can allow them in your browser&apos;s site settings.</p>}
+
     </div>
   );
 }

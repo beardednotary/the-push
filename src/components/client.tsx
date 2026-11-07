@@ -240,19 +240,62 @@ export function Leaderboard({ game, region, day, payload, format }: { game: "fiv
   );
 }
 
-export function NextMatch({ to }: { to: "five" | "ring" | "wordle" }) {
-  const copy =
-    to === "ring"
-      ? { slot: "Main event", title: "Immaculate Ring", body: "Nine squares, nine guesses. Name a wrestler who fits both sides." }
-      : to === "wordle"
-        ? { slot: "Dark match", title: "Wrestling Wordle", body: "One mystery wrestler, eight guesses. Every guess shows how close you are." }
-        : { slot: "Opening contest", title: "Daily Five", body: "Five questions, fifteen seconds each. Fast and right scores big." };
+const CARD: { id: "five" | "ring" | "wordle"; slot: string; title: string; body: string }[] = [
+  { id: "five", slot: "Opening contest", title: "Daily Five", body: "Five questions, fifteen seconds each. Fast and right scores big." },
+  { id: "ring", slot: "Main event", title: "Immaculate Ring", body: "Nine squares, nine guesses. Name a wrestler who fits both sides." },
+  { id: "wordle", slot: "Dark match", title: "Wrestling Wordle", body: "One mystery wrestler, eight guesses. Every guess shows how close you are." },
+];
+
+/** Finished tonight, on this device: the finish moment leaves its mark (FinishMoment storageKey). */
+const finishedTonight = (game: string, day: string) => Boolean(safeGet(`push:moment:${game}:${day}`));
+
+/** Time until the next card, midnight Eastern: "7h 12m". */
+function untilNextCard(): string {
+  const now = new Date();
+  const et = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
+  const next = new Date(et);
+  next.setHours(24, 0, 0, 0);
+  const mins = Math.max(1, Math.round((next.getTime() - et.getTime()) / 60_000));
+  return mins >= 60 ? `${Math.floor(mins / 60)}h ${mins % 60}m` : `${mins}m`;
+}
+
+/** After a game: the next one on tonight's card this player hasn't finished, in card order
+ *  (Daily Five, Ring, Wordle). Once all three are done, the countdown to the next card. */
+export function NextMatch({ day, from }: { day: string; from: "five" | "ring" | "wordle" | "ringjp" }) {
+  const at = CARD.findIndex((g) => g.id === from); // -1 for the Japan grid: start from the top
+  const order = [...CARD.slice(at + 1), ...CARD.slice(0, at + 1)].filter((g) => g.id !== from);
+  const [next, setNext] = useState<(typeof CARD)[number] | null | undefined>(order[0]);
+  const [left, setLeft] = useState<string | null>(null);
+  useEffect(() => {
+    const open = order.find((g) => !finishedTonight(g.id, day)) ?? null;
+    setNext(open);
+    if (open) return;
+    setLeft(untilNextCard());
+    const t = setInterval(() => setLeft(untilNextCard()), 30_000);
+    return () => clearInterval(t);
+    // order is derived from `from`
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [day, from]);
+
+  if (next === null) {
+    return (
+      <div className="upnext">
+        <Plate tone="gold">That&apos;s the whole card</Plate>
+        <h2 className="chrome">Next card in {left ?? "…"}</h2>
+        <p>A new Daily Five, Ring and Wordle drop at midnight Eastern.</p>
+        <Link className="cta ghost" href="/yesterday">
+          <span>See how everyone did</span>
+        </Link>
+      </div>
+    );
+  }
+  const copy = next ?? order[0];
   return (
     <div className="upnext">
       <Plate tone="gold">Up next · {copy.slot}</Plate>
       <h2 className="chrome">{copy.title}</h2>
       <p>{copy.body}</p>
-      <Link className="cta" href={`/${to}`}>
+      <Link className="cta" href={`/${copy.id}`}>
         <span>Ring the bell</span>
       </Link>
     </div>

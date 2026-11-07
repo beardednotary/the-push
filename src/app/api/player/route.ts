@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { career, recordFinish } from "@/lib/career";
+import { todayKey } from "@/lib/day";
 import { cleanId, store } from "@/lib/store";
 import { BELTS, ensureCrowned, honors } from "@/lib/titles";
 import { cleanRef, creditRecruit, promoterTitle, recruitCounts } from "@/lib/promoter";
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
   if (!id) return NextResponse.json({ error: "bad player" }, { status: 400 });
   const ref = cleanRef(rawRef);
   const first = ref ? (await career(id)).games === 0 : false;
-  const c = await recordFinish(id);
+  const [c] = await Promise.all([recordFinish(id), store.markPlayed(todayKey(), id)]); // played today: no reminder (push or email)
   if (ref && first) await creditRecruit(id, ref);
   return NextResponse.json({ career: c });
 }
