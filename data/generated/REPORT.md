@@ -14,7 +14,7 @@ Read this after every import; spot-check the lists against what you know.
 - matches after de-dup: 129886
 - gender: Counter({'m': 2772, 'f': 316}) among regulars
 - REVIEW: singles-title reigns won only in multi-winner matches (kept for the grid, never asked in trivia): ['Johnny Grunge ECW World Heavyweight Title 1994-03-26', 'Sabu ECW World Heavyweight Title 1995-02-04', 'Jr. WCW Cruiserweight Championship 1996-07-08', 'Jr. WCW Cruiserweight Championship 1998-01-15', 'Kane WWF World Heavyweight Title 1998-09-27', 'Kane WWF European Title 1999-02-15', 'Jr. WCW Cruiserweight Championship 1999-03-15', 'Jr. WCW Cruiserweight Championship 1999-04-26', 'Evan Karagias WCW Hardcore Title 2000-02-28', 'David Arquette WCW World Heavyweight Title 2000-04-25', 'Crowbar WCW Cruiserweight Championship 2000-05-15', 'Kane WWF World Heavyweight Title 2000-06-25', 'Chyna WWF Intercontinental Title 2000-08-27', 'Kevin Nash WCW Cruiserweight Championship 2000-10-02', 'Mr. McMahon ECW World Heavyweight Title 2007-04-29', 'Cody Rhodes WWE Championship 2009-04-26', "Layla WWE Women's Championship (original) 2010-05-11", 'Chris Jericho WWE United States Championship 2017-01-09', 'Dash Wilder WWE 24/7 Title 2019-08-12', 'Claudio Castagnoli WWE Intercontinental Championship 2020-03-08']
-- Wikidata: 1977 people matched, 12 skipped as ambiguous; tags added: {'(born from citizenship)': 65, 'college': 66, 'actor': 266, 'family': 230, 'nonJP': 1779, 'stateCA': 105, 'profootball': 49, 'bornCA': 150, 'stateTX': 73, 'strength': 33, 'olympian': 22, 'amateur': 220, 'stateMN': 49, 'bornJP': 136, 'bornAbroad': 644, 'stateGA': 56, 'stateOH': 56, 'stateIL': 34, 'combat': 67, 'bornMX': 100, 'stateNC': 53, 'stateWV': 5, 'music': 29, 'stateMD': 22, 'realName': 170, 'bornUK': 107, 'stateTN': 39, 'stateNJ': 63, 'stateFL': 90, 'stateUT': 6, 'stateMI': 38, 'stateMA': 37, 'stateNY': 125, 'stateSC': 12, 'stateIA': 9, 'stateSD': 2, 'stateAL': 10, 'stateAZ': 10, 'stateKY': 13, 'stateWI': 10, 'stateNV': 6, 'statePA': 65, 'stateVA': 22, 'stateCT': 16, 'stateKS': 6, 'stateWA': 21, 'stateDE': 4, 'stateMO': 16, 'stateIN': 19, 'stateOK': 13, 'stateNH': 3, 'stateCO': 8, 'stateAR': 6, 'stateHI': 18, 'stateLA': 17, 'stateNE': 6, 'stateND': 2, 'stateRI': 8, 'stateNM': 1, 'stateOR': 6, 'stateMS': 6, 'stateMT': 1, 'stateAK': 1, 'stateME': 3, 'stateID': 1}
+- Wikidata: 1977 people matched, 12 skipped as ambiguous; tags added: {'(born from citizenship)': 65, 'actor': 266, 'nonJP': 1779, 'family': 230, 'college': 66, 'profootball': 49, 'stateCA': 105, 'bornCA': 150, 'stateTX': 73, 'olympian': 22, 'strength': 33, 'amateur': 220, 'stateMN': 49, 'bornJP': 136, 'bornAbroad': 644, 'stateGA': 56, 'stateOH': 56, 'combat': 67, 'stateIL': 34, 'bornMX': 100, 'stateNC': 53, 'stateWV': 5, 'music': 29, 'stateMD': 22, 'realName': 170, 'bornUK': 107, 'stateTN': 39, 'stateNJ': 63, 'stateFL': 90, 'stateUT': 6, 'stateMI': 38, 'stateMA': 37, 'stateNY': 125, 'stateSC': 12, 'stateIA': 9, 'stateSD': 2, 'stateAL': 10, 'stateAZ': 10, 'stateKY': 13, 'stateWI': 10, 'stateNV': 6, 'statePA': 65, 'stateVA': 22, 'stateCT': 16, 'stateKS': 6, 'stateWA': 21, 'stateDE': 4, 'stateMO': 16, 'stateIN': 19, 'stateOK': 13, 'stateNH': 3, 'stateCO': 8, 'stateAR': 6, 'stateHI': 18, 'stateLA': 17, 'stateNE': 6, 'stateND': 2, 'stateRI': 8, 'stateNM': 1, 'stateOR': 6, 'stateMS': 6, 'stateMT': 1, 'stateAK': 1, 'stateME': 3, 'stateID': 1}
 - Title lists (Wikipedia): champions added that the archive was missing: {'wweChamp': 11, 'whc': 1, 'universal': 1, 'wcwChamp': 2, 'ecwChamp': 7, 'aewChamp': 11, 'ic': 7, 'us': 32, 'tv': 43, 'cruiser': 19, 'hardcore': 19, 'european': 7, 'nxtChamp': 5, 'twentyFourSeven': 5, 'tag': 237, 'womens': 7, 'iwgpChamp': 29, 'never': 19, 'iwgpJr': 27, 'tripleCrown': 14, 'ghc': 12, 'stardomChamp': 8, 'cmllChamp': 10, 'aaaMega': 11, 'g1': 17, 'bosj': 15, 'carnival': 13, 'reyDeReyes': 15}
 - Title lists: names not matched to one person (often tag teams or pre-1980 champions): wweChamp: 12; whc: 6; universal: 4; wcwChamp: 6; ecwChamp: 9; aewChamp: 1; ic: 9; us: 15; tv: 12; cruiser: 20; hardcore: 9; european: 4; nxtChamp: 3; twentyFourSeven: 10; tag: 215; womens: 16; iwgpChamp: 13; never: 11; iwgpJr: 19; tripleCrown: 25; ghc: 17; stardomChamp: 13; cmllChamp: 11; aaaMega: 7; g1: 4; bosj: 12; carnival: 18; reyDeReyes: 11
 - 2K covers: not matched to one person: []
@@ -41,6 +41,8 @@ Read this after every import; spot-check the lists against what you know.
 - PPV stipulations: participants not matched to one person: 12 (most often seen: ['Baby Doll (wrestler)', 'Dennis Condrey', 'Muhammed Lawal', 'Stephan Bonnar', 'Daga (wrestler)', 'Ole Anderson', 'Interim champion', 'Lineal champion', 'Danny Bonaduce', 'Josette Bynum', 'Ricky Sosa', 'Magnum T. A.'])
 - TAG OVERRIDE SKIPPED: {'wrestler': 'Jake Lee', 'tag': 'combat', 'action': 'remove', 'note': 'No MMA or boxing record; Wikidata matched a different Jake Lee (Claude fact-check 11-07)'}
 - TAG OVERRIDE SKIPPED: {'wrestler': 'Katsuhiko Nakajima', 'tag': 'combat', 'action': 'remove', 'note': 'Karate background, no MMA or boxing bouts (Claude fact-check 11-07)'}
+- TAG OVERRIDE SKIPPED: {'wrestler': 'Wataru Inoue', 'tag': 'amateur', 'action': 'remove', 'note': "Japanese Wikipedia lists his sports background as track, swimming and baseball and says he had no combat-sports background before joining Animal Hamaguchi's gym while at Tokyo Denki University; no amateur wrestling career is recorded (the Wikidata tag appears unsupported). (https://ja.wikipedia.org/wiki/%E4%BA%95%E4%B8%8A%E4%BA%98) [Claude sweep 11-07]"}
+- TAG OVERRIDE SKIPPED: {'wrestler': 'Evil', 'tag': 'amateur', 'action': 'remove', 'note': "Takaaki Watanabe's only listed sports background is kendo, which he did for about 10 years. After high school he went to medical college, then entered the Animal Hamaguchi pro-wrestling gym; no amateur wrestling competition is recorded. (https://www.wikiwand.com/ja/EVIL) [Claude sweep 11-07]"}
 - scene people added from Wikipedia + Wikidata (not in the archive): 91, 10 of them unknown to Wikidata: ['Boltin Oleg', 'El Hijo del Perro Aguayo', 'El Texano Jr.', 'Gran Guerrero', 'Konnan El Barbaro', 'La Parka Jr.', 'Maika', 'Saya Kamitani', 'Sho', 'Xtreme Tiger']; skipped (no single Wikidata match, or name taken): ['Brazo de Plata']
 - REVIEW: Lucha Legacy by name (15): Abismo Negro; Alberto Del Rio; Angel Garza; Dr. Wagner Jr.; El Hijo Del Vikingo; El Hijo del Dr. Wagner Jr.; El Hijo del Perro Aguayo; El Texano Jr.; La Parka Jr.; Lizmark Jr.; Penta; Rayo de Jalisco Jr.; Villano III; Villano IV; Villano V
 - REVIEW: Single Name (353), best known first: Kane; The Miz; Sheamus; R-Truth; Natalya; The Undertaker; Edge; Primo; Fandango; Naomi; Bayley; Ryback; Rusev; PAC; Rhyno; Sting; Albert; Asuka; Kalisto; Konnor; Viktor; X-Pac; Faarooq; Ricochet; The Rock; Raven; Epico; Test; Tajiri; Carmella; Gunther; Saraya; Finlay; Layla; Batista; The Hurricane; Emma; Victoria; Otis; Konnan; Carlito; Abyss; Crush; Sabu; Andrade; Elias; Riddle; The Godfather; Viscera; Fernando; Goldberg; Kaitlyn; The Sandman; Rikishi; Cameron; Tamina; Vader; The Barbarian; Aliyah; Hernandez; Kanyon; Kazarian; Animal; Omos; Athena; Tatanka; Lita; Ivar; Earthquake; Aksana; Penta; Melina; Ivory; Hawk; Erik; Magnus; Meng; Roadkill; Yokozuna; Vito; Jacqueline; Shotzi; Thrasher; Smash; Hercules; Fatu; Taz; Nunzio; Haku; Umaga; Psicosis; Hunico; Mosh; Virgil; Nova; Gangrel; Mansoor; Funaki; Akam; Hornswoggle; Kidman; Jazz; Rezar; Luchasaurus; Homicide; Rico; Serpentico; Vampiro; Maryse; The Warlord; The Blade; Ax; Tazz; The Butcher; Maven; Rosey; Murphy; Crowbar; Lana; Angel; Eugene; Typhoon; Dijak; Skull; Axiom; Bram; Samu; Camacho; Madusa; Wardlow; Chyna; The Goodfather; Crimson; Angelico; KUSHIDA; Kamala; Ortiz; Snitsky; Riho; Wolfgang; The Berzerker; Wrath; Michin; The Patriot; Heidenreich; Vincent; Diamante; Hook; Droz; Taynara; Glacier; Hakushi; Skinner; Luther; The Wall; Mustafa; Saturn; Sarita; Kato; Mo; Deuce; Rush; Psychosis; Elijah; Domino; The Bunny; Tucker; Humberto; Komander; Sika; Rodney; Chaz; Akio; Hanson; Rowan; Rowe; Moose; Tugboat; Tama; Ciclope; The Boogeyman; Damien; Sable; Hak; Jesse; Nidia; Sylvan; Senshi; Kwang; Zip; Manik; Boa; Tanaka; Kurrgan; Spanky; Daivari; Kaz; DDS; Blitzkrieg; Tori; The Renegade; Abadon; Jade; Z-Man; Mikey; The Sultan; Maxine; Winter; Scorpio; Morrison; Suicide; Anarquia; The Tazmaniac; The Shadow; Lodi; The Maestro; DOC; Horace; Allie; Sanada; Bandido; Berlyn; The Demon; Ten; Sionne; Ali; Giulia; Berto; Terri; Reno; Daffney; Antonio; The Kat; Kaval; Ryzin; Romeo; Nailz; Rockabilly; Johnny; B-Fab; Reggie; Hammer; Rosemary; Havok; Lizmark; Meat; Roxxi; Sanga; Ezekiel; Francine; PCO; Bronson; Recon; Grado; Thekla; SCRYPTS; Afa; The Genius; Sato; Shanky; Kole; Ivelisse; Dralistico; Rocky; Sienna; Dallas; ROSE; Veer; The Sheik; Zodiac; Mona; Boulder; The Spoiler; Dog; Sniper; Asya; Tygress; Rebel; Oz; Roadblock; Mandrews; Daniels; Hologram; Danhausen; Cobra; The Executioner; Jason; Cherry; Zaria; Brakkus; The Goon; Pantera; Luna; Shanna; Hamada; The Prodigy; Battalion; VSK; Vertvixen; The Gambler
@@ -78,7 +80,7 @@ The archive has six US promotions and no country column. These are events whose 
 | AEW shows held there | Mexico | 1 | 1 | 0 | 2025-2025 | AEW 1 |
 
 Pool: 2031 wrestlers, 642 well known (pop 150+, the grid's answer pool).
-Born in Japan: 136 (15 well known); born in Mexico: 69 (15 well known).
+Born in Japan: 135 (15 well known); born in Mexico: 68 (15 well known).
 
 | scene criterion | in pool | well known |
 |---|---|---|
@@ -137,34 +139,34 @@ Born in Japan: 136 (15 well known); born in Mexico: 69 (15 well known).
 - d2020s: 672
 - actor: 198
 - music: 23
-- combat: 60
-- amateur: 123
+- combat: 59
+- amateur: 119
 - olympian: 16
 - profootball: 36
 - college: 51
 - strength: 21
 - bornCA: 93
-- bornJP: 136
-- bornMX: 69
-- bornUK: 66
-- bornAbroad: 477
+- bornJP: 135
+- bornMX: 68
+- bornUK: 64
+- bornAbroad: 470
 - stateCA: 68
-- stateFL: 65
+- stateFL: 60
 - stateGA: 39
-- stateIL: 24
-- stateMA: 26
-- stateMI: 25
-- stateMN: 33
-- stateNJ: 46
-- stateNY: 83
-- stateNC: 42
-- stateOH: 33
-- statePA: 38
+- stateIL: 23
+- stateMA: 25
+- stateMI: 24
+- stateMN: 32
+- stateNJ: 44
+- stateNY: 85
+- stateNC: 43
+- stateOH: 35
+- statePA: 41
 - stateTN: 26
-- stateTX: 51
+- stateTX: 50
 - family: 180
 - singleName: 353
-- realName: 121
+- realName: 119
 - neverNxt: 149
 - aewWwe: 133
 - cover: 31
@@ -344,8 +346,8 @@ Born in Japan: 136 (15 well known); born in Mexico: 69 (15 well known).
 - Chris Jericho (m): actor, aew, aewChamp, aewPpvMain, aewWwe, bornCA, cage, cover, cruiser, d1990s, d2000s, d2010s, d2020s, ecw, european, hardcore, hiac, ic, ladder, marathon, music, nxt, stateNY, tag, tv, us, wcw, wcwChamp, whc, wmMain, wwe, wweChamp
 - Sheamus (m): actor, bornAbroad, cage, d2000s, d2010s, d2020s, hiac, ladder, nxt, rumble, singleName, tag, us, whc, wwe, wweChamp
 - Seth Rollins (m): cage, cover, d2010s, d2020s, hiac, ic, ladder, nxt, nxtChamp, rumble, tag, tna, universal, us, whc, wmMain, wwe, wweChamp
-- R-Truth (m): cage, d2000s, d2010s, d2020s, hardcore, ladder, nxt, singleName, stateGA, tag, tna, twentyFourSeven, us, wwe
-- Cody Rhodes (m): actor, aew, aewPpvMain, aewWwe, bulletClub, cage, cover, d2000s, d2010s, d2020s, elite, family, hiac, ic, ladder, marathon, nxt, realName, rumble, stateNC, tag, tna, universal, wmMain, wwe, wweChamp
+- R-Truth (m): cage, d2000s, d2010s, d2020s, hardcore, ladder, nxt, singleName, stateNC, tag, tna, twentyFourSeven, us, wwe
+- Cody Rhodes (m): actor, aew, aewPpvMain, aewWwe, bulletClub, cage, cover, d2000s, d2010s, d2020s, elite, family, hiac, ic, ladder, marathon, nxt, rumble, stateGA, tag, tna, universal, wmMain, wwe, wweChamp
 - Jon Moxley (m): actor, aew, aewChamp, aewPpvMain, aewWwe, cage, d2000s, d2010s, d2020s, gaijin, hiac, ic, iwgpChamp, ladder, nxt, stateOH, tag, us, wwe, wweChamp
 - Claudio Castagnoli (m): aew, aewPpvMain, aewWwe, bornAbroad, cage, cmllChamp, d2010s, d2020s, ic, ladder, nxt, tag, us, wwe
 - Jey Uso (m): cage, d2010s, d2020s, family, hiac, ic, ladder, nxt, rumble, stateCA, tag, whc, wmMain, wwe

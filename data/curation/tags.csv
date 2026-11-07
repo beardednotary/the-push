@@ -34,3 +34,67 @@ Brock Lesnar,amateur,add,"2000 NCAA heavyweight champion, Minnesota (accepted di
 Xavier Woods,aew,add,Joined AEW in autumn 2026 with Kofi Kingston (newer than the match archive; per Ray)
 Jake Lee,combat,remove,"No MMA or boxing record; Wikidata matched a different Jake Lee (Claude fact-check 11-07)"
 Katsuhiko Nakajima,combat,remove,"Karate background, no MMA or boxing bouts (Claude fact-check 11-07)"
+The Blue Meanie,stateNJ,remove,"Brian Heffron was born in Philadelphia, Pennsylvania; Atlantic City, New Jersey was only where he was billed from as Brian Rollins. (https://en.wikipedia.org/wiki/The_Blue_Meanie) [Claude sweep 11-07]"
+John Silver,stateCA,remove,"Wikipedia gives John Silver's birthplace as Wantagh, New York; the Los Angeles birthplace in Wikidata is wrong. (https://en.wikipedia.org/wiki/John_Silver_(wrestler)) [Claude sweep 11-07]"
+R-Truth,stateGA,remove,"Ronnie Killings was born in Charlotte, North Carolina, not Georgia. (https://en.wikipedia.org/wiki/R-Truth) [Claude sweep 11-07]"
+Booker T,stateTX,remove,"Booker T was born March 1, 1965 in Plain Dealing, Louisiana; he only grew up in Houston, Texas. (https://en.wikipedia.org/wiki/Booker_T_(wrestler)) [Claude sweep 11-07]"
+Brad Maddox,stateNC,remove,"Brad Maddox (Joshua Tyler Kluttz) was born in Tega Cay, South Carolina, not North Carolina. (https://en.wikipedia.org/wiki/Brad_Maddox) [Claude sweep 11-07]"
+Madusa,bornAbroad,remove,"Wikipedia gives her birthplace as Minneapolis, Minnesota, U.S. and calls Milan a claim, not fact; the Milan, Italy birthplace comes from Wikidata and some fan wikis. (https://en.wikipedia.org/wiki/Madusa) [Claude sweep 11-07]"
+Road Dogg,bornAbroad,remove,"Road Dogg (Brian Girard James) was born May 20, 1969 in Marietta, Georgia, U.S. (https://en.wikipedia.org/wiki/Road_Dogg) [Claude sweep 11-07]"
+Muhammad Hassan,bornAbroad,remove,"Muhammad Hassan (Marc Copani) was born in Syracuse, New York, so he was born in the US. (https://en.wikipedia.org/wiki/Muhammad_Hassan_(wrestler)) [Claude sweep 11-07]"
+Akio,bornAbroad,remove,"Akio is James 'Jimmy' Yun (Jimmy Wang Yang), an American wrestler born in Los Angeles, California. (https://en.wikipedia.org/wiki/Jimmy_Yang) [Claude sweep 11-07]"
+Akio,bornJP,remove,"Akio is the American wrestler James Yun, born in California and not Japanese by birth or citizenship; the Japanese character was only a ring persona. (https://en.wikipedia.org/wiki/Jimmy_Yang) [Claude sweep 11-07]"
+Shark Boy,stateTX,remove,"Dean Roll (Shark Boy) was born in Dayton, Ohio, not Texas. (https://en.wikipedia.org/wiki/Shark_Boy) [Claude sweep 11-07]"
+Michael Hayes,realName,remove,"His real name is Michael Seitz, so 'Michael Hayes' is a ring name, not his real first and last name. (https://en.wikipedia.org/wiki/Michael_Hayes_(wrestler)) [Claude sweep 11-07]"
+Cody Rhodes,stateNC,remove,"Cody Rhodes was born June 30, 1985 in Marietta, Georgia, not North Carolina. (https://simple.wikipedia.org/wiki/Cody_Rhodes) [Claude sweep 11-07]"
+Cody Rhodes,realName,remove,"His birth name is Cody Garrett Runnels; 'Cody Rhodes' is a ring name, so he doesn't wrestle under his real first and last name. (https://id.loc.gov/authorities/no2012138439) [Claude sweep 11-07]"
+Ace Austin,stateNJ,remove,"Ace Austin (Austin James Highley) was born in Reading, Pennsylvania; Atlantic City, NJ is only where he is billed from. (https://en.wikipedia.org/wiki/Ace_Austin) [Claude sweep 11-07]"
+Adam Cole,stateFL,remove,"Adam Cole (Austin Kirk Jenkins) was born in Lancaster, Pennsylvania; Panama City, Florida is only his billed hometown. (https://en.wikipedia.org/wiki/Adam_Cole) [Claude sweep 11-07]"
+Ricochet,stateIL,remove,"Ricochet (Trevor Mann) was born in Paducah, Kentucky, not Illinois. (https://www.sescoops.com/profile/ricochet) [Claude sweep 11-07]"
+Peter Avalon,stateCA,remove,"Wikipedia gives Peter Avalon's (Peter Hernandez) birthplace as Carson City, Nevada, not California; Wikidata's Rancho Cucamonga entry conflicts with this. (https://en.wikipedia.org/wiki/Peter_Avalon) [Claude sweep 11-07]"
+Jim Neidhart,stateFL,remove,"Neidhart was born in Montebello, California; Florida (Wesley Chapel) is only where he died. (https://en.wikipedia.org/wiki/Jim_Neidhart) [Claude sweep 11-07]"
+Droz,bornMX,remove,"Darren Drozdov was born in Mays Landing, New Jersey, is American, and has no Mexican birth or citizenship. (https://www.statscrew.com/football/stats/p-drozddar001) [Claude sweep 11-07]"
+New Jack,stateGA,remove,"Jerome Young (New Jack) was born January 3, 1963 in Greensboro, North Carolina. (https://en.wikipedia.org/wiki/New_Jack) [Claude sweep 11-07]"
+Mustafa,stateGA,remove,"Mustafa Saed (Terrance Ladd Blalock) was born in Kings Mountain, North Carolina. (https://www.wikiwand.com/en/Mustafa_Saed) [Claude sweep 11-07]"
+Big Dick Dudley,bornAbroad,remove,"Alex Rizzo (Big Dick Dudley) was born January 12, 1968 in Paterson, New Jersey, USA. (https://www.imdb.com/name/nm0729865/) [Claude sweep 11-07]"
+Big Dick Dudley,bornUK,remove,"Alex Rizzo was an American born in Paterson, New Jersey, and nothing shows he was British or born in the UK. (https://www.imdb.com/name/nm0729865/) [Claude sweep 11-07]"
+Doink the Clown,statePA,remove,"Matt Borne (Matthew Wade Osborne) was born in Charlotte, North Carolina, not Pennsylvania. (https://en.wikipedia.org/wiki/Matt_Borne) [Claude sweep 11-07]"
+Simon Gotch,stateNJ,remove,"Simon Gotch (Seth Lesser) was born in Santa Rosa, California, not New Jersey. (https://en.wikipedia.org/wiki/Simon_Gotch) [Claude sweep 11-07]"
+Mr. Anderson,stateMN,remove,"Ken Anderson was born in Wisconsin Rapids (some sources say Two Rivers), Wisconsin, not Minnesota. (https://en.wikipedia.org/wiki/Ken_Anderson_(wrestler)) [Claude sweep 11-07]"
+Garett Bischoff,stateMI,remove,"Wikipedia lists Garett Bischoff's birthplace as Arizona (other sources say Cody, Wyoming), not Michigan; his father Eric was the one born in Michigan. (https://en.wikipedia.org/wiki/Garett_Bischoff) [Claude sweep 11-07]"
+Rob Conway,statePA,remove,"Rob Conway (Robert Thomas Conway Jr.) was born in Louisville, Kentucky, not Pennsylvania. (https://en.wikipedia.org/wiki/Rob_Conway) [Claude sweep 11-07]"
+Wataru Inoue,amateur,remove,"Japanese Wikipedia lists his sports background as track, swimming and baseball and says he had no combat-sports background before joining Animal Hamaguchi's gym while at Tokyo Denki University; no amateur wrestling career is recorded (the Wikidata tag appears unsupported). (https://ja.wikipedia.org/wiki/%E4%BA%95%E4%B8%8A%E4%BA%98) [Claude sweep 11-07]"
+Tucker,bornAbroad,remove,"Tucker (Levi Rolla Cooper) is an American wrestler born July 24, 1990 in Clackamas, Oregon, U.S. (https://en.wikipedia.org/wiki/Tucker_(American_wrestler)) [Claude sweep 11-07]"
+Tucker,bornUK,remove,"Tucker (Levi Rolla Cooper) was born in Clackamas, Oregon, and is American; the British tag comes from a different person with the same name. (https://en.wikipedia.org/wiki/Tucker_(American_wrestler)) [Claude sweep 11-07]"
+The Great Khali,combat,remove,"Dalip Singh Rana's career was bodybuilding (Mr India), police work, pro wrestling and acting; he has no record of MMA or boxing fights, so this tag likely comes from a different 'Dalip Singh'. (https://en.wikipedia.org/wiki/The_Great_Khali) [Claude sweep 11-07]"
+Bill DeMott,stateFL,remove,"Wikipedia and Wrestlepedia give his birthplace as Ridgewood, New Jersey; only IMDb lists Titusville, Florida. (https://en.wikipedia.org/wiki/Bill_DeMott) [Claude sweep 11-07]"
+Adam Bomb,stateFL,remove,"Bryan Emmett Clark was born March 14, 1964 in Harrisburg, Pennsylvania, not Florida. (https://www.cagematch.net/?id=2&nr=41) [Claude sweep 11-07]"
+Fandango,stateMA,remove,"Curtis Hussey (Fandango) was born on July 22, 1983 in Portland, Maine, not in Massachusetts. (https://en.wikipedia.org/wiki/Fandango_(wrestler)) [Claude sweep 11-07]"
+Chief Jay Strongbow,stateNJ,remove,"Joe Scarpa (Chief Jay Strongbow) was born in Philadelphia, Pennsylvania, not New Jersey. (https://en.wikipedia.org/wiki/Chief_Jay_Strongbow) [Claude sweep 11-07]"
+Charlie Dempsey,bornAbroad,remove,"Charlie Dempsey (Bailey Matthews) was born December 30, 1996 in Atlanta, Georgia, U.S.; he is not English-born, even though he is billed from Blackpool. (https://en.wikipedia.org/wiki/Charlie_Dempsey_(wrestler)) [Claude sweep 11-07]"
+Will Ospreay,amateur,remove,"Ospreay's background was drama classes at his mother's academy and backyard wrestling, followed by professional training at Lucha Britannia's London School of Lucha Libre; no record exists of him wrestling at school, college or Olympic level. (https://en.wikipedia.org/wiki/Will_Ospreay) [Claude sweep 11-07]"
+KiLynn King,stateFL,remove,"Wikipedia gives KiLynn King's birthplace as Painesville, Ohio. Florida is only where she is billed or based, not where she was born. (https://en.wikipedia.org/wiki/KiLynn_King) [Claude sweep 11-07]"
+Maryse,amateur,remove,"Maryse Ouellet came to WWE from modeling and beauty pageants (the 2006 Diva Search) and has no record of competing in scholastic, collegiate or Olympic-style amateur wrestling. (https://en.wikipedia.org/wiki/Maryse_Mizanin) [Claude sweep 11-07]"
+Evil,amateur,remove,"Takaaki Watanabe's only listed sports background is kendo, which he did for about 10 years. After high school he went to medical college, then entered the Animal Hamaguchi pro-wrestling gym; no amateur wrestling competition is recorded. (https://www.wikiwand.com/ja/EVIL) [Claude sweep 11-07]"
+Anarquia,stateCA,remove,"Shawn Hernandez (Anarquia/Hernandez) was born on February 11, 1973 in Houston, Texas, not California. (https://simple.wikipedia.org/wiki/Hernandez_(wrestler)) [Claude sweep 11-07]"
+Akio,stateCA,add,Birthplace per https://en.wikipedia.org/wiki/Jimmy_Yang [Claude sweep 11-07]
+Big Dick Dudley,stateNJ,add,Birthplace per https://www.imdb.com/name/nm0729865/ [Claude sweep 11-07]
+Charlie Dempsey,stateGA,add,Birthplace per https://en.wikipedia.org/wiki/Charlie_Dempsey_(wrestler) [Claude sweep 11-07]
+Muhammad Hassan,stateNY,add,Birthplace per https://en.wikipedia.org/wiki/Muhammad_Hassan_(wrestler) [Claude sweep 11-07]
+Road Dogg,stateGA,add,Birthplace per https://en.wikipedia.org/wiki/Road_Dogg [Claude sweep 11-07]
+Anarquia,stateTX,add,Birthplace per https://simple.wikipedia.org/wiki/Hernandez_(wrestler) [Claude sweep 11-07]
+John Silver,stateNY,add,Birthplace per https://en.wikipedia.org/wiki/John_Silver_(wrestler) [Claude sweep 11-07]
+Adam Bomb,statePA,add,Birthplace per https://www.cagematch.net/?id=2&nr=41 [Claude sweep 11-07]
+Adam Cole,statePA,add,Birthplace per https://en.wikipedia.org/wiki/Adam_Cole [Claude sweep 11-07]
+Jim Neidhart,stateCA,add,Birthplace per https://en.wikipedia.org/wiki/Jim_Neidhart [Claude sweep 11-07]
+KiLynn King,stateOH,add,Birthplace per https://en.wikipedia.org/wiki/KiLynn_King [Claude sweep 11-07]
+Mustafa,stateNC,add,Birthplace per https://www.wikiwand.com/en/Mustafa_Saed [Claude sweep 11-07]
+New Jack,stateNC,add,Birthplace per https://en.wikipedia.org/wiki/New_Jack [Claude sweep 11-07]
+R-Truth,stateNC,add,Birthplace per https://en.wikipedia.org/wiki/R-Truth [Claude sweep 11-07]
+Ace Austin,statePA,add,Birthplace per https://en.wikipedia.org/wiki/Ace_Austin [Claude sweep 11-07]
+Chief Jay Strongbow,statePA,add,Birthplace per https://en.wikipedia.org/wiki/Chief_Jay_Strongbow [Claude sweep 11-07]
+Simon Gotch,stateCA,add,Birthplace per https://en.wikipedia.org/wiki/Simon_Gotch [Claude sweep 11-07]
+The Blue Meanie,statePA,add,Birthplace per https://en.wikipedia.org/wiki/The_Blue_Meanie [Claude sweep 11-07]
+Cody Rhodes,stateGA,add,Birthplace per https://simple.wikipedia.org/wiki/Cody_Rhodes [Claude sweep 11-07]
+Shark Boy,stateOH,add,Birthplace per https://en.wikipedia.org/wiki/Shark_Boy [Claude sweep 11-07]
+Bill DeMott,stateNJ,add,Birthplace per https://en.wikipedia.org/wiki/Bill_DeMott [Claude sweep 11-07]
